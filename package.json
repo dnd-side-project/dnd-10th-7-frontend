@@ -14,6 +14,7 @@
     "prettier": "^3.2.4",
     "react": "^18",
     "react-dom": "^18",
+    "react-google-login": "5.2.2",
     "react-query": "^3.39.3",
     "recoil": "^0.7.7"
   },
