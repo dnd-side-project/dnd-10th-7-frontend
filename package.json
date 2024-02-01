@@ -10,11 +10,12 @@
     "cz": "./node_modules/cz-customizable/standalone.js"
   },
   "dependencies": {
+    "@tanstack/react-query": "5.18.0",
     "next": "14.1.0",
     "prettier": "^3.2.4",
     "react": "^18",
     "react-dom": "^18",
-    "react-query": "^3.39.3",
+    "react-query": "3.39.3",
     "recoil": "^0.7.7"
   },
   "devDependencies": {
