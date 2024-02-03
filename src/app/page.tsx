@@ -1,4 +1,3 @@
-import Laboratory from "@component/laboratory";
 import Image from "next/image";
 
 export default function Home() {
@@ -6,7 +5,6 @@ export default function Home() {
     <main>
       테스트테스트테스트테스트테스트테스트테스트테스트테스트테스트
       테스트테스트테스트테스트테스트테스트테스트테스트테스트테스트
-      <Laboratory />
     </main>
   );
 }
