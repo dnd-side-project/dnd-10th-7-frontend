@@ -1,6 +1,7 @@
 "use client";
 import Button from "@component/components/button";
 import Modal from "@component/components/modal";
+import Tag from "@component/components/tag";
 import { useState } from "react";
 
 export default function Laboratory() {
@@ -20,11 +21,22 @@ export default function Laboratory() {
       <div className="text-caption3">caption3</div> */}
       {/* button test */}
       <div className="flex flex-row items-center gap-3">
-        <Button size="xs">xs button</Button>
+        <Button size="xs" className="font-medium">
+          xs button
+        </Button>
         <Button size="sm">sm button</Button>
         <Button size="md">md button</Button>
         <Button size="lg">lg button</Button>
       </div>
+
+      {/* tag test */}
+      <div className="flex flex-col gap-4">
+        <Tag type="예술/대중문화" status="기획중" />
+        <Tag type="건강" status="개발중" />
+        <Tag type="금융/핀테크" />
+        <Tag status="리팩토링중" />
+      </div>
+
       <Button>testestestet</Button>
       <div>color style test about button</div>
       {/* button style test */}
@@ -51,7 +63,7 @@ export default function Laboratory() {
           xs button
         </Button>
         <Modal
-          open={true}
+          open={false}
           onClose={() => setIsOpen(false)}
           className="w-[600px]"
         >
