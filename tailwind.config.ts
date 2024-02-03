@@ -42,6 +42,7 @@ const config: Config = {
         title: "24px",
         h2: "20px",
         body1: "18px",
+        // 16px 빠짐
         body2: "14px",
         caption1: "12px",
         caption2: "11px",

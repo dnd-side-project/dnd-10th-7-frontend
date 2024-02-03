@@ -5,6 +5,7 @@ import { useState } from "react";
 import PurpleInput from "@component/components/input/Input";
 import PurpleTextarea from "@component/components/textarea/Textarea";
 import Tab from "@component/components/tab/Tab";
+import Dropdown from "@component/components/dropdown/Dropdown";
 
 const Test = () => {
     const [inputValue, setInputValue] = useState<string>("");
@@ -22,8 +23,10 @@ const Test = () => {
 
     const textHandleChange = (event: any) => {
         setTextareaValue(event.target.value);
-      };
-      
+    };
+
+    // 드롭다운
+    const [selectedItem, setSelectedItem] = useState<string>("");
     return (
         <div className="p-4">
 
@@ -121,6 +124,38 @@ const Test = () => {
 
             {/* 드롭다운 컴포넌트 입니다 */}
             <div className="text-head text-purple-main1">DROPDOWN</div>
+            <p className="text-purple-main2">{selectedItem}선택함</p>
+            
+            <Dropdown
+                size="lg"
+                items={['디자이너', '기획자', '프론트엔드', '백엔드']} // 드롭다운 항목
+                selectedItem={selectedItem} // 선택
+                setSelectedItem={setSelectedItem} 
+                textSize="md"   // 글자 크기
+                place="center"  // 글자 위치
+                padding="md"    // py 크기
+            />
+            <br />
+            <Dropdown
+                size="md"
+                items={['끌올하기', '수정하기', '삭제하기']}
+                selectedItem={selectedItem}
+                setSelectedItem={setSelectedItem}
+                textSize="md"
+                place="left"
+                padding="lg"
+            />
+            <br />
+            <Dropdown
+                size="xs"
+                items={['0명', '1명', '2명', '3명', '4명', '5명', '6명', '7명', '8명', '9명']}
+                selectedItem={selectedItem}
+                setSelectedItem={setSelectedItem}
+                textSize="xs"
+                place="center"
+                padding="xs"
+            />
+            <br />
         </div>
     )
 }
