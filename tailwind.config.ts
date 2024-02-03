@@ -10,6 +10,7 @@ const config: Config = {
     extend: {
       colors: {
         // primary color
+        "purple-active": "#7B5BFD",
         "purple-main1": "#8C82FF",
         "purple-main2": "#C1B6FF",
         "purple-main3": "#D9D3FF",
