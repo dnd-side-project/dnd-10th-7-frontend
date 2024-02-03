@@ -1,8 +1,12 @@
+"use client";
 import Button from "@component/components/button";
+import Modal from "@component/components/modal";
+import { useState } from "react";
 
 export default function Laboratory() {
+  const [isOpen, setIsOpen] = useState<boolean>(true);
   return (
-    <>
+    <div>
       {/* font test */}
       {/* <div className="text-huge">huge입니다</div>
       <div className="text-head">head입니다</div>
@@ -21,6 +25,7 @@ export default function Laboratory() {
         <Button size="md">md button</Button>
         <Button size="lg">lg button</Button>
       </div>
+      <Button>testestestet</Button>
       <div>color style test about button</div>
       {/* button style test */}
       <div className="flex flex-col gap-3">
@@ -42,10 +47,34 @@ export default function Laboratory() {
         <Button size="xs" color="black">
           xs button
         </Button>{" "}
-        <Button size="xs" color="disabled">
+        <Button size="xs" className="bg-error-color">
           xs button
         </Button>
+        <Modal
+          open={true}
+          onClose={() => setIsOpen(false)}
+          className="w-[600px]"
+        >
+          <Modal.Title>
+            <div>title</div>
+          </Modal.Title>
+          <Modal.SubTitle>
+            <div>SubTitleSubTitleSubTitleSubTitle</div>
+          </Modal.SubTitle>
+          <Modal.Description>
+            <div>
+              DescriptionDescriptionDescriptionDescriptionDescriptionDescription
+              Description Description Description Description Description
+              Description Description Description Description Description
+              Description Description Description Description Description
+              Description Description Description Description Description
+              Description Description Description Description Description
+            </div>
+          </Modal.Description>
+
+          <Modal.Footer>this is footer</Modal.Footer>
+        </Modal>
       </div>
-    </>
+    </div>
   );
 }

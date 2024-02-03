@@ -17,7 +17,7 @@ const style: {
 } = {
   base: "inline-flex items-center justify-center box-border select-none font-fold m-0 p-0 w-fit h-fit border cursor-pointer align-middle disabled:cursor-default",
   size: {
-    xs: "min-h-[30px] px-[14px] py-[7px] text-body2 gap-[4px]",
+    xs: "min-h-[30px] px-[14px] py-[7px] text-body3 gap-[4px]",
     sm: "min-h-[40px] px-[15px] py-[10px] text-body1 gap-6px",
     md: "min-h-[48px] px-[16px] py-[10px] text-body1 gap-6px",
     lg: "min-h-[50px] px-[20px] py-[14px] text-h2 gap-8px",
