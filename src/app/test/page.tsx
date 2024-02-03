@@ -22,7 +22,6 @@ const Test = () => {
             <PurPleInput
                 value={inputValue}
                 onChange={handleChange}
-                onKeyDown={handleEnterKey}
                 placeholder="답글을 입력해주세요"
                 shape="rounded"
                 size="xs"
@@ -47,7 +46,6 @@ const Test = () => {
             <PurPleInput
                 value={inputValue}
                 onChange={handleChange}
-                onKeyDown={handleEnterKey}
                 placeholder="서비스 링크 입력하기"
                 shape="rounded"
                 size="xs"
@@ -55,7 +53,6 @@ const Test = () => {
                 borderSize="lg"
                 backgroundColors="white"
             />
-            <p>입력된 값: {inputValue}</p>
         </div>
     )
 }

@@ -1,7 +1,7 @@
 export type InputProps = {
     value: string;
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-    onKeyDown: (event: React.KeyboardEvent<HTMLInputElement>) => void;
+    onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
     placeholder: string;
     size: InputSize;
     textSize : InputSize;

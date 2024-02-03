@@ -24,7 +24,7 @@ const style: {
       lg: 'text-h2 font-bold',
     },
     shapes: {
-      square: 'rounded',
+      square: 'rounded-lg',
       rounded: 'rounded-full',
     },
     borderSizes: {
