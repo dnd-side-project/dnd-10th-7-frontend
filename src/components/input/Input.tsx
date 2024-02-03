@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import { InputProps, InputSize, InputShape, InputColor } from ".";
-import { CiSearch } from "react-icons/ci";
+import SearchIcon from '@mui/icons-material/Search';
 
 const style: {
     base: string;
@@ -59,7 +59,7 @@ export const PurpleInput = ({
         <div className="relative">
             {search && (
                 // TODO: 검색 아이콘 material icon으로
-                <CiSearch size={30} className="absolute top-[9px] left-[9px]"></CiSearch>
+                <SearchIcon className="absolute top-[11px] left-[10px]"/>
             )}
             <input 
                 type="text" 
