@@ -33,7 +33,7 @@ const config: Config = {
         "gray-100": "#000000",
 
         // error color
-        error: "#FF465C",
+        "error": "#FF465C",
       },
       fontSize: {
         huge: "56px",

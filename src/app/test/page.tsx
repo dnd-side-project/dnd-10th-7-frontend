@@ -4,6 +4,7 @@
 import { useState } from "react";
 import PurpleInput from "@component/components/input/Input";
 import PurpleTextarea from "@component/components/textarea/Textarea";
+import Tab from "@component/components/tab/Tab";
 
 const Test = () => {
     const [inputValue, setInputValue] = useState<string>("");
@@ -25,6 +26,25 @@ const Test = () => {
       
     return (
         <div className="p-4">
+
+            {/* 탭 컴포넌트 입니다 */}
+            <div className="text-head text-purple-main1">TAB</div>
+            <div className="flex">
+                <Tab content="예술/대중문화"/>
+                <Tab content="환경"/>
+                <Tab content="건강"/>
+                <Tab content="취미/실용"/>
+            </div>
+            <div className="flex">
+                <Tab content="금융/핀테크"/>
+                <Tab content="교육"/>
+                <Tab content="게임"/>
+                <Tab content="AI/머신러닝"/>
+            </div>
+            <br /><br />
+
+            {/* 인풋 컴포넌트 입니다 */}
+            <div className="text-head text-purple-main1">INPUT</div>
             <PurpleInput
                 value={inputValue}
                 onChange={handleChange}
@@ -61,6 +81,9 @@ const Test = () => {
             />
             <br />
             <br />
+
+            {/* 텍스트 컴포넌트 입니다 */}
+            <div className="text-head text-purple-main1">TEXTAREA</div>
             <PurpleTextarea
                 value={textareaValue}
                 onChange={textHandleChange}
@@ -76,7 +99,7 @@ const Test = () => {
                 value={textareaValue}
                 onChange={textHandleChange}
                 placeholder={`어떤 프로젝트인지 이해하기 쉽도록 명확하고 간결하게 요약해주세요. 
-                            \n 소개에는 이런 내용이 있으면 좋아요`}
+                            \n소개에는 이런 내용이 있으면 좋아요`}
                 size="md"
                 borderSize="md"
                 entire={500}
@@ -94,7 +117,10 @@ const Test = () => {
                 backgroundColors="white"
                 entire={500}
             />
-            <p>{textareaValue}</p>
+            <br /><br />
+
+            {/* 드롭다운 컴포넌트 입니다 */}
+            <div className="text-head text-purple-main1">DROPDOWN</div>
         </div>
     )
 }
