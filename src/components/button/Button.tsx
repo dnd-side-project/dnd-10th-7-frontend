@@ -17,7 +17,7 @@ const style: {
 } = {
   base: "inline-flex items-center justify-center box-border select-none font-fold m-0 p-0 w-fit h-fit border cursor-pointer align-middle disabled:cursor-default",
   size: {
-    xs: "min-h-[30px] px-[14px] py-[7px] text-body2 gap-4px",
+    xs: "min-h-[30px] px-[14px] py-[7px] text-body2 gap-[4px]",
     sm: "min-h-[40px] px-[15px] py-[10px] text-body1 gap-6px",
     md: "min-h-[48px] px-[16px] py-[10px] text-body1 gap-6px",
     lg: "min-h-[50px] px-[20px] py-[14px] text-h2 gap-8px",
@@ -27,13 +27,13 @@ const style: {
     rounded: "rounded-full",
   },
   color: {
-    active: "text-white bg-purple-active border-purple-active",
-    default: "bg-purple-main1 border-purple-main1 text-white",
-    hover: "text-white bg-purple-main2 border-purple-main2",
-    border: "text-purple-main1 border-purple-main1 bg-white",
-    gray: "bg-[#F5F5F5] text-gray-60",
-    black: "bg-black text-white",
-    disabled: "bg-gray-40 text-white border-gray-40",
+    active: "text-white bg-purple-active border-[1.5px] border-purple-active",
+    default: "bg-purple-main1 border-purple-main1 border-[1.5px] text-white",
+    hover: "text-white bg-purple-main2 border-[1.5px] border-purple-main2",
+    border: "text-purple-main1 border-[1.5px] border-purple-main1 bg-white",
+    gray: "bg-[#F5F5F5] text-gray-60 border-[1.5px]s",
+    black: "bg-black text-white border-[1.5px]",
+    disabled: "bg-gray-40 text-white border-gray-40 border-[1.5px]",
   },
 };
 
