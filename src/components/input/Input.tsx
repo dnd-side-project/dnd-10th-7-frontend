@@ -38,7 +38,7 @@ const style: {
     }
   };
 
-export const PurPleInput = ({
+export const PurpleInput = ({
     value,
     onChange,
     placeholder,
@@ -82,4 +82,6 @@ export const PurPleInput = ({
     )
 }
 
-export default PurPleInput;
+export default PurpleInput;
+
+// TODO: grayInput 추가 예정
