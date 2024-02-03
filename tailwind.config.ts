@@ -18,6 +18,7 @@ const config: Config = {
         "purple-main5": "#F9F7FF",
 
         // sub color
+        "blue-active": "#007AC0",
         "blue-main1": "#0092E5",
         "blue-main2": "#21B0FB",
         "blue-main3": "#9EDDFE",
