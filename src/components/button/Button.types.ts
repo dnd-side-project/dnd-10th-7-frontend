@@ -16,10 +16,12 @@ export type ButtonShape = (typeof buttonShapes)[keyof typeof buttonShapes];
 
 export const buttonColors = {
   active: "active",
-  negative: "negative",
   default: "default",
+  hover: "hover",
+  border: "border",
   gray: "gray",
-  white: "white",
+  black: "black",
+  disabled: "disabled",
 } as const;
 export type ButtonColor = (typeof buttonColors)[keyof typeof buttonColors];
 
@@ -28,4 +30,6 @@ export type ButtonProps = {
   shape?: ButtonShape;
   color?: ButtonColor;
   className?: string;
+  startIcon?: React.ReactNode;
+  endIcon?: React.ReactNode;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
