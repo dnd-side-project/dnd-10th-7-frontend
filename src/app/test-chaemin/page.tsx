@@ -33,8 +33,13 @@ export default function Laboratory() {
       <div className="flex flex-col gap-4">
         <Tag type="예술/대중문화" status="기획중" />
         <Tag type="건강" status="개발중" />
-        <Tag type="금융/핀테크" />
-        <Tag status="리팩토링중" />
+        <Tag type="금융/핀테크" status="리팩토링중" />
+        <Tag type="환경" />
+        <Tag type="교육" />
+        <Tag type="AI/머신러닝" />
+        <Tag type="취미/실용" />
+        <Tag type="게임" />
+        <Tag type="기타" />
       </div>
 
       <Button>testestestet</Button>
@@ -58,7 +63,7 @@ export default function Laboratory() {
         </Button>
         <Button size="xs" color="black">
           xs button
-        </Button>{" "}
+        </Button>
         <Button size="xs" className="bg-error-color">
           xs button
         </Button>
