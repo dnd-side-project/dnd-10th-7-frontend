@@ -141,7 +141,7 @@ const Test = () => {
                 items={['끌올하기', '수정하기', '삭제하기']}
                 selectedItem={selectedItem}
                 setSelectedItem={setSelectedItem}
-                textSize="md"
+                textSize="md"   
                 place="left"
                 padding="lg"
             />
