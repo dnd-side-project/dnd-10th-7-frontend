@@ -2,25 +2,33 @@
 'use client'
 
 import { useState } from "react";
-import PurpleInput from "@component/components/input/Input";
+import PurpleInput from "@component/components/input/PurPleInput";
+import GrayInput from '@component/components/input/GrayInput';
 import PurpleTextarea from "@component/components/textarea/Textarea";
 import Tab from "@component/components/tab/Tab";
 import Dropdown from "@component/components/dropdown/Dropdown";
 
 const Test = () => {
-    const [inputValue, setInputValue] = useState<string>("");
-    const [textareaValue, setTextareaValue] = useState<string>("");
+    // input
+    const [inputValue1, setInputValue1] = useState<string>("");
+    const [inputValue2, setInputValue2] = useState<string>("www.sendback.co.kr(이미 input이 입력되어 있는 경우)");
     const handleChange = (event: any) => {
-        setInputValue(event.target.value);
-      };
+        setInputValue1(event.target.value.replace(/\D/g, ''));
+    };
+    const handleChange2 = (event: any) => {
+        setInputValue2(event.target.value);
+    }
     const handleEnterKey = (event: any) => {
     if (event.key === 'Enter') {
         // 엔터 키를 눌렀을 때의 동작
 
         // 입력 내용 초기화
-        setInputValue("");
+        setInputValue1("");
     }};
 
+
+    // textarea
+    const [textareaValue, setTextareaValue] = useState<string>("");
     const textHandleChange = (event: any) => {
         setTextareaValue(event.target.value);
     };
@@ -29,6 +37,7 @@ const Test = () => {
     const [selectedItem1, setSelectedItem1] = useState<string>("");
     const [selectedItem2, setSelectedItem2] = useState<string>("");
     const [selectedItem3, setSelectedItem3] = useState<string>("");
+
     return (
         <div className="p-4">
 
@@ -51,41 +60,77 @@ const Test = () => {
             {/* 인풋 컴포넌트 입니다 */}
             <div className="text-head text-purple-main1">INPUT</div>
             <PurpleInput
-                value={inputValue}
+                value={inputValue1}
                 onChange={handleChange}
                 placeholder="답글을 입력해주세요"
-                shape="rounded"
+                shape="rounded"    
                 size="xs"
                 textSize="xs"
-                borderSize="xs"
+                borderSize="xs"     // 테두리 두께
                 backgroundColors="purple"
             />
             <br />
             <PurpleInput
-                value={inputValue}
+                value={inputValue1}
                 onChange={handleChange}
                 onKeyDown={handleEnterKey}
-                placeholder="관심있는 키워드로 프로젝트를 찾아보세요!"
-                shape="square"
+                placeholder="서비스 링크 입력하기"
+                shape="rounded"
+                size="md"
+                textSize="md"
+                borderSize="lg"
+                backgroundColors="white"
+            />
+            <br />
+            <PurpleInput
+                value={inputValue2}
+                onChange={handleChange2}
+                onKeyDown={handleEnterKey}
+                placeholder="서비스 링크 입력하기"
+                shape="rounded"
+                size="md"
+                textSize="md"
+                borderSize="lg"
+                backgroundColors="white"
+            />
+            <br />
+            <PurpleInput
+                value={inputValue1}
+                onChange={handleChange}
+                onKeyDown={handleEnterKey}
+                placeholder="링크를 입력하세요"
+                shape="rounded"
                 size="lg"
+                textSize="lg"
+                borderSize="md"
+                backgroundColors="white"
+            />
+            <br />
+            <PurpleInput
+                value={inputValue1}
+                onChange={handleChange}
+                placeholder="관심있는 키워드로 프로젝트를 찾아보세요!"
+                shape="smallRounded"
+                size="xl"
                 textSize="md"
                 borderSize="md"
                 backgroundColors="white"
                 search={true}
             />
             <br />
-            <PurpleInput
-                value={inputValue}
+            <GrayInput
+                value={inputValue1}
                 onChange={handleChange}
-                placeholder="서비스 링크 입력하기"
-                shape="rounded"
+                placeholder="2000.06.24"
                 size="xs"
-                textSize="xs"
-                borderSize="lg"
-                backgroundColors="white"
             />
-            <br />
-            <br />
+            <br /><br />
+            <GrayInput
+                value={inputValue1}
+                onChange={handleChange}
+                placeholder="DND"
+                size="md"
+            />
 
             {/* 텍스트 컴포넌트 입니다 */}
             <div className="text-head text-purple-main1">TEXTAREA</div>

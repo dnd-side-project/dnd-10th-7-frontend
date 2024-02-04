@@ -1,2 +1,5 @@
-export { default } from "./Input";
-export * from "./Input.types";
+export { PurpleInput } from "./PurPleInput";
+export * from "./PurPleInput.types";
+
+export { GrayInput } from "./GrayInput";
+export * from "./GrayInput.types";

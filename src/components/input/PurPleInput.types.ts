@@ -9,19 +9,19 @@ export type InputProps = {
     borderSize: InputSize;
     backgroundColors: InputColor;
     search?: boolean;
-    defaultValue?: string | number;
 };
 
 export const inputSizes = {
     xs: 'xs',
     md: 'md',
     lg: 'lg',
+    xl: 'xl'
 } as const;
 export type InputSize = (typeof inputSizes)[keyof typeof inputSizes];
 
 export const inputShapes = {
-square: 'square',
-rounded: 'rounded',
+    smallRounded: 'smallRounded',
+    rounded: 'rounded',
 } as const;
 export type InputShape = (typeof inputShapes)[keyof typeof inputShapes];
 

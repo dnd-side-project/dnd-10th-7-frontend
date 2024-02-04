@@ -14,23 +14,26 @@ const style: {
     // TODO: 디자인 시스템이 확정되면 변경될 CSS 값들
     base: "placeholder:text-gray-60 border border-purple-main1 focus:outline-none caret-purple-main1",
     sizes: {
-      xs: 'min-h-[40px] py-[6px] px-[10px] min-w-[707px]',
-      md: 'min-h-[48px] py-[12px] px-[22px] min-w-[708px]',
-      lg: 'min-h-[40px] py-[10px] px-[42px] min-w-[1072px]',
+      xs: 'min-h-[51px] py-[11px] px-[25px] min-w-[655px] max-w-[655px]', // 답글
+      md: 'min-h-[40px] py-[6px] px-[21px] min-w-[707px]',  // 서비스 링크
+      lg: 'min-h-[48px] py-[12px] px-[22px] min-w-[708px]',   // 링크
+      xl: 'min-h-[40px] max-h-[40px] py-[10px] ps-[45px] min-w-[1072px]',  // 검색
     },
     textSizes: {
       xs: 'text-body2',
       md: 'text-body1',
       lg: 'text-h2',
+      xl: ''
     },
     shapes: {
-      square: 'rounded-lg',
-      rounded: 'rounded-full',
+      smallRounded: 'rounded-[20px]',
+      rounded: 'rounded-[30px]',
     },
     borderSizes: {
-     xs: 'border-0',
-     md: 'border-1',
-     lg: 'border-2',
+    xs: 'border-0',
+    md: 'border-1',
+    lg: 'border-[1.5px]',
+    xl: ''
     },
     backgroundColors: {
         purple: 'bg-purple-main5',
@@ -58,8 +61,7 @@ export const PurpleInput = ({
     return (
         <div className="relative">
             {search && (
-                // TODO: 검색 아이콘 material icon으로
-                <SearchIcon className="absolute top-[11px] left-[10px]"/>
+                <SearchIcon className="absolute top-[7px] left-[18px] text-gray-60" sx={{ fontSize: 26.1 }} />
             )}
             <input 
                 type="text" 
@@ -84,4 +86,4 @@ export const PurpleInput = ({
 
 export default PurpleInput;
 
-// TODO: grayInput 추가 예정
+
