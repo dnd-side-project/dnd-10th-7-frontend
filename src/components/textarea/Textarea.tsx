@@ -72,7 +72,7 @@ export const PurpleTextarea = ({
                     )
                 }
             />
-            <div className="absolute bottom-[15px] left-[640px] font-bold text-gray-60">({valueCount}/{entire})</div>
+            <div className="absolute bottom-[15px] left-[640px] text-gray-60">({valueCount}/{entire})</div>
         </div>
     )
 }

@@ -12,16 +12,16 @@ const style: {
   } = {
 
     // TODO: 디자인 시스템이 확정되면 변경될 CSS 값들
-    base: "placeholder:text-gray-60 placeholder:font-bold border border-purple-main1 focus:outline-none caret-purple-main1",
+    base: "placeholder:text-gray-60 border border-purple-main1 focus:outline-none caret-purple-main1",
     sizes: {
       xs: 'min-h-[40px] py-[6px] px-[10px] min-w-[707px]',
       md: 'min-h-[48px] py-[12px] px-[22px] min-w-[708px]',
       lg: 'min-h-[40px] py-[10px] px-[42px] min-w-[1072px]',
     },
     textSizes: {
-      xs: 'text-body2 font-bold',
-      md: 'text-body1 font-bold',
-      lg: 'text-h2 font-bold',
+      xs: 'text-body2',
+      md: 'text-body1',
+      lg: 'text-h2',
     },
     shapes: {
       square: 'rounded-lg',
