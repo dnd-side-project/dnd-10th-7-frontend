@@ -9,30 +9,39 @@ const style: {
     borderSizes: Record<TextareaSize, string>;
     backgroundColors: Record<TextareaColor, string>;
     borderColors: Record<TextareaColor, string>;
+    textSizes: Record<TextareaSize, string>;
 } = {
-    // TODO: 디자인 시스템이 확정되면 수정할 예정입니다.
-    base: "min-w-[707px] placeholder:text-gray-60 border border-purple-main1 focus:outline-none caret-purple-main1 rounded-[10px] resize-none",
+    // TODO: 디자인 시스템이 확정되면 수정할 예정입니다. 
+    // 1. placeholder 패딩
+    // 2. width
+    base: "min-w-[707px] max-w-[707px] placeholder:text-gray-60 border border-purple-main1 focus:outline-none caret-purple-main1 rounded-[10px] resize-none",
     sizes: {
         xs: 'min-h-[104px] px-[17px] py-[21px]',
-        md: 'min-h-[214px] px-[17px] py-[21px]',
-        lg: 'min-h-[773px] px-[17px] py-[21px]',
+        md: 'min-h-[214px] px-[27px] py-[28px]',
+        lg: 'min-h-[773px] px-[27px] py-[28px]',
+        xl: 'min-w-[728px] max-w-[728px] px-[24px] py-[12px]'     // 댓글
     },
     borderSizes: {
         xs: 'border-0',
         md: 'border-1',
-        lg: 'border-2',
+        lg: 'border-[1.5px]',
+        xl: 'border-2'
     },
     backgroundColors: {
         white: 'bg-white',
-        purple1: 'bg-purple-main1',
-        purple2: 'bg-purple-main2',
+        purple1: '',
         purple5: 'bg-purple-main5',
     },
     borderColors: {
         white: '',
         purple1: 'border-purple-main1',
-        purple2: 'border-purple-main2',
-        purple5: 'border-purple-main5',
+        purple5: '',
+    },
+    textSizes: {
+        xs: 'text-body2',
+        md: 'text-body1',
+        lg: 'text-h2',
+        xl: ''
     }
 }
 
@@ -46,6 +55,7 @@ export const PurpleTextarea = ({
     size,
     borderSize,
     backgroundColors,
+    textSize,
 }: TextareaProps) => {
     
     // 글자 수
@@ -56,7 +66,7 @@ export const PurpleTextarea = ({
     }, [value])
 
     return (
-        <div className="relative">
+        <div className={`relative ${size === 'xl' ? 'max-w-[728px]' : 'max-w-[707px]'}`} >
             <textarea 
                 name={value} 
                 onChange={onChange}
@@ -68,11 +78,12 @@ export const PurpleTextarea = ({
                         style.sizes[size],
                         style.backgroundColors[backgroundColors],
                         style.borderSizes[borderSize],
-                        style.borderColors
+                        style.borderColors,
+                        style.textSizes[textSize]
                     )
                 }
             />
-            <div className="absolute bottom-[15px] left-[640px] text-gray-60">({valueCount}/{entire})</div>
+            <div className="absolute bottom-[15px] right-[20px] text-gray-60">({valueCount}/{entire})</div>
         </div>
     )
 }

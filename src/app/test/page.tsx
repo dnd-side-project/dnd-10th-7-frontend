@@ -93,37 +93,60 @@ const Test = () => {
                 value={textareaValue}
                 onChange={textHandleChange}
                 placeholder="50자 이내의 프로젝트 한 줄 요약을 입력해주세요."
-                size="xs"
-                backgroundColors="purple5"
-                borderColor="purple1"
-                borderSize="xs"
-                entire={50}
+                size="xs"   // 크기
+                backgroundColors="white"  // 배경색
+                borderColor="purple1"   // 테두리색
+                borderSize="lg"     // 테두리 두께
+                textSize="md"       // 텍스크 크기
+                entire={50}         // 글자수 제한
             />
             <br />
             <PurpleTextarea
                 value={textareaValue}
                 onChange={textHandleChange}
-                placeholder={`어떤 프로젝트인지 이해하기 쉽도록 명확하고 간결하게 요약해주세요. 
-                            \n소개에는 이런 내용이 있으면 좋아요`}
-                size="md"
-                borderSize="md"
-                entire={500}
-                backgroundColors="white"
-                borderColor="purple1"
+                placeholder="따로 지급하실 추가 리워드가 있다면 입력해주세요."
+                size="md"   
+                backgroundColors="white"  
+                borderColor="purple1"   
+                borderSize="md"     
+                textSize="md"       
+                entire={100}         
             />
             <br />
             <PurpleTextarea
                 value={textareaValue}
                 onChange={textHandleChange}
-                placeholder="50자 이내의 프로젝트 한 줄 요약을 입력해주세요."
-                size="lg"
-                borderColor="purple2"
-                borderSize="md"
-                backgroundColors="white"
-                entire={500}
+                placeholder="댓글을 입력하세요."
+                size="xl"   
+                backgroundColors="purple5"   
+                borderSize="xs"     
+                textSize="xs"       
+                entire={100}         
             />
-            <br /><br />
-
+            <br />
+            <PurpleTextarea
+                value={textareaValue}
+                onChange={textHandleChange}
+                placeholder={`어떤 프로젝트인지 이해하기 쉽도록 명확하고 간결하게 요약해주세요. \n\n\n소개에는 이런내용이 있으면 좋아요.`}
+                size="lg"   
+                backgroundColors="white"   
+                borderSize="lg"     
+                textSize="md"       
+                entire={500}         
+            />
+            <br />
+            <PurpleTextarea
+                value={textareaValue}
+                onChange={textHandleChange}
+                placeholder="피드백 요청 내용을 입력하세요."
+                size="lg"   
+                backgroundColors="white"   
+                borderSize="md"     
+                textSize="lg"       
+                entire={500}         
+            />
+            <br />
+            
             {/* 드롭다운 컴포넌트 입니다 */}
             <div className="text-head text-purple-main1">DROPDOWN</div>
             <p className="text-purple-main2">{selectedItem1}선택함</p>
@@ -135,7 +158,7 @@ const Test = () => {
                 items={['디자이너', '기획자', '프론트엔드', '백엔드']} // 드롭다운 항목
                 selectedItem={selectedItem1} // 선택
                 setSelectedItem={setSelectedItem1} 
-                textSize="md"   // 글자 크기
+                textSize="lg"   // 글자 크기
                 place="center"  // 글자 위치
                 padding="md"    // py 크기
             />
@@ -145,7 +168,7 @@ const Test = () => {
                 items={['끌올하기', '수정하기', '삭제하기']}
                 selectedItem={selectedItem2}
                 setSelectedItem={setSelectedItem2}
-                textSize="md"   
+                textSize="lg"   
                 place="left"
                 padding="lg"
             />
