@@ -2,6 +2,7 @@
 
 import { createContext, useContext } from "react";
 
+// 현재 오픈된 모달들을 나타냄
 const ModalContext = createContext<boolean | null>(null);
 ModalContext.displayName = "ModalContext";
 

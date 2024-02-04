@@ -4,18 +4,18 @@ import { ModalProvider } from "./ModalContext";
 import { Fragment } from "react";
 import clsx from "clsx";
 import { twMerge } from "tailwind-merge";
+import CloseIcon from "@mui/icons-material/Close";
 
 const variants = {
   container:
-    "rounded overflow-hidden flex flex-col ml-auto mr-auto bg-white border border-gray-40",
+    "p-[30px] rounded-[20px] overflow-hidden flex flex-col ml-auto mr-auto bg-white border border-gray-40",
   title: "text-title font-bold flex items-center justify-center ",
-  subTitle: "text-h1 text-red-500",
-  body: "flex flex-col bg-gray p-5",
-  description: "bg-gray-500 p-5",
+  subTitle:
+    "pt-[16px] flex items-center justify-center text-body2 text-gray-80",
+  description: "py-[43px]",
   footer: "h-[68px] flex justify-center items-center pt-3 pr-5 pb-[18px] pl-5",
-  divider: "h-[1px]",
   close:
-    "w-8 h-8 items-center rounded-lg p-[6px] text-h2 text-white hover:cursor-pointer hover:bg-[#00000015]",
+    "cursor-pointer w-8 h-8 items-center rounded-lg p-[6px] text-h2 text-white hover:cursor-pointer hover:bg-[#00000015]",
 };
 
 function ModalContainer({
@@ -65,6 +65,25 @@ Modal.Title = function ModalTitle({
   return <div className={twMerge(variants.title, className)}>{children}</div>;
 };
 
+// 모달 Close 컴포넌트(모달의 상단 닫기 버튼)
+Modal.Close = function ModalClose({
+  className,
+  onClick,
+}: {
+  className?: string;
+  onClick: () => void;
+}) {
+  return (
+    <div className="flex justify-end cursor-pointer">
+      <CloseIcon
+        type="button"
+        className={(twMerge(variants.close, className), "text-black")}
+        onClick={onClick}
+      />
+    </div>
+  );
+};
+
 // 모달 SubTitle 컴포넌트(모달의 상단 서브 타이틀)
 Modal.SubTitle = function ModalSubTitle({
   className,
@@ -91,17 +110,6 @@ Modal.Description = function ModalDescription({
   );
 };
 
-// 모달 내부 Body 컴포넌트(모달의 중간)
-Modal.Body = function ModalBody({
-  className,
-  children,
-}: {
-  className?: string;
-  children: React.ReactNode;
-}) {
-  return <div className={twMerge(variants.body, className)}>{children}</div>;
-};
-
 // 모달 내부 Footer 컴포넌트(모달하단: 확인/취소 버튼 등)
 Modal.Footer = function ModalFooter({
   className,
@@ -111,11 +119,6 @@ Modal.Footer = function ModalFooter({
   children: React.ReactNode;
 }) {
   return <div className={twMerge(variants.footer, className)}>{children}</div>;
-};
-
-// 모달 Divider 컴포넌트(모달의 구분선)
-Modal.Divider = function ModalDivider({ className }: { className?: string }) {
-  return <hr className={twMerge(variants.divider, className)} />;
 };
 
 export default Modal;
