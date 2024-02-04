@@ -11,9 +11,9 @@ const style: {
 } = {
     base: "rounded-[10px] border border-1 border-gray-40 text-gray-80",
     sizes: {
-        xs: 'max-w-[87px]',
-        md: 'max-w-[210px]',
-        lg: 'max-w-[409px]'
+        xs: 'min-w-[87px] max-w-[87px]', // 반응형 X
+        md: 'min-w-[210px] max-w-[210px]',
+        lg: 'min-w-[409px] max-w-[409px]'
     },
     textSizes: {
         xs: 'text-body2',

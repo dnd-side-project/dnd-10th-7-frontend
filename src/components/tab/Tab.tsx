@@ -24,31 +24,33 @@ export const Tab = ({
 
     // content에 따른 아이콘 변화
     const getIconComponent = () => {
+        const commonProps = "me-[10px] w-[22px]";
+
         switch (content) {
-          case '예술/대중문화':
-            return <BrushOutlinedIcon className="me-[10px]" />;
-          case '환경':
-            return <ForestOutlinedIcon className="me-[10px]" />;
-          case '건강':
-            return <MonitorHeartOutlinedIcon className="me-[10px]" />;
-          case '취미/실용':
-            return <ShoppingCartOutlinedIcon className="me-[10px]" />;
+        case '예술/대중문화':
+            return <BrushOutlinedIcon className={commonProps} />;
+        case '환경':
+            return <ForestOutlinedIcon className={commonProps} />;
+        case '건강':
+            return <MonitorHeartOutlinedIcon className={commonProps} />;
+        case '취미/실용':
+            return <ShoppingCartOutlinedIcon className={commonProps} />;
         case '금융/핀테크':
-            return <LocalAtmOutlinedIcon className="me-[10px]" />;
+            return <LocalAtmOutlinedIcon className={commonProps} />;
         case '교육':
-            return <AutoStoriesOutlinedIcon className="me-[10px]" />;
+            return <AutoStoriesOutlinedIcon className={commonProps} />;
         case '게임':
-            return <SportsEsportsOutlinedIcon className="me-[10px]" />;
+            return <SportsEsportsOutlinedIcon className={commonProps} />;
         case 'AI/머신러닝':
-            return <LaptopChromebookOutlinedIcon className="me-[10px]" />;
+            return <LaptopChromebookOutlinedIcon className={commonProps} />;
         }
-      };
+    };
 
     return (
         <div onClick={handleToggle}
             className={clsx(
                 "cursor-pointer",
-                "p-[14px] rounded-[6px] inline-block text-gray-60 text-h2 bg-gray-10 m-[12px]",
+                "p-[14px] rounded-[6px] inline-block text-gray-60 text-h2 bg-gray-10",
                 isChecked && "border border-2 border-purple-main1 bg-purple-main5 text-purple-main1",
             )}
         >
