@@ -26,7 +26,9 @@ const Test = () => {
     };
 
     // 드롭다운
-    const [selectedItem, setSelectedItem] = useState<string>("");
+    const [selectedItem1, setSelectedItem1] = useState<string>("");
+    const [selectedItem2, setSelectedItem2] = useState<string>("");
+    const [selectedItem3, setSelectedItem3] = useState<string>("");
     return (
         <div className="p-4">
 
@@ -124,13 +126,15 @@ const Test = () => {
 
             {/* 드롭다운 컴포넌트 입니다 */}
             <div className="text-head text-purple-main1">DROPDOWN</div>
-            <p className="text-purple-main2">{selectedItem}선택함</p>
+            <p className="text-purple-main2">{selectedItem1}선택함</p>
+            <p className="text-purple-main2">{selectedItem2}선택함</p>
+            <p className="text-purple-main2">{selectedItem3}선택함</p>
             
             <Dropdown
                 size="lg"
                 items={['디자이너', '기획자', '프론트엔드', '백엔드']} // 드롭다운 항목
-                selectedItem={selectedItem} // 선택
-                setSelectedItem={setSelectedItem} 
+                selectedItem={selectedItem1} // 선택
+                setSelectedItem={setSelectedItem1} 
                 textSize="md"   // 글자 크기
                 place="center"  // 글자 위치
                 padding="md"    // py 크기
@@ -139,8 +143,8 @@ const Test = () => {
             <Dropdown
                 size="md"
                 items={['끌올하기', '수정하기', '삭제하기']}
-                selectedItem={selectedItem}
-                setSelectedItem={setSelectedItem}
+                selectedItem={selectedItem2}
+                setSelectedItem={setSelectedItem2}
                 textSize="md"   
                 place="left"
                 padding="lg"
@@ -149,8 +153,8 @@ const Test = () => {
             <Dropdown
                 size="xs"
                 items={['0명', '1명', '2명', '3명', '4명', '5명', '6명', '7명', '8명', '9명']}
-                selectedItem={selectedItem}
-                setSelectedItem={setSelectedItem}
+                selectedItem={selectedItem3}
+                setSelectedItem={setSelectedItem3}
                 textSize="xs"
                 place="center"
                 padding="xs"
