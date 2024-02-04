@@ -30,7 +30,7 @@ export default function Laboratory() {
       </div>
 
       {/* tag test */}
-      <div className="flex flex-col gap-4">
+      <div className="pt-3 flex flex-wrap gap-4">
         <Tag type="예술/대중문화" status="기획중" />
         <Tag type="건강" status="개발중" />
         <Tag type="금융/핀테크" status="리팩토링중" />
@@ -42,7 +42,6 @@ export default function Laboratory() {
         <Tag type="기타" />
       </div>
 
-      <Button>testestestet</Button>
       <div>color style test about button</div>
       {/* button style test */}
       <div className="flex flex-col gap-3">
@@ -67,29 +66,38 @@ export default function Laboratory() {
         <Button size="xs" className="bg-error-color">
           xs button
         </Button>
+
+        {/* modal test */}
         <Modal
-          open={false}
+          open={isOpen}
           onClose={() => setIsOpen(false)}
-          className="w-[600px]"
+          className="w-[480px]"
         >
+          <Modal.Close onClick={() => setIsOpen(false)} />
           <Modal.Title>
-            <div>title</div>
+            <div>닉네임을 입력해주세요</div>
           </Modal.Title>
           <Modal.SubTitle>
-            <div>SubTitleSubTitleSubTitleSubTitle</div>
+            <div>입력한 닉네임은 마이페이지에서 변경할 수 있어요.</div>
           </Modal.SubTitle>
           <Modal.Description>
-            <div>
+            <></>
+            {/* <div className="flex felx-wrap border border-red-500">
               DescriptionDescriptionDescriptionDescriptionDescriptionDescription
               Description Description Description Description Description
               Description Description Description Description Description
               Description Description Description Description Description
               Description Description Description Description Description
               Description Description Description Description Description
-            </div>
+            </div> */}
           </Modal.Description>
 
-          <Modal.Footer>this is footer</Modal.Footer>
+          <Modal.Footer>
+            <div className="flex space-x-[8px]">
+              <Button>으앙</Button>
+              <Button>등록하기</Button>
+            </div>
+          </Modal.Footer>
         </Modal>
       </div>
     </div>
