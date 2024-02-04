@@ -17,7 +17,8 @@ export type TagProps = {
     | "금융/핀테크"
     | "교육"
     | "게임"
-    | "AI/머신러닝";
+    | "AI/머신러닝"
+    | "기타";
   status?: "기획중" | "개발중" | "리팩토링중";
   startIcon?: React.ReactNode;
 };
