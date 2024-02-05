@@ -29,8 +29,10 @@ const Test = () => {
 
     // textarea
     const [textareaValue, setTextareaValue] = useState<string>("");
+    const [textareaLengthValue, setTextareaLengthValue] = useState<number>(0);
     const textHandleChange = (event: any) => {
         setTextareaValue(event.target.value);
+        setTextareaLengthValue(event.target.value.length);
     };
 
     // 드롭다운
@@ -125,6 +127,7 @@ const Test = () => {
             <div className="text-head text-purple-main1">TEXTAREA</div>
             <PurpleTextarea
                 value={textareaValue}
+                valueLength={textareaLengthValue}
                 onChange={textHandleChange}
                 placeholder="50자 이내의 프로젝트 한 줄 요약을 입력해주세요."
                 size="xs"   // 크기
@@ -137,6 +140,7 @@ const Test = () => {
             <br />
             <PurpleTextarea
                 value={textareaValue}
+                valueLength={textareaLengthValue}
                 onChange={textHandleChange}
                 placeholder="따로 지급하실 추가 리워드가 있다면 입력해주세요."
                 size="md"   
@@ -149,6 +153,7 @@ const Test = () => {
             <br />
             <PurpleTextarea
                 value={textareaValue}
+                valueLength={textareaLengthValue}
                 onChange={textHandleChange}
                 placeholder="댓글을 입력하세요."
                 size="xl"   
@@ -160,6 +165,7 @@ const Test = () => {
             <br />
             <PurpleTextarea
                 value={textareaValue}
+                valueLength={textareaLengthValue}
                 onChange={textHandleChange}
                 placeholder={`어떤 프로젝트인지 이해하기 쉽도록 명확하고 간결하게 요약해주세요. \n\n\n소개에는 이런내용이 있으면 좋아요.`}
                 size="lg"   
@@ -171,6 +177,7 @@ const Test = () => {
             <br />
             <PurpleTextarea
                 value={textareaValue}
+                valueLength={textareaLengthValue}
                 onChange={textHandleChange}
                 placeholder="피드백 요청 내용을 입력하세요."
                 size="lg"   

@@ -1,5 +1,6 @@
 export type TextareaProps = {
     value: string;
+    valueLength: number;
     entire: number;
     onChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
     placeholder: string;

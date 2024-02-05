@@ -47,6 +47,7 @@ const style: {
 
 export const PurpleTextarea = ({
     value,
+    valueLength,
     onChange,
     placeholder,
     entire,
@@ -57,13 +58,6 @@ export const PurpleTextarea = ({
     backgroundColors,
     textSize,
 }: TextareaProps) => {
-    
-    // 글자 수
-    const [valueCount, setValueCount] = useState<number>(value.length);
-
-    useEffect(() => {
-        setValueCount(value.length);
-    }, [value])
 
     return (
         <div className={`relative ${size === 'xl' ? 'max-w-[728px]' : 'max-w-[707px]'}`} >
@@ -83,7 +77,7 @@ export const PurpleTextarea = ({
                     )
                 }
             />
-            <div className="absolute bottom-[15px] right-[20px] text-gray-60">({valueCount}/{entire})</div>
+            <div className="absolute bottom-[15px] right-[20px] text-gray-60">({valueLength}/{entire})</div>
         </div>
     )
 }
