@@ -20,7 +20,7 @@ export const inputSizes = {
 export type InputSize = (typeof inputSizes)[keyof typeof inputSizes];
 
 export const inputShapes = {
-    smallRounded: 'smallRounded',
+    'rounded-sm': 'rounded-sm',
     rounded: 'rounded',
 } as const;
 export type InputShape = (typeof inputShapes)[keyof typeof inputShapes];
