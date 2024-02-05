@@ -10,6 +10,7 @@ const config: Config = {
     extend: {
       colors: {
         // primary color
+        "purple-active": "#7B5BFD",
         "purple-main1": "#8C82FF",
         "purple-main2": "#C1B6FF",
         "purple-main3": "#D9D3FF",
@@ -17,6 +18,7 @@ const config: Config = {
         "purple-main5": "#F9F7FF",
 
         // sub color
+        "blue-active": "#007AC0",
         "blue-main1": "#0092E5",
         "blue-main2": "#21B0FB",
         "blue-main3": "#9EDDFE",
