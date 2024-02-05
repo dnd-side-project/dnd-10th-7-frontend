@@ -99,7 +99,7 @@ const Test = () => {
                 value={inputValue1}
                 onChange={handleChange}
                 placeholder="관심있는 키워드로 프로젝트를 찾아보세요!"
-                shape="rounded-sm"
+                shape="smallRounded"
                 size="xl"
                 textSize="md"
                 borderSize="md"

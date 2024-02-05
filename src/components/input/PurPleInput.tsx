@@ -26,7 +26,7 @@ const style: {
       xl: ''
     },
     shapes: {
-      "rounded-sm": 'rounded-[20px]',
+      "smallRounded": 'rounded-[20px]',
       rounded: 'rounded-[30px]',
     },
     borderSizes: {
