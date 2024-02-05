@@ -1,6 +1,7 @@
 "use client";
 import Button from "@component/components/button";
 import Modal from "@component/components/modal";
+import GoogleLogin from "@component/components/social/GoogleLogin";
 import Tag from "@component/components/tag";
 import { useState } from "react";
 
@@ -51,9 +52,6 @@ export default function Laboratory() {
         <Button size="xs" color="active">
           xs button
         </Button>
-        <Button size="xs" color="hover">
-          xs button
-        </Button>
         <Button size="xs" color="gray">
           xs button
         </Button>
@@ -67,9 +65,12 @@ export default function Laboratory() {
           xs button
         </Button>
 
+        {/* google-login test */}
+        <GoogleLogin />
+
         {/* modal test */}
         <Modal
-          open={isOpen}
+          open={false}
           onClose={() => setIsOpen(false)}
           className="w-[480px]"
         >
