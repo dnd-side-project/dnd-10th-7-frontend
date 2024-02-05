@@ -31,7 +31,7 @@ const style: {
     default: "bg-purple-main1 border-purple-main1 border-[1.5px] text-white",
     hover: "text-white bg-purple-main2 border-[1.5px] border-purple-main2",
     border: "text-purple-main1 border-[1.5px] border-purple-main1 bg-white",
-    gray: "bg-[#F5F5F5] text-gray-60 border-[1.5px]s",
+    gray: "bg-[#F5F5F5] text-gray-60 border-[1.5px]",
     black: "bg-black text-white border-[1.5px]",
     disabled: "bg-gray-40 text-white border-gray-40 border-[1.5px]",
   },
