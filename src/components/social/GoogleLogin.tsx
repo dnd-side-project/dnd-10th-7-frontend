@@ -24,7 +24,7 @@ export default function GoogleLogin() {
       className="flex gap-[10px] items-center justify-center w-[392px] h-[56px] border border-gray-60 rounded-[6px]"
     >
       <Image src={googleIcon} alt="google" width={30} />
-      <div>Google로 시작하기</div>
+      {data ? <div>Google 로그아웃</div> : <div>Google로 시작하기</div>}
     </button>
   );
 }

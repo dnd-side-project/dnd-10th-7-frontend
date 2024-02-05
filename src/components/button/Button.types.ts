@@ -17,7 +17,7 @@ export type ButtonShape = (typeof buttonShapes)[keyof typeof buttonShapes];
 export const buttonColors = {
   active: "active",
   default: "default",
-  hover: "hover",
+  // hover: "hover",
   border: "border",
   gray: "gray",
   black: "black",
