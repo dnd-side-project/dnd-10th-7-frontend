@@ -1,7 +1,5 @@
-'use client'
 import clsx from "clsx";
 import { TextareaProps, TextareaSize, TextareaColor } from ".";
-import { useEffect, useState } from "react";
 
 const style: {
     base: string;
@@ -47,7 +45,6 @@ const style: {
 
 export const PurpleTextarea = ({
     value,
-    valueLength,
     onChange,
     placeholder,
     entire,
@@ -77,7 +74,7 @@ export const PurpleTextarea = ({
                     )
                 }
             />
-            <div className="absolute bottom-[15px] right-[20px] text-gray-60">({valueLength}/{entire})</div>
+            <div className="absolute bottom-[15px] right-[20px] text-gray-60">({value.length}/{entire})</div>
         </div>
     )
 }
