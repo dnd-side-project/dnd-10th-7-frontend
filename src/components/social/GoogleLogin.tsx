@@ -18,13 +18,21 @@ export default function GoogleLogin() {
     }
   };
 
+  const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
+  const GOOGLE_REDIRECT_URI = process.env.GOOGLE_REDIRECT_URI;
+
+  const onGoogleSocialLogin = () => {
+    window.location.href = `https://accounts.google.com/o/oauth2/auth?client_id=${GOOGLE_CLIENT_ID}&redirect_uri=${GOOGLE_REDIRECT_URI}&response_type=code&scope=openid email profile`;
+  };
+
   return (
     <button
-      onClick={onClick}
+      onClick={onGoogleSocialLogin}
       className="flex gap-[10px] items-center justify-center w-[392px] h-[56px] border border-gray-60 rounded-[6px]"
     >
       <Image src={googleIcon} alt="google" width={30} />
-      {data ? <div>Google 로그아웃</div> : <div>Google로 시작하기</div>}
+      google login
+      {/* {data ? <div>Google 로그아웃</div> : <div>Google로 시작하기</div>} */}
     </button>
   );
 }
