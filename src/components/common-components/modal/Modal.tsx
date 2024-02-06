@@ -9,7 +9,7 @@ import CloseIcon from "@mui/icons-material/Close";
 const variants = {
   container:
     "p-[30px] rounded-[20px] overflow-hidden flex flex-col ml-auto mr-auto bg-white border border-gray-40",
-  title: "text-title font-bold flex items-center justify-center ",
+  title: "p-[20px] text-title font-bold flex items-center justify-center ",
   subTitle:
     "pt-[16px] flex items-center justify-center text-body2 text-gray-80",
   description: "py-[43px]",
