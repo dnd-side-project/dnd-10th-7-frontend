@@ -5,7 +5,7 @@ import Tag from "@component/components/tag";
 import { useState } from "react";
 
 export default function Laboratory() {
-  const [isOpen, setIsOpen] = useState<boolean>(true);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   return (
     <div>
       {/* font test */}
@@ -63,8 +63,12 @@ export default function Laboratory() {
         <Button size="xs" color="black">
           xs button
         </Button>
-        <Button size="xs" className="bg-error-color">
-          xs button
+        <Button
+          size="xs"
+          className="bg-error-color"
+          onClick={() => setIsOpen(true)}
+        >
+          modal open btn
         </Button>
 
         {/* modal test */}

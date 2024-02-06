@@ -15,7 +15,7 @@ const variants = {
   description: "py-[43px]",
   footer: "h-[68px] flex justify-center items-center pt-3 pr-5 pb-[18px] pl-5",
   close:
-    "cursor-pointer w-8 h-8 items-center rounded-lg p-[6px] text-h2 text-white hover:cursor-pointer hover:bg-[#00000015]",
+    "cursor-pointer w-8 h-8 items-center rounded-lg p-[6px] text-h2 text-white",
 };
 
 function ModalContainer({
@@ -26,6 +26,26 @@ function ModalContainer({
   children: React.ReactNode;
 }) {
   return <div className={clsx(variants.container, className)}>{children}</div>;
+}
+
+// 모달 오픈 시 배경 흐려지게 하는 컴포넌트
+function BackDrop() {
+  return (
+    <Transition.Child
+      as={Fragment}
+      enter="ease-out duration-150"
+      enterFrom="opacity-0"
+      enterTo="opacity-100"
+      leave="ease-in duration-150"
+      leaveFrom="opacity-100"
+      leaveTo="opacity-0"
+    >
+      <div
+        className="fixed top-0 bottom-0 left-0 right-0 bg-black/30"
+        aria-hidden="true"
+      />
+    </Transition.Child>
+  );
 }
 
 function Modal({
@@ -47,7 +67,21 @@ function Modal({
           id="sendback-modal"
           aria-label={ariaLabel}
         >
-          <ModalContainer className={className}>{children}</ModalContainer>
+          <BackDrop />
+
+          <Transition.Child
+            as={Fragment}
+            enter="ease-out duration-150"
+            enterFrom="opacity-0 scale-95"
+            enterTo="opacity-100 scale-100"
+            leave="ease-in duration-100"
+            leaveFrom="opacity-100 scale-100"
+            leaveTo="opacity-0 scale-95"
+          >
+            <div className="fixed top-0 bottom-0 left-0 right-0 flex items-center justify-center w-screen">
+              <ModalContainer className={className}>{children}</ModalContainer>
+            </div>
+          </Transition.Child>
         </Dialog>
       </Transition>
     </ModalProvider>
@@ -77,7 +111,10 @@ Modal.Close = function ModalClose({
     <div className="flex justify-end cursor-pointer">
       <CloseIcon
         type="button"
-        className={(twMerge(variants.close, className), "text-black")}
+        className={
+          (twMerge(variants.close, className),
+          "text-black hover:bg-gray-20 hover:rounded")
+        }
         onClick={onClick}
       />
     </div>
