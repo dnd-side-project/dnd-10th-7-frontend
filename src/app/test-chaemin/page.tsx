@@ -1,11 +1,19 @@
 "use client";
-import Button from "@component/components/button";
-import Modal from "@component/components/modal";
-import Tag from "@component/components/tag";
+import Button from "@component/components/common-components/button";
+import Modal from "@component/components/common-components/modal";
+import Tag from "@component/components/common-components/tag";
+import CompleteModal from "@component/components/modal/CompleteModal";
+import InterestModal from "@component/components/modal/InterestModal";
+import LoginModal from "@component/components/modal/LoginModal";
+import NicknameModal from "@component/components/modal/NicknameModal";
+import UserInfoModal from "@component/components/modal/UserInfoModal";
 import { useState } from "react";
 
 export default function Laboratory() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isOpen2, setIsOpen2] = useState<boolean>(false);
+  const [isOpen3, setIsOpen3] = useState<boolean>(false);
+
   return (
     <div>
       {/* font test */}
@@ -57,12 +65,11 @@ export default function Laboratory() {
         <Button size="xs" color="gray">
           xs button
         </Button>
-        <Button size="xs" color="border">
-          xs button
+        <Button size="xs" color="border" onClick={() => setIsOpen3(true)}>
+          완료모달 열기
         </Button>
-        <Button size="xs" color="black">
-          xs button
-        </Button>
+
+        <CompleteModal isOpen={isOpen3} setIsOpen={setIsOpen3} />
         <Button
           size="xs"
           className="bg-error-color"
@@ -72,7 +79,7 @@ export default function Laboratory() {
         </Button>
 
         {/* modal test */}
-        <Modal
+        {/* <Modal
           open={isOpen}
           onClose={() => setIsOpen(false)}
           className="w-[480px]"
@@ -86,14 +93,6 @@ export default function Laboratory() {
           </Modal.SubTitle>
           <Modal.Description>
             <></>
-            {/* <div className="flex felx-wrap border border-red-500">
-              DescriptionDescriptionDescriptionDescriptionDescriptionDescription
-              Description Description Description Description Description
-              Description Description Description Description Description
-              Description Description Description Description Description
-              Description Description Description Description Description
-              Description Description Description Description Description
-            </div> */}
           </Modal.Description>
 
           <Modal.Footer>
@@ -102,7 +101,17 @@ export default function Laboratory() {
               <Button>등록하기</Button>
             </div>
           </Modal.Footer>
-        </Modal>
+        </Modal> */}
+
+        {/* <LoginModal isOpen={isOpen} setIsOpen={setIsOpen} /> */}
+        {/* <NicknameModal isOpen={isOpen} setIsOpen={setIsOpen} /> */}
+        <UserInfoModal isOpen={isOpen} setIsOpen={setIsOpen} />
+
+        <Button size="xs" color="black" onClick={() => setIsOpen2(true)}>
+          InterestModal button
+        </Button>
+
+        <InterestModal isOpen={isOpen2} setIsOpen={setIsOpen2} />
       </div>
     </div>
   );
