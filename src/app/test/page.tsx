@@ -8,6 +8,8 @@ import PurpleTextarea from "@component/components/textarea/Textarea";
 import TabComponent from "@component/components/tab/TabComponent";
 import Dropdown from "@component/components/dropdown/Dropdown";
 
+import KaKaoButton from "@component/components/social/KaKaoButton";
+
 const Test = () => {
     // input
     const [inputValue1, setInputValue1] = useState<string>("");
@@ -217,6 +219,7 @@ const Test = () => {
                 padding="xs"
             />
             <br />
+            <KaKaoButton/>
         </div>
     )
 }
