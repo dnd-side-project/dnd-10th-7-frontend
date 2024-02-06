@@ -7,6 +7,7 @@ import GrayInput from '@component/components/input/GrayInput';
 import PurpleTextarea from "@component/components/textarea/Textarea";
 import TabComponent from "@component/components/tab/TabComponent";
 import Dropdown from "@component/components/dropdown/Dropdown";
+import LandingTop from "@component/components/landing/carousel/LandingTop";
 
 const Test = () => {
     // input
@@ -39,7 +40,7 @@ const Test = () => {
     const [selectedItem3, setSelectedItem3] = useState<string>("");
 
     return (
-        <div className="p-4">
+        <div className="p-4 mb-[300px]">
 
             {/* 탭 컴포넌트 입니다 */}
             <div className="text-head text-purple-main1">TAB</div>
@@ -216,7 +217,12 @@ const Test = () => {
                 place="center"
                 padding="xs"
             />
-            <br />
+            <br /><br />
+
+            {/* 캐러셀 */}
+            <div className="w-[1440px] flex justify-center">
+                <LandingTop/>
+            </div>
         </div>
     )
 }
