@@ -1,5 +1,5 @@
 import RecommendItem from "./RecommendItem";
-import { TagProps } from "@component/components/tag";
+import { TagProps } from "@component/components/common-components/tag";
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css"

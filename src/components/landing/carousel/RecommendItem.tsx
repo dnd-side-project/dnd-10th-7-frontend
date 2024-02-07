@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Tag from "@component/components/tag/Tag";
+import Tag from "@component/components/common-components/tag/Tag";
 import { RecommendPropsType } from "./Carousel";
 import { useRouter } from "next/navigation";
 
