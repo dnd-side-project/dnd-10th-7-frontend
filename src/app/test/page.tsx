@@ -220,7 +220,7 @@ const Test = () => {
             <br /><br />
 
             {/* 캐러셀 */}
-            <div className="w-[1440px] flex justify-center">
+            <div className="max-w-[1440px] w-full flex justify-center">
                 <LandingTop/>
             </div>
         </div>
