@@ -103,7 +103,7 @@ const settings = {
     slidesToShow: 3,    // 화면에 한 번에 표시할 슬라이드 개수 설정
     slidesToScroll: 3,  // 다음 보여 줄 슬라이드의 개수 설정
     speed: 2000,         // 화면을 넘길 때 속도
-    autoplay: true,         // 자동 넘김
+    autoplay: false,         // TODO: 자동 넘김 논의
     autoplaySpeed: 5000,    // 간격
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />
