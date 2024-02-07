@@ -87,12 +87,12 @@ interface ArrowProps {
     onClick: () => void;
 }
 
-const NextArrow = ({ onClick }: any) => {
-    return <ArrowBackIosNewRoundedIcon onClick={onClick} className="absolute left-[-45px] top-[156px]" fontSize="large" sx={{ color: '#999999'}} />;
+const PrevArrow = ({ onClick }: any) => {
+    return <ArrowBackIosNewRoundedIcon onClick={onClick} className="absolute left-[-45px] top-[156px] cursor-pointer" fontSize="large" sx={{ color: '#999999'}} />;
 };
 
-const PrevArrow = ({ onClick }: any) => {
-    return <ArrowForwardIosRoundedIcon onClick={onClick} className="absolute right-[-45px] top-[156px]" fontSize="large" sx={{ color: '#999999'}} />;
+const NextArrow = ({ onClick }: any) => {
+    return <ArrowForwardIosRoundedIcon onClick={onClick} className="absolute right-[-45px] top-[156px] cursor-pointer" fontSize="large" sx={{ color: '#999999'}} />;
 };
 
 
@@ -102,9 +102,9 @@ const settings = {
     infinite: true, 
     slidesToShow: 3,    // 화면에 한 번에 표시할 슬라이드 개수 설정
     slidesToScroll: 3,  // 다음 보여 줄 슬라이드의 개수 설정
-    speed: 500,         // 화면을 넘길 때 속도
-    autoplay: true,     // 자동 넘김
-    autoplaySpeed: 3000,// 간격
+    speed: 2000,         // 화면을 넘길 때 속도
+    autoplay: true,         // 자동 넘김
+    autoplaySpeed: 5000,    // 간격
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />
 }

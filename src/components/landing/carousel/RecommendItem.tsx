@@ -17,7 +17,7 @@ const RecommendItem = ({
     const router = useRouter();
     return (
         <div 
-            className="w-[344px] h-[340px] rounded-[10px] border border-[1.5px] border-purple-main1 flex justify-center items-center"
+            className="w-[344px] h-[340px] rounded-[10px] border border-[1.5px] border-purple-main1 flex justify-center items-center cursor-pointer"
             onClick={() => {
                 router.push(`project/:${projectId}`)
             }}

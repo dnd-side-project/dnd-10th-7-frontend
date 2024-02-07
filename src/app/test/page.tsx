@@ -7,7 +7,7 @@ import GrayInput from '@component/components/common-components/input/GrayInput';
 import PurpleTextarea from "@component/components/common-components/textarea/Textarea";
 import TabComponent from "@component/components/common-components/tab/TabComponent";
 import Dropdown from "@component/components/common-components/button/dropdown/Dropdown";
-import LandingTop from "@component/components/landing/carousel/LandingTop";
+import LandingTop from "@component/components/landing/carousel/LandingMid";
 
 const Test = () => {
     // input
