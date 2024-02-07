@@ -1,5 +1,6 @@
 import clsx from "clsx";
 import { TextareaProps, TextareaSize, TextareaColor } from ".";
+import { forwardRef, PropsWithChildren } from "react";
 
 const style: {
     base: string;
@@ -43,19 +44,20 @@ const style: {
     }
 }
 
-export const PurpleTextarea = ({
-    value,
-    onChange,
-    placeholder,
-    entire,
-
-    // style
-    size,
-    borderSize,
-    backgroundColors,
-    textSize,
-    className,
-}: TextareaProps) => {
+const PurpleTextarea = forwardRef<HTMLTextAreaElement, PropsWithChildren<TextareaProps>>((props, ref) => {
+    const {
+        value,
+        onChange,
+        placeholder,
+        entire,
+    
+        // style
+        size,
+        borderSize,
+        backgroundColors,
+        textSize,
+        className,
+    } = props;
 
     return (
         <div className={`relative ${size === 'xl' ? 'max-w-[728px]' : 'max-w-[707px]'}`} >
@@ -76,9 +78,14 @@ export const PurpleTextarea = ({
                     )
                 }
             />
-            <div className="absolute bottom-[15px] right-[20px] text-gray-60">({value.length}/{entire})</div>
+            <div className="absolute bottom-[15px] right-[20px] text-gray-60">
+                <span className={value.length > 0 ? 'text-purple-main1' : ''}>({value.length}</span>
+            /{entire})</div>
         </div>
     )
 }
+)
+
+PurpleTextarea.displayName = 'PurpleTextarea';
 
 export default PurpleTextarea;
