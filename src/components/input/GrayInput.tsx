@@ -17,6 +17,7 @@ export const GrayInput = ({
     value,
     onChange,
     placeholder,
+    className,
 
     //style
     size,
@@ -32,7 +33,8 @@ export const GrayInput = ({
                 className={
                     clsx(
                         style.base,
-                        style.sizes[size]
+                        style.sizes[size],
+                        className
                     )
                 }
             />

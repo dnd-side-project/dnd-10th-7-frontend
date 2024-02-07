@@ -8,6 +8,7 @@ export type TextareaProps = {
     backgroundColors: TextareaColor;
     borderColor?: TextareaColor;
     textSize: TextareaSize;
+    className?: string;
 };
 
 export const textareaSizes = {

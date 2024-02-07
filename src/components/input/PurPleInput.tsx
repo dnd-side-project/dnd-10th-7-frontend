@@ -53,6 +53,7 @@ export const PurpleInput = ({
     shape,
     borderSize,
     backgroundColors,
+    className,
 
     // icon
     search
@@ -77,6 +78,7 @@ export const PurpleInput = ({
                         style.sizes[size], 
                         style.borderSizes[borderSize],
                         style.backgroundColors[backgroundColors],
+                        className
                     )}
             >
             </input>

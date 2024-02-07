@@ -54,6 +54,7 @@ export const PurpleTextarea = ({
     borderSize,
     backgroundColors,
     textSize,
+    className,
 }: TextareaProps) => {
 
     return (
@@ -70,7 +71,8 @@ export const PurpleTextarea = ({
                         style.backgroundColors[backgroundColors],
                         style.borderSizes[borderSize],
                         style.borderColors,
-                        style.textSizes[textSize]
+                        style.textSizes[textSize],
+                        className
                     )
                 }
             />
