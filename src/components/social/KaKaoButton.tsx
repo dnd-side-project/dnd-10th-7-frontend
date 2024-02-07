@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 const KaKaoButton = () => {
-    const apiKey = process.env.NEXT_PUBLIC_API_KEY
+    const apiKey = process.env.NEXT_PUBLIC_KAKAO_API_KEY
     const redirectUri = process.env.NEXT_PUBLIC_REDIRECT_URI
 
     const KakaoUrl = `https://kauth.kakao.com/oauth/authorize?client_id=${apiKey}&redirect_uri=${redirectUri}&response_type=code`;

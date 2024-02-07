@@ -1,9 +1,9 @@
-import { useRouter } from "next/navigation";
+'use client'
+
 import axios from 'axios';
 import { useEffect } from "react";
 
 export const KakaoCallBack = () => {
-    const router = useRouter();
     const baseUrl = process.env.NEXT_PUBLIC_API_URL
 
     // URL에서 'code' 쿼리 파라미터 추출
@@ -25,9 +25,12 @@ export const KakaoCallBack = () => {
             })
     }
 
+
     useEffect(() => {
         getKakaoLogIn()
     }, [])
 
     return <div>로딩중</div>
 }
+
+export default KakaoCallBack;
