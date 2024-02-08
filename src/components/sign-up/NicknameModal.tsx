@@ -30,7 +30,10 @@ export default function NicknameModal(props: ModalViewProps) {
     console.log("clicked next-step");
     setIsOpen(true); // 현재 모달 닫고
     // 이 사이에 닉네임 값 저장하기
-    localStorage.setItem("nickname", nickname);
+
+    if (typeof window !== "undefined")
+      localStorage.setItem("nickname", nickname);
+
     setInfoModal(true); // 다음 모달 열기
   };
 

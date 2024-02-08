@@ -12,9 +12,11 @@ export default function UserInfoModal(props: ModalViewProps) {
   const [career, setCareer] = useState<Array<string>>();
 
   const handleClick = () => {
-    localStorage.setItem("birthDay", birth);
-    localStorage.setItem("gender", gender);
-    localStorage.setItem("career", JSON.stringify(career));
+    if (typeof window !== "undefined") {
+      localStorage.setItem("birthDay", birth);
+      localStorage.setItem("gender", gender);
+      localStorage.setItem("career", JSON.stringify(career));
+    }
   };
 
   return (

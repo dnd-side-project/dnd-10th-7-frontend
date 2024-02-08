@@ -8,7 +8,8 @@ import TabComponent from "../common-components/tab/TabComponent";
 export default function InterestModal(props: ModalViewProps) {
   const { isOpen, setIsOpen } = props;
   // const [nickname, setNickname] = useState<string>("chaemin");
-  const localNickname = localStorage.getItem("nickname");
+  const localNickname =
+    typeof window !== "undefined" ? localStorage.getItem("nickname") : "error";
 
   return (
     <>
