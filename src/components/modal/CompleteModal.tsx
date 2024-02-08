@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Modal from "../common-components/modal";
-import { ModalViewProps } from "./LoginModal";
+import { ModalViewProps } from "../sign-up/LoginModal";
 import Button from "../common-components/button";
 import TabComponent from "../common-components/tab/TabComponent";
 
