@@ -6,7 +6,16 @@ import Button from "../common-components/button";
 
 export default function UserInfoModal(props: ModalViewProps) {
   const { isOpen, setIsOpen } = props;
-  const [nickname, setNickname] = useState<string>("");
+
+  const [birth, setBirth] = useState<string>("");
+  const [gender, setGender] = useState<string>("");
+  const [career, setCareer] = useState<Array<string>>();
+
+  const handleClick = () => {
+    localStorage.setItem("birthDay", birth);
+    localStorage.setItem("gender", gender);
+    localStorage.setItem("career", JSON.stringify(career));
+  };
 
   return (
     <>
@@ -25,12 +34,9 @@ export default function UserInfoModal(props: ModalViewProps) {
 
         <Modal.Description className="flex flex-col gap-[11px]">
           <div>
-            <GrayInput
-              value={nickname}
-              onChange={(e) => setNickname(e.target.value)}
-              placeholder="닉네임을 입력해주세요."
-              size="xs"
-            />
+            <p>생년월일</p>
+            <p>성별</p>
+            <p>관심분야</p>
           </div>
         </Modal.Description>
 
@@ -38,7 +44,7 @@ export default function UserInfoModal(props: ModalViewProps) {
           <Button size="md" color="gray">
             이전으로
           </Button>
-          <Button size="md" color="default">
+          <Button size="md" color="default" onClick={handleClick}>
             선택완료
           </Button>
         </Modal.Footer>

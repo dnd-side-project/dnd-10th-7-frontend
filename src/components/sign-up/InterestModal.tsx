@@ -7,7 +7,8 @@ import TabComponent from "../common-components/tab/TabComponent";
 
 export default function InterestModal(props: ModalViewProps) {
   const { isOpen, setIsOpen } = props;
-  const [nickname, setNickname] = useState<string>("chaemin");
+  // const [nickname, setNickname] = useState<string>("chaemin");
+  const localNickname = localStorage.getItem("nickname");
 
   return (
     <>
@@ -18,7 +19,7 @@ export default function InterestModal(props: ModalViewProps) {
         </Modal.Title>
         <Modal.SubTitle>
           <div>
-            1개 이상의 관심분야를 골라주세요. <b>{nickname}</b>님에게 맞는
+            1개 이상의 관심분야를 골라주세요. <b>{localNickname}</b>님에게 맞는
             프로젝트를 추천해 드릴게요. (선택)
           </div>
         </Modal.SubTitle>
