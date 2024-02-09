@@ -7,13 +7,13 @@ import { userAPI } from "@component/api/userAPI";
 import clsx from "clsx";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import { useRecoilState } from "recoil";
-import { nicknameModal } from "@component/atoms/modal";
+import { nicknameState } from "@component/atoms/modal";
 import GrayInput from "../common-components/input/GrayInput";
 
 export default function NicknameModal(props: ModalViewProps) {
   const { isOpen, setIsOpen } = props;
-  const [nickname, setNickname] = useState<string>("");
-  // const [nickname, setNickname] = useRecoilState(nicknameModal);
+  // const [nickname, setNickname] = useState<string>("");
+  const [nickname, setNickname] = useRecoilState(nicknameState);
   const [nickInvalid, setNickInvalid] = useState<boolean>(true);
 
   // 다음 모달을 위한 state
@@ -55,15 +55,15 @@ export default function NicknameModal(props: ModalViewProps) {
   }, [nickname]);
 
   const handleClose = () => {
-    setIsOpen(false);
     setNickname("");
+    setIsOpen(false);
   };
 
   return (
     <>
       <Modal
         open={isOpen}
-        onClose={() => setIsOpen(false)}
+        onClose={handleClose}
         // className="w-[480px]"
       >
         <Modal.Close onClick={handleClose} />

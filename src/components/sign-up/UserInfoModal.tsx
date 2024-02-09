@@ -1,25 +1,31 @@
 import React, { useState } from "react";
 import Modal from "../common-components/modal";
 import { ModalViewProps } from "./LoginModal";
-import { GrayInput } from "../common-components/input";
 import Button from "../common-components/button";
 import Dropdown from "../common-components/dropdown";
 import InterestModal from "./InterestModal";
 import clsx from "clsx";
 import Tab from "../common-components/tab";
-import { useSetRecoilState } from "recoil";
-import { nicknameModal } from "@component/atoms/modal";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
+import {
+  birthState,
+  careerState,
+  genderState,
+  nicknameState,
+} from "@component/atoms/modal";
+import GrayInput from "../common-components/input/GrayInput";
+import { userInfo } from "os";
 
 export default function UserInfoModal(props: ModalViewProps) {
   const { isOpen, setIsOpen, isPrevOpen, setIsPrevOpen } = props;
 
-  const [birth, setBirth] = useState<string>("");
-  const [career, setCareer] = useState<string>("");
+  const [birth, setBirth] = useRecoilState(birthState);
+  const [career, setCareer] = useRecoilState(careerState);
+  const [gender, setGender] = useRecoilState(genderState);
+
   const [careerChecked, setCareerChecked] = useState<boolean>();
   const [selectStatus, setSelectStatus] = useState<boolean>(false);
-  // const SetNickname = useSetRecoilState(nicknameModal);
-
-  const [gender, setGender] = useState<string | null>(null);
+  const setNickname = useSetRecoilState(nicknameState);
 
   // 다음 모달을 위한 state
   const [interestModal, setInterestModal] = useState<boolean>(false);
@@ -41,7 +47,7 @@ export default function UserInfoModal(props: ModalViewProps) {
 
   const handleToggle = (selectedGender: string) => {
     if (selectedGender === gender) {
-      setGender(null); // 이미 선택된 성별을 선택하면 선택 해제
+      // setGender(null); // 이미 선택된 성별을 선택하면 선택 해제
     } else {
       setGender(selectedGender); // 선택되지 않은 성별 선택
     }
@@ -52,16 +58,13 @@ export default function UserInfoModal(props: ModalViewProps) {
     setBirth("");
     setCareer("");
     setGender("");
-    // SetNickname("");
-    // nickname초기화 해야되는데 아 잘못생각했다
+    setNickname("");
   };
-
-  console.log(gender, birth, career);
 
   return (
     <>
       <Modal open={isOpen} onClose={handleClose}>
-        <Modal.Close onClick={() => setIsOpen(false)} />
+        <Modal.Close onClick={handleClose} />
         <Modal.Title>회원정보를 입력해주세요</Modal.Title>
         <Modal.SubTitle>
           입력한 정보는 마이페이지에서 변경할 수 있어요.
@@ -74,7 +77,9 @@ export default function UserInfoModal(props: ModalViewProps) {
               <GrayInput
                 className="text-center"
                 value={birth}
-                onChange={(e) => setBirth(e.target.value)}
+                onChange={(e: React.ChangeEvent<any>) =>
+                  setBirth(e.target.value)
+                }
                 placeholder="0000.00.00"
                 size="xs"
               />
@@ -86,7 +91,7 @@ export default function UserInfoModal(props: ModalViewProps) {
                   onClick={() => handleToggle("male")}
                   className={clsx(
                     "cursor-pointer",
-                    "p-[14px] rounded-[6px] w-6/12 text-gray-60 text-h2 bg-gray-10 border border-2 border-gray-10",
+                    "p-[14px] rounded-md w-6/12 text-gray-60 text-h2 bg-gray-10 border border-2 border-gray-10",
                     gender === "male" &&
                       "border border-2 border-purple-main1 bg-purple-main5 text-purple-main1"
                   )}
@@ -97,7 +102,7 @@ export default function UserInfoModal(props: ModalViewProps) {
                   onClick={() => handleToggle("female")}
                   className={clsx(
                     "cursor-pointer",
-                    "p-[14px] rounded-[6px] w-6/12 text-gray-60 text-h2 bg-gray-10 border border-2 border-gray-10",
+                    "p-[14px] rounded-md w-6/12 text-gray-60 text-h2 bg-gray-10 border border-2 border-gray-10",
                     gender === "female" &&
                       "border border-2 border-purple-main1 bg-purple-main5 text-purple-main1"
                   )}
@@ -107,37 +112,22 @@ export default function UserInfoModal(props: ModalViewProps) {
               </div>
             </div>
 
-            <div>
+            <div className="">
               <p className="pb-[10px]">직업군</p>
-              {/* <Tab content="직업군을 선택해주세요." /> */}
-              <div
-                onClick={() => setCareerChecked((prev) => !prev)}
-                className={clsx(
-                  "cursor-pointer",
-                  "p-[14px] w-full rounded-[6px] inline-block text-gray-60 text-h2 bg-gray-10 border border-2 border-gray-10",
-                  !careerChecked &&
-                    "border border-2 !border-purple-main1 bg-purple-main5 text-purple-main1"
-                )}
-              >
-                {careerChecked ? `${career}` : "직업군을 선택해주세요."}
-              </div>
-              {careerChecked ? (
-                <></>
-              ) : (
-                <Dropdown
-                  size="lg"
-                  items={["디자이너", "기획자", "프론트엔드", "백엔드"]}
-                  selectedItem={career}
-                  setSelectedItem={(selectedItem) => {
-                    setCareer(selectedItem);
-                    setSelectStatus(true);
-                    setCareerChecked(true);
-                  }}
-                  textSize="lg"
-                  place="center"
-                  padding="md"
-                />
-              )}
+
+              <Dropdown
+                size="lg"
+                items={["디자이너", "기획자", "프론트엔드", "백엔드"]}
+                selectedItem={career}
+                setSelectedItem={(selectedItem) => {
+                  setCareer(selectedItem);
+                  setSelectStatus(true);
+                  setCareerChecked(true);
+                }}
+                textSize="lg"
+                place="center"
+                padding="md"
+              />
             </div>
           </div>
         </Modal.Description>
