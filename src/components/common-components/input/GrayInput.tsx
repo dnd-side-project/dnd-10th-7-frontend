@@ -34,4 +34,6 @@ export const GrayInput = ({
   );
 };
 
+GrayInput.displayName = "GrayInput";
+
 export default GrayInput;
