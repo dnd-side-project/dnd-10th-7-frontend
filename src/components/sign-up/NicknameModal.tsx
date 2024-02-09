@@ -1,7 +1,6 @@
 import { Dispatch, SetStateAction, useEffect, useMemo, useState } from "react";
 import Modal from "../common-components/modal";
 import { ModalViewProps } from "./LoginModal";
-import { GrayInput } from "../common-components/input";
 import Button from "../common-components/button";
 import UserInfoModal from "./UserInfoModal";
 import { userAPI } from "@component/api/userAPI";
@@ -9,6 +8,7 @@ import clsx from "clsx";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import { useRecoilState } from "recoil";
 import { nicknameModal } from "@component/atoms/modal";
+import GrayInput from "../common-components/input/GrayInput";
 
 export default function NicknameModal(props: ModalViewProps) {
   const { isOpen, setIsOpen } = props;
