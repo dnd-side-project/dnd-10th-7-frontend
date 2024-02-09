@@ -8,6 +8,8 @@ type InputProps = {
     onSubTitleChange: any;
     selectedOption: string;
     handleCheckBoxChange: any;
+    selectedProgress: string;
+    handleProgressCheckBoxChange: any;
 }
 
 const RegisterProjectInput = ({
@@ -16,11 +18,16 @@ const RegisterProjectInput = ({
     subTitleValue,
     onSubTitleChange,
     selectedOption,
-    handleCheckBoxChange
+    handleCheckBoxChange,
+    selectedProgress,
+    handleProgressCheckBoxChange
 }: InputProps) => {
 
     // 분야
     const options = ['예술/대중문화', '금융/핀테크', '환경', '교육', '건강', 'AI/머신러닝', '취미/실용', '게임', '기타']; 
+
+    // 진행도
+    const progress = ['기획중', '개발중', '리팩토링중']
 
     return (
         <>
@@ -56,7 +63,7 @@ const RegisterProjectInput = ({
             />
 
             {/* 분야 */}
-            <div>
+            <div className='mb-[74.5px]'>
                 <div className='text-title mb-[16px]'>분야</div>
                 <div className='text-body2 text-gray-60 mb-[18.5px]'>1개 이하의 분야를 선택해주세요.</div>
                 <div className='flex'>
@@ -73,6 +80,32 @@ const RegisterProjectInput = ({
                         htmlFor={option}
                         className={`w-5 h-5 border border-1 rounded-[3px] ${
                         selectedOption === option ? 'bg-purple-main1' : 'border-gray-40'
+                        } me-2 cursor-pointer`}
+                    >    
+                    </label>
+                    <div>{option}</div>
+                    </div>
+                ))}
+                </div>
+            </div>
+
+            {/* 진행도 */}
+            <div>
+                <div className='text-title mb-[16px]'>진행도</div>
+                <div className='flex'>
+                {progress.map((option) => (
+                    <div key={option} className='flex items-center me-8'>
+                    <input
+                        type='checkbox'
+                        id={option}
+                        className='hidden'
+                        checked={selectedProgress === option}
+                        onChange={() => handleProgressCheckBoxChange(option)}
+                    />
+                    <label
+                        htmlFor={option}
+                        className={`w-5 h-5 border border-1 rounded-[3px] ${
+                            selectedProgress === option ? 'bg-purple-main1' : 'border-gray-40'
                         } me-2 cursor-pointer`}
                     >    
                     </label>

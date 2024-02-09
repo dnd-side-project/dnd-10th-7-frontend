@@ -1,5 +1,5 @@
 'use client'
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import RegisterProjectTop from "./RegisterProjectTop"
 import RegisterProjectInput from "./RegisterProjectInput"
@@ -24,6 +24,18 @@ export default function RegisterProject () {
     const handleCheckBoxChange = (option: string) => {
         setSelectedOption(option);
     };
+
+    // progress options
+    const [selectedProgress, setSelectedProgress] = useState<string>("");
+    const handleProgressCheckBoxChange = (option: string) => {
+        setSelectedProgress(option);
+    };
+
+    useEffect(() => {
+        console.log(titleValue, subTitleValue)
+        console.log(selectedOption, selectedProgress)
+    }, [selectedOption, selectedProgress])
+
     return (
         <div className="w-[1440px] flex flex-col items-center">
 
@@ -38,6 +50,8 @@ export default function RegisterProject () {
                     onSubTitleChange={onSubTitleChange}
                     selectedOption={selectedOption}
                     handleCheckBoxChange={handleCheckBoxChange}
+                    selectedProgress={selectedProgress}
+                    handleProgressCheckBoxChange={handleProgressCheckBoxChange}
                 />
             </section>
 
