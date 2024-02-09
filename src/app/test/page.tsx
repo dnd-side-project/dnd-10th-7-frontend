@@ -65,12 +65,18 @@ const Test = () => {
     const [selectedItem2, setSelectedItem2] = useState<string>("");
     const [selectedItem3, setSelectedItem3] = useState<string>("");
 
+
+    // 탭 컴포넌트 선택
+    const [interestedList, setInterestedList] = useState<string[]>([]);
+    
     return (
         <div className="p-4 mb-[300px]">
 
             {/* 탭 컴포넌트 입니다 */}
             <div className="text-head text-purple-main1">TAB</div>
-                <TabComponent/>
+                <TabComponent interestedList={interestedList} setInterestedList={setInterestedList} />
+            <br />
+            {interestedList}선택함
             <br /><br />
 
             {/* 인풋 컴포넌트 입니다 */}
