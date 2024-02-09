@@ -72,6 +72,7 @@ const PurpleInput = forwardRef<HTMLInputElement, PropsWithChildren<InputProps>>(
                 onChange={onChange}
                 onKeyDown={onKeyDown}
                 placeholder={placeholder} 
+                ref={ref}
                 className={
                     clsx(   
                         style.textSizes[textSize], 

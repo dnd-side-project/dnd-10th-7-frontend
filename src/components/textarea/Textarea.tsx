@@ -13,7 +13,7 @@ const style: {
     // TODO: 디자인 시스템이 확정되면 수정할 예정입니다. 
     // 1. placeholder 패딩
     // 2. width
-    base: "min-w-[707px] max-w-[707px] placeholder:text-gray-60 border border-purple-main1 focus:outline-none caret-purple-main1 rounded-[10px] resize-none",
+    base: "min-w-[707px] max-w-[707px] placeholder:text-gray-60 border border-error-main focus:outline-none caret-purple-main1 rounded-[10px] resize-none",
     sizes: {
         xs: 'min-h-[104px] px-[17px] py-[21px]',
         md: 'min-h-[214px] px-[27px] py-[28px]',
@@ -30,11 +30,13 @@ const style: {
         white: 'bg-white',
         purple1: '',
         purple5: 'bg-purple-main5',
+        error: ''
     },
     borderColors: {
         white: '',
         purple1: 'border-purple-main1',
         purple5: '',
+        error: "border-error-main"
     },
     textSizes: {
         xs: 'text-body2',
