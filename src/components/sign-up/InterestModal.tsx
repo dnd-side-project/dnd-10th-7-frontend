@@ -6,10 +6,21 @@ import Button from "../common-components/button";
 import TabComponent from "../common-components/tab/TabComponent";
 
 export default function InterestModal(props: ModalViewProps) {
-  const { isOpen, setIsOpen } = props;
-  // const [nickname, setNickname] = useState<string>("chaemin");
+  const { isOpen, setIsOpen, isPrevOpen, setIsPrevOpen } = props;
+
   const localNickname =
     typeof window !== "undefined" ? localStorage.getItem("nickname") : "error";
+
+  const handleBack = () => {
+    setIsOpen(false); // 현재 모달 닫고
+    setIsPrevOpen?.(!isPrevOpen); // 이전 모달 있을 경우 다시 열기
+  };
+
+  const handleRegister = () => {
+    // sign-up event function
+    console.log("sign-up start");
+    alert("sign-up");
+  };
 
   return (
     <>
@@ -30,10 +41,10 @@ export default function InterestModal(props: ModalViewProps) {
         </Modal.Description>
 
         <Modal.Footer className="flex flex-row gap-[8px]">
-          <Button size="md" color="gray">
+          <Button size="md" color="gray" onClick={handleBack}>
             이전으로
           </Button>
-          <Button size="md" color="default">
+          <Button size="md" color="default" onClick={handleRegister}>
             선택완료
           </Button>
         </Modal.Footer>
