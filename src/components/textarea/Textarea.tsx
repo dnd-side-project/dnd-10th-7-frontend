@@ -7,13 +7,12 @@ const style: {
     sizes: Record<TextareaSize, string>;
     borderSizes: Record<TextareaSize, string>;
     backgroundColors: Record<TextareaColor, string>;
-    borderColors: Record<TextareaColor, string>;
     textSizes: Record<TextareaSize, string>;
 } = {
     // TODO: 디자인 시스템이 확정되면 수정할 예정입니다. 
     // 1. placeholder 패딩
     // 2. width
-    base: "min-w-[707px] max-w-[707px] placeholder:text-gray-60 border border-error-main focus:outline-none caret-purple-main1 rounded-[10px] resize-none",
+    base: "min-w-[707px] max-w-[707px] border placeholder:text-gray-60 focus:outline-none caret-purple-main1 rounded-[10px] resize-none",
     sizes: {
         xs: 'min-h-[104px] px-[17px] py-[21px]',
         md: 'min-h-[214px] px-[27px] py-[28px]',
@@ -31,12 +30,6 @@ const style: {
         purple1: '',
         purple5: 'bg-purple-main5',
         error: ''
-    },
-    borderColors: {
-        white: '',
-        purple1: 'border-purple-main1',
-        purple5: '',
-        error: "border-error-main"
     },
     textSizes: {
         xs: 'text-body2',
@@ -74,7 +67,6 @@ const PurpleTextarea = forwardRef<HTMLTextAreaElement, PropsWithChildren<Textare
                         style.sizes[size],
                         style.backgroundColors[backgroundColors],
                         style.borderSizes[borderSize],
-                        style.borderColors,
                         style.textSizes[textSize],
                         className
                     )

@@ -6,7 +6,6 @@ export type TextareaProps = {
     size: TextareaSize;
     borderSize: TextareaSize;
     backgroundColors: TextareaColor;
-    borderColor?: TextareaColor;
     textSize: TextareaSize;
     className?: string;
 };

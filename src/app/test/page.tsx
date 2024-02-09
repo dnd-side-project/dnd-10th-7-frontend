@@ -156,10 +156,10 @@ const Test = () => {
                 placeholder="50자 이내의 프로젝트 한 줄 요약을 입력해주세요."
                 size="xs"   // 크기
                 backgroundColors="white"  // 배경색
-                borderColor="purple1"   // 테두리색
                 borderSize="lg"     // 테두리 두께
                 textSize="md"       // 텍스크 크기
                 entire={50}         // 글자수 제한
+                className={isInvalid ? 'border-error-main' : 'border-purple-main1'}
             />
             <br />
             <PurpleTextarea
@@ -167,11 +167,11 @@ const Test = () => {
                 onChange={textHandleChange}
                 placeholder="따로 지급하실 추가 리워드가 있다면 입력해주세요."
                 size="md"   
-                backgroundColors="white"  
-                borderColor="purple1"   
+                backgroundColors="white"   
                 borderSize="md"     
                 textSize="md"       
-                entire={100}         
+                entire={100}  
+                className={isInvalid ? 'border-error-main' : 'border-purple-main1'}       
             />
             <br />
             <PurpleTextarea
@@ -179,10 +179,11 @@ const Test = () => {
                 onChange={textHandleChange}
                 placeholder="댓글을 입력하세요."
                 size="xl"   
-                backgroundColors="purple5"   
+                backgroundColors="purple5" 
                 borderSize="xs"     
                 textSize="xs"       
-                entire={100}         
+                entire={100} 
+                className={isInvalid ? 'border-error-main' : 'border-purple-main1'}        
             />
             <br />
             <PurpleTextarea
@@ -190,10 +191,11 @@ const Test = () => {
                 onChange={textHandleChange}
                 placeholder={`어떤 프로젝트인지 이해하기 쉽도록 명확하고 간결하게 요약해주세요. \n\n\n소개에는 이런내용이 있으면 좋아요.`}
                 size="lg"   
-                backgroundColors="white"   
+                backgroundColors="white"    
                 borderSize="lg"     
                 textSize="md"       
-                entire={500}         
+                entire={500}  
+                className={isInvalid ? 'border-error-main' : 'border-purple-main1'}       
             />
             <br />
             <PurpleTextarea
@@ -201,10 +203,11 @@ const Test = () => {
                 onChange={textHandleChange}
                 placeholder="피드백 요청 내용을 입력하세요."
                 size="lg"   
-                backgroundColors="white"   
+                backgroundColors="white"     
                 borderSize="md"     
                 textSize="lg"       
-                entire={500}         
+                entire={500}  
+                className={isInvalid ? 'border-error-main' : 'border-purple-main1'}       
             />
             <br />
             
