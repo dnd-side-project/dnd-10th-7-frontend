@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 const RegisterProjectTop = () => {
     const router = useRouter();
     return (
-        <div className='w-[1440px]'>  
+        <div className='w-[1440px] fixed'>  
             <ArrowBackIosRoundedIcon 
                 className='absolute top-[25px] left-[18px] cursor-pointer'
                 onClick={() => router.push('/')}
