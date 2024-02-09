@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import RecoilRootWrapper from "./RecoilRootWrapper";
 
 export const metadata: Metadata = {
   title: "sendback",
@@ -13,7 +14,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <RecoilRootWrapper>
+        <body>{children}</body>
+      </RecoilRootWrapper>
     </html>
   );
 }
