@@ -9,6 +9,7 @@ export type InputProps = {
     borderSize: InputSize;
     backgroundColors: InputColor;
     search?: boolean;
+    className?: string;
 };
 
 export const inputSizes = {
