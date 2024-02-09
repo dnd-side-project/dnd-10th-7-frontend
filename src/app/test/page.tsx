@@ -1,14 +1,14 @@
 // 테스트 페이지 입니다
 'use client'
 
-import { useEffect, useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import PurpleInput from "@component/components/common-components/input/PurPleInput";
 import GrayInput from '@component/components/common-components/input/GrayInput';
 import PurpleTextarea from "@component/components/common-components/textarea/Textarea";
 import TabComponent from "@component/components/common-components/tab/TabComponent";
-import Dropdown from "@component/components/common-components/dropdown/Dropdown";
+import Dropdown from "@component/components/common-components/button/dropdown/Dropdown";
+import LandingTop from "@component/components/landing/carousel/LandingMid";
 import Button from "@component/components/common-components/button/Button";
-import { useRef } from "react";
 
 const Test = () => {
     // input
@@ -66,7 +66,7 @@ const Test = () => {
     const [selectedItem3, setSelectedItem3] = useState<string>("");
 
     return (
-        <div className="p-4">
+        <div className="p-4 mb-[300px]">
 
             {/* 탭 컴포넌트 입니다 */}
             <div className="text-head text-purple-main1">TAB</div>
@@ -246,26 +246,13 @@ const Test = () => {
                 place="center"
                 padding="xs"
             />
+            <br /><br />
+
+            {/* 캐러셀 */}
+            <div className="max-w-[1440px] w-full flex justify-center">
+                <LandingTop/>
+            </div>
             <br />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             {/* button focus */}
             <PurpleTextarea
@@ -282,7 +269,6 @@ const Test = () => {
             />
             <Button onClick={focus}>제출하기</Button>
 
-            
         </div>
     )
 }

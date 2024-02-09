@@ -1,6 +1,6 @@
 "use client";
 import Button from "@component/components/common-components/button";
-import Modal from "@component/components/modal";
+import Modal from "@component/components/common-components/modal";
 import Tag from "@component/components/common-components/tag";
 import { useState } from "react";
 
