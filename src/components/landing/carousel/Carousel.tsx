@@ -83,16 +83,21 @@ const recommendData: RecommendPropsType[] = [
     },
 ]
 
-interface ArrowProps {
-    onClick: () => void;
-}
 
 const PrevArrow = ({ onClick }: any) => {
-    return <ArrowBackIosNewRoundedIcon onClick={onClick} className="absolute left-[-45px] top-[156px] cursor-pointer" fontSize="large" sx={{ color: '#999999'}} />;
-};
+    return <ArrowBackIosNewRoundedIcon 
+            onClick={onClick} 
+            className="absolute left-[-45px] top-[156px] cursor-pointer hover:text-black text-gray-400" 
+            fontSize="large" 
+        />;
+};      
 
 const NextArrow = ({ onClick }: any) => {
-    return <ArrowForwardIosRoundedIcon onClick={onClick} className="absolute right-[-45px] top-[156px] cursor-pointer" fontSize="large" sx={{ color: '#999999'}} />;
+    return <ArrowForwardIosRoundedIcon 
+            onClick={onClick} 
+            className="absolute right-[-45px] top-[156px] cursor-pointer hover:text-black text-gray-400" 
+            fontSize="large" 
+        />;
 };
 
 
