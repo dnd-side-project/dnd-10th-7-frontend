@@ -4,6 +4,9 @@ import Modal from "../common-components/modal";
 export type ModalViewProps = {
   isOpen: boolean;
   setIsOpen: Dispatch<SetStateAction<boolean>>;
+  //
+  isPrevOpen?: boolean;
+  setIsPrevOpen?: Dispatch<SetStateAction<boolean>>;
 };
 
 export default function LoginModal(props: ModalViewProps) {
