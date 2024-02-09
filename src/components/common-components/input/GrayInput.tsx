@@ -1,6 +1,7 @@
 import React from "react";
 import { GrayInputProps, GrayInputSize } from ".";
 import clsx from "clsx";
+import { forwardRef, PropsWithChildren } from "react";
 
 const style: {
     base: string;
@@ -13,14 +14,17 @@ const style: {
     }
 }
 
-export const GrayInput = ({
-    value,
-    onChange,
-    placeholder,
+const GrayInput = forwardRef<HTMLInputElement, PropsWithChildren<GrayInputProps>>((props, ref) => {
+    const {
+        value,
+        onChange,
+        placeholder,
+        className,
 
-    //style
-    size,
-}: GrayInputProps) => {
+        //style
+        size,
+    } = props;
+
 
     return (
         <>
@@ -32,12 +36,16 @@ export const GrayInput = ({
                 className={
                     clsx(
                         style.base,
-                        style.sizes[size]
+                        style.sizes[size],
+                        className
                     )
                 }
             />
         </>
     )
-};
+}
+);
+
+GrayInput.displayName = "GrayInput";
 
 export default GrayInput;
