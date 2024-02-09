@@ -26,8 +26,9 @@ const style: {
   },
   color: {
     active: "text-white bg-purple-active border-purple-active",
-    default: "bg-purple-main1 border-purple-main1 text-white",
-    hover: "text-white bg-purple-main2 border-purple-main2",
+    default:
+      "bg-purple-main1 border-purple-main1 text-white hover:bg-purple-active hoer:border-purple-active",
+    // hover: "text-white bg-purple-main2 border-purple-main2",
     border: "text-purple-main1 border-purple-main1 bg-white",
     gray: "bg-[#F5F5F5] text-gray-60 border-[#F5F5F5]",
     black: "bg-black text-white",
