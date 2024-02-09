@@ -2,12 +2,12 @@
 'use client'
 
 import { useEffect, useState } from "react";
-import PurpleInput from "@component/components/input/PurPleInput";
-import GrayInput from '@component/components/input/GrayInput';
-import PurpleTextarea from "@component/components/textarea/Textarea";
-import TabComponent from "@component/components/tab/TabComponent";
-import Dropdown from "@component/components/dropdown/Dropdown";
-import Button from "@component/components/button/Button";
+import PurpleInput from "@component/components/common-components/input/PurPleInput";
+import GrayInput from '@component/components/common-components/input/GrayInput';
+import PurpleTextarea from "@component/components/common-components/textarea/Textarea";
+import TabComponent from "@component/components/common-components/tab/TabComponent";
+import Dropdown from "@component/components/common-components/dropdown/Dropdown";
+import Button from "@component/components/common-components/button/Button";
 import { useRef } from "react";
 
 const Test = () => {
