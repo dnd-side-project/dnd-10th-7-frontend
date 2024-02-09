@@ -3,7 +3,7 @@ import { api } from "./api";
 export type userInfoType = {
   nickname: string;
   gender: string;
-  birthDay: Date;
+  birthDay: string;
   career: string;
   interests: Array<string>;
 };
