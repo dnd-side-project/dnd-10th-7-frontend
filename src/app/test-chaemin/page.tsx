@@ -2,7 +2,6 @@
 import Button from "@component/components/common-components/button";
 import Modal from "@component/components/common-components/modal";
 import Tag from "@component/components/common-components/tag";
-import CompleteModal from "@component/components/modal/CompleteModal";
 import InterestModal from "@component/components/sign-up/InterestModal";
 import LoginModal from "@component/components/sign-up/LoginModal";
 import NicknameModal from "@component/components/sign-up/NicknameModal";
@@ -67,7 +66,7 @@ export default function Laboratory() {
           완료모달 열기
         </Button>
 
-        <CompleteModal isOpen={isOpen3} setIsOpen={setIsOpen3} />
+        {/* <CompleteModal isOpen={isOpen3} setIsOpen={setIsOpen3} /> */}
         <Button
           size="xs"
           className="bg-error-color"

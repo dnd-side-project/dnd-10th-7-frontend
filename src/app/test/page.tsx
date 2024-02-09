@@ -1,14 +1,14 @@
 // 테스트 페이지 입니다
 "use client";
 
-import Dropdown from "@component/components/common-components/dropdown";
-import {
-  GrayInput,
-  PurpleInput,
-} from "@component/components/common-components/input";
-import TabComponent from "@component/components/common-components/tab/TabComponent";
+import { useState, useEffect, useRef } from "react";
+import PurpleInput from "@component/components/common-components/input/PurPleInput";
+import GrayInput from "@component/components/common-components/input/GrayInput";
 import PurpleTextarea from "@component/components/common-components/textarea/Textarea";
-import { useState } from "react";
+import TabComponent from "@component/components/common-components/tab/TabComponent";
+import Dropdown from "@component/components/common-components/button/dropdown/Dropdown";
+import LandingTop from "@component/components/landing/carousel/LandingMid";
+import Button from "@component/components/common-components/button/Button";
 
 const Test = () => {
   // input
@@ -37,13 +37,35 @@ const Test = () => {
     setTextareaValue(event.target.value);
   };
 
+  // textarea 제출 했을 때 글자수가 0자면 focus-error
+  const inputRef = useRef<HTMLTextAreaElement>(null);
+  const [submitClicked, setSubmitClicked] = useState<boolean>(false);
+
+  const focus = () => {
+    console.log("click");
+    console.log("inputRef.current before", inputRef.current);
+    if (inputRef.current) {
+      console.log("inputRef.current after", inputRef.current);
+      inputRef.current.focus();
+    }
+    setSubmitClicked(true);
+  };
+  // 클릭했을 때마다 focus 함수를 다시 작동시켜서 rendering 시켜야 inputRef.current 가 null
+  useEffect(() => {
+    if (submitClicked) {
+      focus();
+    }
+  }, [submitClicked]);
+
+  const isInvalid = submitClicked && textareaValue.length === 0;
+
   // 드롭다운
   const [selectedItem1, setSelectedItem1] = useState<string>("");
   const [selectedItem2, setSelectedItem2] = useState<string>("");
   const [selectedItem3, setSelectedItem3] = useState<string>("");
 
   return (
-    <div className="p-4">
+    <div className="p-4 mb-[300px]">
       {/* 탭 컴포넌트 입니다 */}
       <div className="text-head text-purple-main1">TAB</div>
       <TabComponent />
@@ -134,10 +156,10 @@ const Test = () => {
         placeholder="50자 이내의 프로젝트 한 줄 요약을 입력해주세요."
         size="xs" // 크기
         backgroundColors="white" // 배경색
-        borderColor="purple1" // 테두리색
         borderSize="lg" // 테두리 두께
         textSize="md" // 텍스크 크기
         entire={50} // 글자수 제한
+        className={isInvalid ? "border-error-main" : "border-purple-main1"}
       />
       <br />
       <PurpleTextarea
@@ -146,10 +168,10 @@ const Test = () => {
         placeholder="따로 지급하실 추가 리워드가 있다면 입력해주세요."
         size="md"
         backgroundColors="white"
-        borderColor="purple1"
         borderSize="md"
         textSize="md"
         entire={100}
+        className={isInvalid ? "border-error-main" : "border-purple-main1"}
       />
       <br />
       <PurpleTextarea
@@ -161,6 +183,7 @@ const Test = () => {
         borderSize="xs"
         textSize="xs"
         entire={100}
+        className={isInvalid ? "border-error-main" : "border-purple-main1"}
       />
       <br />
       <PurpleTextarea
@@ -172,6 +195,7 @@ const Test = () => {
         borderSize="lg"
         textSize="md"
         entire={500}
+        className={isInvalid ? "border-error-main" : "border-purple-main1"}
       />
       <br />
       <PurpleTextarea
@@ -183,6 +207,7 @@ const Test = () => {
         borderSize="md"
         textSize="lg"
         entire={500}
+        className={isInvalid ? "border-error-main" : "border-purple-main1"}
       />
       <br />
 
@@ -233,6 +258,28 @@ const Test = () => {
         padding="xs"
       />
       <br />
+      <br />
+
+      {/* 캐러셀 */}
+      <div className="max-w-[1440px] w-full flex justify-center">
+        <LandingTop />
+      </div>
+      <br />
+
+      {/* button focus */}
+      <PurpleTextarea
+        value={textareaValue}
+        onChange={textHandleChange}
+        placeholder="50자 이내의 프로젝트 한 줄 요약을 입력해주세요."
+        size="xs" // 크기
+        backgroundColors="white" // 배경색
+        borderSize="lg" // 테두리 두께
+        textSize="md" // 텍스크 크기
+        entire={50} // 글자수 제한
+        ref={inputRef}
+        className={isInvalid ? "border-error-main" : "border-purple-main1"}
+      />
+      <Button onClick={focus}>제출하기</Button>
     </div>
   );
 };

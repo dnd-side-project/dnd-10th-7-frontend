@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import { InputProps, InputSize, InputShape, InputColor } from ".";
 import SearchIcon from '@mui/icons-material/Search';
+import { forwardRef, PropsWithChildren } from "react";
 
 const style: {
     base: string;
@@ -41,23 +42,25 @@ const style: {
     }
   };
 
-export const PurpleInput = ({
-    value,
-    onChange,
-    placeholder,
-    onKeyDown,
+const PurpleInput = forwardRef<HTMLInputElement, PropsWithChildren<InputProps>>((props, ref) => {
+    const {
+      value,
+      onChange,
+      placeholder,
+      onKeyDown,
 
-    // style
-    size,
-    textSize,
-    shape,
-    borderSize,
-    backgroundColors,
+      // style
+      size,
+      textSize,
+      shape,
+      borderSize,
+      backgroundColors,
+      className,
 
-    // icon
-    search
+      // icon
+      search
+    } = props;
 
-}: InputProps) => {
     return (
         <div className="relative">
             {search && (
@@ -69,6 +72,7 @@ export const PurpleInput = ({
                 onChange={onChange}
                 onKeyDown={onKeyDown}
                 placeholder={placeholder} 
+                ref={ref}
                 className={
                     clsx(   
                         style.textSizes[textSize], 
@@ -77,12 +81,16 @@ export const PurpleInput = ({
                         style.sizes[size], 
                         style.borderSizes[borderSize],
                         style.backgroundColors[backgroundColors],
+                        className
                     )}
             >
             </input>
         </div>
     )
 }
+);
+
+PurpleInput.displayName = "PurpleInput";
 
 export default PurpleInput;
 
