@@ -59,9 +59,7 @@ export default function Laboratory() {
         <Button size="xs" color="active">
           xs button
         </Button>
-        <Button size="xs" color="hover">
-          xs button
-        </Button>
+
         <Button size="xs" color="gray">
           xs button
         </Button>
@@ -104,8 +102,8 @@ export default function Laboratory() {
         </Modal> */}
 
         {/* <LoginModal isOpen={isOpen} setIsOpen={setIsOpen} /> */}
-        {/* <NicknameModal isOpen={isOpen} setIsOpen={setIsOpen} /> */}
-        <UserInfoModal isOpen={isOpen} setIsOpen={setIsOpen} />
+        <NicknameModal isOpen={isOpen} setIsOpen={setIsOpen} />
+        {/* <UserInfoModal isOpen={isOpen} setIsOpen={setIsOpen} /> */}
 
         <Button size="xs" color="black" onClick={() => setIsOpen2(true)}>
           InterestModal button
