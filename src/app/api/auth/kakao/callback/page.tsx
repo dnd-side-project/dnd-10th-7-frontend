@@ -1,9 +1,11 @@
 'use client'
 
 import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { kakaoLogInAPI } from "@component/api/kakaoGetAPI";
 
-export const KakaoCallBack = () => {
+export default function KakaoCallBack () {
+    const router = useRouter();
 
     let code: string = ""
     // URL에서 'code' 쿼리 파라미터 추출
@@ -21,6 +23,8 @@ export const KakaoCallBack = () => {
                 window.sessionStorage.setItem("access_token", access_token);
                 window.sessionStorage.setItem("refresh_token", refresh_token);
 
+                // 성공 후 로직
+                router.push('/')
             })
             .catch((err: any) => {
                 console.log('error', err)
@@ -33,5 +37,3 @@ export const KakaoCallBack = () => {
 
     return <div>로딩중</div>
 }
-
-export default KakaoCallBack;
