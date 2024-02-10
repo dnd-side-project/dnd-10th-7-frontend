@@ -5,6 +5,7 @@ import CheckCircleOutlineRoundedIcon from '@mui/icons-material/CheckCircleOutlin
 import PurpleTextarea from '@component/components/common-components/textarea/Textarea';
 import Dropdown from '@component/components/common-components/dropdown/Dropdown';
 import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
+import RegisterProjectTitle from './\bRegisterProjectTitle';
 
 type InputProps = {
     titleValue: string;     // 제목
@@ -22,7 +23,9 @@ type InputProps = {
     designMember: string;
     setDesignMember: any;
     pmMember: string;
-    setPMMember: any
+    setPMMember: any;
+    content: string;
+    handleContentChange: any;
 }
 
 type TeamItem = {
@@ -51,6 +54,8 @@ const RegisterProjectInput = ({
     setDesignMember,
     pmMember,
     setPMMember,
+    content,
+    handleContentChange
 }: InputProps) => {
 
     // 분야
@@ -121,7 +126,7 @@ const RegisterProjectInput = ({
 
             {/* 분야 */}
             <div className='mb-[74.5px]  mt-[74px]'>
-                <div className='text-title mb-[16px]'>분야</div>
+                <RegisterProjectTitle title="분야" />
                 <div className='text-body2 text-gray-60 mb-[18.5px]'>1개 이하의 분야를 선택해주세요.</div>
                 <div className='flex'>
                 {options.map((option) => (
@@ -148,7 +153,7 @@ const RegisterProjectInput = ({
 
             {/* 진행도 */}
             <div>
-                <div className='text-title mb-[16px]'>진행도</div>
+                <RegisterProjectTitle title="진행도" />
                 <div className='flex'>
                 {progress.map((option) => (
                     <div key={option} className='flex items-center me-8'>
@@ -173,7 +178,7 @@ const RegisterProjectInput = ({
 
                 {/* 멤버 */}
                 <div className='mt-[74px]'>
-                    <div className='text-title mb-[16px]'>멤버</div>
+                    <RegisterProjectTitle title="멤버" />
                     <div className='flex'>
                         {teams.map((team, index) => (
                             <div key={index} className='flex'>
@@ -203,6 +208,32 @@ const RegisterProjectInput = ({
                             </div>
                         ))}
                     </div> 
+                </div>
+
+                {/* 기간 */}
+                <div className='mt-[74px]'>
+                    <RegisterProjectTitle title="멤버" />
+                </div>
+
+                {/* 본문 */}
+                <div className='mt-[74px]'>
+                    <RegisterProjectTitle title="소개" />
+                    <PurpleTextarea
+                        value={content}
+                        onChange={handleContentChange}
+                        placeholder={`어떤 프로젝트인지 이해하기 쉽도록 명확하고 간결하게 요약해주세요. 
+                        \n\n소개에는 이런내용이 있으면 좋아요.
+                        \n\n* 어떤 프로젝트인지\n* 프로젝트를 기획한 배경\n* 프로젝트의 목적이나 달성하고 싶은 목표\n* 프로젝트 진행 방식
+                        \n\n이미 진행 중인 프로젝트라면\n진행 상황을 알려주세요!`}
+                        size="lg"   
+                        backgroundColors="white"    
+                        borderSize="lg"     
+                        textSize="md"       
+                        entire={500}  
+                        className='border-purple-main1'  
+                        // className={isInvalid ? 'border-error-main' : 'border-purple-main1'}       
+                    />
+                    
                 </div>
             </div>
         </>

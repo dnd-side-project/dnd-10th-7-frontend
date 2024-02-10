@@ -42,6 +42,12 @@ export default function RegisterProject () {
         console.log(selectedOption, selectedProgress)
     }, [selectedOption, selectedProgress])
 
+    // content
+    const [content, setContent] = useState<string>("");
+    const handleContentChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+        setContent(event.target.value);
+    };
+
     return (
         <div className="w-[1440px] flex flex-col items-center">
 
@@ -66,6 +72,8 @@ export default function RegisterProject () {
                     setDesignMember={setDesignMember}
                     pmMember={pmMember}
                     setPMMember={setPMMember}
+                    content={content}
+                    handleContentChange={handleContentChange}
                 />
             </section>
 
