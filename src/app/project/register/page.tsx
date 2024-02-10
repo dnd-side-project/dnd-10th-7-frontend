@@ -33,6 +33,9 @@ export default function RegisterProject () {
 
     // member
     const [frontMember, setFrontMember] = useState<string>('0명');
+    const [backMember, setBackMember] = useState<string>('0명');
+    const [designMember, setDesignMember] = useState<string>('0명');
+    const [pmMember, setPMMember] = useState<string>('0명');
 
     useEffect(() => {
         console.log(titleValue, subTitleValue)
@@ -57,6 +60,12 @@ export default function RegisterProject () {
                     handleProgressCheckBoxChange={handleProgressCheckBoxChange}
                     frontMember={frontMember}
                     setFrontMember={setFrontMember}
+                    backMember={backMember}
+                    setBackMember={setBackMember}
+                    designMember={designMember}
+                    setDesignMember={setDesignMember}
+                    pmMember={pmMember}
+                    setPMMember={setPMMember}
                 />
             </section>
 
