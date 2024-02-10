@@ -11,7 +11,7 @@ type InputProps = {
     handleCheckBoxChange: any;
     selectedProgress: string;
     handleProgressCheckBoxChange: any;
-    frontMember: number;
+    frontMember: string;
     setFrontMember: any;
 }
 
@@ -120,7 +120,7 @@ const RegisterProjectInput = ({
                 </div>
 
                 {/* 멤버 */}
-                <div>
+                <div className='mt-[74px]'>
                     <div className='text-title mb-[16px]'>멤버</div>
                     <div className='flex'>
                         <p className='me-4 text-h2'>프론트엔드</p>
