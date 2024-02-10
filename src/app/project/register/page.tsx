@@ -31,6 +31,9 @@ export default function RegisterProject () {
         setSelectedProgress(option);
     };
 
+    // member
+    const [frontMember, setFrontMember] = useState<string>('0명');
+
     useEffect(() => {
         console.log(titleValue, subTitleValue)
         console.log(selectedOption, selectedProgress)
@@ -52,6 +55,8 @@ export default function RegisterProject () {
                     handleCheckBoxChange={handleCheckBoxChange}
                     selectedProgress={selectedProgress}
                     handleProgressCheckBoxChange={handleProgressCheckBoxChange}
+                    frontMember={frontMember}
+                    setFrontMember={setFrontMember}
                 />
             </section>
 
