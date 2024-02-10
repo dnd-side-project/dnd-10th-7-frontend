@@ -1,7 +1,7 @@
 "use client";
-import Button from "@component/components/button";
-import Modal from "@component/components/modal";
-import Tag from "@component/components/tag";
+import Button from "@component/components/common-components/button";
+import Modal from "@component/components/common-components/modal";
+import Tag from "@component/components/common-components/tag";
 import { useState } from "react";
 
 export default function Laboratory() {
