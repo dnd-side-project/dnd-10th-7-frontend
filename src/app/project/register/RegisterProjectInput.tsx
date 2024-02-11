@@ -10,39 +10,7 @@ import PurpleInput from '@component/components/common-components/input/PurPleInp
 import Button from '@component/components/common-components/button/Button';
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 import Calendar from './Callendar';
-
-type InputProps = {
-    titleValue: string;     // 제목
-    onTitleChange: any;
-    subTitleValue: string;  // 부제목
-    onSubTitleChange: any;
-    selectedOption: string;
-    handleCheckBoxChange: any;
-    selectedProgress: string;
-    handleProgressCheckBoxChange: any;
-    frontMember: string;
-    setFrontMember: any;
-    backMember: string;
-    setBackMember: any;
-    designMember: string;
-    setDesignMember: any;
-    pmMember: string;
-    setPMMember: any;
-    content: string;
-    handleContentChange: any;
-    serviceLink: string;
-    handleServiceLinkChange: any;
-    startDate: string;
-    setStartDate: any;
-    startIndex: number | undefined;
-    setStartIndex: any;
-    endDate: string;
-    setEndDate: any;
-    endIndex: number | undefined;
-    setEndIndex: any;
-    subTitleRef: any;
-    subTitleInvalid: boolean;
-}
+import { InputProps } from '@component/types/Project';
 
 type TeamItem = {
     title: string;
@@ -85,6 +53,8 @@ const RegisterProjectInput = ({
 
     subTitleRef,
     subTitleInvalid,
+    contentRef,
+    contentInvalid,
 }: InputProps) => {
 
     // 분야
@@ -162,7 +132,12 @@ const RegisterProjectInput = ({
 
             {/* 분야 */}
             <div className='mb-[74.5px]  mt-[74px]'>
-                <RegisterProjectTitle title="분야" />
+                <div className='flex items-center'>
+                    <RegisterProjectTitle title="분야" />
+                    {!selectedOption && (
+                            <div className='text-error-main text-body3 mb-4 ms-4'>필수 입력해주세요</div>
+                    )}
+                </div>
                 <div className='text-body2 text-gray-60 mb-[18.5px]'>1개 이하의 분야를 선택해주세요.</div>
                 <div className='flex'>
                 {options.map((option) => (
@@ -189,7 +164,12 @@ const RegisterProjectInput = ({
 
             {/* 진행도 */}
             <div>
-                <RegisterProjectTitle title="진행도" />
+                <div className='flex items-center'>
+                    <RegisterProjectTitle title="진행도" />
+                    {!selectedProgress && (
+                            <div className='text-error-main text-body3 mb-4 ms-4'>필수 입력해주세요</div>
+                    )}
+                </div>
                 <div className='flex'>
                 {progress.map((option) => (
                     <div key={option} className='flex items-center me-8'>
@@ -214,7 +194,12 @@ const RegisterProjectInput = ({
 
                 {/* 멤버 */}
                 <div className='mt-[74px]'>
-                    <RegisterProjectTitle title="멤버" />
+                    <div className='flex items-center'>
+                        <RegisterProjectTitle title="멤버" />
+                        {frontMember === "0명" && backMember === "0명" && designMember === "0명" && pmMember === "0명" && (
+                            <div className='text-error-main text-body3 mb-4 ms-4'>필수 입력해주세요</div>
+                        )}
+                    </div>
                     <div className='flex'>
                         {teams.map((team, index) => (
                             <div key={index} className='flex'>
@@ -270,7 +255,12 @@ const RegisterProjectInput = ({
 
                 {/* 본문 */}
                 <div className='mt-[74px]'>
-                    <RegisterProjectTitle title="소개" />
+                    <div className='flex items-center'>
+                        <RegisterProjectTitle title="소개" />
+                        {contentInvalid && (
+                            <div className='text-error-main text-body3 mb-4 ms-4'>필수 입력해주세요</div>
+                        )}
+                    </div>
                     <div className='flex'>
                         <PurpleTextarea
                             value={content}
@@ -284,8 +274,8 @@ const RegisterProjectInput = ({
                             borderSize="lg"     
                             textSize="md"       
                             entire={500}  
-                            className='border-purple-main1'  
-                            // className={isInvalid ? 'border-error-main' : 'border-purple-main1'}       
+                            ref={contentRef}
+                            className={contentInvalid ? 'border-error-main' : 'border-purple-main1'}       
                         />
                         
                         <div className="w-[306px] h-[320px] bg-purple-main4 rounded-[5px] text-body3 relative ms-[67px]">

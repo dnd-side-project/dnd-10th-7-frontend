@@ -59,20 +59,25 @@ export default function RegisterProject () {
 
     // submit fail 
     const subTitleRef = useRef<HTMLTextAreaElement>(null);
+    const contentRef = useRef<HTMLTextAreaElement>(null);
     const [submitClicked, setSubmitClicked] = useState<boolean>(false);
 
     // submit
     const onSubmit = () => {
-        // focust
+        // focus
         if (subTitleRef.current) {
             subTitleRef.current.focus();
+        }
+        if (contentRef.current) {
+            contentRef.current.focus();
         }
         setSubmitClicked(true);
     }
     
-    // subTitle Invalid
+    // Invalid
     const subTitleInvalid = submitClicked && subTitleValue.length === 0;
-    
+    const contentInvalid = submitClicked && content.length === 0;
+
     useEffect(() => {
         if (submitClicked) {
             focus();
@@ -121,6 +126,8 @@ export default function RegisterProject () {
                     // submit fail
                     subTitleRef={subTitleRef}
                     subTitleInvalid={subTitleInvalid}
+                    contentRef={contentRef}
+                    contentInvalid={contentInvalid}
                 />
 
                 {/* 제출하기 */}
