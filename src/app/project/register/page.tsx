@@ -1,8 +1,10 @@
 'use client'
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
 import RegisterProjectTop from "./RegisterProjectTop"
 import RegisterProjectInput from "./RegisterProjectInput"
+import Button from "@component/components/common-components/button/Button";
+import Modal from "@component/components/common-components/modal/Modal";
 
 
 export default function RegisterProject () {
@@ -55,6 +57,28 @@ export default function RegisterProject () {
         setServiceLink(event.target.value);
     };
 
+    // submit fail 
+    const subTitleRef = useRef<HTMLTextAreaElement>(null);
+    const [submitClicked, setSubmitClicked] = useState<boolean>(false);
+
+    // submit
+    const onSubmit = () => {
+        // focust
+        if (subTitleRef.current) {
+            subTitleRef.current.focus();
+        }
+        setSubmitClicked(true);
+    }
+    
+    // subTitle Invalid
+    const subTitleInvalid = submitClicked && subTitleValue.length === 0;
+    
+    useEffect(() => {
+        if (submitClicked) {
+            focus();
+        }
+    }, [submitClicked]);
+
 
     return (
         <div className="w-[1440px] flex flex-col items-center">
@@ -64,6 +88,7 @@ export default function RegisterProject () {
 
             <section className="max-w-[1080px] w-full mt-[135px] border border-1 border-error-main">
                 <RegisterProjectInput
+                    // for submit
                     titleValue={titleValue}
                     onTitleChange={onTitleChange}
                     subTitleValue={subTitleValue}
@@ -92,8 +117,23 @@ export default function RegisterProject () {
                     setEndDate={setEndDate}
                     endIndex={endIndex}
                     setEndIndex={setEndIndex}
+
+                    // submit fail
+                    subTitleRef={subTitleRef}
+                    subTitleInvalid={subTitleInvalid}
                 />
+
+                {/* 제출하기 */}
+                <div className='mt-[185px] flex justify-end'>
+                    <Button size='lg' color='border' className='py-[14.5px] px-[49.5px] me-5'>
+                        임시저장
+                    </Button>
+                    <Button size='lg' className='py-[14.5px] px-[49.5px]' onClick={onSubmit}>
+                        등록하기
+                    </Button>
+                </div>
             </section>
+
         </div>
     )
 }

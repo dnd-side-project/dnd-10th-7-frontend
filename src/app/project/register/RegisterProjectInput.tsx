@@ -40,6 +40,8 @@ type InputProps = {
     setEndDate: any;
     endIndex: number | undefined;
     setEndIndex: any;
+    subTitleRef: any;
+    subTitleInvalid: boolean;
 }
 
 type TeamItem = {
@@ -80,6 +82,9 @@ const RegisterProjectInput = ({
     setEndDate,
     endIndex,
     setEndIndex,
+
+    subTitleRef,
+    subTitleInvalid,
 }: InputProps) => {
 
     // 분야
@@ -139,6 +144,9 @@ const RegisterProjectInput = ({
             </div>
 
             {/* 부제 */}
+            {subTitleInvalid && (
+                <div className='absolute text-error-main mt-[-35px] text-body3'>필수 입력해주세요</div>
+            )}
             <PurpleTextarea
                 value={subTitleValue}
                 onChange={onSubTitleChange}
@@ -147,9 +155,9 @@ const RegisterProjectInput = ({
                 backgroundColors="white"  
                 borderSize="lg"     
                 textSize="md"      
-                entire={50} 
-                className='border-purple-main1'        
-                // className={isInvalid ? 'border-error-main' : 'border-purple-main1'}
+                entire={50}   
+                ref={subTitleRef}    
+                className={`${subTitleInvalid ? 'border-error-main' : 'border-purple-main1'} relative`}
             />
 
             {/* 분야 */}
@@ -314,6 +322,7 @@ const RegisterProjectInput = ({
                     <AddCircleOutlineOutlinedIcon className='text-purple-main5' />
                     사진 등록하기
                 </Button>
+
             </div>
         </>
     )
