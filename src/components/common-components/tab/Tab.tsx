@@ -13,11 +13,22 @@ import AutoStoriesOutlinedIcon from "@mui/icons-material/AutoStoriesOutlined";
 import SportsEsportsOutlinedIcon from "@mui/icons-material/SportsEsportsOutlined";
 import LaptopChromebookOutlinedIcon from "@mui/icons-material/LaptopChromebookOutlined";
 
-export const Tab = ({ content }: TabProps) => {
+export const Tab = ({
+  content,
+  interestedList,
+  setInterestedList,
+}: TabProps) => {
   const [isChecked, setIsChecked] = useState(false);
 
-  const handleToggle = () => {
+  const handleToggle = (event: React.MouseEvent<HTMLDivElement>) => {
     setIsChecked((prev: boolean) => !prev);
+
+    const text = event.currentTarget.innerText;
+    if (interestedList?.includes(text)) {
+      setInterestedList((prevList) => prevList.filter((item) => item !== text));
+    } else {
+      setInterestedList((prevList) => [...prevList, text]);
+    }
   };
 
   // content에 따른 아이콘 변화
@@ -49,9 +60,9 @@ export const Tab = ({ content }: TabProps) => {
       onClick={handleToggle}
       className={clsx(
         "cursor-pointer",
-        "p-[14px] rounded-[6px] inline-block text-gray-60 text-h2 bg-gray-10 border border-2 border-gray-10",
+        "p-[14px] rounded-[6px] inline-block text-gray-60 text-h2 bg-gray-10",
         isChecked &&
-          "border border-2 !border-purple-main1 bg-purple-main5 text-purple-main1"
+          "border border-2 border-purple-main1 bg-purple-main5 text-purple-main1"
       )}
     >
       {getIconComponent()}

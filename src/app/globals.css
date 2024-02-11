@@ -3,8 +3,18 @@
 @tailwind utilities;
 
 *,
-body {
+html,
+body,
+.MuiTypography-root,
+.MuiTab-root {
   font-family: "Pretendard";
   font-weight: 700;
 }
 
+.MuiTab-indicator {
+  background-color: purple-main1;
+}
+
+.MuiBox-root {
+  padding: 0;
+}
