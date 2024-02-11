@@ -31,4 +31,5 @@ export type InputProps = {
     subTitleInvalid: boolean;
     contentRef: any;
     contentInvalid: boolean;
+    submitClicked: boolean;
 }

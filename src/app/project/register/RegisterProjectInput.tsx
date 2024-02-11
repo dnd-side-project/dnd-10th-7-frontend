@@ -55,6 +55,7 @@ const RegisterProjectInput = ({
     subTitleInvalid,
     contentRef,
     contentInvalid,
+    submitClicked
 }: InputProps) => {
 
     // 분야
@@ -134,14 +135,14 @@ const RegisterProjectInput = ({
             <div className='mb-[74.5px]  mt-[74px]'>
                 <div className='flex items-center'>
                     <RegisterProjectTitle title="분야" />
-                    {!selectedOption && (
+                    {!selectedOption && submitClicked && (
                             <div className='text-error-main text-body3 mb-4 ms-4'>필수 입력해주세요</div>
                     )}
                 </div>
                 <div className='text-body2 text-gray-60 mb-[18.5px]'>1개 이하의 분야를 선택해주세요.</div>
                 <div className='flex'>
                 {options.map((option) => (
-                    <div key={option} className='flex items-center me-8'>
+                    <div key={option} className='flex items-center me-7'>
                     <input
                         type='checkbox'
                         id={option}
@@ -156,7 +157,7 @@ const RegisterProjectInput = ({
                         } me-2 cursor-pointer`}
                     >    
                     </label>
-                    <div>{option}</div>
+                    <div className='text-h2'>{option}</div>
                     </div>
                 ))}
                 </div>
@@ -166,7 +167,7 @@ const RegisterProjectInput = ({
             <div>
                 <div className='flex items-center'>
                     <RegisterProjectTitle title="진행도" />
-                    {!selectedProgress && (
+                    {!selectedProgress && submitClicked && (
                             <div className='text-error-main text-body3 mb-4 ms-4'>필수 입력해주세요</div>
                     )}
                 </div>
@@ -187,7 +188,7 @@ const RegisterProjectInput = ({
                         } me-2 cursor-pointer`}
                     >    
                     </label>
-                    <div>{option}</div>
+                    <div className='text-h2'>{option}</div>
                     </div>
                 ))}
                 </div>
@@ -196,7 +197,7 @@ const RegisterProjectInput = ({
                 <div className='mt-[74px]'>
                     <div className='flex items-center'>
                         <RegisterProjectTitle title="멤버" />
-                        {frontMember === "0명" && backMember === "0명" && designMember === "0명" && pmMember === "0명" && (
+                        {frontMember === "0명" && backMember === "0명" && designMember === "0명" && pmMember === "0명" && submitClicked && (
                             <div className='text-error-main text-body3 mb-4 ms-4'>필수 입력해주세요</div>
                         )}
                     </div>

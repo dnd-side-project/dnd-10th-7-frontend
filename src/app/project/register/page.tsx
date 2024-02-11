@@ -4,7 +4,6 @@ import { useState, useRef, useEffect } from "react";
 import RegisterProjectTop from "./RegisterProjectTop"
 import RegisterProjectInput from "./RegisterProjectInput"
 import Button from "@component/components/common-components/button/Button";
-import Modal from "@component/components/common-components/modal/Modal";
 
 
 export default function RegisterProject () {
@@ -64,6 +63,15 @@ export default function RegisterProject () {
 
     // submit
     const onSubmit = () => {
+
+        if (subTitleValue.length === 0 || content.length === 0 || selectedOption === "" || selectedProgress === "" || (frontMember === "0명" && backMember === "0명" && designMember === "0명" && pmMember === "0명")) {
+            // TODO: 모달로 변경
+            window.alert("필수 정보를 입력해주세요");
+        } else {
+            // TODO: api 로직 추가
+            window.alert("프로젝트 등록 완료");
+        }
+
         // focus
         if (subTitleRef.current) {
             subTitleRef.current.focus();
@@ -91,7 +99,7 @@ export default function RegisterProject () {
             {/* 프로젝트 등록 상단 */}
             <RegisterProjectTop />
 
-            <section className="max-w-[1080px] w-full mt-[135px] border border-1 border-error-main">
+            <section className="max-w-[1080px] w-full mt-[135px]">
                 <RegisterProjectInput
                     // for submit
                     titleValue={titleValue}
@@ -128,10 +136,11 @@ export default function RegisterProject () {
                     subTitleInvalid={subTitleInvalid}
                     contentRef={contentRef}
                     contentInvalid={contentInvalid}
+                    submitClicked={submitClicked}
                 />
 
                 {/* 제출하기 */}
-                <div className='mt-[185px] flex justify-end'>
+                <div className='mt-[185px] flex justify-end mb-[154px]'>
                     <Button size='lg' color='border' className='py-[14.5px] px-[49.5px] me-5'>
                         임시저장
                     </Button>
