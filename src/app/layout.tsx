@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Provider from "@component/components/provider/Provider";
 
 export const metadata: Metadata = {
   title: "sendback",
@@ -14,9 +13,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
-        <Provider>{children}</Provider>
-      </body>
+      <body>{children}</body>
     </html>
   );
 }
