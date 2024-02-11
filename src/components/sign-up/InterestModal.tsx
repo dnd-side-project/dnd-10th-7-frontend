@@ -65,7 +65,8 @@ export default function InterestModal(props: ModalViewProps) {
         </Modal.SubTitle>
 
         <Modal.Description className="flex flex-col gap-[11px]">
-          <TabComponent />
+          {/* <TabComponent /> */}
+          <></>
         </Modal.Description>
 
         <Modal.Footer className="flex flex-row gap-[8px]">
