@@ -1,11 +1,15 @@
 'use client'
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import CheckCircleOutlineRoundedIcon from '@mui/icons-material/CheckCircleOutlineRounded';
 import PurpleTextarea from '@component/components/common-components/textarea/Textarea';
 import Dropdown from '@component/components/common-components/dropdown/Dropdown';
 import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
 import RegisterProjectTitle from './\bRegisterProjectTitle';
+import PurpleInput from '@component/components/common-components/input/PurPleInput';
+import Button from '@component/components/common-components/button/Button';
+import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
+import Calendar from './Callendar';
 
 type InputProps = {
     titleValue: string;     // 제목
@@ -26,6 +30,16 @@ type InputProps = {
     setPMMember: any;
     content: string;
     handleContentChange: any;
+    serviceLink: string;
+    handleServiceLinkChange: any;
+    startDate: string;
+    setStartDate: any;
+    startIndex: number | undefined;
+    setStartIndex: any;
+    endDate: string;
+    setEndDate: any;
+    endIndex: number | undefined;
+    setEndIndex: any;
 }
 
 type TeamItem = {
@@ -55,7 +69,17 @@ const RegisterProjectInput = ({
     pmMember,
     setPMMember,
     content,
-    handleContentChange
+    handleContentChange,
+    serviceLink,
+    handleServiceLinkChange,
+    startDate,
+    setStartDate,
+    startIndex,
+    setStartIndex,
+    endDate,
+    setEndDate,
+    endIndex,
+    setEndIndex,
 }: InputProps) => {
 
     // 분야
@@ -89,6 +113,10 @@ const RegisterProjectInput = ({
         { title: '디자인', state: showDesignDropdown, member: designMember, handleDropdownItemClick: handleDesignDropdownItemClick, setMember: setDesignMember, setShowDropdown: setShowDesignDropdown },
         { title: '기획', state: showPmDropdown, member: pmMember, handleDropdownItemClick: handlePmDropdownItemClick, setMember: setPMMember, setShowDropdown: setShowPmDropdown }
     ];
+
+    useEffect(() => {
+        console.log(endDate)
+    }, [endDate])
 
 
     return (
@@ -212,29 +240,80 @@ const RegisterProjectInput = ({
 
                 {/* 기간 */}
                 <div className='mt-[74px]'>
-                    <RegisterProjectTitle title="멤버" />
+                    <RegisterProjectTitle title="기간" />
+                    <div className='bg-purple-main5 max-w-[358px] min-h-[249px] max-h-[259px] rounded-[10px]'>
+                        <div className='flex'>
+                            {/* 시작하는 날 */}
+                            <Calendar clickedIndex={startIndex} setClickedIndex={setStartIndex} clickedDate={startDate} setClickedDate={setStartDate} />
+                            {/* 끝나는 날 */}
+                            <Calendar clickedIndex={endIndex} setClickedIndex={setEndIndex} clickedDate={endDate} setClickedDate={setEndDate} />
+                        </div>
+                        <hr className='w-[316px] text-gray-60 mx-auto mt-[-15px]' />
+                        {startDate && (
+                            <div className='text-caption1 ms-5 flex mt-4'>
+                                {startDate}
+                                {endDate && (
+                                    <> - {endDate}</>
+                                )}
+                            </div>
+                        )}
+                    </div>      
                 </div>
 
                 {/* 본문 */}
                 <div className='mt-[74px]'>
                     <RegisterProjectTitle title="소개" />
-                    <PurpleTextarea
-                        value={content}
-                        onChange={handleContentChange}
-                        placeholder={`어떤 프로젝트인지 이해하기 쉽도록 명확하고 간결하게 요약해주세요. 
-                        \n\n소개에는 이런내용이 있으면 좋아요.
-                        \n\n* 어떤 프로젝트인지\n* 프로젝트를 기획한 배경\n* 프로젝트의 목적이나 달성하고 싶은 목표\n* 프로젝트 진행 방식
-                        \n\n이미 진행 중인 프로젝트라면\n진행 상황을 알려주세요!`}
-                        size="lg"   
-                        backgroundColors="white"    
-                        borderSize="lg"     
-                        textSize="md"       
-                        entire={500}  
-                        className='border-purple-main1'  
-                        // className={isInvalid ? 'border-error-main' : 'border-purple-main1'}       
-                    />
-                    
+                    <div className='flex'>
+                        <PurpleTextarea
+                            value={content}
+                            onChange={handleContentChange}
+                            placeholder={`어떤 프로젝트인지 이해하기 쉽도록 명확하고 간결하게 요약해주세요. 
+                            \n\n소개에는 이런내용이 있으면 좋아요.
+                            \n\n* 어떤 프로젝트인지\n* 프로젝트를 기획한 배경\n* 프로젝트의 목적이나 달성하고 싶은 목표\n* 프로젝트 진행 방식
+                            \n\n이미 진행 중인 프로젝트라면\n진행 상황을 알려주세요!`}
+                            size="lg"   
+                            backgroundColors="white"    
+                            borderSize="lg"     
+                            textSize="md"       
+                            entire={500}  
+                            className='border-purple-main1'  
+                            // className={isInvalid ? 'border-error-main' : 'border-purple-main1'}       
+                        />
+                        
+                        <div className="w-[306px] h-[320px] bg-purple-main4 rounded-[5px] text-body3 relative ms-[67px]">
+                            <CheckCircleOutlineRoundedIcon className='text-purple-main1 w-[16.8px] h-[16.8px] absolute left-[18px] top-[18.5px]' />
+                            <div className='py-4 ps-[42px] pe-4'>
+                                어떤 프로젝트인지 이해하기 쉽도록 명확하고 간결하게 요약해주세요.
+                                <br /><br />
+                                소개에는 이런 내용이 있으면 좋아요<br /><br />          
+                                * 어떤 프로젝트인지<br />
+                                * 프로젝트를 기획한 배경<br />
+                                * 프로젝트의 목적이나 달성하고 싶은 목표<br />
+                                * 프로젝트 진행 방식<br /><br />
+                                이미 진행 중인 프로젝트라면, <br/> 진행 상황을 알려주세요!
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
+                {/* 서비스 링크 입력하기 */}
+                <PurpleInput
+                    value={serviceLink}
+                    onChange={handleServiceLinkChange}
+                    placeholder="서비스 링크 입력하기"
+                    shape="rounded"
+                    size="md"
+                    textSize="md"
+                    borderSize="lg"
+                    backgroundColors="white"
+                    className='mt-6 mb-7'
+                />
+
+                {/* 사진 등록하기 */}
+                <Button className='flex items-center gap-2'>
+                    <AddCircleOutlineOutlinedIcon className='text-purple-main5' />
+                    사진 등록하기
+                </Button>
             </div>
         </>
     )

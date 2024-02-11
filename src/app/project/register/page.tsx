@@ -1,5 +1,5 @@
 'use client'
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import RegisterProjectTop from "./RegisterProjectTop"
 import RegisterProjectInput from "./RegisterProjectInput"
@@ -37,16 +37,24 @@ export default function RegisterProject () {
     const [designMember, setDesignMember] = useState<string>('0명');
     const [pmMember, setPMMember] = useState<string>('0명');
 
-    useEffect(() => {
-        console.log(titleValue, subTitleValue)
-        console.log(selectedOption, selectedProgress)
-    }, [selectedOption, selectedProgress])
-
     // content
     const [content, setContent] = useState<string>("");
     const handleContentChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
         setContent(event.target.value);
     };
+
+    // date
+    const [startDate, setStartDate] = useState<string>("");
+    const [startIndex, setStartIndex] = useState<number>();
+    const [endDate, setEndDate] = useState<string>("")
+    const [endIndex, setEndIndex] = useState<number>();
+
+    // service link
+    const [serviceLink, setServiceLink] = useState<string>("");
+    const handleServiceLinkChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setServiceLink(event.target.value);
+    };
+
 
     return (
         <div className="w-[1440px] flex flex-col items-center">
@@ -74,9 +82,18 @@ export default function RegisterProject () {
                     setPMMember={setPMMember}
                     content={content}
                     handleContentChange={handleContentChange}
+                    serviceLink={serviceLink}
+                    handleServiceLinkChange={handleServiceLinkChange}
+                    startDate={startDate}
+                    setStartDate={setStartDate}
+                    startIndex={startIndex}
+                    setStartIndex={setStartIndex}
+                    endDate={endDate}
+                    setEndDate={setEndDate}
+                    endIndex={endIndex}
+                    setEndIndex={setEndIndex}
                 />
             </section>
-
         </div>
     )
 }

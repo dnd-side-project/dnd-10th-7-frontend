@@ -9,6 +9,8 @@ import TabComponent from "@component/components/common-components/tab/TabCompone
 import Dropdown from "@component/components/common-components/button/dropdown/Dropdown";
 import LandingTop from "@component/components/landing/carousel/LandingMid";
 import Button from "@component/components/common-components/button/Button";
+import Calendar from "../project/register/Callendar";
+
 
 const Test = () => {
     // input
@@ -268,7 +270,7 @@ const Test = () => {
                 className={isInvalid ? 'border-error-main' : 'border-purple-main1'}
             />
             <Button onClick={focus}>제출하기</Button>
-
+            <br /><br /><br />
         </div>
     )
 }
