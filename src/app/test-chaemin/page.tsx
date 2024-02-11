@@ -1,4 +1,5 @@
 "use client";
+import CommentBox from "@component/components/comment/CommentBox";
 import Button from "@component/components/common-components/button";
 import Modal from "@component/components/common-components/modal";
 import Tag from "@component/components/common-components/tag";
@@ -75,6 +76,9 @@ export default function Laboratory() {
         >
           modal open btn
         </Button>
+
+        {/* comment test */}
+        <CommentBox />
 
         {/* modal test */}
         {/* <Modal
