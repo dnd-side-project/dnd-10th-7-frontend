@@ -2,6 +2,7 @@ import Tag, { TagProps } from "@component/components/common-components/tag";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
 import ChatOutlinedIcon from "@mui/icons-material/ChatOutlined";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
 
 export type ProjectItemProps = {
   type: TagProps["type"];
@@ -14,6 +15,7 @@ export type ProjectItemProps = {
   pullUpCount: number;
   likeCount: number;
   commentCount: number;
+  moreBtn?: boolean;
 };
 
 export default function ProjectItem({
@@ -26,11 +28,15 @@ export default function ProjectItem({
   pullUpCount,
   likeCount,
   commentCount,
+  moreBtn,
 }: ProjectItemProps) {
   return (
     <div className="w-full max-w-[890px] py-[32px] border-b-[1px] border-gray-40">
       <div className="flex flex-col gap-[16px]">
-        <Tag type={type} status={status} />
+        <div className="flex items-center justify-between">
+          <Tag type={type} status={status} />
+          {moreBtn && <MoreVertIcon className="mr-[20px] fill-gray-80" />}
+        </div>
         <div className="flex justify-between items-center">
           <div className="text-title cursor-pointer">{title}</div>
           <div
