@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import RecoilRootWrapper from "./RecoilRootWrapper";
 import { ThemeProvider } from "@mui/material";
 import { theme } from "@component/components/common-components/mui/theme";
 
@@ -15,9 +16,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <ThemeProvider theme={theme}>
-        <body>{children}</body>
-      </ThemeProvider>
+      <RecoilRootWrapper>
+        <ThemeProvider theme={theme}>
+          <body>{children}</body>
+        </ThemeProvider>
+      </RecoilRootWrapper>
     </html>
   );
 }
