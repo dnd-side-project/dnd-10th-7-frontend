@@ -1,88 +1,20 @@
 "use client";
 
 import { Box, Tab, Tabs } from "@mui/material";
-import React, { useState } from "react";
-import ProjectItem from "./ProjectItem";
-import { LinkedCamera } from "@mui/icons-material";
-import { TagProps } from "@component/components/common-components/tag";
+import { useState } from "react";
+import {
+  CustomTabPanel,
+  a11yProps,
+  dummyData,
+} from "../landing/project/ProjectTab";
 import clsx from "clsx";
+import ProjectItem from "../landing/project/ProjectItem";
+import { TagProps } from "../common-components/tag";
 
-interface TabPanelProps {
-  children?: React.ReactNode;
-  index: number;
-  value: number;
-}
-
-export function a11yProps(index: number) {
-  return {
-    id: `simple-tab-${index}`,
-    "aria-controls": `simple-tabpanel-${index}`,
-  };
-}
-
-export function CustomTabPanel(props: TabPanelProps) {
-  const { children, value, index, ...other } = props;
-
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`simple-tabpanel-${index}`}
-      aria-labelledby={`simple-tab-${index}`}
-      {...other}
-    >
-      {value === index && (
-        <Box sx={{ p: 3 }}>
-          <>{children}</>
-        </Box>
-      )}
-    </div>
-  );
-}
-
-export const dummyData = [
-  {
-    type: "환경",
-    status: "기획중",
-    title: "아아아아아아앙",
-    subTitle: "서브서브서브서브서",
-    user: "chaemin",
-    //   profileImg:string;
-    createdDate: "2020.02.02",
-    pullUpCount: 20,
-    likeCount: 28,
-    commentCount: 12,
-  },
-  {
-    type: "환경",
-    status: "기획중",
-    title: "아아아아아아앙",
-    subTitle: "서브서브서브서브서",
-    user: "chaemin",
-    //   profileImg:string;
-    createdDate: "2020.02.02",
-    pullUpCount: 20,
-    likeCount: 28,
-    commentCount: 12,
-  },
-  {
-    type: "환경",
-    status: "기획중",
-    title: "아아아아아아앙",
-    subTitle: "서브서브서브서브서",
-    user: "chaemin",
-    //   profileImg:string;
-    createdDate: "2020.02.02",
-    pullUpCount: 20,
-    likeCount: 28,
-    commentCount: 12,
-  },
-];
-
-export const ProjectTab = () => {
+export const MyPageTab = () => {
   const [tab, setTab] = useState(0);
 
-  // 정렬 - 0은 최신순, 1은 인기순
+  // 정렬 - 0은 진행중, 1은 완료
   const [sort, setSort] = useState(0);
 
   const handleChange = (e: React.SyntheticEvent, newValue: number) => {
@@ -106,13 +38,18 @@ export const ProjectTab = () => {
       >
         <Tabs value={tab} onChange={handleChange}>
           <Tab
-            label="피드백 중인 프로젝트"
+            label="등록한 프로젝트"
             {...a11yProps(0)}
             sx={{ fontSize: "18px" }}
           />
           <Tab
-            label="완료된 프로젝트"
+            label="피드백한 프로젝트"
             {...a11yProps(1)}
+            sx={{ fontSize: "18px" }}
+          />
+          <Tab
+            label="스크랩한 프로젝트"
+            {...a11yProps(2)}
             sx={{ fontSize: "18px" }}
           />
         </Tabs>
@@ -132,7 +69,7 @@ export const ProjectTab = () => {
                 sort === 0 ? "text-purple-main1" : "text-gray-60"
               )}
             >
-              최신순
+              진행중
             </div>
           </div>
           <div
@@ -150,7 +87,7 @@ export const ProjectTab = () => {
                 sort === 1 ? "text-purple-main1" : "text-gray-60"
               )}
             >
-              인기순
+              완료
             </div>
           </div>
         </div>
@@ -169,12 +106,32 @@ export const ProjectTab = () => {
                 pullUpCount={item.pullUpCount}
                 likeCount={item.likeCount}
                 commentCount={item.commentCount}
+                moreBtn
               />
             </div>
           );
         })}
       </CustomTabPanel>
       <CustomTabPanel value={tab} index={1}>
+        {dummyData.map((item, idx) => {
+          return (
+            <div key={idx}>
+              <ProjectItem
+                type={item.type as TagProps["type"]}
+                status={item.status as TagProps["status"]}
+                title={item.title}
+                subTitle={item.subTitle}
+                user={item.user}
+                createdDate={item.createdDate}
+                pullUpCount={item.pullUpCount}
+                likeCount={item.likeCount}
+                commentCount={item.commentCount}
+              />
+            </div>
+          );
+        })}
+      </CustomTabPanel>
+      <CustomTabPanel value={tab} index={2}>
         {dummyData.map((item, idx) => {
           return (
             <div key={idx}>
