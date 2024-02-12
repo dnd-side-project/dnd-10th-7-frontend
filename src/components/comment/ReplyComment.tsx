@@ -6,6 +6,7 @@ import Button from "../common-components/button";
 import Image from "next/image";
 import Img from "../../../public/assets/profile_img.png";
 import clsx from "clsx";
+import PurpleInput from "../common-components/input/PurPleInput";
 
 export const ReplyComment = () => {
   const [comment, setComment] = useState<string>("");
@@ -39,26 +40,22 @@ export const ReplyComment = () => {
   const isInvalid = submitClicked && comment.length === 0;
 
   return (
-    <div className="ml-[73px] border border-black">
+    <div className="ml-[72px]">
       <div className="flex gap-[23px] items-center">
         <div className="h-[48px] w-[48px] rounded-full bg-gray-40" />
 
-        <PurpleTextarea
+        <PurpleInput
           value={comment}
           onChange={handleComment}
-          placeholder="답글을 입력하세요."
-          size="xl"
-          backgroundColors="purple5"
-          borderSize="xs"
+          placeholder="답글을 입력해주세요"
+          shape="rounded"
+          size="xs"
           textSize="xs"
-          entire={100}
-          className={clsx(
-            "",
-            isInvalid ? "border-error-main" : "border-purple-main1"
-          )}
+          borderSize="xs" // 테두리 두께
+          backgroundColors="purple"
         />
       </div>
-      <div className="text-right pt-2">
+      <div className="text-right pt-3">
         <Button size="xs" color="default">
           등록
         </Button>

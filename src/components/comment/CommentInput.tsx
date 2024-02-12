@@ -38,7 +38,7 @@ export const CommentInput = () => {
   const isInvalid = submitClicked && comment.length === 0;
 
   return (
-    <div className="w-full max-w-[800px] border border-black">
+    <div className="w-full max-w-[800px] ">
       <div className="flex gap-[23px] items-center">
         <div className="h-[48px] w-[48px] rounded-full bg-gray-40" />
         {/* <Image
@@ -61,7 +61,7 @@ export const CommentInput = () => {
           className={isInvalid ? "border-error-main" : "border-purple-main1"}
         />
       </div>
-      <div className="text-right pt-2">
+      <div className="text-right pt-3">
         <Button size="xs" color="default">
           등록
         </Button>

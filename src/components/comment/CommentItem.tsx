@@ -2,8 +2,6 @@ import { useState } from "react";
 import { ReplyComment } from "./ReplyComment";
 
 export const CommentItem = () => {
-  // const [openReplyComment, setOpenReplyComment] = useState<boolean>(false);
-
   const dummyComment = [
     {
       commentId: 1,

@@ -12,12 +12,12 @@ const style: {
   // TODO: 디자인 시스템이 확정되면 수정할 예정입니다.
   // 1. placeholder 패딩
   // 2. width
-  base: "w-full border placeholder:text-gray-60 focus:outline-none caret-purple-main1 rounded-[10px] resize-none",
+  base: "min-w-[707px] max-w-[707px] border placeholder:text-gray-60 focus:outline-none caret-purple-main1 rounded-[10px] resize-none",
   sizes: {
     xs: "min-h-[104px] px-[17px] py-[21px]",
     md: "min-h-[214px] px-[27px] py-[28px]",
     lg: "min-h-[773px] px-[27px] py-[28px]",
-    xl: "px-[24px] py-[12px]", // 댓글
+    xl: "min-w-[728px] max-w-[728px] px-[24px] py-[12px]", // 댓글
   },
   borderSizes: {
     xs: "border-0",
@@ -58,11 +58,7 @@ const PurpleTextarea = forwardRef<
   } = props;
 
   return (
-    <div
-      className={clsx(`relative border border-red-500`, className)}
-
-      // className={`relative ${size === "xl" ? "max-w-[728px]" : "max-w-[707px]"}`}
-    >
+    <div className={`relative ${size === "xl" ? "max-w-[728px]" : ""}`}>
       <textarea
         name={value}
         onChange={onChange}
