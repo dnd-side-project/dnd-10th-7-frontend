@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import RegisterProjectTop from "./RegisterProjectTop"
 import RegisterProjectInput from "./RegisterProjectInput"
 import Button from "@component/components/common-components/button/Button";
+import RegisterProjectInputTitle from "./RegisterProjectInputTitle";
 
 
 export default function RegisterProject () {
@@ -98,6 +99,18 @@ export default function RegisterProject () {
 
             {/* 프로젝트 등록 상단 */}
             <RegisterProjectTop />
+
+            <section className="max-w-[1080px] w-full mt-[135px]">
+                {/* Title */}
+                <RegisterProjectInputTitle
+                    titleValue={titleValue}
+                    onTitleChange={onTitleChange}
+                    subTitleValue={subTitleValue}
+                    onSubTitleChange={onSubTitleChange}
+                    subTitleRef={subTitleRef}
+                    subTitleInvalid={subTitleInvalid}
+                />
+            </section>
 
             <section className="max-w-[1080px] w-full mt-[135px]">
                 <RegisterProjectInput
