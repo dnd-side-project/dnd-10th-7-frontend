@@ -208,11 +208,11 @@ export default function RegisterProject () {
 
             {/* 제출 모달 */}
             <Modal
-                open={isEssentialOpen}
-                onClose={() => setIsEssentailOpen(false)}
+                open={isSubmitOpen}
+                onClose={() => setIsSubmitOpen(false)}
                 className="w-[473px]"
                 >
-                <Modal.Close onClick={() => setIsEssentailOpen(false)} />
+                <Modal.Close onClick={() => setIsSubmitOpen(false)} />
                 <Modal.Title>
                     <div>프로젝트 등록이 완료되었습니다</div>
                 </Modal.Title>
@@ -224,7 +224,7 @@ export default function RegisterProject () {
                 <Modal.Footer>
                     <div className="flex space-x-[8px]">
                         {/* TODO: 등록된 글 확인하러 가기 router 추가 */}
-                    <Button onClick={() => setIsEssentailOpen(false)}>등록된 글 확인하기</Button>
+                    <Button>등록된 글 확인하기</Button>
                     </div>
                 </Modal.Footer>
             </Modal>
