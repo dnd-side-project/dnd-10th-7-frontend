@@ -9,7 +9,7 @@ import RegisterProjectTitle from './\bRegisterProjectTitle';
 import PurpleInput from '@component/components/common-components/input/PurPleInput';
 import Button from '@component/components/common-components/button/Button';
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
-import Calendar from './Callendar';
+import Calendar from './Calendar';
 import { InputProps } from '@component/types/Project';
 
 type TeamItem = {
