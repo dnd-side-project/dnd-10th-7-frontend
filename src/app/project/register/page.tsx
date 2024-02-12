@@ -1,7 +1,7 @@
 'use client'
 import { useState, useRef, useEffect } from "react";
 
-import RegisterProjectTop from "./RegisterProjectTop"
+// import RegisterProjectTop from "./RegisterProjectTop"
 import Button from "@component/components/common-components/button/Button";
 import RegisterProjectInputTitle from "./RegisterProjectInputTitle";
 import RegisterProjectInputCheck from "./ReigsterProjectInputCheck";
@@ -9,7 +9,7 @@ import RegisterProjectInputPeriod from "./RegisterProjectInputPeriod";
 import RegisterProjectInputContent from "./RegisterProjectInputContent";
 import PurpleInput from "@component/components/common-components/input/PurPleInput";
 import RegisterProjectInputImage from "./RegisterProjectInputImage";
-
+import Modal from "@component/components/common-components/modal/Modal";
 
 export default function RegisterProject () {
 
@@ -61,20 +61,27 @@ export default function RegisterProject () {
         setServiceLink(event.target.value);
     };
 
+    // preview Img
+    const [filePreviews, setFilePreviews] = useState<string[]>([]);
+
     // submit fail 
     const subTitleRef = useRef<HTMLTextAreaElement>(null);
     const contentRef = useRef<HTMLTextAreaElement>(null);
     const [submitClicked, setSubmitClicked] = useState<boolean>(false);
 
+    // modal
+    const [isEssentialOpen, setIsEssentailOpen] = useState<boolean>(false);
+    const [isSubmitOpen, setIsSubmitOpen] = useState<boolean>(false);
+
+
     // submit
     const onSubmit = () => {
 
         if (subTitleValue.length === 0 || content.length === 0 || selectedOption === "" || selectedProgress === "" || (frontMember === "0명" && backMember === "0명" && designMember === "0명" && pmMember === "0명")) {
-            // TODO: 모달로 변경
-            window.alert("필수 정보를 입력해주세요");
+            setIsEssentailOpen(true);
         } else {
             // TODO: api 로직 추가
-            window.alert("프로젝트 등록 완료");
+            setIsSubmitOpen(true);
         }
 
         // focus
@@ -102,7 +109,7 @@ export default function RegisterProject () {
         <div className="w-[1440px] flex flex-col items-center">
 
             {/* 프로젝트 등록 상단 */}
-            <RegisterProjectTop />
+            {/* <RegisterProjectTop /> */}
 
             <section className="max-w-[1080px] w-full mt-[135px]">
                 {/* Title */}
@@ -167,7 +174,10 @@ export default function RegisterProject () {
                 />
 
                 {/* image */}
-                <RegisterProjectInputImage />
+                <RegisterProjectInputImage
+                    filePreviews={filePreviews}
+                    setFilePreviews={setFilePreviews}
+                />
 
                 {/* submit */}
                 <div className='mt-[185px] flex justify-end mb-[154px]'>
@@ -179,6 +189,45 @@ export default function RegisterProject () {
                     </Button>
                 </div>
             </section>
+
+            {/* 필수 입력 모달 */}
+            <Modal
+                open={isEssentialOpen}
+                onClose={() => setIsEssentailOpen(false)}
+                className="w-[374px]"
+                >
+                <Modal.Title>
+                    <div>필수 정보를 입력해주세요</div>
+                </Modal.Title>
+                <Modal.Footer>
+                    <div className="flex space-x-[8px]">
+                    <Button onClick={() => setIsEssentailOpen(false)} className="min-w-[123px]">확인</Button>
+                    </div>
+                </Modal.Footer>
+            </Modal>
+
+            {/* 제출 모달 */}
+            <Modal
+                open={isEssentialOpen}
+                onClose={() => setIsEssentailOpen(false)}
+                className="w-[473px]"
+                >
+                <Modal.Close onClick={() => setIsEssentailOpen(false)} />
+                <Modal.Title>
+                    <div>프로젝트 등록이 완료되었습니다</div>
+                </Modal.Title>
+                <Modal.Description>
+                    <>
+                    {/* TODO: 캐릭터 추가 */}
+                    </>
+                </Modal.Description>
+                <Modal.Footer>
+                    <div className="flex space-x-[8px]">
+                        {/* TODO: 등록된 글 확인하러 가기 router 추가 */}
+                    <Button onClick={() => setIsEssentailOpen(false)}>등록된 글 확인하기</Button>
+                    </div>
+                </Modal.Footer>
+            </Modal>
         </div>
     )
 }

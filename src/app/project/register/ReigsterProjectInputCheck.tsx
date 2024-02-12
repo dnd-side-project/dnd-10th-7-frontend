@@ -3,7 +3,7 @@
 import RegisterProjectTitle from "./RegisterProjectTitle";
 import { InputCheckProps, TeamItem } from "@component/types/Project";
 import { useState } from "react";
-import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
+import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownRounded";
 import Dropdown from "@component/components/common-components/dropdown/Dropdown";
 
 const RegisterProjectInputCheck = ({
@@ -191,30 +191,19 @@ const RegisterProjectInputCheck = ({
           {teams.map((team, index) => (
             <div key={index} className="flex">
               <p className="me-4 text-h2">{team.title}</p>
-              <div className="me-8">
-                <div className="w-[86px] mb-[13px] h-8 border border-1 border-gray-60 rounded-[5px] text-gray-80 text-h2 flex items-center py-2 px-2 relative">
-                  <KeyboardArrowDownRoundedIcon
-                    className="text-gray-60 w-6 h-6"
-                    onClick={team.handleDropdownItemClick}
-                  />
-                  <span className="ms-1">{team.member}</span>
-                </div>
-                {team.state && (
-                  <div className="absolute">
-                    <Dropdown
-                      size="xs"
-                      items={range}
-                      selectedItem={team.member}
-                      setSelectedItem={(selectedItem) => {
-                        team.setMember(selectedItem);
-                        team.setShowDropdown(false);
-                      }}
-                      textSize="xs"
-                      place="center"
-                      padding="xs"
-                    />
-                  </div>
-                )}
+              <div className="me-8 mt-[-8px]">
+                <Dropdown
+                  size="xs"
+                  items={range}
+                  selectedItem={team.member}
+                  setSelectedItem={(selectedItem) => {
+                    team.setMember(selectedItem);
+                    team.setShowDropdown(false);
+                  }}
+                  textSize="xs"
+                  place="center"
+                  padding="xs"
+                />
               </div>
             </div>
           ))}

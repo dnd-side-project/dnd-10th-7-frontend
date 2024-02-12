@@ -51,3 +51,8 @@ export type InputContentProps = {
   contentInvalid: boolean;
   submitClicked: boolean;
 };
+
+export type InputImageProps = {
+  filePreviews: string[];
+  setFilePreviews: any;
+}
