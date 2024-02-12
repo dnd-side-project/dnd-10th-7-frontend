@@ -5,8 +5,9 @@ import PurpleTextarea from "../common-components/textarea/Textarea";
 import Button from "../common-components/button";
 import Image from "next/image";
 import Img from "../../../public/assets/profile_img.png";
+import clsx from "clsx";
 
-export const CommentInput = () => {
+export const ReplyComment = () => {
   const [comment, setComment] = useState<string>("");
 
   const handleComment = (e: any) => {
@@ -38,27 +39,23 @@ export const CommentInput = () => {
   const isInvalid = submitClicked && comment.length === 0;
 
   return (
-    <div className="w-full max-w-[800px] border border-black">
+    <div className="ml-[73px] border border-black">
       <div className="flex gap-[23px] items-center">
         <div className="h-[48px] w-[48px] rounded-full bg-gray-40" />
-        {/* <Image
-        src={Img}
-        alt="임시 프로필 이미지"
-        width={20}
-        height={20}
-        className="w-[20px] h-[20px] rounded-full me-[10px]"
-      /> */}
 
         <PurpleTextarea
           value={comment}
           onChange={handleComment}
-          placeholder="댓글을 입력하세요."
+          placeholder="답글을 입력하세요."
           size="xl"
           backgroundColors="purple5"
           borderSize="xs"
           textSize="xs"
           entire={100}
-          className={isInvalid ? "border-error-main" : "border-purple-main1"}
+          className={clsx(
+            "",
+            isInvalid ? "border-error-main" : "border-purple-main1"
+          )}
         />
       </div>
       <div className="text-right pt-2">

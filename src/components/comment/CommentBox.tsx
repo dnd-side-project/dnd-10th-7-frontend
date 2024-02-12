@@ -1,11 +1,15 @@
 import { CommentInput } from "./CommentInput";
+import { CommentItem } from "./CommentItem";
 
 export default function CommentBox() {
   return (
-    <>
-      <div>댓글 32</div>
+    <div className="w-full max-w-[800px] border border-black">
+      <div className="pb-[37px] flex items-center gap-3">
+        <p className="text-title">댓글</p>
+        <p className="text-h2 text-gray-60">32</p>
+      </div>
       <CommentInput />
-      <div>댓글 리스트</div>
-    </>
+      <CommentItem />
+    </div>
   );
 }
