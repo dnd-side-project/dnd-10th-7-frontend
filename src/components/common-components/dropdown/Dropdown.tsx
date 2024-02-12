@@ -51,7 +51,7 @@ const Dropdown = ({
   return (
     <div
       className={clsx(
-        "bg-gray-10 w-full rounded-md text-h2 caret-purple-main1"
+        "bg-gray-10 w-full rounded-md text-h2 caret-purple-main1 min-w-[87px] border border-1 border-gray-10"
       )}
       onClick={() => setIsOpenMenu(!isOpenMenu)}
     >
