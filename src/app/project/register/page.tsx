@@ -2,9 +2,13 @@
 import { useState, useRef, useEffect } from "react";
 
 import RegisterProjectTop from "./RegisterProjectTop"
-import RegisterProjectInput from "./RegisterProjectInput"
 import Button from "@component/components/common-components/button/Button";
 import RegisterProjectInputTitle from "./RegisterProjectInputTitle";
+import RegisterProjectInputCheck from "./ReigsterProjectInputCheck";
+import RegisterProjectInputPeriod from "./RegisterProjectInputPeriod";
+import RegisterProjectInputContent from "./RegisterProjectInputContent";
+import PurpleInput from "@component/components/common-components/input/PurPleInput";
+import RegisterProjectInputImage from "./RegisterProjectInputImage";
 
 
 export default function RegisterProject () {
@@ -110,15 +114,9 @@ export default function RegisterProject () {
                     subTitleRef={subTitleRef}
                     subTitleInvalid={subTitleInvalid}
                 />
-            </section>
 
-            <section className="max-w-[1080px] w-full mt-[135px]">
-                <RegisterProjectInput
-                    // for submit
-                    titleValue={titleValue}
-                    onTitleChange={onTitleChange}
-                    subTitleValue={subTitleValue}
-                    onSubTitleChange={onSubTitleChange}
+                {/* check */}
+                <RegisterProjectInputCheck
                     selectedOption={selectedOption}
                     handleCheckBoxChange={handleCheckBoxChange}
                     selectedProgress={selectedProgress}
@@ -131,10 +129,11 @@ export default function RegisterProject () {
                     setDesignMember={setDesignMember}
                     pmMember={pmMember}
                     setPMMember={setPMMember}
-                    content={content}
-                    handleContentChange={handleContentChange}
-                    serviceLink={serviceLink}
-                    handleServiceLinkChange={handleServiceLinkChange}
+                    submitClicked={submitClicked}
+                />
+
+                {/* period */}
+                <RegisterProjectInputPeriod
                     startDate={startDate}
                     setStartDate={setStartDate}
                     startIndex={startIndex}
@@ -143,16 +142,34 @@ export default function RegisterProject () {
                     setEndDate={setEndDate}
                     endIndex={endIndex}
                     setEndIndex={setEndIndex}
+                />
 
-                    // submit fail
-                    subTitleRef={subTitleRef}
-                    subTitleInvalid={subTitleInvalid}
+                {/* content */}
+                <RegisterProjectInputContent
+                    content={content}
+                    handleContentChange={handleContentChange}
                     contentRef={contentRef}
                     contentInvalid={contentInvalid}
                     submitClicked={submitClicked}
                 />
 
-                {/* 제출하기 */}
+                {/* link */}
+                <PurpleInput
+                    value={serviceLink}
+                    onChange={handleServiceLinkChange}
+                    placeholder="서비스 링크 입력하기"
+                    shape="rounded"
+                    size="md"
+                    textSize="md"
+                    borderSize="lg"
+                    backgroundColors="white"
+                    className='mt-6 mb-7'
+                />
+
+                {/* image */}
+                <RegisterProjectInputImage />
+
+                {/* submit */}
                 <div className='mt-[185px] flex justify-end mb-[154px]'>
                     <Button size='lg' color='border' className='py-[14.5px] px-[49.5px] me-5'>
                         임시저장
@@ -162,7 +179,6 @@ export default function RegisterProject () {
                     </Button>
                 </div>
             </section>
-
         </div>
     )
 }
