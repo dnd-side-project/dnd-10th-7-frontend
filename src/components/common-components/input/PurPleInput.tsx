@@ -15,8 +15,8 @@ const style: {
   base: "placeholder:text-gray-60 border border-purple-main1 focus:outline-none caret-purple-main1",
   sizes: {
     xs: "min-h-[51px] py-[11px] px-[25px] min-w-[655px] max-w-[655px]", // 답글
-    md: "min-h-[40px] py-[6px] px-[21px] min-w-[707px]", // 서비스 링크
-    lg: "min-h-[48px] py-[12px] px-[22px] min-w-[708px]", // 링크
+    md: "min-h-[40px] py-[6px] px-[21px] min-w-[707px] placeholder:-translate-y-[-1px]", // 서비스 링크
+    lg: "min-h-[48px] py-[12px] px-[22px] min-w-[708px] placeholder:-translate-y-[-1px]", // 링크
     xl: "min-h-[40px] max-h-[40px] py-[10px] ps-[45px] min-w-[1072px]", // 검색
   },
   textSizes: {
@@ -62,7 +62,7 @@ const PurpleInput = forwardRef<HTMLInputElement, PropsWithChildren<InputProps>>(
     } = props;
 
     return (
-      <div className="relative">
+      <div className="flex items-center">
         {search && (
           <SearchIcon
             className="absolute top-[7px] left-[18px] text-gray-60"
