@@ -73,7 +73,7 @@ const PurpleTextarea = forwardRef<HTMLTextAreaElement, PropsWithChildren<Textare
                 }
             />
             <div className="absolute bottom-[15px] right-[20px] text-gray-60">
-                <span className={value.length > 0 ? 'text-purple-main1' : ''}>({value.length}</span>
+                (<span className={value.length > 0 ? 'text-purple-main1' : ''}>{value.length}</span>
             /{entire})</div>
         </div>
     )
