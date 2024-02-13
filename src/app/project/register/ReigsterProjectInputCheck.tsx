@@ -121,6 +121,7 @@ const RegisterProjectInputCheck = ({
           options={options}
           selectedOption={selectedOption}
           handleCheckBoxChange={handleCheckBoxChange}
+          className="flex"
         />
       </div>
 
@@ -137,6 +138,7 @@ const RegisterProjectInputCheck = ({
         options={progress}
         selectedOption={selectedProgress}
         handleCheckBoxChange={handleProgressCheckBoxChange}
+        className="flex"
       />
 
       {/* 멤버 */}
