@@ -31,7 +31,7 @@ const MyPageLevelToolTip = () => {
       <div className="flex flex-col items-center">
         <div>
           {items.map((item, index) => (
-            <div className="mx-auto mt-[5px]">
+            <div key={index} className="mx-auto mt-[5px]">
               <div className="flex gap-[50px] text-caption1 mb-[5px]">
                 <span className="min-w-[57px] font-medium">{item.level}</span>
                 <span className="min-w-[49px] font-medium">{`끌올 ${item.pullUpCount}회`}</span>
