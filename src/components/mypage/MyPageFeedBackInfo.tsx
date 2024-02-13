@@ -1,5 +1,8 @@
+"use client";
 import { UserFeedBackInfoProps, UserFeed } from "@component/types/User";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
+import MyPageLevelToolTip from "./MyPageLevelToolTip";
+import { useState } from "react";
 
 const MyPageFeedBackInfo = ({
   level,
@@ -14,12 +17,20 @@ const MyPageFeedBackInfo = ({
     { label: "받은 좋아요 수", value: likeCount },
   ];
 
+  const [showToolTip, setShowToolTip] = useState<boolean>(false);
+
   return (
     <div className="mt-12 flex flex-col items-center">
       {/* my level */}
-      <div className="flex justify-between items-center min-w-[285px]">
+      <div className="flex justify-between items-center min-w-[285px] relative">
         <span className="text-body1">나의 레벨</span>
-        <HelpOutlineIcon fontSize="small" className="text-gray-40" />
+        <HelpOutlineIcon
+          fontSize="small"
+          className="text-gray-40"
+          onMouseEnter={() => setShowToolTip(true)}
+          onMouseLeave={() => setShowToolTip(false)}
+        />
+        {showToolTip && <MyPageLevelToolTip />}
       </div>
 
       {/* level info */}

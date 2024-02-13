@@ -38,3 +38,9 @@ export type UserFeedBackInfoProps = {
   projectCount: number
   likeCount: number
 }
+
+export type Item = {
+  level: string;
+  pullUpCount: number;
+  type: string;
+}
