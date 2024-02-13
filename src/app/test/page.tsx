@@ -9,6 +9,7 @@ import TabComponent from "@component/components/common-components/tab/TabCompone
 import LandingTop from "@component/components/landing/carousel/LandingMid";
 import Button from "@component/components/common-components/button/Button";
 import Dropdown from "@component/components/common-components/dropdown";
+import Footer from "@component/components/footer/Footer";
 
 const Test = () => {
   // input
@@ -68,7 +69,7 @@ const Test = () => {
   const [interestedList, setInterestedList] = useState<string[]>([]);
 
   return (
-    <div className="p-4 mb-[300px]">
+    <div className="mb-[300px]">
       {/* 탭 컴포넌트 입니다 */}
       <div className="text-head text-purple-main1">TAB</div>
       <TabComponent
@@ -282,6 +283,8 @@ const Test = () => {
         className={isInvalid ? "border-error-main" : "border-purple-main1"}
       />
       <Button onClick={focus}>제출하기</Button>
+
+      <Footer />
     </div>
   );
 };
