@@ -3,8 +3,8 @@
 import RegisterProjectTitle from "./RegisterProjectTitle";
 import { InputCheckProps, TeamItem } from "@component/types/Project";
 import { useState } from "react";
-import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownRounded";
 import Dropdown from "@component/components/common-components/dropdown/Dropdown";
+import { CheckBox } from "@component/components/common-components/checkbox";
 
 const RegisterProjectInputCheck = ({
   selectedOption,
@@ -117,28 +117,11 @@ const RegisterProjectInputCheck = ({
         <div className="text-body2 text-gray-60 mb-[18.5px]">
           1개 이하의 분야를 선택해주세요.
         </div>
-        <div className="flex">
-          {options.map((option) => (
-            <div key={option} className="flex items-center me-7">
-              <input
-                type="checkbox"
-                id={option}
-                className="hidden"
-                checked={selectedOption === option}
-                onChange={() => handleCheckBoxChange(option)}
-              />
-              <label
-                htmlFor={option}
-                className={`w-5 h-5 border border-1 rounded-[3px] ${
-                  selectedOption === option
-                    ? "bg-purple-main1"
-                    : "border-gray-40"
-                } me-2 cursor-pointer`}
-              ></label>
-              <div className="text-h2">{option}</div>
-            </div>
-          ))}
-        </div>
+        <CheckBox
+          options={options}
+          selectedOption={selectedOption}
+          handleCheckBoxChange={handleCheckBoxChange}
+        />
       </div>
 
       {/* 진행도 */}
@@ -150,28 +133,11 @@ const RegisterProjectInputCheck = ({
           </div>
         )}
       </div>
-      <div className="flex">
-        {progress.map((option) => (
-          <div key={option} className="flex items-center me-8">
-            <input
-              type="checkbox"
-              id={option}
-              className="hidden"
-              checked={selectedProgress === option}
-              onChange={() => handleProgressCheckBoxChange(option)}
-            />
-            <label
-              htmlFor={option}
-              className={`w-5 h-5 border border-1 rounded-[3px] ${
-                selectedProgress === option
-                  ? "bg-purple-main1"
-                  : "border-gray-40"
-              } me-2 cursor-pointer`}
-            ></label>
-            <div className="text-h2">{option}</div>
-          </div>
-        ))}
-      </div>
+      <CheckBox
+        options={progress}
+        selectedOption={selectedProgress}
+        handleCheckBoxChange={handleProgressCheckBoxChange}
+      />
 
       {/* 멤버 */}
       <div className="mt-[74px]">

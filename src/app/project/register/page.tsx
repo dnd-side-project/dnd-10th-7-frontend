@@ -104,7 +104,6 @@ export default function RegisterProject () {
         }
     }, [submitClicked]);
 
-
     return (
         <div className="w-[1440px] flex flex-col items-center">
 
