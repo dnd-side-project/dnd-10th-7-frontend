@@ -39,7 +39,7 @@ const MyPageFeedBackInfo = ({
         <div className="mt-[26px] flex flex-col items-center">
           {/* TODO: level 정보 반영! */}
           <div className="text-h2">Lv.{level} 이 구역 피드백왕</div>
-          <div className="text-caption1 text-gray-60 mt-[6px]">
+          <div className="text-caption1 text-gray-60 mt-[6px] font-medium">
             다음레벨까지 {restFeedbackCount}번의 피드백이 남았어요
           </div>
         </div>
@@ -56,7 +56,7 @@ const MyPageFeedBackInfo = ({
                 className={index === userFeedBackList.length - 1 ? "" : "me-8"}
               >
                 <div>{value}</div>
-                <div className="text-caption1 text-gray-60 mt-[7px]">
+                <div className="text-caption1 text-gray-60 mt-[7px] font-medium">
                   {label}
                 </div>
               </div>

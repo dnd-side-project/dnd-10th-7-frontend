@@ -35,7 +35,7 @@ const MyPageUserInfo = ({
       <div>
         {userInfoList.map(({ label, value }) => (
           <span key={label} className="flex min-w-[285px] text-body3 mb-[18px]">
-            <p className="min-w-[92px] text-80">{label}</p>
+            <p className="min-w-[92px] text-80 font-medium">{label}</p>
             <p className="text-60">{value}</p>
           </span>
         ))}
