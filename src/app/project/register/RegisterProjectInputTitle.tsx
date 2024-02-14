@@ -24,7 +24,7 @@ const RegisterProjectInputTitle = ({
         />
         <div className="w-[306px] h-[74px] bg-purple-main4 rounded-[5px] text-body3 relative ms-[67px]">
           <CheckCircleOutlineRoundedIcon className="text-purple-main1 w-[14px] h-[14px] absolute left-[18px] top-4" />
-          <div className="py-4 ps-[42px] pe-[38px]">
+          <div className="py-4 ps-[42px] pe-6">
             제목은 프로젝트를 직관적으로 알 수 있게 작성해주세요. (30자 이내)
           </div>
         </div>
