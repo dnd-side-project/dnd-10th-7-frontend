@@ -62,7 +62,7 @@ const PurpleInput = forwardRef<HTMLInputElement, PropsWithChildren<InputProps>>(
     } = props;
 
     return (
-      <div className="flex items-center">
+      <div className="relative">
         {search && (
           <SearchIcon
             className="absolute top-[7px] left-[18px] text-gray-60"
