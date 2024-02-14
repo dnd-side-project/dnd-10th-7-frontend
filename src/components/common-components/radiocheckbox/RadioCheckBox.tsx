@@ -1,18 +1,19 @@
-import { CheckBoxProps } from ".";
+import React from "react";
+import { RadioCheckBoxProps } from ".";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
 
-export const CheckBox = ({
+export const RadioCheckBox = ({
   options,
   selectedOption,
   handleCheckBoxChange,
   className,
-}: CheckBoxProps) => {
+}: RadioCheckBoxProps) => {
   return (
     <div className={className}>
       {options.map((option) => (
         <div key={option} className="flex items-center me-7">
           <input
-            type="checkbox"
+            type="radio"
             id={option}
             className="hidden"
             checked={selectedOption === option}
@@ -26,7 +27,7 @@ export const CheckBox = ({
           >
             {selectedOption === option && (
               <CheckBoxIcon
-                style={{ fontSize: "1.5rem" }} 
+                style={{ fontSize: "1.5rem" }}
                 className="text-purple-main1 ms-[-3px] mt-[-6.5px]"
               />
             )}
