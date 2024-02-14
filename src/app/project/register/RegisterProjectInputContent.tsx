@@ -1,6 +1,6 @@
 import RegisterProjectTitle from "./RegisterProjectTitle";
 import PurpleTextarea from "@component/components/common-components/textarea/Textarea";
-import CheckCircleOutlineRoundedIcon from '@mui/icons-material/CheckCircleOutlineRounded';
+import CheckCircleOutlineRoundedIcon from "@mui/icons-material/CheckCircleOutlineRounded";
 import { InputContentProps } from "@component/types/Project";
 
 const RegisterProjectInputContent = ({
@@ -8,7 +8,7 @@ const RegisterProjectInputContent = ({
   handleContentChange,
   contentRef,
   contentInvalid,
-  submitClicked
+  submitClicked,
 }: InputContentProps) => {
   return (
     <>
@@ -41,8 +41,8 @@ const RegisterProjectInputContent = ({
             }
           />
 
-          <div className="w-[306px] h-[320px] bg-purple-main4 rounded-[5px] text-body3 relative ms-[67px]">
-            <CheckCircleOutlineRoundedIcon className="text-purple-main1 w-[16.8px] h-[16.8px] absolute left-[18px] top-[18.5px]" />
+          <div className="w-[306px] h-[285px] bg-purple-main4 rounded-[5px] text-body3 relative ms-[67px]">
+            <CheckCircleOutlineRoundedIcon className="text-purple-main1 w-[14px] h-[14px] absolute left-[18px] top-[18.5px]" />
             <div className="py-4 ps-[42px] pe-4">
               어떤 프로젝트인지 이해하기 쉽도록 명확하고 간결하게 요약해주세요.
               <br />

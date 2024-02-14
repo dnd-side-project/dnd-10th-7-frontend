@@ -22,9 +22,9 @@ const RegisterProjectInputTitle = ({
           placeholder="제목을 입력하세요"
           className="text-head w-[707px] focus:outline-none caret-purple-main1"
         />
-        <div className="w-[306px] h-[80px] bg-purple-main4 rounded-[5px] text-body3 relative ms-[67px]">
-          <CheckCircleOutlineRoundedIcon className="text-purple-main1 w-[16.8px] h-[16.8px] absolute left-[18px] top-[18.5px]" />
-          <div className="py-4 px-[42px]">
+        <div className="w-[306px] h-[74px] bg-purple-main4 rounded-[5px] text-body3 relative ms-[67px]">
+          <CheckCircleOutlineRoundedIcon className="text-purple-main1 w-[14px] h-[14px] absolute left-[18px] top-[18.5px]" />
+          <div className="py-4 ps-[42px] pe-[38px]">
             제목은 프로젝트를 직관적으로 알 수 있게 작성해주세요. (30자 이내)
           </div>
         </div>
