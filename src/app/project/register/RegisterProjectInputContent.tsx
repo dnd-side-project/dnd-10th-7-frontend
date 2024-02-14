@@ -42,7 +42,7 @@ const RegisterProjectInputContent = ({
           />
 
           <div className="w-[306px] h-[285px] bg-purple-main4 rounded-[5px] text-body3 relative ms-[67px]">
-            <CheckCircleOutlineRoundedIcon className="text-purple-main1 w-[14px] h-[14px] absolute left-[18px] top-[18.5px]" />
+            <CheckCircleOutlineRoundedIcon className="text-purple-main1 w-[14px] h-[14px] absolute left-[18px] top-4" />
             <div className="py-4 ps-[42px] pe-4">
               어떤 프로젝트인지 이해하기 쉽도록 명확하고 간결하게 요약해주세요.
               <br />
