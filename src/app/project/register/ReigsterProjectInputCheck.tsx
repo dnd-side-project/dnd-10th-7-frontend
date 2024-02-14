@@ -4,7 +4,7 @@ import RegisterProjectTitle from "./RegisterProjectTitle";
 import { InputCheckProps, TeamItem } from "@component/types/Project";
 import { useState } from "react";
 import Dropdown from "@component/components/common-components/dropdown/Dropdown";
-import { RadioCheckBox } from "@component/components/common-components/radiocheckbox/RadioCheckBox";
+import RadioCheckBox from "@component/components/common-components/radiocheckbox/RadioCheckBox";
 
 const RegisterProjectInputCheck = ({
   selectedOption,

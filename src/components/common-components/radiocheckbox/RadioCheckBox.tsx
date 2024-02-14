@@ -38,3 +38,5 @@ export const RadioCheckBox = ({
     </div>
   );
 };
+
+export default RadioCheckBox;
