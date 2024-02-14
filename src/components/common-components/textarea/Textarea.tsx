@@ -57,33 +57,31 @@ const PurpleTextarea = forwardRef<
     className,
   } = props;
 
-  return (
-    <div className={`relative ${size === "xl" ? "max-w-[728px]" : ""}`}>
-      <textarea
-        name={value}
-        onChange={onChange}
-        placeholder={placeholder}
-        id=""
-        className={clsx(
-          style.base,
-          style.sizes[size],
-          style.backgroundColors[backgroundColors],
-          style.borderSizes[borderSize],
-          style.textSizes[textSize],
-          className
-        )}
-      />
-
-      <div className="absolute bottom-[15px] right-[20px] text-gray-60">
-        (
-        <span className={value.length > 0 ? "text-purple-main1" : ""}>
-          {value.length}
-        </span>
-        /{entire})
-      </div>
-    </div>
-  );
-});
+    return (
+        <div className={`relative ${size === 'xl' ? 'max-w-[728px]' : 'max-w-[707px]'}`} >
+            <textarea 
+                name={value} 
+                onChange={onChange}
+                placeholder={placeholder}
+                id="" 
+                className={
+                    clsx(
+                        style.base,
+                        style.sizes[size],
+                        style.backgroundColors[backgroundColors],
+                        style.borderSizes[borderSize],
+                        style.textSizes[textSize],
+                        className
+                    )
+                }
+            />
+            <div className="absolute bottom-[15px] right-[20px] text-gray-60">
+                (<span className={value.length > 0 ? 'text-purple-main1' : ''}>{value.length}</span>
+            /{entire})</div>
+        </div>
+    )
+}
+)
 
 PurpleTextarea.displayName = "PurpleTextarea";
 

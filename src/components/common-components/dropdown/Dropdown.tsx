@@ -51,7 +51,8 @@ const Dropdown = ({
   return (
     <div
       className={clsx(
-        "bg-gray-10 w-full rounded-md text-h2 caret-purple-main1"
+        "bg-gray-10 w-full rounded-md text-h2 caret-purple-main1 min-w-[87px] border border-1 border-gray-10",
+        size === "xs" && "relative"
       )}
       onClick={() => setIsOpenMenu(!isOpenMenu)}
     >
@@ -69,7 +70,13 @@ const Dropdown = ({
 
       <div>
         {isOpenMenu && (
-          <div className={clsx(style.base, style.sizes[size])}>
+          <div
+            className={clsx(
+              style.base,
+              style.sizes[size],
+              size === "xs" && "absolute top-[55px]"
+            )}
+          >
             {items.map((item, index) => (
               <div
                 key={index}
