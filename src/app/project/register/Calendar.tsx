@@ -55,28 +55,19 @@ const Calendar = ({
     }, [startDate, endDate]);
 
     return (
-        <section className="p-5 flex flex-col items-center max-w-[200px]">
+        <section className="pt-6 flex flex-col items-center max-w-[264px]">
 
             {/* 달력 상단 */}
-            <div className="flex items-center gap-8 mb-1">
+            <div className="flex items-center gap-8 mb-8">
                 <ArrowBackIosNewRoundedIcon className="text-gray-60 w-4 hover:text-gray-100" onClick={prevMonthHandler} />
-                <div className="text-caption1">
+                <div className="text-body1 font-medium">
                     {format(currentDate, "yyyy.MM")}
                 </div>
                 <ArrowForwardIosRoundedIcon className="text-gray-60 w-4 hover:text-gray-100" onClick={nextMonthHandler} />
             </div>
-
-            {/* 요일 */}
-            <div className="flex justify-between w-full max-w-[150px] p-2 text-caption3">
-                {weekMock.map((v, i) => (
-                    <div key={`day${i}`} className={`text-center ${i === 0 ? 'text-error-main' : (i === 6 ? 'text-blue-main' : '')}`}>
-                        {v}
-                    </div>
-                ))}
-            </div>
             
             {/* 날짜 */}
-            <div className="flex flex-wrap justify-between w-full  text-caption3">
+            <div className="flex flex-wrap w-full text-body1 w-[253px]">
                 {createMonth.map((v, i) => {
                     const validation = getMonth(currentDate) === getMonth(v);
 
@@ -95,14 +86,14 @@ const Calendar = ({
                                 ? "text-blue-main1" 
                                 : "")) 
                             : "text-gray-60"
-                        } w-[14.2857143%]`}
+                        } w-[14.2857143%] mb-2`}
                         onClick={() => {
                             setClickedDate(format(v, 'yyyy-MM-dd'))
                             setClickedIndex(i)
                         }
                         }
                     >
-                        <div className={`h-[22px] w-[22px] flex items-center justify-center ${
+                        <div className={`h-[30px] w-[30px] flex items-center justify-center font-medium ${
                             clickedIndex === i ? "text-white bg-purple-main1 rounded-full" : ""
                         }`}>{format(v, "d")}</div>
                     </div>
