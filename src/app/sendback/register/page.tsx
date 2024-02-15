@@ -9,6 +9,8 @@ import PurpleInput from "@component/components/common-components/input/PurPleInp
 import PurpleTextarea from "@component/components/common-components/textarea/Textarea";
 import Button from "@component/components/common-components/button/Button";
 import Modal from "@component/components/common-components/modal/Modal";
+import RegisterProjectInputPeriod from "@component/app/project/register/RegisterProjectInputPeriod";
+
 
 export default function RegisterSendback() {
   const projectData: ProjectData = {
@@ -43,6 +45,12 @@ export default function RegisterSendback() {
   const handleContentChange = (event: any) => {
     setContentValue(event.target.value);
   };
+
+  // date
+  const [startDate, setStartDate] = useState<string>("");
+  const [startIndex, setStartIndex] = useState<number>();
+  const [endDate, setEndDate] = useState<string>("");
+  const [endIndex, setEndIndex] = useState<number>();
 
   // submit fail
   const linkRef = useRef<HTMLInputElement>(null);
@@ -142,8 +150,16 @@ export default function RegisterSendback() {
         </div>
 
         {/* period */}
-        <RegisterSendbackTitle title="기간" />
-        {/* TODO: merge 후 달력 추가 */}
+        <RegisterProjectInputPeriod
+          startDate={startDate}
+          setStartDate={setStartDate}
+          startIndex={startIndex}
+          setStartIndex={setStartIndex}
+          endDate={endDate}
+          setEndDate={setEndDate}
+          endIndex={endIndex}
+          setEndIndex={setEndIndex}
+        />
 
         {/* reward */}
         <RegisterSendbackTitle title="추가 리워드" />
