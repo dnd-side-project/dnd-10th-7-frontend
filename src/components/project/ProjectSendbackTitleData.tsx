@@ -1,7 +1,7 @@
 import { TitleData } from "@component/types/Sendback";
 import Tag from "@component/components/common-components/tag/Tag";
 
-const RegisterSendbackTitleData = ({ title, field, process }: TitleData) => {
+const ProjectSendbackTitleData = ({ title, field, process }: TitleData) => {
   return (
     <div className="mt-16">
       <Tag type={field} status={process} />
@@ -10,4 +10,4 @@ const RegisterSendbackTitleData = ({ title, field, process }: TitleData) => {
   );
 };
 
-export default RegisterSendbackTitleData;
+export default ProjectSendbackTitleData;

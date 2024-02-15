@@ -1,9 +1,9 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
-import RegisterSendbackTitleData from "./RegisterSendbackTitleData";
+import ProjectSendbackTitleData from "../../../components/project/ProjectSendbackTitleData";
 import { ProjectData } from "@component/types/Sendback";
 import RegisterSendbackInputTitle from "./RegisterSendbackInputTitle";
-import RegisterSendbackUserInfo from "./RegisterSendbackUserInfo";
+import ProjectSendbackUserInfo from "../../../components/project/ProjectSendbackUserInfo";
 import RegisterSendbackTitle from "./RegisterSendbackTitle";
 import PurpleInput from "@component/components/common-components/input/PurPleInput";
 import PurpleTextarea from "@component/components/common-components/textarea/Textarea";
@@ -99,7 +99,7 @@ export default function RegisterSendback() {
     <div className="w-[1440px] flex flex-col items-center">
       <section className="max-w-[1080px] w-full mt-[135px]">
         {/* 프로젝트 이름 */}
-        <RegisterSendbackTitleData
+        <ProjectSendbackTitleData
           title={projectData.title}
           field={projectData.fields}
           process={projectData.process}
@@ -110,7 +110,7 @@ export default function RegisterSendback() {
           onTitleChange={onTitleChange}
         />
         {/* user info */}
-        <RegisterSendbackUserInfo
+        <ProjectSendbackUserInfo
           username={projectData.username}
           userlevel={projectData.userlevel}
           profileImg={projectData.profileImageUrl}
@@ -174,7 +174,6 @@ export default function RegisterSendback() {
             textSize="md"
             entire={100}
             className="border-purple-main1"
-            // className={isInvalid ? "border-error-main" : "border-purple-main1"}
           />
         </div>
 

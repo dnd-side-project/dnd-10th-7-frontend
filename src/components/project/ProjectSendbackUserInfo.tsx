@@ -1,7 +1,7 @@
 import { UserInfoProps } from "@component/types/Sendback";
 import Image from "next/image";
 
-const RegisterSendbackUserInfo = ({
+const ProjectSendbackUserInfo = ({
   username,
   userlevel,
   profileImg,
@@ -27,4 +27,4 @@ const RegisterSendbackUserInfo = ({
     </div>
   );
 };
-export default RegisterSendbackUserInfo;
+export default ProjectSendbackUserInfo;
