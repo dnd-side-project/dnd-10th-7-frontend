@@ -12,12 +12,12 @@ const style: {
   backgroundColors: Record<InputColor, string>;
 } = {
   // TODO: 디자인 시스템이 확정되면 변경될 CSS 값들
-  base: "placeholder:text-gray-60 border border-purple-main1 focus:outline-none caret-purple-main1",
+  base: "placeholder:text-gray-60 border focus:outline-none caret-purple-main1",
   sizes: {
-    xs: "min-h-[51px] py-[11px] px-[25px] min-w-[655px] max-w-[655px]", // 답글
-    md: "min-h-[40px] py-[6px] px-[21px] min-w-[707px] placeholder:-translate-y-[-1px]", // 서비스 링크
+    xs: "min-h-[51px] py-[11px] px-[25px] min-w-[655px] max-w-[655px] border-purple-main1", // 답글
+    md: "min-h-[40px] py-[6px] px-[21px] min-w-[707px] border-purple-main1 placeholder:-translate-y-[-1px]", // 서비스 링크
     lg: "min-h-[48px] py-[12px] px-[22px] min-w-[708px] placeholder:-translate-y-[-1px]", // 링크
-    xl: "min-h-[40px] max-h-[40px] py-[10px] ps-[45px] min-w-[1072px]", // 검색
+    xl: "min-h-[40px] max-h-[40px] py-[10px] ps-[45px] min-w-[1072px] border-purple-main1", // 검색
   },
   textSizes: {
     xs: "text-body2",
@@ -62,7 +62,7 @@ const PurpleInput = forwardRef<HTMLInputElement, PropsWithChildren<InputProps>>(
     } = props;
 
     return (
-      <div className="flex items-center">
+      <div className="relative">
         {search && (
           <SearchIcon
             className="absolute top-[7px] left-[18px] text-gray-60"
