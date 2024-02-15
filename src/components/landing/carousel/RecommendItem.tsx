@@ -19,7 +19,7 @@ const RecommendItem = ({
         <div 
             className="w-[344px] h-[340px] rounded-[10px] border border-[1.5px] border-purple-main1 bg-purple-main5 flex justify-center items-center cursor-pointer"
             onClick={() => {
-                router.push(`project/:${projectId}`)
+                router.push(`/project/${projectId}`)
             }}
         >
             <div className="w-[261px] h-[296.93px] relative">
