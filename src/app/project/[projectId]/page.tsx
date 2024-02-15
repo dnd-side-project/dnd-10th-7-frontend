@@ -8,6 +8,7 @@ import ProjectDetailImage from "./ProjectDetailImage";
 import { useState } from "react";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
+import ProjectDetailFeedBackRequest from "./ProjectDetailFeedBackRequest";
 
 type PageParams = {
   projectId: number;
@@ -56,11 +57,11 @@ export default function ProjectDetailPage({ params }: { params: PageParams }) {
     // 좋아요 버튼 클릭 시
     if (likeCount === projectData.likeCount) {
       setLikeCount(likeCount + 1);
-      setLikeState(true)
+      setLikeState(true);
       // 해제 시
     } else {
       setLikeCount(projectData.likeCount);
-      setLikeState(false)
+      setLikeState(false);
     }
   };
 
@@ -68,58 +69,74 @@ export default function ProjectDetailPage({ params }: { params: PageParams }) {
     // 스크랩 버튼 클릭 시
     if (scrappedCount === projectData.scrappedCount) {
       setScrappedCount(scrappedCount + 1);
-      setScrapState(true)
+      setScrapState(true);
     } else {
       setScrappedCount(projectData.scrappedCount);
-      setScrapState(false)
+      setScrapState(false);
     }
   };
 
   return (
     <div className="w-[1440px] flex flex-col items-center">
-      <section className="max-w-[1080px] w-full mt-[56.5px]">
-        <ProjectSendbackTitleData
-          title={projectData.title}
-          field={projectData.fields}
-          process={projectData.process}
-        />
-        <ProjectSendbackUserInfo
-          username={projectData.username}
-          userlevel={projectData.userlevel}
-          profileImg={projectData.profileImageUrl}
-          createdAt={projectData.createdAt}
-        />
+      <section className="max-w-[1080px] w-full mt-[56.5px] flex">
+        {/* project detail */}
+        <div className="min-w-[787px]">
+          <ProjectSendbackTitleData
+            title={projectData.title}
+            field={projectData.fields}
+            process={projectData.process}
+          />
+          <ProjectSendbackUserInfo
+            username={projectData.username}
+            userlevel={projectData.userlevel}
+            profileImg={projectData.profileImageUrl}
+            createdAt={projectData.createdAt}
+          />
 
-        {/* 소개 */}
-        <div className="min-w-[787px] mt-[72px]">소개</div>
+          {/* 소개 */}
+          <div className="min-w-[787px] mt-[72px]">소개</div>
 
-        {/* 서비스 링크 이동 */}
-        <Link href={projectData.demoSiteUrl}>
-          <Button size="xs" className="min-w-[144px] mt-[88px] mb-[72px]">
-            <ExitToAppIcon className="w-[22px] h-[22px] text-white me-2" />
-            서비스 링크
-          </Button>
-        </Link>
+          {/* 서비스 링크 이동 */}
+          <Link href={projectData.demoSiteUrl}>
+            <Button size="xs" className="min-w-[144px] mt-[88px] mb-[72px]">
+              <ExitToAppIcon className="w-[22px] h-[22px] text-white me-2" />
+              서비스 링크
+            </Button>
+          </Link>
 
-        {/* 이미지 */}
-        <ProjectDetailImage projectImgUrl={projectData.projectImgUrl} />
+          {/* 이미지 */}
+          <ProjectDetailImage projectImgUrl={projectData.projectImgUrl} />
 
-        {/* 기간 */}
-        <div className="min-w-[787px] mt-[72px]">기간</div>
+          {/* 기간 */}
+          <div className="min-w-[787px] mt-[72px]">기간</div>
 
-        {/* 멤버 */}
-        <div className="min-w-[787px] mt-[72px]">멤버</div>
+          {/* 멤버 */}
+          <div className="min-w-[787px] mt-[72px]">멤버</div>
 
-        {/* 좋아요, 스크랩 */}
-        <div className="mt-[72px]">
-          <Button color={likeState ? "border" : "grayBorder"} className="me-5" onClick={handleLikeClick}>
-            <ThumbUpIcon className="me-2" />
-            <span className="text-body1 font-medium">{likeCount}</span>
-          </Button>
-          <Button color={scrapState ? "border" : "grayBorder"} onClick={handleScrappedClick}>
-            <BookmarkIcon className="me-2" />
-            <span className="text-body1 font-medium">{scrappedCount}</span>
-          </Button>
+          {/* 좋아요, 스크랩 */}
+          <div className="mt-[72px]">
+            <Button
+              color={likeState ? "border" : "grayBorder"}
+              className="me-5"
+              onClick={handleLikeClick}
+            >
+              <ThumbUpIcon className="me-2" />
+              <span className="text-body1 font-medium">{likeCount}</span>
+            </Button>
+            <Button
+              color={scrapState ? "border" : "grayBorder"}
+              onClick={handleScrappedClick}
+            >
+              <BookmarkIcon className="me-2" />
+              <span className="text-body1 font-medium">{scrappedCount}</span>
+            </Button>
+          </div>
+        </div>
+
+        {/* project feedback */}
+        <div className="ms-8 mt-[173px]">
+          <div className="text-head mb-4">피드백 요청중</div>
+          <ProjectDetailFeedBackRequest/>
         </div>
       </section>
     </div>
