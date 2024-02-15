@@ -4,7 +4,7 @@ import RegisterProjectTitle from "./RegisterProjectTitle";
 import { InputCheckProps, TeamItem } from "@component/types/Project";
 import { useState } from "react";
 import Dropdown from "@component/components/common-components/dropdown/Dropdown";
-import { CheckBox } from "@component/components/common-components/checkbox";
+import RadioCheckBox from "@component/components/common-components/radiocheckbox/RadioCheckBox";
 
 const RegisterProjectInputCheck = ({
   selectedOption,
@@ -117,7 +117,7 @@ const RegisterProjectInputCheck = ({
         <div className="text-body2 text-gray-60 mb-[18.5px]">
           1개 이하의 분야를 선택해주세요.
         </div>
-        <CheckBox
+        <RadioCheckBox
           options={options}
           selectedOption={selectedOption}
           handleCheckBoxChange={handleCheckBoxChange}
@@ -134,7 +134,7 @@ const RegisterProjectInputCheck = ({
           </div>
         )}
       </div>
-      <CheckBox
+      <RadioCheckBox
         options={progress}
         selectedOption={selectedProgress}
         handleCheckBoxChange={handleProgressCheckBoxChange}
