@@ -1,9 +1,9 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
-import ProjectSendbackTitleData from "../../../components/project/ProjectSendbackTitleData";
+import ProjectSendbackTitleData from "../../../../components/project/ProjectSendbackTitleData";
 import { ProjectData } from "@component/types/Sendback";
 import RegisterSendbackInputTitle from "./RegisterSendbackInputTitle";
-import ProjectSendbackUserInfo from "../../../components/project/ProjectSendbackUserInfo";
+import ProjectSendbackUserInfo from "../../../../components/project/ProjectSendbackUserInfo";
 import RegisterSendbackTitle from "./RegisterSendbackTitle";
 import PurpleInput from "@component/components/common-components/input/PurPleInput";
 import PurpleTextarea from "@component/components/common-components/textarea/Textarea";
@@ -11,7 +11,12 @@ import Button from "@component/components/common-components/button/Button";
 import Modal from "@component/components/common-components/modal/Modal";
 import RegisterProjectInputPeriod from "@component/app/project/register/RegisterProjectInputPeriod";
 
-export default function RegisterSendback() {
+type PageParams = {
+  projectId: number;
+};
+
+export default function RegisterSendback({ params }: { params: PageParams }) {
+  console.log(params.projectId);
   const projectData: ProjectData = {
     projectId: 1,
     title: "팅클(Tincle) - 우리들만의 피드 폐쇄형 SNS 서비스",
