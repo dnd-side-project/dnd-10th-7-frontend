@@ -11,7 +11,6 @@ import Button from "@component/components/common-components/button/Button";
 import Modal from "@component/components/common-components/modal/Modal";
 import RegisterProjectInputPeriod from "@component/app/project/register/RegisterProjectInputPeriod";
 
-
 export default function RegisterSendback() {
   const projectData: ProjectData = {
     projectId: 1,
@@ -99,6 +98,7 @@ export default function RegisterSendback() {
     <div className="w-[1440px] flex flex-col items-center">
       <section className="max-w-[1080px] w-full mt-[135px]">
         {/* 프로젝트 이름 */}
+
         <ProjectSendbackTitleData
           title={projectData.title}
           field={projectData.fields}
