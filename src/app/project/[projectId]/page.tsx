@@ -9,6 +9,8 @@ import { useState } from "react";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import ProjectDetailFeedBackRequest from "./ProjectDetailFeedBackRequest";
+import SubTitle from "@component/components/common-components/sub-title/SubTitle";
+import TeamMemberInfo from "./ProjectDetailTeamMemberInfo";
 
 type PageParams = {
   projectId: number;
@@ -20,12 +22,12 @@ export default function ProjectDetailPage({ params }: { params: PageParams }) {
   const projectData: any = {
     projectId: 1,
     title: "팅클(Tincle) - 우리들만의 피드 폐쇄형 SNS 서비스",
+    content: "우리 프로젝트는 이런 프로젝트에요 피드백에 한 번 참여해주세요~!",
     fields: "예술/대중문화",
     process: "기획중",
     username: "철수",
     profileImageUrl: "/assets/profile_img.png",
     userlevel: "1",
-    content: "",
     demoSiteUrl: "",
     frontedCount: 2,
     backendCount: 2,
@@ -94,7 +96,9 @@ export default function ProjectDetailPage({ params }: { params: PageParams }) {
           />
 
           {/* 소개 */}
-          <div className="min-w-[787px] mt-[72px]">소개</div>
+          <div className="mt-[72px]">
+            <SubTitle title="소개">{projectData.content}</SubTitle>
+          </div>
 
           {/* 서비스 링크 이동 */}
           <Link href={projectData.demoSiteUrl}>
@@ -108,10 +112,29 @@ export default function ProjectDetailPage({ params }: { params: PageParams }) {
           <ProjectDetailImage projectImgUrl={projectData.projectImgUrl} />
 
           {/* 기간 */}
-          <div className="min-w-[787px] mt-[72px]">기간</div>
+          <div className="mt-[72px]">
+            <SubTitle title="소개">2024.01.21 ~ 2024.02.07</SubTitle>
+          </div>
 
           {/* 멤버 */}
-          <div className="min-w-[787px] mt-[72px]">멤버</div>
+          <div className="mt-[72px]">
+            <SubTitle title="멤버">
+              <div className="flex min-w-[700px]">
+                {projectData.frontedCount > 0 && (
+                  <TeamMemberInfo count={projectData.frontedCount} label="프론트엔드" />
+                )}
+                {projectData.backendCount > 0 && (
+                  <TeamMemberInfo count={projectData.backendCount} label="백엔드" />
+                )}
+                {projectData.designerCount > 0 && (
+                  <TeamMemberInfo count={projectData.designerCount} label="디자인" />
+                )}
+                {projectData.plannerCount > 0 && (
+                  <TeamMemberInfo count={projectData.plannerCount} label="기획자" />
+                )}
+              </div>
+            </SubTitle>
+          </div>
 
           {/* 좋아요, 스크랩 */}
           <div className="mt-[72px]">
@@ -136,8 +159,9 @@ export default function ProjectDetailPage({ params }: { params: PageParams }) {
         {/* project feedback */}
         <div className="ms-8 mt-[173px]">
           <div className="text-head mb-4">피드백 요청중</div>
-          <ProjectDetailFeedBackRequest/>
+          <ProjectDetailFeedBackRequest />
         </div>
+
       </section>
     </div>
   );

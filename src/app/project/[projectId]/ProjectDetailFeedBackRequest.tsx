@@ -41,6 +41,12 @@ const ProjectDetailFeedBackRequest = () => {
           <Button color="disabled">참여완료</Button>
         </div>
       </div>
+
+      {/* if my project */}
+      {/* TODO: router 연결 */}
+      <div className="flex justify-end">
+        <Button>피드백 요청 글 작성하기</Button>
+      </div>
     </>
   );
 };
