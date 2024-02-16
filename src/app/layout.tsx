@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import RecoilRootWrapper from "./RecoilRootWrapper";
+import { ThemeProvider } from "@mui/material";
+import { theme } from "@component/components/common-components/mui/theme";
 
 export const metadata: Metadata = {
   title: "sendback",
@@ -13,7 +16,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <RecoilRootWrapper>
+        <ThemeProvider theme={theme}>
+          <body>{children}</body>
+        </ThemeProvider>
+      </RecoilRootWrapper>
     </html>
   );
 }
