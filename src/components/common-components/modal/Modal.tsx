@@ -3,10 +3,8 @@ import { ModalProps } from "./Modal.types";
 import { ModalProvider } from "./ModalContext";
 import { Fragment } from "react";
 import clsx from "clsx";
-import { twMerge } from "tailwind-merge";
-import CloseIcon from "@mui/icons-material/Close";
 
-const variants = {
+export const variants = {
   container:
     "p-[30px] rounded-[20px] overflow-hidden flex flex-col ml-auto mr-auto bg-white border border-gray-40",
   title: "p-[20px] text-title font-bold flex items-center justify-center ",
@@ -48,7 +46,7 @@ function BackDrop() {
   );
 }
 
-function Modal({
+function ModalMain({
   open,
   onClose,
   ariaLabel,
@@ -88,74 +86,4 @@ function Modal({
   );
 }
 
-// 모달 Title 컴포넌트(모달의 상단 타이틀)
-Modal.Title = function ModalTitle({
-  className,
-  children,
-}: {
-  className?: string;
-  children: React.ReactNode;
-}) {
-  return <div className={twMerge(variants.title, className)}>{children}</div>;
-};
-
-// 모달 Close 컴포넌트(모달의 상단 닫기 버튼)
-Modal.Close = function ModalClose({
-  className,
-  onClick,
-}: {
-  className?: string;
-  onClick: () => void;
-}) {
-  return (
-    <div className="flex justify-end cursor-pointer">
-      <CloseIcon
-        type="button"
-        className={
-          (twMerge(variants.close, className),
-          "text-black hover:bg-gray-20 hover:rounded")
-        }
-        onClick={onClick}
-      />
-    </div>
-  );
-};
-
-// 모달 SubTitle 컴포넌트(모달의 상단 서브 타이틀)
-Modal.SubTitle = function ModalSubTitle({
-  className,
-  children,
-}: {
-  className?: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <div className={twMerge(variants.subTitle, className)}>{children}</div>
-  );
-};
-
-// 모달 Description 컴포넌트(모달의 설명) - 모달 기본 영역
-Modal.Description = function ModalDescription({
-  className,
-  children,
-}: {
-  className?: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <div className={twMerge(variants.description, className)}>{children}</div>
-  );
-};
-
-// 모달 내부 Footer 컴포넌트(모달하단: 확인/취소 버튼 등)
-Modal.Footer = function ModalFooter({
-  className,
-  children,
-}: {
-  className?: string;
-  children: React.ReactNode;
-}) {
-  return <div className={twMerge(variants.footer, className)}>{children}</div>;
-};
-
-export default Modal;
+export default ModalMain;
