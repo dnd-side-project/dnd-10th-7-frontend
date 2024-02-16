@@ -1,4 +1,4 @@
-export type CheckBoxProps = {
+export type RadioCheckBoxProps = {
   options: string[];
   selectedOption: string;
   handleCheckBoxChange: any;
