@@ -6,17 +6,44 @@ import { useState } from "react";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import InsertPhotoOutlinedIcon from "@mui/icons-material/InsertPhotoOutlined";
 import Button from "@component/components/common-components/button";
+import ProjectSendbackTitleData from "@component/components/project/ProjectSendbackTitleData";
+import { ProjectData } from "@component/types/Sendback";
+import ProjectSendbackUserInfo from "@component/components/project/ProjectSendbackUserInfo";
 
 export default function Feedback() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  return (
-    <>
-      <div className="flex flex-col gap-3">
-        <div>제목부분</div>
-        <div>피드백제목이랑 유저부분</div>
+  const projectData: ProjectData = {
+    projectId: 1,
+    title: "팅클(Tincle) - 우리들만의 피드 폐쇄형 SNS 서비스",
+    fields: "예술/대중문화",
+    process: "기획중",
+    username: "철수",
+    userlevel: "1",
+    profileImageUrl: "/assets/profile_img.png",
+    createdAt: "2022-05-05",
+  };
 
-        <div className="flex flex-col gap-[50px]">
+  return (
+    <div className="mx-auto w-[1080px]">
+      <div className="flex flex-col gap-3">
+        <ProjectSendbackTitleData
+          title={projectData.title}
+          field={projectData.fields}
+          process={projectData.process}
+        />
+        <span className="pt-[40px] text-head">
+          기획 관련 설문조사를 진행해주세요!
+        </span>
+
+        <ProjectSendbackUserInfo
+          username={projectData.username}
+          userlevel={projectData.userlevel}
+          profileImg={projectData.profileImageUrl}
+          createdAt={projectData.createdAt}
+        />
+
+        <div className="pt-[50px] flex flex-col gap-[50px]">
           {/* 피드백 요청 링크 */}
           <SubTitle title="피드백 요청 링크" className="w-3/5 max-w-[700px]">
             <div className="flex justify-between bg-purple-main5 items-center px-5 py-2 border border-purple-main1 rounded-full text-body1">
@@ -66,6 +93,6 @@ export default function Feedback() {
         </Button>
       </div>
       <CaptureModal isOpen={isOpen} setIsOpen={setIsOpen} />
-    </>
+    </div>
   );
 }
