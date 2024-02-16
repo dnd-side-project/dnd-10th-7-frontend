@@ -7,6 +7,7 @@ export type ModalViewProps = {
   //
   isPrevOpen?: boolean;
   setIsPrevOpen?: Dispatch<SetStateAction<boolean>>;
+  title?: string;
 };
 
 export default function LoginModal(props: ModalViewProps) {

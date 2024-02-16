@@ -10,6 +10,7 @@ import RegisterProjectInputContent from "./RegisterProjectInputContent";
 import PurpleInput from "@component/components/common-components/input/PurPleInput";
 import RegisterProjectInputImage from "./RegisterProjectInputImage";
 import Modal from "@component/components/common-components/modal/Modal";
+import RegisterProjectTitle from "./RegisterProjectTitle";
 
 export default function RegisterProject () {
 
@@ -106,9 +107,6 @@ export default function RegisterProject () {
 
     return (
         <div className="w-[1440px] flex flex-col items-center">
-
-            {/* 프로젝트 등록 상단 */}
-            {/* <RegisterProjectTop /> */}
 
             <section className="max-w-[1080px] w-full mt-[135px]">
                 {/* Title */}

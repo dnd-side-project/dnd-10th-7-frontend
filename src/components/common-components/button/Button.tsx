@@ -32,7 +32,8 @@ const style: {
     border: "text-purple-main1 border-purple-main1 bg-white",
     gray: "bg-[#F5F5F5] text-gray-60 border-[#F5F5F5]",
     black: "bg-black text-white",
-    disabled: "bg-gray-40 text-white border-gray-40",
+    // disabled: "bg-gray-40 text-white border-gray-40",
+    disabled: "bg-purple-main3 text-white border-purple-main3",
     grayBorder: "text-gray-80 border-gray-60 bg-white"
   },
 };
