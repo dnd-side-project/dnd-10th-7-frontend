@@ -1,9 +1,15 @@
+"use client";
+
 import { Profile } from "@component/types/User";
 import MyPageUserInfo from "./MyPageUserInfo";
 import Button from "../common-components/button/Button";
 import MyPageFeedBackInfo from "./MyPageFeedBackInfo";
+import { useState } from "react";
+import ProfileEditModal from "./ProfileEditModal";
 
 const MyPageProfileTab = () => {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+
   const profileData: Profile = {
     nickname: "김철수",
     career: "backend",
@@ -31,7 +37,12 @@ const MyPageProfileTab = () => {
       />
 
       {/* edit profile */}
-      <Button size="md" className="min-w-[290px]" color="black">
+      <Button
+        size="md"
+        className="min-w-[290px]"
+        color="black"
+        onClick={() => setIsOpen(true)}
+      >
         프로필 편집
       </Button>
 
@@ -43,6 +54,8 @@ const MyPageProfileTab = () => {
         projectCount={profileData.projectCount}
         likeCount={profileData.likeCount}
       />
+
+      <ProfileEditModal isOpen={isOpen} setIsOpen={setIsOpen} />
     </div>
   );
 };
