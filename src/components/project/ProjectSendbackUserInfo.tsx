@@ -8,7 +8,7 @@ const ProjectSendbackUserInfo = ({
   createdAt,
 }: UserInfoProps) => {
   return (
-    <div className="mt-8 flex items-center">
+    <div className="flex items-center">
       <Image
         src={profileImg}
         alt={profileImg}
