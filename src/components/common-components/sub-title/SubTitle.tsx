@@ -16,7 +16,7 @@ const SubTitle = forwardRef<HTMLDivElement, PropsWithChildren<SubTitleProps>>(
         ref={ref}
       >
         {title}
-        <div className="flex flex-col gap-3 text-body1 font-normal">
+        <div className="flex flex-col gap-3 text-body1 font-medium">
           {children}
         </div>
       </div>
