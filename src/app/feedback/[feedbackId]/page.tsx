@@ -10,7 +10,12 @@ import ProjectSendbackTitleData from "@component/components/project/ProjectSendb
 import { ProjectData } from "@component/types/Sendback";
 import ProjectSendbackUserInfo from "@component/components/project/ProjectSendbackUserInfo";
 
-export default function Feedback() {
+type PageParams = {
+  feedbackId: number;
+};
+
+export default function Feedback({ params }: { params: PageParams }) {
+  console.log(params.feedbackId);
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const projectData: ProjectData = {
@@ -33,6 +38,7 @@ export default function Feedback() {
           process={projectData.process}
         />
         <span className="pt-[40px] text-head">
+          {/* TODO : API reponse 보고 데이터 받는 구조 다시 수정 */}
           기획 관련 설문조사를 진행해주세요!
         </span>
 
