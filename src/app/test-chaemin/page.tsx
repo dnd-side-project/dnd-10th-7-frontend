@@ -3,6 +3,7 @@ import CommentBox from "@component/components/comment/CommentBox";
 import Button from "@component/components/common-components/button";
 import Modal from "@component/components/common-components/modal";
 import Tag from "@component/components/common-components/tag";
+import { Header } from "@component/components/common/Header";
 import ProjectItem from "@component/components/landing/project/ProjectItem";
 import InterestModal from "@component/components/sign-up/InterestModal";
 import LoginModal from "@component/components/sign-up/LoginModal";
@@ -17,6 +18,7 @@ export default function Laboratory() {
 
   return (
     <div>
+      <Header />
       {/* font test */}
       {/* <div className="text-huge">huge입니다</div>
       <div className="text-head">head입니다</div>
