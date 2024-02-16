@@ -1,16 +1,22 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
-import RegisterSendbackTitleData from "./RegisterSendbackTitleData";
+import ProjectSendbackTitleData from "../../../../components/project/ProjectSendbackTitleData";
 import { ProjectData } from "@component/types/Sendback";
 import RegisterSendbackInputTitle from "./RegisterSendbackInputTitle";
-import RegisterSendbackUserInfo from "./RegisterSendbackUserInfo";
+import ProjectSendbackUserInfo from "../../../../components/project/ProjectSendbackUserInfo";
 import RegisterSendbackTitle from "./RegisterSendbackTitle";
 import PurpleInput from "@component/components/common-components/input/PurPleInput";
 import PurpleTextarea from "@component/components/common-components/textarea/Textarea";
 import Button from "@component/components/common-components/button/Button";
 import Modal from "@component/components/common-components/modal/Modal";
+import RegisterProjectInputPeriod from "@component/app/project/register/RegisterProjectInputPeriod";
 
-export default function RegisterSendback() {
+type PageParams = {
+  projectId: number;
+};
+
+export default function RegisterSendback({ params }: { params: PageParams }) {
+  console.log(params.projectId);
   const projectData: ProjectData = {
     projectId: 1,
     title: "팅클(Tincle) - 우리들만의 피드 폐쇄형 SNS 서비스",
@@ -43,6 +49,12 @@ export default function RegisterSendback() {
   const handleContentChange = (event: any) => {
     setContentValue(event.target.value);
   };
+
+  // date
+  const [startDate, setStartDate] = useState<string>("");
+  const [startIndex, setStartIndex] = useState<number>();
+  const [endDate, setEndDate] = useState<string>("");
+  const [endIndex, setEndIndex] = useState<number>();
 
   // submit fail
   const linkRef = useRef<HTMLInputElement>(null);
@@ -91,7 +103,8 @@ export default function RegisterSendback() {
     <div className="w-[1440px] flex flex-col items-center">
       <section className="max-w-[1080px] w-full mt-[135px]">
         {/* 프로젝트 이름 */}
-        <RegisterSendbackTitleData
+
+        <ProjectSendbackTitleData
           title={projectData.title}
           field={projectData.fields}
           process={projectData.process}
@@ -102,7 +115,7 @@ export default function RegisterSendback() {
           onTitleChange={onTitleChange}
         />
         {/* user info */}
-        <RegisterSendbackUserInfo
+        <ProjectSendbackUserInfo
           username={projectData.username}
           userlevel={projectData.userlevel}
           profileImg={projectData.profileImageUrl}
@@ -142,8 +155,16 @@ export default function RegisterSendback() {
         </div>
 
         {/* period */}
-        <RegisterSendbackTitle title="기간" />
-        {/* TODO: merge 후 달력 추가 */}
+        <RegisterProjectInputPeriod
+          startDate={startDate}
+          setStartDate={setStartDate}
+          startIndex={startIndex}
+          setStartIndex={setStartIndex}
+          endDate={endDate}
+          setEndDate={setEndDate}
+          endIndex={endIndex}
+          setEndIndex={setEndIndex}
+        />
 
         {/* reward */}
         <RegisterSendbackTitle title="추가 리워드" />
@@ -158,7 +179,6 @@ export default function RegisterSendback() {
             textSize="md"
             entire={100}
             className="border-purple-main1"
-            // className={isInvalid ? "border-error-main" : "border-purple-main1"}
           />
         </div>
 
