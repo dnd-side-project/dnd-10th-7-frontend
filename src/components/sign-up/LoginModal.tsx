@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction, useState } from "react";
-import Modal from "../common-components/modal";
+import { Modal } from "../common-components/modal";
 
 export type ModalViewProps = {
   isOpen: boolean;
