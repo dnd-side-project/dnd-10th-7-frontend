@@ -55,35 +55,16 @@ export const ReplyComment = () => {
       <div className="flex gap-[23px] items-center">
         <div className="h-[48px] w-[48px] rounded-full bg-gray-40" />
 
-        <div className="flex flex-col space-y-1">
-          <div className="flex gap-[8px] items-center">
-            <p className="text-body2">{dummyComment.user}</p>
-            <p className="text-caption1 text-gray-60">
-              {dummyComment.createdDate}
-            </p>
-            <p className="w-[5px] h-[5px] rounded-full bg-gray-60" />
-            <p className="text-caption1 text-gray-60">{dummyComment.time}</p>
-            <p className="w-[5px] h-[5px] rounded-full bg-gray-60" />
-            <p
-              className="text-caption1 text-gray-60 cursor-pointer"
-              // onClick={() => {
-              //   toggleReplyComment(idx);
-              // }}
-            >
-              답글달기
-            </p>
-          </div>
-          <PurpleInput
-            value={comment}
-            onChange={handleComment}
-            placeholder="답글을 입력해주세요"
-            shape="rounded"
-            size="xs"
-            textSize="xs"
-            borderSize="xs" // 테두리 두께
-            backgroundColors="purple"
-          />
-        </div>
+        <PurpleInput
+          value={comment}
+          onChange={handleComment}
+          placeholder="답글을 입력해주세요"
+          shape="rounded"
+          size="xs"
+          textSize="xs"
+          borderSize="xs" // 테두리 두께
+          backgroundColors="purple"
+        />
       </div>
       <div className="text-right pt-3">
         <Button size="xs" color="default">
