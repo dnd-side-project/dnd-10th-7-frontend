@@ -3,7 +3,6 @@ import "./globals.css";
 import RecoilRootWrapper from "./RecoilRootWrapper";
 import { ThemeProvider } from "@mui/material";
 import { theme } from "@component/components/common-components/mui/theme";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 export const metadata: Metadata = {
   title: "sendback",
@@ -15,18 +14,13 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-
-  const queryClient = new QueryClient() // instance 생성
-
   return (
     <html lang="en">
-      <QueryClientProvider client={queryClient}>
-        <RecoilRootWrapper>
-          <ThemeProvider theme={theme}>
-            <body>{children}</body>
-          </ThemeProvider>
-        </RecoilRootWrapper>
-      </QueryClientProvider>
+      <RecoilRootWrapper>
+        <ThemeProvider theme={theme}>
+          <body>{children}</body>
+        </ThemeProvider>
+      </RecoilRootWrapper>
     </html>
   );
 }
