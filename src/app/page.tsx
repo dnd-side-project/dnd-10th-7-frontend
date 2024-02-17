@@ -5,6 +5,7 @@ import LandingMid from "@component/components/landing/carousel/LandingMid";
 import { ProjectList } from "@component/components/landing/project/ProjectList";
 import NicknameModal from "@component/components/sign-up/NicknameModal";
 import { useEffect, useState } from "react";
+import Footer from "@component/components/footer/Footer";
 
 export default function Home() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -27,15 +28,18 @@ export default function Home() {
       </section>
 
       {/* 컨테이너 너비 */}
-      <section className="max-w-[1080px] w-full mt-[31.93px]">
+      <section className="max-w-[1080px] w-full mt-[100px] flex flex-col gap-[100px] mb-[100px]">
         {/* 캐러셀 */}
         <LandingMid />
 
-        {/* todo : 나중에 큰 organism 컴포넌트 사이의 gap 설정 필요 */}
+        {/* 프로젝트 */}
         <ProjectList />
       </section>
 
       <NicknameModal isOpen={isOpen} setIsOpen={setIsOpen} />
+      <section className="w-full">
+        <Footer></Footer>
+      </section>
     </main>
   );
 }
