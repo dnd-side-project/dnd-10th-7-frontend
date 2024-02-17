@@ -80,7 +80,7 @@ export default function ProjectDetailPage({ params }: { params: PageParams }) {
 
   return (
     <div className="w-[1440px] flex flex-col items-center">
-      <section className="max-w-[1080px] w-full mt-[56.5px] flex">
+      <section className="max-w-[1080px] w-full mt-[56.5px] flex mb-[72px]">
         {/* project detail */}
         <div className="min-w-[787px]">
           <ProjectSendbackTitleData
@@ -88,12 +88,14 @@ export default function ProjectDetailPage({ params }: { params: PageParams }) {
             field={projectData.fields}
             process={projectData.process}
           />
-          <ProjectSendbackUserInfo
-            username={projectData.username}
-            userlevel={projectData.userlevel}
-            profileImg={projectData.profileImageUrl}
-            createdAt={projectData.createdAt}
-          />
+          <div className="mt-8">
+            <ProjectSendbackUserInfo
+              username={projectData.username}
+              userlevel={projectData.userlevel}
+              profileImg={projectData.profileImageUrl}
+              createdAt={projectData.createdAt}
+            />
+          </div>
 
           {/* 소개 */}
           <div className="mt-[72px]">
