@@ -8,8 +8,8 @@ import RegisterSendbackTitle from "./RegisterSendbackTitle";
 import PurpleInput from "@component/components/common-components/input/PurPleInput";
 import PurpleTextarea from "@component/components/common-components/textarea/Textarea";
 import Button from "@component/components/common-components/button/Button";
-import Modal from "@component/components/common-components/modal/Modal";
 import RegisterProjectInputPeriod from "@component/app/project/register/RegisterProjectInputPeriod";
+import { Modal } from "@component/components/common-components/modal";
 
 type PageParams = {
   projectId: number;
