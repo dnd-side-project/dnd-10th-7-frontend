@@ -18,11 +18,11 @@ const ProjectSendbackUserInfo = ({
       ></Image>
       <div className="text-body2 text-gray-60">
         {/* TODO: 레벨 이름 적기 */}
-        <p>
+        <p className="font-medium">
           {username} Lv. {userlevel === "1" && "불주먹"}
         </p>
         {/* TODO: 날짜 형식 맞추기 */}
-        <div>{createdAt}</div>
+        <div className="font-medium">{createdAt}</div>
       </div>
     </div>
   );

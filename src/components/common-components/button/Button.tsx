@@ -34,7 +34,7 @@ const style: {
     black: "bg-black text-white",
     // disabled: "bg-gray-40 text-white border-gray-40",
     disabled: "bg-purple-main3 text-white border-purple-main3",
-    grayBorder: "text-gray-80 border-gray-60 bg-white"
+    grayBorder: "text-gray-60 border-gray-60 bg-white"
   },
 };
 
