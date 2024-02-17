@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 
 interface IAuthResponse {
   // response type
-  
 }
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
@@ -28,7 +27,7 @@ export default function KakaoCallBack() {
         }
       );
       return response.data;
-    } catch (error) {
+    } catch (error: any) {
       // 추가 정보 입력이 필요한 경우
       const axiosError = error as AxiosError;
       if (
@@ -36,7 +35,7 @@ export default function KakaoCallBack() {
         (axiosError.response.data as any).code === 1080
         ) {
           // 1. signToken 저장하기
-          const signToken: string = axiosError.response?.data.data?.signToken
+          const signToken: string = error.response?.data.data.signToken
           window.sessionStorage.setItem("sign_token", signToken);
           // 2. main 페이지로 이동한 뒤
           router.push('/')
@@ -45,26 +44,15 @@ export default function KakaoCallBack() {
     }
   };
 
-  const { data, error } = useQuery<IAuthResponse, AxiosError, IAuthResponse>({
-    queryKey: ["kakaoLogin", { code }], // Wrap 'code' in an object
+  const { data } = useQuery<IAuthResponse, AxiosError, IAuthResponse>({
+    queryKey: ["kakaoLogin", { code }], 
     queryFn: () => fetchKakaoLogin(code),
     enabled: Boolean(code), 
   });
 
-  if (!code) {
-    console.log('code is empty')
-  }
-
   if (data) {
     console.log(data)
   }
-
-  if (error) {
-    console.log(error)
-  }
-
-  // if (error) return <div>에러가 발생했습니다: {error.message}</div>;
-  // if (data) return <div>로그인 성공</div>;
 
   return <div>로딩중</div>;
 }
