@@ -69,8 +69,8 @@ export const CommentItem = () => {
     <div className="flex flex-col space-y-8">
       {dummyComment.map((item, idx) => {
         return (
-          <>
-            <div className="flex gap-[25px] items-center" key={idx}>
+          <div key={idx}>
+            <div className="flex gap-[25px] items-center">
               {/* profile-img */}
               <div className="h-[48px] w-[48px] rounded-full bg-gray-40" />
 
@@ -96,7 +96,7 @@ export const CommentItem = () => {
               </div>
             </div>
             {openReplyComments[idx] && <ReplyComment />}
-          </>
+          </div>
         );
       })}
     </div>
