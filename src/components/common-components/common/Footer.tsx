@@ -1,3 +1,4 @@
+'use client'
 import Image from "next/image";
 
 const Footer = () => {
@@ -9,7 +10,7 @@ const Footer = () => {
     "https://ginger-begonia-38c.notion.site/c6c99302305c49e29e6fc8ec5f48e3a0?pvs=4";
 
   return (
-    <div className="min-w-[1440px] h-[215px] bg-purple-main5 flex">
+    <div className="w-full min-w-[1440px] h-[215px] bg-purple-main5 flex">
       <section className="min-w-[1080px] w-full flex items-center justify-center">
         {/* left */}
         <div>

@@ -60,9 +60,9 @@ export const Tab = ({
       onClick={handleToggle}
       className={clsx(
         "cursor-pointer",
-        "p-[14px] rounded-[6px] inline-block text-gray-60 text-h2 bg-gray-10",
+        "p-[14px] rounded-[6px] inline-block border border-2 border-white text-gray-60 text-h2 bg-gray-10",
         isChecked &&
-          "border border-2 border-purple-main1 bg-purple-main5 text-purple-main1"
+          "border border-2 !border-purple-main1 bg-purple-main5 text-purple-main1"
       )}
     >
       {getIconComponent()}

@@ -11,6 +11,8 @@ import Button from "@component/components/common-components/button/Button";
 import Dropdown from "@component/components/common-components/dropdown";
 import Footer from "@component/components/common-components/common/Footer";
 
+import KaKaoButton from "@component/components/social/KaKaoButton";
+
 const Test = () => {
   // input
   const [inputValue1, setInputValue1] = useState<string>("");
@@ -283,6 +285,7 @@ const Test = () => {
         className={isInvalid ? "border-error-main" : "border-purple-main1"}
       />
       <Button onClick={focus}>제출하기</Button>
+      <KaKaoButton />
       <Footer />
     </div>
   );

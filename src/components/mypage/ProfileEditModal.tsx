@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Modal from "../common-components/modal";
 import Button from "../common-components/button";
 import Dropdown from "../common-components/dropdown";
 import clsx from "clsx";
@@ -15,6 +14,7 @@ import GrayInput from "../common-components/input/GrayInput";
 import { userInfo } from "os";
 import { ModalViewProps } from "../sign-up/LoginModal";
 import CompleteModal from "../alert-modal/CompleteModal";
+import { Modal } from "../common-components/modal";
 
 export default function ProfileEditModal(props: ModalViewProps) {
   const { isOpen, setIsOpen, isPrevOpen, setIsPrevOpen } = props;
