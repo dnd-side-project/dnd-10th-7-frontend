@@ -3,8 +3,6 @@ import CommentBox from "@component/components/comment/CommentBox";
 import Button from "@component/components/common-components/button";
 import Tag from "@component/components/common-components/tag";
 import { Header } from "@component/components/common-components/common/Header";
-import ProjectItem from "@component/components/landing/project/ProjectItem";
-import LoginModal from "@component/components/sign-up/LoginModal";
 import SignUpModal from "@component/components/sign-up/SignUpModal";
 import { useState } from "react";
 
@@ -104,10 +102,7 @@ export default function Laboratory() {
           </Modal.Footer>
         </Modal> */}
 
-        {/* <LoginModal isOpen={isOpen} setIsOpen={setIsOpen} /> */}
-        {/* <NicknameModal isOpen={isOpen} setIsOpen={setIsOpen} /> */}
         <SignUpModal isOpen={isOpen} setIsOpen={setIsOpen} />
-        {/* <UserInfoModal isOpen={isOpen} setIsOpen={setIsOpen} /> */}
 
         <Button size="xs" color="black" onClick={() => setIsOpen2(true)}>
           InterestModal button
