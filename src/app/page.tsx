@@ -1,10 +1,22 @@
+'use client'
+
 import LadingTop from "@component/components/landing/carousel/LandingTop";
 import LandingMid from "@component/components/landing/carousel/LandingMid";
-import Title from "@component/components/common-components/title";
 import { ProjectList } from "@component/components/landing/project/ProjectList";
+import NicknameModal from "@component/components/sign-up/NicknameModal";
+import { useEffect, useState } from "react";
 import Footer from "@component/components/footer/Footer";
 
 export default function Home() {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+
+  // signToken이 있는 경우 추가 정보 모달 open
+  useEffect(() => {
+    if (window.sessionStorage.getItem('sign_token')) {
+      setIsOpen(true)
+    } 
+  }, [])
+
   return (
     // 전체 1440px
     <main className="mx-auto w-full flex flex-col items-center">
@@ -24,6 +36,7 @@ export default function Home() {
         <ProjectList />
       </section>
 
+      <NicknameModal isOpen={isOpen} setIsOpen={setIsOpen} />
       <section className="w-full">
         <Footer></Footer>
       </section>
