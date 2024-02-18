@@ -4,6 +4,10 @@ import axios from "axios";
 
 interface IAuthResponse {
   // response type
+  data?: {
+    accessToken: string;
+    refreshToken: string;
+  };
 }
 
 export const GetKakaoLogin = async (code: any) => {
@@ -14,9 +18,7 @@ export const GetKakaoLogin = async (code: any) => {
         params: { code },
       }
     );
-    // TODO: 기존 회원인 경우 -> 엑세스 토큰 저장하는 로직 필요!
-    //
-    //
+
     return response.data;
   } catch (error: any) {
     // 추가 정보 입력이 필요한 경우
