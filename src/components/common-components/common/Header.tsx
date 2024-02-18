@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import DropdownBox from "../dropdown-box";
+import Link from "next/link";
 
 export const Header = () => {
   const variants = {
@@ -22,30 +23,22 @@ export const Header = () => {
         {/* left side */}
         <div className="flex flex-row gap-[50px]">
           <div className={clsx(variants.menu, "flex flex-row gap-2")}>
-            <span>logo</span>
-            <span onClick={() => router.push("/")}>sendback</span>
+            <Link href="/">
+              <span>logo</span>
+              <span>sendback</span>
+            </Link>
           </div>
-          <div
-            className={clsx(variants.menu)}
-            onClick={() => router.push("/project")}
-          >
-            프로젝트
-          </div>
-          <div
-            className={clsx(variants.menu)}
-            onClick={() => router.push("/project/register")}
-          >
-            프로젝트 등록하기
-          </div>
+          <Link href="/project">
+            <div className={clsx(variants.menu)}>프로젝트</div>
+          </Link>
+          <Link href="/project/register">
+            <div className={clsx(variants.menu)}>프로젝트 등록하기</div>
+          </Link>
         </div>
-        {/* !localStorage.getItem("accessToken") */}
-        {false ? (
-          <div
-            className={clsx(variants.menu)}
-            onClick={() => router.push("/login")}
-          >
-            로그인
-          </div>
+        {!localStorage.getItem("accessToken") ? (
+          <Link href="/login">
+            <div className={clsx(variants.menu)}>로그인</div>
+          </Link>
         ) : (
           <div className="relative">
             <div
@@ -64,6 +57,7 @@ export const Header = () => {
         ></Image> */}
               <div>{username}</div>
             </div>
+
             {isOpen && (
               <DropdownBox items={["마이페이지", "로그아웃"]} place="right" />
             )}
