@@ -8,7 +8,7 @@ import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import clsx from "clsx";
 import { RewardModal } from "./RewardModal";
 import { ModalViewProps } from "../sign-up/LoginModal";
-import Modal from "../common-components/modal";
+import { Modal } from "../common-components/modal";
 
 export const CaptureModal = (props: ModalViewProps) => {
   const { isOpen, setIsOpen } = props;
