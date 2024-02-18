@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { DropdownBoxPlace, DropdownBoxProps } from "./DropdownBox.types";
 import clsx from "clsx";
+import { useRouter } from "next/navigation";
 
 const style: {
   base: string;
@@ -16,6 +17,17 @@ const style: {
 
 const DropdownBox = ({ items, place }: DropdownBoxProps) => {
   const [hoverMenu, setHoverMenu] = useState<string | null>(null);
+  const router = useRouter();
+
+  const onClick = (item: string) => {
+    if (item === "마이페이지") router.push("/mypage");
+    if (item === "로그아웃") {
+      localStorage.removeItem("accessToken");
+      localStorage.removeItem("refreshToken");
+      router.push("/");
+      window.location.reload();
+    }
+  };
 
   return (
     <div
@@ -27,6 +39,7 @@ const DropdownBox = ({ items, place }: DropdownBoxProps) => {
       {items.map((item, idx) => (
         <div
           key={idx}
+          onClick={() => onClick(item)}
           onMouseEnter={() => setHoverMenu(item)}
           onMouseLeave={() => setHoverMenu(null)}
           className={clsx(
