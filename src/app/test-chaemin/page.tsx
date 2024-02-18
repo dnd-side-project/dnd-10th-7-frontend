@@ -1,14 +1,20 @@
 "use client";
-import Button from "@component/components/button";
-import Modal from "@component/components/modal";
+import CommentBox from "@component/components/comment/CommentBox";
+import Button from "@component/components/common-components/button";
+import Tag from "@component/components/common-components/tag";
 import GoogleLogin from "@component/components/social/GoogleLogin";
-import Tag from "@component/components/tag";
+import { Header } from "@component/components/common-components/common/Header";
+import SignUpModal from "@component/components/sign-up/SignUpModal";
 import { useState } from "react";
 
 export default function Laboratory() {
-  const [isOpen, setIsOpen] = useState<boolean>(true);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isOpen2, setIsOpen2] = useState<boolean>(false);
+  const [isOpen3, setIsOpen3] = useState<boolean>(false);
+
   return (
     <div>
+      <Header />
       {/* font test */}
       {/* <div className="text-huge">huge입니다</div>
       <div className="text-head">head입니다</div>
@@ -52,25 +58,32 @@ export default function Laboratory() {
         <Button size="xs" color="active">
           xs button
         </Button>
+
         <Button size="xs" color="gray">
           xs button
         </Button>
-        <Button size="xs" color="border">
-          xs button
+        <Button size="xs" color="border" onClick={() => setIsOpen3(true)}>
+          완료모달 열기
         </Button>
-        <Button size="xs" color="black">
-          xs button
+
+        {/* <CompleteModal isOpen={isOpen3} setIsOpen={setIsOpen3} /> */}
+        <Button
+          size="xs"
+          className="bg-error-color"
+          onClick={() => setIsOpen(true)}
+        >
+          modal open btn
         </Button>
-        <Button size="xs" className="bg-error-color">
-          xs button
-        </Button>
+
+        {/* comment test */}
+        <CommentBox />
 
         {/* google-login test */}
         <GoogleLogin />
 
         {/* modal test */}
-        <Modal
-          open={false}
+        {/* <Modal
+          open={isOpen}
           onClose={() => setIsOpen(false)}
           className="w-[480px]"
         >
@@ -83,14 +96,6 @@ export default function Laboratory() {
           </Modal.SubTitle>
           <Modal.Description>
             <></>
-            {/* <div className="flex felx-wrap border border-red-500">
-              DescriptionDescriptionDescriptionDescriptionDescriptionDescription
-              Description Description Description Description Description
-              Description Description Description Description Description
-              Description Description Description Description Description
-              Description Description Description Description Description
-              Description Description Description Description Description
-            </div> */}
           </Modal.Description>
 
           <Modal.Footer>
@@ -99,7 +104,13 @@ export default function Laboratory() {
               <Button>등록하기</Button>
             </div>
           </Modal.Footer>
-        </Modal>
+        </Modal> */}
+
+        <SignUpModal isOpen={isOpen} setIsOpen={setIsOpen} />
+
+        <Button size="xs" color="black" onClick={() => setIsOpen2(true)}>
+          InterestModal button
+        </Button>
       </div>
     </div>
   );
