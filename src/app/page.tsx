@@ -4,7 +4,7 @@ import LadingTop from "@component/components/landing/carousel/LandingTop";
 import LandingMid from "@component/components/landing/carousel/LandingMid";
 import { ProjectList } from "@component/components/landing/project/ProjectList";
 import { useEffect, useState } from "react";
-import Footer from "@component/components/footer/Footer";
+import Footer from "@component/components/common-components/common/Footer";
 
 export default function Home() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
