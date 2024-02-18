@@ -9,7 +9,7 @@ import TabComponent from "@component/components/common-components/tab/TabCompone
 import LandingTop from "@component/components/landing/carousel/LandingMid";
 import Button from "@component/components/common-components/button/Button";
 import Dropdown from "@component/components/common-components/dropdown";
-import Footer from "@component/components/footer/Footer";
+import Footer from "@component/components/common-components/common/Footer";
 
 import KaKaoButton from "@component/components/social/KaKaoButton";
 
@@ -285,11 +285,7 @@ const Test = () => {
         className={isInvalid ? "border-error-main" : "border-purple-main1"}
       />
       <Button onClick={focus}>제출하기</Button>
-      
-
-      <KaKaoButton/>
-
-      
+      <KaKaoButton />
       <Footer />
     </div>
   );
