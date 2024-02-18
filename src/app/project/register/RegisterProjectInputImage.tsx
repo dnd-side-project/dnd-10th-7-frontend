@@ -1,15 +1,15 @@
 "use client";
 import { useState, useRef, ChangeEvent } from "react";
 import Button from "@component/components/common-components/button/Button";
-import Modal from "@component/components/common-components/modal/Modal";
 import AddCircleOutlinedIcon from "@mui/icons-material/AddCircleOutlined";
 import CancelIcon from "@mui/icons-material/Cancel";
 import Image from "next/image";
 import { InputImageProps } from "@component/types/Project";
+import { Modal } from "@component/components/common-components/modal";
 
 const RegisterProjectInputImage = ({
   filePreviews,
-  setFilePreviews
+  setFilePreviews,
 }: InputImageProps) => {
   const [isFirstOpen, setIsFirstOpen] = useState<boolean>(false);
   const [fileModalPreviews, setFileModalPreviews] = useState<string[]>([]);
@@ -58,10 +58,10 @@ const RegisterProjectInputImage = ({
 
   const hadleImageModalToMain = () => {
     // 사진 정보 전달 후
-    setFilePreviews(fileModalPreviews)
+    setFilePreviews(fileModalPreviews);
     // 모달 닫기
-    setIsFirstOpen(false)
-  }
+    setIsFirstOpen(false);
+  };
 
   return (
     <>
@@ -71,21 +71,22 @@ const RegisterProjectInputImage = ({
         onClick={() => setIsFirstOpen(true)}
       >
         <AddCircleOutlinedIcon className="text-purple-main3" />
-        {filePreviews.length === 0 ? (<>사진 등록하기</>) : (<>사진 수정하기</>)}
+        {filePreviews.length === 0 ? <>사진 등록하기</> : <>사진 수정하기</>}
       </Button>
 
       {/* 사진 메인에서 미리보기 */}
       <div className="flex mt-[30px]">
-        {filePreviews && filePreviews.map((preview, index) => (
-          <Image
-            key={index}
-            src={preview}
-            alt={`preview ${index + 1}`}
-            width={162}
-            height={120}
-            className="min-w-[162px] h-[120px] object-cover mr-2 rounded-[5px]"
-          />
-        ))}
+        {filePreviews &&
+          filePreviews.map((preview, index) => (
+            <Image
+              key={index}
+              src={preview}
+              alt={`preview ${index + 1}`}
+              width={162}
+              height={120}
+              className="min-w-[162px] h-[120px] object-cover mr-2 rounded-[5px]"
+            />
+          ))}
       </div>
 
       {/* 사진 등록 1번 모달 */}
@@ -172,7 +173,9 @@ const RegisterProjectInputImage = ({
             >
               닫기
             </Button>
-            <Button className="min-w-[123px]" onClick={hadleImageModalToMain}>등록하기</Button>
+            <Button className="min-w-[123px]" onClick={hadleImageModalToMain}>
+              등록하기
+            </Button>
           </div>
         </Modal.Footer>
       </Modal>
