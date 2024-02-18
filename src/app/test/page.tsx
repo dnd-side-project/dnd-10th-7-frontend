@@ -11,7 +11,7 @@ import Button from "@component/components/common-components/button/Button";
 import Dropdown from "@component/components/common-components/dropdown";
 import Footer from "@component/components/footer/Footer";
 
-import KaKaoButton from "@component/components/social/KaKaoButton";
+import KaKaoButton from "@component/components/social/KaKaoButton";
 
 const Test = () => {
   // input
