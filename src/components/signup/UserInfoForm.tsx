@@ -10,7 +10,7 @@ import {
   careerState,
   genderState,
   nicknameState,
-} from "@component/atoms/modal";
+} from "@component/atoms/userInfoAtom";
 import GrayInput from "../common-components/input/GrayInput";
 import { userInfo } from "os";
 import { Modal } from "../common-components/modal";
@@ -31,6 +31,8 @@ export default function UserInfoForm() {
       setGender(selectedGender); // 선택되지 않은 성별 선택
     }
   };
+
+  console.log("form에서의 gender", gender);
 
   return (
     <>
@@ -55,22 +57,22 @@ export default function UserInfoForm() {
             <p className="pb-[10px]">성별</p>
             <div className="w-full flex flex-row gap-[13px] text-center">
               <div
-                onClick={() => handleToggle("male")}
+                onClick={() => handleToggle("남자")}
                 className={clsx(
                   "cursor-pointer",
                   "p-[14px] rounded-md w-6/12 text-gray-60 text-h2 bg-gray-10 border border-2 border-gray-10",
-                  gender === "male" &&
+                  gender === "남자" &&
                     "border border-2 border-purple-main1 bg-purple-main5 text-purple-main1"
                 )}
               >
                 <span>남자</span>
               </div>
               <div
-                onClick={() => handleToggle("female")}
+                onClick={() => handleToggle("여자")}
                 className={clsx(
                   "cursor-pointer",
                   "p-[14px] rounded-md w-6/12 text-gray-60 text-h2 bg-gray-10 border border-2 border-gray-10",
-                  gender === "female" &&
+                  gender === "여자" &&
                     "border border-2 border-purple-main1 bg-purple-main5 text-purple-main1"
                 )}
               >

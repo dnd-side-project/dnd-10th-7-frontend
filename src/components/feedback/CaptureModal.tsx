@@ -7,7 +7,7 @@ import Image from "next/image";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import clsx from "clsx";
 import { RewardModal } from "./RewardModal";
-import { ModalViewProps } from "../sign-up/LoginModal";
+import { ModalViewProps } from "../signup/LoginModal";
 import { Modal } from "../common-components/modal";
 
 export const CaptureModal = (props: ModalViewProps) => {
