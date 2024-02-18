@@ -1,9 +1,13 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { useKakaoLogin } from "@component/hooks/useAuth";
+import { useEffect, useState } from "react";
+import Loading from "@component/components/loading/Loading";
+import SignUpModal from "@component/components/signup/SignUpModal";
 
 export default function KakaoCallBack() {
   const router = useRouter();
+
   // URL에서 'code' 쿼리 파라미터 추출
   let code: string = "";
 
@@ -11,29 +15,29 @@ export default function KakaoCallBack() {
     code = new URL(window.location.href).searchParams.get("code") || "";
   }
 
-  const { data, error } = useKakaoLogin(code);
+  const { data, error, isLoading } = useKakaoLogin(code);
 
-  if (data) {
-    const accessToken: string | undefined = data.data?.accessToken;
-    const refreshToken: string | undefined = data.data?.refreshToken;
-    if (accessToken && refreshToken) {
-      // 회원가입 성공하면 sign_token 제거
-      window.sessionStorage.removeItem("sign_token");
-      window.sessionStorage.setItem("access_token", accessToken);
-      window.sessionStorage.setItem("refresh_token", refreshToken);
+  useEffect(() => {
+    if (data) {
+      const accessToken: string | undefined = data.data?.accessToken;
+      const refreshToken: string | undefined = data.data?.refreshToken;
+      if (accessToken && refreshToken) {
+        // 회원가입 성공하면 sign_token 제거
+        window.sessionStorage.removeItem("signToken");
+        window.sessionStorage.setItem("accessToken", accessToken);
+        window.sessionStorage.setItem("refreshToken", refreshToken);
+        console.log("accessToken", accessToken);
+        console.log("refreshToken", refreshToken);
 
-      // main으로
-      router.push('/')
+        // main으로
+        router.push("/");
+      }
     }
-  }
+    if (error) {
+      console.log("err입니다", error);
+      router.push("/");
+    }
+  }, [data, error]);
 
-  // 에러가 난 경우 -> 1. 신규 회원 2. 코드 재사용 -> 메인페이지로 보내기
-  if (error) {
-    router.push("/");
-  }
-
-  // TODO: loading component 캐릭터 추가하기
-  return (
-    <div className="bg-purple-main4 min-w-[1440px] min-h-[1080px] w-full h-full"></div>
-  );
+  return <>{isLoading && <Loading />}</>;
 }
