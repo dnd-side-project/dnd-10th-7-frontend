@@ -1,6 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { useKakaoLogin } from "@component/hooks/auth/useKaKaoLogin";
+import { useKakaoLogin } from "@component/hooks/useAuth";
 
 export default function KakaoCallBack() {
   const router = useRouter();
