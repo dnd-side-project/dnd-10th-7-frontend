@@ -5,7 +5,7 @@ export type userInfoType = {
   gender: string;
   birthDay: string;
   career: string;
-  interests: Array<string>;
+  interestedList: Array<string>;
 };
 
 export const userAPI = {
@@ -23,7 +23,7 @@ export const userAPI = {
       gender: data.gender,
       birthDay: data.birthDay,
       career: data.career,
-      interests: data.interests,
+      interests: data.interestedList,
     });
   },
 };

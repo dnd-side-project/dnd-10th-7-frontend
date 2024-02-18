@@ -1,13 +1,10 @@
 "use client";
 import CommentBox from "@component/components/comment/CommentBox";
 import Button from "@component/components/common-components/button";
-import Modal from "@component/components/common-components/modal";
 import Tag from "@component/components/common-components/tag";
 import ProjectItem from "@component/components/landing/project/ProjectItem";
-import InterestModal from "@component/components/sign-up/InterestModal";
 import LoginModal from "@component/components/sign-up/LoginModal";
-import NicknameModal from "@component/components/sign-up/NicknameModal";
-import UserInfoModal from "@component/components/sign-up/UserInfoModal";
+import SignUpModal from "@component/components/sign-up/SignUpModal";
 import { useState } from "react";
 
 export default function Laboratory() {
@@ -106,14 +103,13 @@ export default function Laboratory() {
         </Modal> */}
 
         {/* <LoginModal isOpen={isOpen} setIsOpen={setIsOpen} /> */}
-        <NicknameModal isOpen={isOpen} setIsOpen={setIsOpen} />
+        {/* <NicknameModal isOpen={isOpen} setIsOpen={setIsOpen} /> */}
+        <SignUpModal isOpen={isOpen} setIsOpen={setIsOpen} />
         {/* <UserInfoModal isOpen={isOpen} setIsOpen={setIsOpen} /> */}
 
         <Button size="xs" color="black" onClick={() => setIsOpen2(true)}>
           InterestModal button
         </Button>
-
-        <InterestModal isOpen={isOpen2} setIsOpen={setIsOpen2} />
       </div>
     </div>
   );

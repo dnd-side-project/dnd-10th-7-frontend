@@ -9,6 +9,17 @@ import clsx from "clsx";
 import PurpleInput from "../common-components/input/PurPleInput";
 
 export const ReplyComment = () => {
+  const dummyComment = {
+    commentId: 1,
+    user: "chaeminenie",
+    nickname: "cjcjcjcj",
+    profileImageUrl: "aiaiaiaiaiaiaai",
+    createdDate: "2024.24.24",
+    time: "2시간전",
+    content:
+      "굉장히 흥미로운 서비스 어쩌구 졸리다 지금 새벽 4시다지금 새벽 4시다지금 새벽 4시다지금 새벽 4시다",
+  };
+
   const [comment, setComment] = useState<string>("");
 
   const handleComment = (e: any) => {
@@ -40,7 +51,7 @@ export const ReplyComment = () => {
   const isInvalid = submitClicked && comment.length === 0;
 
   return (
-    <div className="ml-[72px]">
+    <div className="ml-[72px] pt-6">
       <div className="flex gap-[23px] items-center">
         <div className="h-[48px] w-[48px] rounded-full bg-gray-40" />
 
