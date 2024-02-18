@@ -18,9 +18,9 @@ export default function KakaoCallBack() {
     const refreshToken: string | undefined = data.data?.refreshToken;
     if (accessToken && refreshToken) {
       // 회원가입 성공하면 sign_token 제거
-      window.sessionStorage.removeItem("sign_token");
-      window.sessionStorage.setItem("access_token", accessToken);
-      window.sessionStorage.setItem("refresh_token", refreshToken);
+      window.sessionStorage.removeItem("signToken");
+      window.sessionStorage.setItem("accessToken", accessToken);
+      window.sessionStorage.setItem("refreshToken", refreshToken);
 
       // main으로
       router.push('/')

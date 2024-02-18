@@ -12,7 +12,13 @@ const Providers = ({ children }: PropsWithChildren) => {
         refetchOnReconnect: false,
       },
       mutations: {
-        retry: 1
+        retry: 1,
+        onSuccess: () => {
+  
+        },
+        onError: () => {
+ 
+        }
       }
     },
   });

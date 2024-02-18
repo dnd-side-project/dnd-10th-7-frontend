@@ -55,4 +55,6 @@ export type InputContentProps = {
 export type InputImageProps = {
   filePreviews: string[];
   setFilePreviews: any;
+  fileList: any;
+  setFileList: any;
 }
