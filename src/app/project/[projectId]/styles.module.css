@@ -1,0 +1,22 @@
+/* styles.module.css */
+.scroll-container {
+  scrollbar-color: #c1b6ff;
+}
+
+.scroll-container::-webkit-scrollbar {
+  height: 5px;
+}
+
+.scroll-container::-webkit-scrollbar-thumb {
+  background-color: #c1b6ff;
+  border-radius: 10px;
+}
+
+.scroll-container::-webkit-scrollbar-track {
+  background-color: #d6d6d6;
+}
+
+.scroll-container::-webkit-scrollbar-track {
+  background-color: #d6d6d6;
+  border-radius: 10px;
+}
