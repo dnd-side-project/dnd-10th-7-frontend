@@ -35,7 +35,8 @@ export const Header = () => {
             <div className={clsx(variants.menu)}>프로젝트 등록하기</div>
           </Link>
         </div>
-        {!localStorage.getItem("accessToken") ? (
+        {typeof window !== "undefined" &&
+        !localStorage.getItem("accessToken") ? (
           <Link href="/login">
             <div className={clsx(variants.menu)}>로그인</div>
           </Link>
