@@ -47,6 +47,7 @@ const ProjectDetailFeedBackRequest = ({ projectFeedbackData }: any) => {
         ))}
 
       {/* if my project */}
+      {/* 현재 등록한 피드백이 0개이면 확인할 수 없음 */}
       {myProject && (
         <div className="flex justify-end">
           <Button>피드백 요청 글 작성하기</Button>
