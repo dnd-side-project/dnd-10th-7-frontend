@@ -5,75 +5,72 @@ import Button from "@component/components/common-components/button/Button";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import Link from "next/link";
 import ProjectDetailImage from "./ProjectDetailImage";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import ProjectDetailFeedBackRequest from "./ProjectDetailFeedBackRequest";
 import SubTitle from "@component/components/common-components/sub-title/SubTitle";
 import TeamMemberInfo from "./ProjectDetailTeamMemberInfo";
+import { useGetProjectDetail } from "@component/hooks/useProject";
 
 type PageParams = {
   projectId: number;
 };
 
 export default function ProjectDetailPage({ params }: { params: PageParams }) {
-  console.log(params.projectId);
-  // TODO: API response 확정 후 타입 지정
-  const projectData: any = {
-    projectId: 1,
-    title: "팅클(Tincle) - 우리들만의 피드 폐쇄형 SNS 서비스",
-    content: "우리 프로젝트는 이런 프로젝트에요 피드백에 한 번 참여해주세요~!",
-    fields: "예술/대중문화",
-    process: "기획중",
-    username: "철수",
-    profileImageUrl: "/assets/profile_img.png",
-    userlevel: "1",
-    demoSiteUrl: "",
-    frontedCount: 2,
-    backendCount: 2,
-    designerCount: 2,
-    plannerCount: 0,
-    likeCount: 2,
-    commentCount: 2,
-    scrappedCount: 2,
-    projectImgUrl: [
-      "/assets/profile_img.png",
-      "/assets/profile_img.png",
-      "/assets/profile_img.png",
-      "/assets/profile_img.png",
-      "/assets/profile_img.png",
-    ],
-    createdAt: "2022.05.05 11:22",
-    endedAt: "2022.05.10 11:22",
-  };
+  const { data, error, isLoading } = useGetProjectDetail(params.projectId);
 
-  const [likeCount, setLikeCount] = useState<number>(projectData.likeCount);
-  // TODO: api 업데이트 되면 default 값도 response 값으로 변경
-  const [likeState, setLikeState] = useState<boolean>(false);
-  const [scrappedCount, setScrappedCount] = useState<number>(
-    projectData.scrappedCount
+  const [projectData, setProjectData] = useState<any>();
+
+  // if (isLoading) {
+  //   // TODO: 스켈레톤 코드
+  //   return <div></div>
+  // }
+
+  useEffect(() => {
+    if (data) {
+      setProjectData(data.data.data);
+      console.log(data.data.data.scrapCount);
+    }
+  }, [data]);
+
+  if (error) {
+    console.log("err:", error);
+  }
+
+  const [likeCount, setLikeCount] = useState<number>(
+    projectData?.likeCount || 0
   );
-  const [scrapState, setScrapState] = useState<boolean>(false);
+  // TODO: api 업데이트 되면 default 값도 response 값으로 변경
+  const [likeState, setLikeState] = useState<boolean>(
+    projectData?.isCheckedLike
+  );
+  const [scrappedCount, setScrappedCount] = useState<number>(
+    projectData?.scrapCount || 0
+  );
+  const [scrapState, setScrapState] = useState<boolean>(
+    projectData?.isCheckedScrap
+  );
 
   const handleLikeClick = () => {
     // 좋아요 버튼 클릭 시
-    if (likeCount === projectData.likeCount) {
+    if (likeCount === projectData!.likeCount) {
       setLikeCount(likeCount + 1);
       setLikeState(true);
       // 해제 시
     } else {
-      setLikeCount(projectData.likeCount);
+      setLikeCount(projectData?.likeCount);
       setLikeState(false);
     }
   };
 
   const handleScrappedClick = () => {
     // 스크랩 버튼 클릭 시
-    if (scrappedCount === projectData.scrappedCount) {
+    if (scrappedCount === projectData!.scrapCount) {
       setScrappedCount(scrappedCount + 1);
       setScrapState(true);
     } else {
-      setScrappedCount(projectData.scrappedCount);
+      setScrappedCount(projectData?.scrapCount);
       setScrapState(false);
     }
   };
@@ -84,26 +81,26 @@ export default function ProjectDetailPage({ params }: { params: PageParams }) {
         {/* project detail */}
         <div className="min-w-[787px]">
           <ProjectSendbackTitleData
-            title={projectData.title}
-            field={projectData.fields}
-            process={projectData.process}
+            title={projectData?.title}
+            field={projectData?.fields}
+            process={projectData?.process}
           />
           <div className="mt-8">
             <ProjectSendbackUserInfo
-              username={projectData.username}
-              userlevel={projectData.userlevel}
-              profileImg={projectData.profileImageUrl}
-              createdAt={projectData.createdAt}
+              username={projectData?.username}
+              userlevel={projectData?.userlevel}
+              profileImg={projectData?.profileImageUrl}
+              createdAt={projectData?.createdAt}
             />
           </div>
 
           {/* 소개 */}
           <div className="mt-[72px]">
-            <SubTitle title="소개">{projectData.content}</SubTitle>
+            <SubTitle title="소개">{projectData?.content}</SubTitle>
           </div>
 
           {/* 서비스 링크 이동 */}
-          <Link href={projectData.demoSiteUrl}>
+          <Link href={projectData?.demoSiteUrl || ""}>
             <Button size="xs" className="min-w-[144px] mt-[88px] mb-[72px]">
               <ExitToAppIcon className="w-[22px] h-[22px] text-white me-2" />
               서비스 링크
@@ -111,7 +108,7 @@ export default function ProjectDetailPage({ params }: { params: PageParams }) {
           </Link>
 
           {/* 이미지 */}
-          <ProjectDetailImage projectImgUrl={projectData.projectImgUrl} />
+          <ProjectDetailImage projectImgUrl={projectData?.projectImgUrl} />
 
           {/* 기간 */}
           <div className="mt-[72px]">
@@ -122,17 +119,29 @@ export default function ProjectDetailPage({ params }: { params: PageParams }) {
           <div className="mt-[72px]">
             <SubTitle title="멤버">
               <div className="flex min-w-[700px]">
-                {projectData.frontedCount > 0 && (
-                  <TeamMemberInfo count={projectData.frontedCount} label="프론트엔드" />
+                {projectData?.frontedCount > 0 && (
+                  <TeamMemberInfo
+                    count={projectData?.frontedCount}
+                    label="프론트엔드"
+                  />
                 )}
-                {projectData.backendCount > 0 && (
-                  <TeamMemberInfo count={projectData.backendCount} label="백엔드" />
+                {projectData?.backendCount > 0 && (
+                  <TeamMemberInfo
+                    count={projectData.backendCount}
+                    label="백엔드"
+                  />
                 )}
-                {projectData.designerCount > 0 && (
-                  <TeamMemberInfo count={projectData.designerCount} label="디자인" />
+                {projectData?.designerCount > 0 && (
+                  <TeamMemberInfo
+                    count={projectData.designerCount}
+                    label="디자인"
+                  />
                 )}
-                {projectData.plannerCount > 0 && (
-                  <TeamMemberInfo count={projectData.plannerCount} label="기획자" />
+                {projectData?.plannerCount > 0 && (
+                  <TeamMemberInfo
+                    count={projectData.plannerCount}
+                    label="기획자"
+                  />
                 )}
               </div>
             </SubTitle>
@@ -163,7 +172,6 @@ export default function ProjectDetailPage({ params }: { params: PageParams }) {
           <div className="text-head mb-4">피드백 요청중</div>
           <ProjectDetailFeedBackRequest />
         </div>
-
       </section>
     </div>
   );

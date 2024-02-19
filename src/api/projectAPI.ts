@@ -16,6 +16,7 @@ export type ProjectData = {
   fileList: File[];
 };
 
+// 프로젝트 등록하기
 export const postProject = {
   postProjectData: (data: ProjectData) => {
     const json = JSON.stringify({
@@ -32,12 +33,12 @@ export const postProject = {
       backendCount: data.backMember,
       designCount: data.designMember,
     });
-    
+
     const blob = new Blob([json], { type: "application/json" });
-    
+
     const formData = new FormData();
     formData.append("data", blob);
-    
+
     for (const file of data.fileList) {
       formData.append("images", file, file.name);
     }
@@ -47,4 +48,12 @@ export const postProject = {
       formData
     );
   },
+};
+
+// 프로젝트 상세 조회
+export const getProject = async (projectId: number) => {
+  const res = await authApi({ "Content-Type": "application/json" }).get(
+    `/api/projects/${projectId}`
+  );
+  return res;
 };
