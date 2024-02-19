@@ -13,8 +13,10 @@ export const Header = () => {
     menu: "hover:text-purple-main1 cursor-pointer",
   };
 
-  const username = "chamny";
-  const router = useRouter();
+  const username =
+    typeof window !== "undefined"
+      ? window.sessionStorage.getItem("username")
+      : null;
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
@@ -23,7 +25,7 @@ export const Header = () => {
       <div className="w-9/12 flex justify-between max-w-[1080px]">
         {/* left side */}
         <div className="flex flex-row gap-[50px]">
-          <div className={clsx(variants.menu, "flex flex-row gap-2")}>
+          <div className={`${variants.menu} flex flex-row gap-2`}>
             <Link href="/">
               <span>logo</span>
               <span>sendback</span>
@@ -37,7 +39,7 @@ export const Header = () => {
           </Link>
         </div>
         {typeof window !== "undefined" &&
-        !localStorage.getItem("accessToken") ? (
+        !sessionStorage.getItem("accessToken") ? (
           <>
             <div
               className={clsx(variants.menu)}
@@ -48,12 +50,9 @@ export const Header = () => {
             <LoginModal isOpen={isOpen} setIsOpen={setIsOpen} />
           </>
         ) : (
-          <div className="relative">
+          <>
             <div
-              className={clsx(
-                variants.menu,
-                "flex flex-row items-center gap-2"
-              )}
+              className={`${variants.menu} relative flex flex-row items-center gap-2`}
               onClick={() => setIsOpen((prev) => !prev)}
             >
               {/* <Image
@@ -69,7 +68,7 @@ export const Header = () => {
             {isOpen && (
               <DropdownBox items={["마이페이지", "로그아웃"]} place="right" />
             )}
-          </div>
+          </>
         )}
       </div>
     </div>
