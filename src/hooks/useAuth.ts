@@ -50,3 +50,15 @@ export const useSignUp = ({
 
   return { mutate, data, error, isPending };
 };
+
+export const useNicknameValid = (nickname: string) => {
+  const { data, error, isLoading } = useQuery({
+    queryKey: ["nicknameValid", { nickname }],
+    queryFn: () => {
+      return userAPI.getDuplicatedNickname(nickname);
+    },
+    enabled: Boolean(nickname),
+  });
+
+  return { data, error, isLoading };
+};

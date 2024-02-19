@@ -8,11 +8,11 @@ import DropdownBox from "../dropdown-box";
 import Link from "next/link";
 import LoginModal from "@component/components/signup/LoginModal";
 
-export const Header = () => {
-  const variants = {
-    menu: "hover:text-purple-main1 cursor-pointer",
-  };
+const variants = {
+  menu: "hover:text-purple-main1 cursor-pointer",
+};
 
+export const Header = () => {
   const username =
     typeof window !== "undefined"
       ? window.sessionStorage.getItem("username")
