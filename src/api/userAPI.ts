@@ -1,11 +1,13 @@
-import { api } from "./api";
+import axios, { AxiosResponse } from "axios";
+import { BASE_URL, api } from "./api";
 
 export type userInfoType = {
   nickname: string;
   gender: string;
-  birthDay: string;
+  birthday: string;
   career: string;
-  interestedList: Array<string>;
+  fields: Array<string>;
+  signToken: string | null;
 };
 
 export const userAPI = {
@@ -17,13 +19,23 @@ export const userAPI = {
   },
 
   // 유저 정보 추가 입력
-  postUserInfo: (data: userInfoType) => {
-    return api.post(`/api/users/sign-up`, {
-      nickname: data.nickname,
-      gender: data.gender,
-      birthDay: data.birthDay,
-      career: data.career,
-      interests: data.interestedList,
-    });
+  postUserInfo: async (data: userInfoType) => {
+    console.log("datadldldl", data);
+    try {
+      const res: AxiosResponse = await axios.post(
+        `${BASE_URL}/api/users/signup`,
+        {
+          nickname: data.nickname,
+          gender: data.gender,
+          birthday: data.birthday,
+          career: data.career,
+          fields: data.fields,
+          signToken: data.signToken,
+        }
+      );
+      return res.data;
+    } catch (err) {
+      console.log("err:", err);
+    }
   },
 };

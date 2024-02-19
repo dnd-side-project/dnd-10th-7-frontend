@@ -1,22 +1,21 @@
 "use client";
-import { useRouter } from "next/navigation";
-import { useKakaoLogin } from "@component/hooks/useAuth";
-import { useEffect, useState } from "react";
-import Loading from "@component/components/loading/Loading";
-import SignUpModal from "@component/components/signup/SignUpModal";
 
-export default function KakaoCallBack() {
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { getGoogleLogin } from "@component/api/socialAPI";
+import { useGoogleLogin } from "@component/hooks/useAuth";
+import { SyncLoader } from "react-spinners";
+import Loading from "@component/components/loading/Loading";
+
+export default function GoogleCallBack() {
   const router = useRouter();
 
-  // URL에서 'code' 쿼리 파라미터 추출
-  let code: string = "";
+  const code =
+    (typeof window !== "undefined" &&
+      new URL(window.location.href).searchParams.get("code")) ||
+    "";
 
-  if (typeof window !== "undefined") {
-    code = new URL(window.location.href).searchParams.get("code") || "";
-  }
-
-  const { data, error, isLoading } = useKakaoLogin(code);
-
+  const { data, error, isLoading } = useGoogleLogin(code);
   useEffect(() => {
     if (data) {
       const accessToken: string | undefined = data.data?.accessToken;

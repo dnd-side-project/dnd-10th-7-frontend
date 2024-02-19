@@ -9,6 +9,8 @@ export const api = axios.create({
   },
 });
 
+export const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+
 // 인증 값이 필요한 경우
 export const authApi = (headers: Record<string, string> = {}) => {
   // token

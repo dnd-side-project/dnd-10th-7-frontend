@@ -1,5 +1,7 @@
 import { Dispatch, SetStateAction, useState } from "react";
 import { Modal } from "../common-components/modal";
+import GoogleButton from "../social/GoogleButton";
+import KaKaoButton from "../social/KaKaoButton";
 
 export type ModalViewProps = {
   isOpen: boolean;
@@ -18,7 +20,7 @@ export default function LoginModal(props: ModalViewProps) {
       <Modal
         open={isOpen}
         onClose={() => setIsOpen(false)}
-        // className="w-[480px]"
+        className="w-[480px]"
       >
         <Modal.Close onClick={() => setIsOpen(false)} />
         <Modal.Title>
@@ -28,9 +30,9 @@ export default function LoginModal(props: ModalViewProps) {
           <div>소셜 계정에 빠르게 로그인하고 피드백을 시작해보세요!</div>
         </Modal.SubTitle>
 
-        <Modal.Description className="flex flex-col gap-[11px]">
-          <button>google temp btn</button>
-          <button>kakao temp btn</button>
+        <Modal.Description className="flex flex-col gap-[11px] px-[10px]">
+          <GoogleButton />
+          <KaKaoButton />
         </Modal.Description>
 
         <Modal.Footer>

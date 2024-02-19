@@ -5,13 +5,14 @@ import LandingMid from "@component/components/landing/carousel/LandingMid";
 import { ProjectList } from "@component/components/landing/project/ProjectList";
 import { useEffect, useState } from "react";
 import Footer from "@component/components/common-components/common/Footer";
+import SignUpModal from "@component/components/signup/SignUpModal";
 
 export default function Home() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   // signToken이 있는 경우 추가 정보 모달 open
   useEffect(() => {
-    if (window.sessionStorage.getItem("sign_token")) {
+    if (window.sessionStorage.getItem("signToken")) {
       setIsOpen(true);
     }
   }, []);
@@ -35,9 +36,11 @@ export default function Home() {
         <ProjectList />
       </section>
 
-      <section className="w-full">
+      {/* <section className="w-full">
         <Footer></Footer>
-      </section>
+      </section> */}
+
+      {isOpen && <SignUpModal isOpen={isOpen} setIsOpen={setIsOpen} />}
     </main>
   );
 }
