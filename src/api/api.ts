@@ -12,11 +12,7 @@ export const api = axios.create({
 export const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 // 인증 값이 필요한 경우
-export const authApi = ({ ContentType }: { ContentType: string }) => {
-  const headers: Record<string, string> = {
-    "Content-Type": ContentType,
-  };
-
+export const authApi = (headers: Record<string, string> = {}) => {
   // token
   const accessToken: string | null =
     typeof window !== "undefined"
@@ -24,11 +20,11 @@ export const authApi = ({ ContentType }: { ContentType: string }) => {
       : "error";
 
   if (accessToken) {
-    headers.accessToken = `${accessToken}`;
+    headers.Authorization = `Bearer ${accessToken}`;
   }
 
   const instance: AxiosInstance = axios.create({
-    baseURL: process.env.BASE_URL,
+    baseURL: process.env.NEXT_PUBLIC_BASE_URL,
     headers,
   });
 
