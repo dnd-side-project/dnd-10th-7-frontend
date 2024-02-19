@@ -58,9 +58,18 @@ export const getProject = async (projectId: number) => {
   return res;
 };
 
+// 좋아요
 export const putProjectLike = async (projectId: number) => {
   const res = await authApi({ "Content-Type": "application/x-www-form-urlencoded" }).put(
     `/api/projects/${projectId}/like`
+  );
+  return res;
+};
+
+// 스크랩
+export const putProjectScrap = async (projectId: number) => {
+  const res = await authApi({ "Content-Type": "application/x-www-form-urlencoded" }).put(
+    `/api/projects/${projectId}/scrap`
   );
   return res;
 };

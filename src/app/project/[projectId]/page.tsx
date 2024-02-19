@@ -12,8 +12,7 @@ import SubTitle from "@component/components/common-components/sub-title/SubTitle
 import TeamMemberInfo from "./ProjectDetailTeamMemberInfo";
 import { useGetProjectDetail } from "@component/hooks/useProject";
 import { useGetProjectFeedbackDetail } from "@component/hooks/useFeedback";
-import { putProjectLike } from "@component/api/projectAPI";
-import { useLikeMutation } from "@component/hooks/useProject";
+import { useLikeMutation, useScrapMutation } from "@component/hooks/useProject";
 
 type PageParams = {
   projectId: number;
@@ -63,6 +62,7 @@ export default function ProjectDetailPage({ params }: { params: PageParams }) {
   const [scrapState, setScrapState] = useState<boolean>(false);
 
   const { mutate, isPending } = useLikeMutation(params.projectId);
+  const { isScrapMutate, isScrapPending } = useScrapMutation(params.projectId);
 
   const handleLikeClick = () => {
     // 좋아요 버튼 클릭 시
@@ -77,14 +77,14 @@ export default function ProjectDetailPage({ params }: { params: PageParams }) {
   };
 
   const handleScrappedClick = () => {
-    // 스크랩 버튼 클릭 시
-    if (scrappedCount === projectData!.scrapCount) {
-      setScrappedCount(scrappedCount + 1);
+    if (!scrapState) {
+      setScrappedCount((prevCount) => prevCount + 1);
       setScrapState(true);
     } else {
-      setScrappedCount(projectData?.scrapCount);
+      setScrappedCount((prevCount) => prevCount - 1);
       setScrapState(false);
     }
+    isScrapMutate();
   };
 
   return (
@@ -173,9 +173,7 @@ export default function ProjectDetailPage({ params }: { params: PageParams }) {
               onClick={handleLikeClick}
             >
               <ThumbUpIcon className="me-2" />
-              <span className="text-body1 font-medium">
-                {likeCount}
-              </span>
+              <span className="text-body1 font-medium">{likeCount}</span>
             </Button>
             <Button
               color={scrapState ? "border" : "grayBorder"}

@@ -2,11 +2,10 @@ import {
   useQuery,
   useMutation,
   UseMutationResult,
-  UseQueryResult,
 } from "@tanstack/react-query";
 import { postProject, ProjectData } from "@component/api/projectAPI";
 import { getProject } from "@component/api/projectAPI";
-import { putProjectLike } from "@component/api/projectAPI";
+import { putProjectLike, putProjectScrap } from "@component/api/projectAPI";
 
 export const usePostProjectMutation = (): UseMutationResult<
   any,
@@ -50,4 +49,22 @@ export const useLikeMutation = (projectId: number) => {
     },
   });
   return { mutate, isPending };
+};
+
+export const useScrapMutation = (projectId: number) => {
+  const {
+    data,
+    error,
+    isPending: isScrapPending,
+    mutate: isScrapMutate,
+  } = useMutation({
+    mutationFn: () => putProjectScrap(projectId),
+    onSuccess: (res) => {
+      console.log("스크랩 성공", res);
+    },
+    onError: (err: any) => {
+      console.log(err);
+    },
+  });
+  return { isScrapMutate, isScrapPending };
 };
