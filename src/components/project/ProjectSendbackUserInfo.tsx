@@ -11,7 +11,7 @@ const ProjectSendbackUserInfo = ({
     <div className="flex items-center">
       <Image
         src={profileImg}
-        alt={profileImg}
+        alt="profile"
         width={47}
         height={47}
         className="w-[47px] h-[47px] rounded-full me-4 object-cover"

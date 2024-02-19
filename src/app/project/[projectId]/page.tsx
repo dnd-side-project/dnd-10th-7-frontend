@@ -11,6 +11,7 @@ import ProjectDetailFeedBackRequest from "./ProjectDetailFeedBackRequest";
 import SubTitle from "@component/components/common-components/sub-title/SubTitle";
 import TeamMemberInfo from "./ProjectDetailTeamMemberInfo";
 import { useGetProjectDetail } from "@component/hooks/useProject";
+import { useGetProjectFeedbackDetail } from "@component/hooks/useFeedback";
 
 type PageParams = {
   projectId: number;
@@ -18,8 +19,11 @@ type PageParams = {
 
 export default function ProjectDetailPage({ params }: { params: PageParams }) {
   const { data, error, isLoading } = useGetProjectDetail(params.projectId);
+  const { feedbackData, feedbackError, feedbackIsLoading } =
+    useGetProjectFeedbackDetail(params.projectId);
 
   const [projectData, setProjectData] = useState<any>();
+  const [projectFeedbackData, setProjectFeedbackData] = useState<any>();
 
   // if (isLoading) {
   //   // TODO: 스켈레톤 코드
@@ -30,10 +34,18 @@ export default function ProjectDetailPage({ params }: { params: PageParams }) {
     if (data) {
       setProjectData(data.data.data);
     }
-  }, [data]);
+
+    if (feedbackData) {
+      setProjectFeedbackData(feedbackData?.data?.data?.feedbacks);
+    }
+  }, [data, feedbackData]);
 
   if (error) {
     console.log("err:", error);
+  }
+
+  if (feedbackError) {
+    console.log("feedback error:", feedbackError);
   }
 
   const [likeCount, setLikeCount] = useState<number>(
@@ -174,7 +186,9 @@ export default function ProjectDetailPage({ params }: { params: PageParams }) {
         {/* project feedback */}
         <div className="ms-8 mt-[173px]">
           <div className="text-head mb-4">피드백 요청중</div>
-          <ProjectDetailFeedBackRequest />
+          <ProjectDetailFeedBackRequest
+            projectFeedbackData={projectFeedbackData}
+          />
         </div>
       </section>
     </div>
