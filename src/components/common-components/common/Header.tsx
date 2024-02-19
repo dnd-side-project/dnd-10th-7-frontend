@@ -19,7 +19,7 @@ export const Header = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   return (
-    <div className="sticky z-50 top-0 m-auto py-[17px] w-full h-[70px] flex flex-row items-center justify-center bg-white text-h2">
+    <div className="fixed z-50 top-0 m-auto py-[17px] w-full h-[70px] flex flex-row items-center justify-center border-b-2 bg-white text-h2">
       <div className="w-9/12 flex justify-between max-w-[1080px]">
         {/* left side */}
         <div className="flex flex-row gap-[50px]">
