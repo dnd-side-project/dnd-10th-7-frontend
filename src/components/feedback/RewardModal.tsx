@@ -2,7 +2,7 @@
 
 import Button from "../common-components/button";
 import { Modal } from "../common-components/modal";
-import { ModalViewProps } from "../sign-up/LoginModal";
+import { ModalViewProps } from "../signup/LoginModal";
 
 export const RewardModal = (props: ModalViewProps) => {
   const { isOpen, setIsOpen } = props;

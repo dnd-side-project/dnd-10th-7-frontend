@@ -3,8 +3,9 @@ import CommentBox from "@component/components/comment/CommentBox";
 import Button from "@component/components/common-components/button";
 import Tag from "@component/components/common-components/tag";
 import { Header } from "@component/components/common-components/common/Header";
-import SignUpModal from "@component/components/sign-up/SignUpModal";
+import SignUpModal from "@component/components/signup/SignUpModal";
 import { useState } from "react";
+import GoogleButton from "@component/components/social/GoogleButton";
 
 export default function Laboratory() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -76,6 +77,9 @@ export default function Laboratory() {
 
         {/* comment test */}
         <CommentBox />
+
+        {/* google-login test */}
+        <GoogleButton />
 
         {/* modal test */}
         {/* <Modal

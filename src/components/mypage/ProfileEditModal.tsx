@@ -9,10 +9,10 @@ import {
   careerState,
   genderState,
   nicknameState,
-} from "@component/atoms/modal";
+} from "@component/atoms/userInfoAtom";
 import GrayInput from "../common-components/input/GrayInput";
 import { userInfo } from "os";
-import { ModalViewProps } from "../sign-up/LoginModal";
+import { ModalViewProps } from "../signup/LoginModal";
 import CompleteModal from "../alert-modal/CompleteModal";
 import { Modal } from "../common-components/modal";
 

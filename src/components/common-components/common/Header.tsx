@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import DropdownBox from "../dropdown-box";
 import Link from "next/link";
+import LoginModal from "@component/components/signup/LoginModal";
 
 export const Header = () => {
   const variants = {
@@ -37,9 +38,15 @@ export const Header = () => {
         </div>
         {typeof window !== "undefined" &&
         !localStorage.getItem("accessToken") ? (
-          <Link href="/login">
-            <div className={clsx(variants.menu)}>로그인</div>
-          </Link>
+          <>
+            <div
+              className={clsx(variants.menu)}
+              onClick={() => setIsOpen(true)}
+            >
+              로그인
+            </div>
+            <LoginModal isOpen={isOpen} setIsOpen={setIsOpen} />
+          </>
         ) : (
           <div className="relative">
             <div
