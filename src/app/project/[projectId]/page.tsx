@@ -3,7 +3,6 @@ import ProjectSendbackTitleData from "@component/components/project/ProjectSendb
 import ProjectSendbackUserInfo from "@component/components/project/ProjectSendbackUserInfo";
 import Button from "@component/components/common-components/button/Button";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
-import Link from "next/link";
 import ProjectDetailImage from "./ProjectDetailImage";
 import { useState, useEffect } from "react";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
@@ -30,7 +29,6 @@ export default function ProjectDetailPage({ params }: { params: PageParams }) {
   useEffect(() => {
     if (data) {
       setProjectData(data.data.data);
-      console.log(data.data.data.scrapCount);
     }
   }, [data]);
 
@@ -41,7 +39,7 @@ export default function ProjectDetailPage({ params }: { params: PageParams }) {
   const [likeCount, setLikeCount] = useState<number>(
     projectData?.likeCount || 0
   );
-  // TODO: api 업데이트 되면 default 값도 response 값으로 변경
+
   const [likeState, setLikeState] = useState<boolean>(
     projectData?.isCheckedLike
   );
@@ -82,15 +80,16 @@ export default function ProjectDetailPage({ params }: { params: PageParams }) {
         <div className="min-w-[787px]">
           <ProjectSendbackTitleData
             title={projectData?.title}
-            field={projectData?.fields}
-            process={projectData?.process}
+            field={projectData?.field}
+            process={projectData?.progress}
           />
           <div className="mt-8">
             <ProjectSendbackUserInfo
-              username={projectData?.username}
-              userlevel={projectData?.userlevel}
+              username={projectData?.nickname}
+              userlevel={projectData?.userLevel}
               profileImg={projectData?.profileImageUrl}
               createdAt={projectData?.createdAt}
+              isLoading={isLoading}
             />
           </div>
 
@@ -99,20 +98,26 @@ export default function ProjectDetailPage({ params }: { params: PageParams }) {
             <SubTitle title="소개">{projectData?.content}</SubTitle>
           </div>
 
-          {/* 서비스 링크 이동 */}
-          <Link href={projectData?.demoSiteUrl || ""}>
-            <Button size="xs" className="min-w-[144px] mt-[88px] mb-[72px]">
-              <ExitToAppIcon className="w-[22px] h-[22px] text-white me-2" />
-              서비스 링크
-            </Button>
-          </Link>
+          {/* 서비스 링크 새 창 띄우기 */}
+          <Button
+            size="xs"
+            className="min-w-[144px] mt-[88px] mb-[72px]"
+            onClick={() => {
+              window.open(projectData?.demoSiteUrl || "");
+            }}
+          >
+            <ExitToAppIcon className="w-[22px] h-[22px] text-white me-2" />
+            서비스 링크
+          </Button>
 
           {/* 이미지 */}
-          <ProjectDetailImage projectImgUrl={projectData?.projectImgUrl} />
+          <ProjectDetailImage projectImgUrl={projectData?.projectImageUrl} />
 
           {/* 기간 */}
           <div className="mt-[72px]">
-            <SubTitle title="소개">2024.01.21 ~ 2024.02.07</SubTitle>
+            <SubTitle title="기간">
+              {projectData?.startedAt} ~ {projectData?.endedAt}
+            </SubTitle>
           </div>
 
           {/* 멤버 */}

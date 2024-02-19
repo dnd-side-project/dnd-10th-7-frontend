@@ -6,22 +6,30 @@ const ProjectSendbackUserInfo = ({
   userlevel,
   profileImg,
   createdAt,
+  isLoading,
 }: UserInfoProps) => {
   return (
     <div className="flex items-center">
-      <Image
-        src={profileImg}
-        alt={profileImg}
-        width={47}
-        height={47}
-        className="w-[47px] h-[47px] rounded-full me-4"
-      ></Image>
+      {isLoading ? (
+        <div className="w-[47px] h-[47px] rounded-full me-4 bg-purple-main5"></div>
+      ) : (
+        <Image
+          src={profileImg}
+          alt={profileImg}
+          width={47}
+          height={47}
+          className="w-[47px] h-[47px] rounded-full me-4 object-cover"
+        ></Image>
+      )}
       <div className="text-body2 text-gray-60">
-        {/* TODO: 레벨 이름 적기 */}
         <p className="font-medium">
-          {username} Lv. {userlevel === "1" && "불주먹"}
+          {username} <span className="ms-2 font-medium">Lv.{""}</span>
+          {(userlevel === "주먹밥" && "1 주먹밥") ||
+            ("솜주먹" && "2 솜주먹") ||
+            ("물주먹" && "3 물주먹") ||
+            ("돌주먹" && "4 돌주먹") ||
+            ("불주먹" && "5 불주먹")}
         </p>
-        {/* TODO: 날짜 형식 맞추기 */}
         <div className="font-medium">{createdAt}</div>
       </div>
     </div>
