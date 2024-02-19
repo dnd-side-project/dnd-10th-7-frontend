@@ -12,6 +12,8 @@ import SubTitle from "@component/components/common-components/sub-title/SubTitle
 import TeamMemberInfo from "./ProjectDetailTeamMemberInfo";
 import { useGetProjectDetail } from "@component/hooks/useProject";
 import { useGetProjectFeedbackDetail } from "@component/hooks/useFeedback";
+import { putProjectLike } from "@component/api/projectAPI";
+import { useLikeMutation } from "@component/hooks/useProject";
 
 type PageParams = {
   projectId: number;
@@ -38,7 +40,13 @@ export default function ProjectDetailPage({ params }: { params: PageParams }) {
     if (feedbackData) {
       setProjectFeedbackData(feedbackData?.data?.data?.feedbacks);
     }
-  }, [data, feedbackData]);
+
+    // 좋아요, 스크랩 업데이트
+    setLikeCount(projectData?.likeCount || 0);
+    setLikeState(projectData?.isCheckedLike);
+    setScrappedCount(projectData?.scrapCount || 0);
+    setScrapState(projectData?.isCheckedScrap);
+  }, [data, feedbackData, projectData]);
 
   if (error) {
     console.log("err:", error);
@@ -48,30 +56,24 @@ export default function ProjectDetailPage({ params }: { params: PageParams }) {
     console.log("feedback error:", feedbackError);
   }
 
-  const [likeCount, setLikeCount] = useState<number>(
-    projectData?.likeCount || 0
-  );
+  // 좋아요, 스크랩 상태값
+  const [likeCount, setLikeCount] = useState<number>(0);
+  const [likeState, setLikeState] = useState<boolean>(false);
+  const [scrappedCount, setScrappedCount] = useState<number>(0);
+  const [scrapState, setScrapState] = useState<boolean>(false);
 
-  const [likeState, setLikeState] = useState<boolean>(
-    projectData?.isCheckedLike
-  );
-  const [scrappedCount, setScrappedCount] = useState<number>(
-    projectData?.scrapCount || 0
-  );
-  const [scrapState, setScrapState] = useState<boolean>(
-    projectData?.isCheckedScrap
-  );
+  const { mutate, isPending } = useLikeMutation(params.projectId);
 
   const handleLikeClick = () => {
     // 좋아요 버튼 클릭 시
-    if (likeCount === projectData!.likeCount) {
-      setLikeCount(likeCount + 1);
+    if (!likeState) {
+      setLikeCount((prevCount) => prevCount + 1);
       setLikeState(true);
-      // 해제 시
     } else {
-      setLikeCount(projectData?.likeCount);
+      setLikeCount((prevCount) => prevCount - 1);
       setLikeState(false);
     }
+    mutate();
   };
 
   const handleScrappedClick = () => {
@@ -171,7 +173,9 @@ export default function ProjectDetailPage({ params }: { params: PageParams }) {
               onClick={handleLikeClick}
             >
               <ThumbUpIcon className="me-2" />
-              <span className="text-body1 font-medium">{likeCount}</span>
+              <span className="text-body1 font-medium">
+                {likeCount}
+              </span>
             </Button>
             <Button
               color={scrapState ? "border" : "grayBorder"}

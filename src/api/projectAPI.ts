@@ -57,3 +57,10 @@ export const getProject = async (projectId: number) => {
   );
   return res;
 };
+
+export const putProjectLike = async (projectId: number) => {
+  const res = await authApi({ "Content-Type": "application/x-www-form-urlencoded" }).put(
+    `/api/projects/${projectId}/like`
+  );
+  return res;
+};
