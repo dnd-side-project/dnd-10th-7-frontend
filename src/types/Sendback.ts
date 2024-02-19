@@ -27,4 +27,5 @@ export type UserInfoProps = {
   userlevel: string;
   profileImg: string;
   createdAt: string;
+  isLoading: boolean;
 }
