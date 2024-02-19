@@ -4,7 +4,7 @@ import { userAPI } from "@component/api/userAPI";
 import clsx from "clsx";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import { useRecoilState } from "recoil";
-import { nicknameState } from "@component/atoms/modal";
+import { nicknameState } from "@component/atoms/userInfoAtom";
 import GrayInput from "../common-components/input/GrayInput";
 import { Modal } from "../common-components/modal";
 import Button from "../common-components/button";
