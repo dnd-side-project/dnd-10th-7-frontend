@@ -35,9 +35,9 @@ export default function Home() {
         <ProjectList />
       </section>
 
-      <section className="w-full">
+      {/* <section className="w-full">
         <Footer></Footer>
-      </section>
+      </section> */}
     </main>
   );
 }

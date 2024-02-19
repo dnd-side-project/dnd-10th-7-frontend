@@ -4,6 +4,8 @@ import RecoilRootWrapper from "./RecoilRootWrapper";
 import { ThemeProvider } from "@mui/material";
 import { theme } from "@component/components/common-components/mui/theme";
 import Providers from "@component/context/provider";
+import { Header } from "@component/components/common-components/common/Header";
+import Footer from "@component/components/common-components/common/Footer";
 
 export const metadata: Metadata = {
   title: "sendback",
@@ -19,9 +21,11 @@ export default function RootLayout({
     <html lang="en">
       <RecoilRootWrapper>
         <ThemeProvider theme={theme}>
+          <Header />
           <body>
             <Providers>{children}</Providers>
           </body>
+          <Footer />
         </ThemeProvider>
       </RecoilRootWrapper>
     </html>
