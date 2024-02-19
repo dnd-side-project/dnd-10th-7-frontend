@@ -6,21 +6,16 @@ const ProjectSendbackUserInfo = ({
   userlevel,
   profileImg,
   createdAt,
-  isLoading,
 }: UserInfoProps) => {
   return (
     <div className="flex items-center">
-      {isLoading ? (
-        <div className="w-[47px] h-[47px] rounded-full me-4 bg-purple-main5"></div>
-      ) : (
-        <Image
-          src={profileImg}
-          alt={profileImg}
-          width={47}
-          height={47}
-          className="w-[47px] h-[47px] rounded-full me-4 object-cover"
-        ></Image>
-      )}
+      <Image
+        src={profileImg}
+        alt={profileImg}
+        width={47}
+        height={47}
+        className="w-[47px] h-[47px] rounded-full me-4 object-cover"
+      ></Image>
       <div className="text-body2 text-gray-60">
         <p className="font-medium">
           {username} <span className="ms-2 font-medium">Lv.{""}</span>

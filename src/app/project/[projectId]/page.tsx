@@ -89,7 +89,6 @@ export default function ProjectDetailPage({ params }: { params: PageParams }) {
               userlevel={projectData?.userLevel}
               profileImg={projectData?.profileImageUrl}
               createdAt={projectData?.createdAt}
-              isLoading={isLoading}
             />
           </div>
 
