@@ -10,6 +10,8 @@ import { Modal } from "@component/components/common-components/modal";
 const RegisterProjectInputImage = ({
   filePreviews,
   setFilePreviews,
+  fileList,
+  setFileList,
 }: InputImageProps) => {
   const [isFirstOpen, setIsFirstOpen] = useState<boolean>(false);
   const [fileModalPreviews, setFileModalPreviews] = useState<string[]>([]);
@@ -21,6 +23,7 @@ const RegisterProjectInputImage = ({
     if (e.target.files) {
       const files: FileList = e.target.files;
       const previews: string[] = [...fileModalPreviews];
+      const updatedFileList: File[] = [...fileList];
 
       // 6장 이상 등록한 경우
       if (fileModalPreviews.length + files.length > 5) {
@@ -32,6 +35,8 @@ const RegisterProjectInputImage = ({
         const file = files[i];
         const reader = new FileReader();
 
+        updatedFileList.push(file);
+
         reader.onloadend = () => {
           previews.push(reader.result as string);
           setFileModalPreviews([...previews]);
@@ -39,6 +44,8 @@ const RegisterProjectInputImage = ({
 
         reader.readAsDataURL(file);
       }
+
+      setFileList(updatedFileList);
     }
   };
 
@@ -54,6 +61,9 @@ const RegisterProjectInputImage = ({
     const updatedModalPreviews = [...fileModalPreviews];
     updatedModalPreviews.splice(index, 1);
     setFileModalPreviews(updatedModalPreviews);
+    const updatedFileList = [...fileList];
+    updatedFileList.splice(index, 1);
+    setFileList(updatedFileList);
   };
 
   const hadleImageModalToMain = () => {

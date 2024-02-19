@@ -72,6 +72,7 @@ const Test = () => {
 
   return (
     <div className="mb-[300px]">
+
       {/* 탭 컴포넌트 입니다 */}
       <div className="text-head text-purple-main1">TAB</div>
       <TabComponent

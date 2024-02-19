@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
-import React, { PropsWithChildren } from "react"
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import React, { PropsWithChildren } from "react";
 
 const Providers = ({ children }: PropsWithChildren) => {
   const queryClient = new QueryClient({
@@ -12,12 +12,16 @@ const Providers = ({ children }: PropsWithChildren) => {
         refetchOnReconnect: false,
       },
       mutations: {
-        retry: 1
-      }
+        retry: 1,
+        onSuccess: () => {},
+        onError: () => {},
+      },
     },
   });
 
-  return <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-}
+  return (
+    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+  );
+};
 
-export default Providers
+export default Providers;
