@@ -4,14 +4,15 @@ export interface ProjectPageParams extends ProjectParams {
 }
 
 export interface ProjectParams {
-  sort: number;
-  size: number;
-  isFinished: boolean;
+  sort?: number;
+  size?: number;
+  page?: number;
+  isFinished?: boolean;
 }
 
 export const FIELDS_TYPE = {
   art: "예술/대중문화",
-  fintech: "금융/핀테크",
+  finTech: "금융/핀테크",
   health: "건강",
   envir: "환경",
   edu: "교육",
