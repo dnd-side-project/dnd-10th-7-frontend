@@ -10,7 +10,7 @@ interface IAuthResponse {
   };
 }
 
-export const getKakaoLogIn = async (code: any) => {
+export const getKakaoLogin = async (code: any) => {
   try {
     const response: AxiosResponse<IAuthResponse> = await axios.get(
       `${BASE_URL}/api/auth/kakao/callback`,
@@ -37,14 +37,6 @@ export const getKakaoLogIn = async (code: any) => {
     throw error;
   }
 };
-
-// export const GoogleLogInAPI = {
-//   getGoogleLogIn: (code: string) => {
-//     return api.get(`/api/auth/google/callback`, {
-//       params: { code },
-//     });
-//   },
-// };
 
 export const getGoogleLogin = async (code: any) => {
   try {

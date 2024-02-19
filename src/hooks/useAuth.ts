@@ -1,11 +1,11 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { getGoogleLogin, getKakaoLogIn } from "@component/api/socialAPI";
+import { getGoogleLogin, getKakaoLogin } from "@component/api/socialAPI";
 import { userAPI, userInfoType } from "@component/api/userAPI";
 
 export const useKakaoLogin = (code: string) => {
   const { data, error, isLoading } = useQuery({
     queryKey: ["kakaoLogin", { code }],
-    queryFn: () => getKakaoLogIn(code),
+    queryFn: () => getKakaoLogin(code),
     enabled: Boolean(code),
   });
 
