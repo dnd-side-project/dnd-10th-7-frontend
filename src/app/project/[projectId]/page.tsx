@@ -137,9 +137,9 @@ export default function ProjectDetailPage({ params }: { params: PageParams }) {
           <div className="mt-[72px]">
             <SubTitle title="멤버">
               <div className="flex min-w-[700px]">
-                {projectData?.frontedCount > 0 && (
+                {projectData?.frontendCount > 0 && (
                   <TeamMemberInfo
-                    count={projectData?.frontedCount}
+                    count={projectData?.frontendCount}
                     label="프론트엔드"
                   />
                 )}
