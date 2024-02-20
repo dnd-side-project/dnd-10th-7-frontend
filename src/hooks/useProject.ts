@@ -3,9 +3,12 @@ import { ProjectPageParams } from "@component/types/api";
 import { useQuery } from "@tanstack/react-query";
 
 export const useProjectList = (params: ProjectPageParams) => {
-  return useQuery({
-    queryKey: ["getProjectList", params],
+  const { data, error, isLoading } = useQuery({
+    queryKey: ["getProjectList", { params }],
     queryFn: () => projectAPI.getProjectList(params),
     placeholderData: (prevData, _) => prevData,
+    enabled: Boolean(params),
   });
+
+  return { data, error, isLoading };
 };
