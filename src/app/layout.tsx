@@ -21,11 +21,11 @@ export default function RootLayout({
     <html lang="en">
       <RecoilRootWrapper>
         <ThemeProvider theme={theme}>
-          <Header />
           <body>
+            <Header />
             <Providers>{children}</Providers>
+            <Footer />
           </body>
-          <Footer />
         </ThemeProvider>
       </RecoilRootWrapper>
     </html>
