@@ -62,7 +62,7 @@ export default function ProjectDetailPage({ params }: { params: PageParams }) {
   const [scrapState, setScrapState] = useState<boolean>(false);
 
   const { mutate, isPending } = useLikeMutation(params.projectId);
-  const { isScrapMutate, isScrapPending } = useScrapMutation(params.projectId);
+  const { isScrapMutate } = useScrapMutation(params.projectId);
 
   const handleLikeClick = () => {
     // 좋아요 버튼 클릭 시
@@ -190,6 +190,7 @@ export default function ProjectDetailPage({ params }: { params: PageParams }) {
           <div className="text-head mb-4">피드백 요청중</div>
           <ProjectDetailFeedBackRequest
             projectFeedbackData={projectFeedbackData}
+            projectId={params.projectId}
           />
         </div>
       </section>
