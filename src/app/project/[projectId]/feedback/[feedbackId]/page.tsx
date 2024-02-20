@@ -73,11 +73,11 @@ export default function Feedback({ params }: { params: PageParams }) {
           </SubTitle>
 
           {/* 기간 */}
-          <SubTitle title="기간">{feedbackData?.startedAt} ~ {feedbackData?.endedAt}</SubTitle>
-
-          <SubTitle title="추가 리워드">
-            {feedbackData?.rewardMessage}
+          <SubTitle title="기간">
+            {feedbackData?.startedAt} ~ {feedbackData?.endedAt}
           </SubTitle>
+
+          <SubTitle title="추가 리워드">{feedbackData?.rewardMessage}</SubTitle>
         </div>
 
         <div className="mt-[50px] flex w-[640px] gap-3 bg-purple-main5 items-center px-6 py-4 border border-purple-main1 rounded-[30px] text-body1">
@@ -106,7 +106,12 @@ export default function Feedback({ params }: { params: PageParams }) {
           캡쳐화면 업로드
         </Button>
       </div>
-      <CaptureModal isOpen={isOpen} setIsOpen={setIsOpen} />
+      <CaptureModal
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        projectId={params.projectId}
+        feedbackId={params.feedbackId}
+      />
     </div>
   );
 }

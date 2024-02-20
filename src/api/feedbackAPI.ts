@@ -7,8 +7,28 @@ export const getProjectFeedback = async (projectId: number) => {
 };
 
 // 피드백 상세 조회
-export const getFeedbackDetail = async (projectId: number, feedbackId: number) => {
-  const res = await authApi().get(`/api/projects/${projectId}/feedbacks/${feedbackId}`);
+export const getFeedbackDetail = async (
+  projectId: any,
+  feedbackId: any
+) => {
+  const res = await authApi().get(
+    `/api/projects/${projectId}/feedbacks/${feedbackId}`
+  );
   return res;
 };
 
+// 피드백 제출
+export const postFeedbackDoneImg = async (
+  projectId: number,
+  feedbackId: number,
+  img: File
+) => {
+  const formData = new FormData();
+  formData.append("file", img);
+
+  const res = await authApi({ "Content-Type": "multipart/form-data" }).post(
+    `/api/projects/${projectId}/feedbacks/${feedbackId}`,
+    formData
+  );
+  return res;
+};
