@@ -10,23 +10,22 @@ import PurpleTextarea from "@component/components/common-components/textarea/Tex
 import Button from "@component/components/common-components/button/Button";
 import RegisterProjectInputPeriod from "@component/app/project/register/RegisterProjectInputPeriod";
 import { Modal } from "@component/components/common-components/modal";
+import { useGetProjectDetail } from "@component/hooks/useProject";
 
 type PageParams = {
   projectId: number;
 };
 
 export default function RegisterSendback({ params }: { params: PageParams }) {
-  console.log(params.projectId);
-  const projectData: ProjectData = {
-    projectId: 1,
-    title: "팅클(Tincle) - 우리들만의 피드 폐쇄형 SNS 서비스",
-    fields: "예술/대중문화",
-    process: "기획중",
-    username: "철수",
-    userlevel: "1",
-    profileImageUrl: "/assets/profile_img.png",
-    createdAt: "2022-05-05",
-  };
+  const { data, error, isLoading } = useGetProjectDetail(params.projectId);
+  const [projectData, setProjectData] = useState<any>();
+
+  useEffect(() => {
+    if (data) {
+      setProjectData(data.data.data);
+      console.log(data.data.data);
+    }
+  }, [data]);
 
   // title
   const [titleValue, setTitleValue] = useState<string>("");
@@ -105,9 +104,9 @@ export default function RegisterSendback({ params }: { params: PageParams }) {
         {/* 프로젝트 이름 */}
 
         <ProjectSendbackTitleData
-          title={projectData.title}
-          field={projectData.fields}
-          process={projectData.process}
+          title={projectData?.title}
+          field={projectData?.field}
+          process={projectData?.progress}
         />
         {/* sendback title */}
         <RegisterSendbackInputTitle
@@ -115,12 +114,14 @@ export default function RegisterSendback({ params }: { params: PageParams }) {
           onTitleChange={onTitleChange}
         />
         {/* user info */}
-        <ProjectSendbackUserInfo
-          username={projectData.username}
-          userlevel={projectData.userlevel}
-          profileImg={projectData.profileImageUrl}
-          createdAt={projectData.createdAt}
-        />
+        <div className="mt-8">
+          <ProjectSendbackUserInfo
+            username={projectData?.nickname}
+            userlevel={projectData?.userLevel}
+            profileImg={projectData?.profileImageUrl}
+            createdAt={projectData?.createdAt}
+          />
+        </div>
         {/* link */}
         <RegisterSendbackTitle title="피드백 요청 링크" />
         <PurpleInput
