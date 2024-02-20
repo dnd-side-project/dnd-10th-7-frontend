@@ -2,76 +2,81 @@
 
 import SubTitle from "@component/components/common-components/sub-title";
 import { CaptureModal } from "@component/components/feedback/CaptureModal";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import InsertPhotoOutlinedIcon from "@mui/icons-material/InsertPhotoOutlined";
 import Button from "@component/components/common-components/button";
 import ProjectSendbackTitleData from "@component/components/project/ProjectSendbackTitleData";
-import { ProjectData } from "@component/types/Sendback";
 import ProjectSendbackUserInfo from "@component/components/project/ProjectSendbackUserInfo";
+import { useGetFeedbackDetail } from "@component/hooks/useFeedback";
 
 type PageParams = {
   feedbackId: number;
+  projectId: number;
 };
 
 export default function Feedback({ params }: { params: PageParams }) {
-  console.log(params.feedbackId);
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [feedbackData, setFeedbackData] = useState<any>();
 
-  const projectData: ProjectData = {
-    projectId: 1,
-    title: "팅클(Tincle) - 우리들만의 피드 폐쇄형 SNS 서비스",
-    fields: "예술/대중문화",
-    process: "기획중",
-    username: "철수",
-    userlevel: "1",
-    profileImageUrl: "/assets/profile_img.png",
-    createdAt: "2022-05-05",
-  };
+  const { data, error, isLoading } = useGetFeedbackDetail(
+    params.projectId,
+    params.feedbackId
+  );
+
+  useEffect(() => {
+    if (data) {
+      console.log(data.data.data);
+      setFeedbackData(data.data.data);
+    }
+  }, [data]);
+
+  if (error) {
+    console.log(error);
+  }
 
   return (
     <div className="mx-auto w-[1080px] mt-[63px] mb-[650px] flex justify-center">
       <div className="flex flex-col gap-3">
         <ProjectSendbackTitleData
-          title={projectData.title}
-          field={projectData.fields}
-          process={projectData.process}
+          title={feedbackData?.projectTitle}
+          field={feedbackData?.field}
+          process={feedbackData?.progress}
         />
         <span className="pt-[40px] text-head">
-          기획 관련 설문조사를 진행해주세요!
+          {feedbackData?.feedbackTitle}
         </span>
 
         <ProjectSendbackUserInfo
-          username={projectData.username}
-          userlevel={projectData.userlevel}
-          profileImg={projectData.profileImageUrl}
-          createdAt={projectData.createdAt}
+          username={feedbackData?.nickname}
+          userlevel={feedbackData?.userLevel}
+          profileImg={feedbackData?.profileImageUrl}
+          createdAt={feedbackData?.createdAt}
         />
 
         <div className="pt-[50px] flex flex-col gap-[50px]">
           {/* 피드백 요청 링크 */}
           <SubTitle title="피드백 요청 링크" className="w-3/5 max-w-[700px]">
             <div className="flex justify-between bg-purple-main5 items-center px-5 py-2 border border-purple-main1 rounded-full text-body1">
-              <span className="text-gray-80">aiejfasjlfaijelifajsliejf</span>
+              <span className="text-gray-80">{feedbackData?.linkUrl}</span>
               <span
                 className="text-purple-active"
-                onClick={() => window.open("/")}
+                onClick={() => window.open(`${feedbackData?.linkUrl}`)}
               >
                 링크이동
               </span>
             </div>
 
             <span className="font-medium text-body1 mt-6">
-              기획 관련 설문조사 과정에 있습니다. 한번이라도 SNS를 써보신 분이면
-              한 번만 참여 부탁드립니다.
+              {feedbackData?.content}
             </span>
           </SubTitle>
 
           {/* 기간 */}
-          <SubTitle title="기간">2024.01.21 ~ 2024.02.07</SubTitle>
+          <SubTitle title="기간">{feedbackData?.startedAt} ~ {feedbackData?.endedAt}</SubTitle>
 
           <SubTitle title="추가 리워드">
-            추첨을 통해 스타벅스 아메리카노 기프티콘을 드립니다.
+            {feedbackData?.rewardMessage}
           </SubTitle>
         </div>
 

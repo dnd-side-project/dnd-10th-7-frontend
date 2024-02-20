@@ -14,7 +14,7 @@ export const useGetProjectFeedbackDetail = (projectId: number) => {
 export const useGetFeedbackDetail = (projectId: number, feedbackId: number) => {
   const { data, error, isLoading } = useQuery({
     queryKey: ["getFeedBackData", { projectId, feedbackId }],
-    queryFn: () => getProjectFeedback(projectId && feedbackId),
+    queryFn: () => getFeedbackDetail(projectId, feedbackId),
     enabled: Boolean(projectId && feedbackId)
   });
 
