@@ -13,6 +13,7 @@ import { useFeedbackSubmitImg } from "@component/hooks/useFeedback";
 
 export const CaptureModal = (props: ModalViewProps) => {
   const { isOpen, setIsOpen, projectId, feedbackId } = props;
+  const [isErrorOpen, setIsErrorOpen] = useState<boolean>(false);
 
   const [uploadImg, setUploadImg] = useState<File[]>([]);
   const [previewImg, setPreviewImg] = useState<string>("");
@@ -113,6 +114,13 @@ export const CaptureModal = (props: ModalViewProps) => {
       setLevel(data.data.data.level);
     }
   }, [data]);
+
+  useEffect(() => {
+    if (error) {
+      // 피드백을 이미 참여한 경우
+      setIsErrorOpen(true);
+    }
+  }, [error]);
 
   return (
     <>
@@ -219,6 +227,26 @@ export const CaptureModal = (props: ModalViewProps) => {
         isLevelUp={isLevelUp}
         projectId={projectId}
       />
+
+      <Modal
+        open={isErrorOpen}
+        onClose={() => setIsErrorOpen(false)}
+        className="w-[374px]"
+      >
+        <Modal.Title>
+          <div>이미 참여한 피드백입니다.</div>
+        </Modal.Title>
+        <Modal.Footer>
+          <div className="flex space-x-[8px]">
+            <Button
+              onClick={() => setIsErrorOpen(false)}
+              className="min-w-[123px]"
+            >
+              확인
+            </Button>
+          </div>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 };
