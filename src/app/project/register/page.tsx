@@ -84,7 +84,7 @@ export default function RegisterProject() {
 
   // mutation
   const mutation = usePostProjectMutation();
-  const [projectId, setProjectId] = useState<number>(0);
+  const [projectId, setProjectId] = useState<number>();
 
   // submit
   const onSubmit = async () => {
@@ -282,8 +282,7 @@ export default function RegisterProject() {
           <div className="flex space-x-[8px]">
             <Button
               onClick={() => {
-                console.log(projectId);
-                projectId > 0 && router.push(`/project/${projectId}`);
+                router.push(`/project/${projectId}`);
               }}
             >
               등록된 글 확인하기
