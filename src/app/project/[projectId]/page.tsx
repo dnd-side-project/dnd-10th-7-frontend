@@ -25,6 +25,7 @@ export default function ProjectDetailPage({ params }: { params: PageParams }) {
 
   const [projectData, setProjectData] = useState<any>();
   const [projectFeedbackData, setProjectFeedbackData] = useState<any>();
+  const [isAuthor, setIsAuthor] = useState<boolean>(false);
 
   // if (isLoading) {
   //   // TODO: 스켈레톤 코드
@@ -38,6 +39,7 @@ export default function ProjectDetailPage({ params }: { params: PageParams }) {
 
     if (feedbackData) {
       setProjectFeedbackData(feedbackData?.data?.data?.feedbacks);
+      setIsAuthor(feedbackData?.data?.data.isAuthor);
     }
 
     // 좋아요, 스크랩 업데이트
@@ -191,6 +193,7 @@ export default function ProjectDetailPage({ params }: { params: PageParams }) {
           <ProjectDetailFeedBackRequest
             projectFeedbackData={projectFeedbackData}
             projectId={params.projectId}
+            isAuthor={isAuthor}
           />
         </div>
       </section>

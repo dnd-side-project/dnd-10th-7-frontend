@@ -1,12 +1,12 @@
 import Button from "@component/components/common-components/button/Button";
 import { useRouter } from "next/navigation";
 
-const ProjectDetailFeedBackRequest = ({ projectFeedbackData, projectId }: any) => {
+const ProjectDetailFeedBackRequest = ({
+  projectFeedbackData,
+  projectId,
+  isAuthor,
+}: any) => {
   const router = useRouter();
-  const myProject: boolean | undefined =
-    projectFeedbackData && projectFeedbackData.length > 0
-      ? projectFeedbackData[0]?.isAuthor
-      : undefined;
   return (
     <>
       {projectFeedbackData &&
@@ -47,10 +47,13 @@ const ProjectDetailFeedBackRequest = ({ projectFeedbackData, projectId }: any) =
         ))}
 
       {/* if my project */}
-      {/* 현재 등록한 피드백이 0개이면 확인할 수 없음 */}
-      {myProject && (
+      {isAuthor && (
         <div className="flex justify-end">
-          <Button onClick={() => router.push(`/${projectId}/sendback/register`)}>피드백 요청 글 작성하기</Button>
+          <Button
+            onClick={() => router.push(`/${projectId}/sendback/register`)}
+          >
+            피드백 요청 글 작성하기
+          </Button>
         </div>
       )}
     </>
