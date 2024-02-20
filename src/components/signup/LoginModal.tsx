@@ -11,6 +11,9 @@ export type ModalViewProps = {
   title?: string;
   projectId?: number;
   feedbackId?: number;
+  level?: string;
+  feedbackCount?: number;
+  isLevelUp?: boolean;
 };
 
 export default function LoginModal(props: ModalViewProps) {
