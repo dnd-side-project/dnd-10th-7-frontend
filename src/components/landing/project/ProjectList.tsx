@@ -3,11 +3,14 @@
 import Title from "@component/components/common-components/title";
 import { Categories } from "./Categories";
 import PurpleInput from "@component/components/common-components/input/PurPleInput";
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { ProjectTab } from "./ProjectTab";
 import { useProjectList } from "@component/hooks/useProject";
-import { useSearchParams } from "next/navigation";
-import { NextRouter, useRouter } from "next/router";
+import { useRouter, useSearchParams } from "next/navigation";
+import { ProjectItemProps } from "@component/types/Project";
+import { NextRouter } from "next/router";
+import Link from "next/link";
+// import { NextRouter, useRouter } from "next/router";
 
 export const ProjectList = () => {
   const [keyword, setKeyword] = useState<string>("");
@@ -15,143 +18,75 @@ export const ProjectList = () => {
 
   const searchParams = useSearchParams();
 
-  // router 객체에 대한 타입 정의
-  interface RouterWithQuery extends NextRouter {
-    query: {
-      keyword?: string;
-      field?: string;
-      page?: string;
-      // 추가적으로 필요한 쿼리 파라미터가 있다면 여기에 정의
-    };
-  }
-
-  // 타입 어서션을 사용하여 router의 타입을 지정
-  const typedRouter = router as RouterWithQuery;
-
-  // 나머지 코드는 이전과 동일하게 유지
-  const pageKeyword = useMemo(
-    () => typedRouter.query.keyword ?? "",
-    [typedRouter.query.keyword]
+  const createQueryString = useCallback(
+    (name: any, value: any) => {
+      const params = new URLSearchParams(searchParams);
+      params.set(name, value);
+      return params.toString();
+    },
+    [searchParams]
   );
-
-  const pageField = useMemo(
-    () => `${typedRouter.query.field ?? ""}`,
-    [typedRouter.query.field]
-  );
-
-  const pageIndex = useMemo(
-    () => `${typedRouter.query.page ?? 1}`,
-    [typedRouter.query.page]
-  );
-
-  // const pageKeyword = useMemo(
-  //   () => router.query.keyword?.toString() ?? "",
-  //   [router.query.keyword]
-  // );
-
-  // const pageField = useMemo(
-  //   () => `${router.query.field ?? ""}`,
-  //   [router.query.field]
-  // );
-
-  // const pageIndex = useMemo(
-  //   () => `${router.query.page ?? 1}`,
-  //   [router.query.page]
-  // );
 
   const handleChange = (e: any) => {
     setKeyword(e.target.value);
   };
 
-  const {
-    data: projectListData,
-    isLoading,
-    isPlaceholderData,
-  } = useProjectList({
-    keyword: pageKeyword,
-    field: pageField,
+  const { data: projectListData, isLoading } = useProjectList({
+    keyword: keyword,
+    // field: pageField,
     // page:pageIndex,
-    size: 5,
+    // size: 5,
     // sort:
     // isFinished:
   });
 
-  useEffect(() => {
-    console.log("didi", projectListData);
-  }, []);
-
   // 선택된 카테고리 ID를 저장할 상태
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  // const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
-  // 카테고리 선택 시 호출될 콜백 함수
-  const handleCategoryClick = (category: string) => {
-    setSelectedCategory(category); // 선택된 카테고리 ID 저장
-    // 페이지를 0으로 설정하고, 선택된 카테고리 ID를 쿼리 파라미터로 설정하여 API를 호출
-    router.replace(
-      { query: { ...router.query, page: 0, field: category.toString() } },
-      undefined,
-      { shallow: true }
-    );
-  };
+  // // 카테고리 선택 시 호출될 콜백 함수
+  // const handleCategoryClick = (category: string) => {
+  //   setSelectedCategory(category); // 선택된 카테고리 ID 저장
+  //   // 페이지를 0으로 설정하고, 선택된 카테고리 ID를 쿼리 파라미터로 설정하여 API를 호출
+  //   router.replace(
+  //     { query: { ...router.query, page: 0, field: category.toString() } },
+  //     undefined,
+  //     { shallow: true }
+  //   );
+  // };
 
-  // {
-  //   "code" : 200,
-  //   "data" : {
-  //     "page" : 1,
-  //     "size" : 5,
-  //     "totalElements" : 100,
-  //     "totalPages" : 10,
-  //     "content" : [ {
-  //       "nickname" : "닉네임",
-  //       "profileImageUrl" : "프로필 이미지",
-  //       "projectId" : 1,
-  //       "title" : "제목",
-  //       "summary" : "한 줄 요약",
-  //       "progress" : "리팩토링중",
-  //       "field" : "예술/대중문화",
-  //       "createdAt" : "2024.02.20",
-  //       "pullUpCount" : 1,
-  //       "likeCount" : 2,
-  //       "commentCount" : 3,
-  //       "isScrapped" : true
-  //     } ]
-  //   },
-  //   "message" : "성공"
-  //
+  const projectList = useMemo(
+    () =>
+      projectListData?.data?.content.map(
+        (item: ProjectItemProps) =>
+          ({
+            commentCount: item.commentCount,
+            createdAt: item.createdAt,
+            field: item.field,
+            isScrapped: item.isScrapped,
+            likeCount: item.likeCount,
+            nickname: item.nickname,
+            profileImageUrl: item.profileImageUrl,
+            progress: item.progress,
+            projectId: item.projectId,
+            title: item.title,
+            summary: item.summary,
+            pullUpCount: item.pullUpCount,
+          }) as ProjectItemProps
+      ) ?? [],
+    [projectListData?.data]
+  );
 
-  // const projectList = useMemo(
-  //   () =>
-  //     projectListData?.data?.map((item) => ({
-  //       nickname: item.nickname,
-  //       projectImageUrl: item.projectImageUrl,
-  //       projectDivNm: item.projectDivNm,
-  //       projectId: item.projectId,
-  //       title: item.title,
-  //       summary: item.summary,
-  //       progress: item.progress,
-  //       field: item.field,
-  //       createdAt: item.createdAt,
-  //       pullUpCount: item.pullUpCount,
-  //       likeCount: item.likeCount,
-  //       commentCount: item.commentCount,
-  //       isScrapped: item.isScrapped,
-  //     })) ?? [],
-  //   [projectListData?.data]
-  // );
+  console.log("project-list", projectList);
 
-  const updateQueryKeyword = (keyword: string) => {
-    return router.replace(
-      { query: { ...router.query, page: 0, keyword } },
-      undefined,
-      { shallow: true }
-    );
+  const searchKeyword = (keyword: string) => {
+    router.push(`/?${createQueryString("keyword", keyword)}`);
   };
 
   return (
     <div className="flex flex-col">
       <Title>프로젝트 전체보기</Title>
       <PurpleInput
-        defaultValue={pageKeyword}
+        defaultValue={keyword}
         onChange={handleChange}
         placeholder="관심있는 키워드로 프로젝트를 찾아보세요!"
         shape="smallRounded"
@@ -162,21 +97,22 @@ export const ProjectList = () => {
         search={true}
         onKeyDown={(e) => {
           const { value } = e.currentTarget;
+
           if (e.key === "Enter") {
-            updateQueryKeyword(value);
+            searchKeyword(value);
           }
         }}
       />
       <div className="pt-[32px] flex">
-        <Categories
+        {/* <Categories
           currentMenu={selectedCategory} // 선택된 카테고리 name 전달
           onMenuClick={handleCategoryClick} // 카테고리 클릭 시 호출될 콜백 함수 설정
           isLoading={isLoading}
           // onMenuClick={(menu) => {
           //   router.replace({ query: { ...router.query, page: 0, field: menu.id } }, undefined, { shallow: true });
           // }}
-        />
-        <ProjectTab />
+        /> */}
+        <ProjectTab data={projectList} />
       </div>
     </div>
   );

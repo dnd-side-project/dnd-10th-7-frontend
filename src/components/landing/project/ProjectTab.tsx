@@ -1,11 +1,17 @@
 "use client";
 
 import { Box, Tab, Tabs } from "@mui/material";
-import React, { useState } from "react";
+import React, { use, useCallback, useEffect, useMemo, useState } from "react";
 import ProjectItem from "./ProjectItem";
 import { LinkedCamera } from "@mui/icons-material";
 import { TagProps } from "@component/components/common-components/tag";
 import clsx from "clsx";
+import { ProjectItemProps } from "@component/types/Project";
+import { useRouter, useSearchParams } from "next/navigation";
+import { NextRouter } from "next/router";
+import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
+import Pagination from "@component/components/common-components/pagination";
+import { useProjectList } from "@component/hooks/useProject";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -40,47 +46,35 @@ export function CustomTabPanel(props: TabPanelProps) {
   );
 }
 
-export const dummyData = [
-  {
-    type: "환경",
-    status: "기획중",
-    title: "아아아아아아앙",
-    subTitle: "서브서브서브서브서",
-    user: "chaemin",
-    //   profileImg:string;
-    createdDate: "2020.02.02",
-    pullUpCount: 20,
-    likeCount: 28,
-    commentCount: 12,
-  },
-  {
-    type: "환경",
-    status: "기획중",
-    title: "아아아아아아앙",
-    subTitle: "서브서브서브서브서",
-    user: "chaemin",
-    //   profileImg:string;
-    createdDate: "2020.02.02",
-    pullUpCount: 20,
-    likeCount: 28,
-    commentCount: 12,
-  },
-  {
-    type: "환경",
-    status: "기획중",
-    title: "아아아아아아앙",
-    subTitle: "서브서브서브서브서",
-    user: "chaemin",
-    //   profileImg:string;
-    createdDate: "2020.02.02",
-    pullUpCount: 20,
-    likeCount: 28,
-    commentCount: 12,
-  },
-];
+export type ProjectTabProps = {
+  data: ProjectItemProps[];
+};
 
-export const ProjectTab = () => {
+export const ProjectTab = ({ data }: ProjectTabProps) => {
   const [tab, setTab] = useState(0);
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  // // router 객체에 대한 타입 정의
+  // interface RouterWithQuery extends AppRouterInstance {
+  //   query: {
+  //     keyword?: string;
+  //     field?: string;
+  //     page?: string;
+  //     sort?: number;
+  //     isFinished?: boolean;
+  //     // 추가적으로 필요한 쿼리 파라미터가 있다면 여기에 정의
+  //   };
+  // }
+
+  // // // 타입 어서션을 사용하여 router의 타입을 지정
+  // const typedRouter = router as RouterWithQuery;
+
+  // // // 나머지 코드는 이전과 동일하게 유지
+  // const pageIsFinished = useMemo(
+  //   () => typedRouter.query.isFinished ?? "",
+  //   [typedRouter.query.isFinished]
+  // );
 
   // 정렬 - 0은 최신순, 1은 인기순
   const [sort, setSort] = useState(0);
@@ -89,9 +83,36 @@ export const ProjectTab = () => {
     setTab(newValue);
   };
 
+  const createQueryString = useCallback(
+    (name: any, value: any) => {
+      const params = new URLSearchParams(searchParams);
+      params.set(name, value);
+      return params.toString();
+    },
+    [searchParams]
+  );
+
   const handleSorting = (sortingType: number) => {
     setSort(sortingType);
+    if (sort === 0) router.push(`?${createQueryString("sort", sort)}`);
+    if (sortingType === 1) router.push(`?${createQueryString("sort", 1)}`);
   };
+
+  // const handleSorting = (sortingType: number) => {
+  //   setSort(sortingType);
+  //   if(sortingType===0) {
+
+  //   }
+  // };
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const { data: projectListData, isLoading } = useProjectList({
+    // field: pageField,
+    page: currentPage,
+    // size: 5,
+    sort: sort,
+    // isFinished:
+  });
 
   return (
     <Box sx={{ width: "100%" }}>
@@ -109,11 +130,25 @@ export const ProjectTab = () => {
             label="피드백 중인 프로젝트"
             {...a11yProps(0)}
             sx={{ fontSize: "18px" }}
+            // onClick={() => {
+            //   router.replace(
+            //     { query: { ...typedRouter.query, page: 0, isFinished: false } },
+            //     undefined,
+            //     { shallow: true }
+            //   );
+            // }}
           />
           <Tab
             label="완료된 프로젝트"
             {...a11yProps(1)}
             sx={{ fontSize: "18px" }}
+            // onClick={() => {
+            //   router.replace(
+            //     { query: { ...router.query, page: 0, isFinished: true } },
+            //     undefined,
+            //     { shallow: true }
+            //   );
+            // }}
           />
         </Tabs>
         <div className="flex gap-[20px] pr-2">
@@ -156,38 +191,50 @@ export const ProjectTab = () => {
         </div>
       </Box>
       <CustomTabPanel value={tab} index={0}>
-        {dummyData.map((item, idx) => {
+        {data.map((item, idx) => {
           return (
             <div key={idx}>
               <ProjectItem
-                type={item.type as TagProps["type"]}
-                status={item.status as TagProps["status"]}
+                field={item.field}
+                progress={item.progress}
                 title={item.title}
-                subTitle={item.subTitle}
-                user={item.user}
-                createdDate={item.createdDate}
+                summary={item.summary}
+                nickname={item.nickname}
+                createdAt={item.createdAt}
                 pullUpCount={item.pullUpCount}
                 likeCount={item.likeCount}
                 commentCount={item.commentCount}
+                isScrapped={item.isScrapped}
+                projectId={item.projectId}
+                profileImageUrl={item.profileImageUrl}
               />
             </div>
           );
         })}
+        <Pagination
+          totalElement={projectListData?.totalElement}
+          pageCount={5}
+          currentPage={currentPage}
+          limit={5}
+        />
       </CustomTabPanel>
       <CustomTabPanel value={tab} index={1}>
-        {dummyData.map((item, idx) => {
+        {data.map((item, idx) => {
           return (
             <div key={idx}>
               <ProjectItem
-                type={item.type as TagProps["type"]}
-                status={item.status as TagProps["status"]}
+                field={item.field}
+                progress={item.progress}
                 title={item.title}
-                subTitle={item.subTitle}
-                user={item.user}
-                createdDate={item.createdDate}
+                summary={item.summary}
+                nickname={item.nickname}
+                createdAt={item.createdAt}
                 pullUpCount={item.pullUpCount}
                 likeCount={item.likeCount}
                 commentCount={item.commentCount}
+                isScrapped={item.isScrapped}
+                projectId={item.projectId}
+                profileImageUrl={item.profileImageUrl}
               />
             </div>
           );
