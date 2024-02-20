@@ -5,3 +5,10 @@ export const getProjectFeedback = async (projectId: number) => {
   const res = await authApi().get(`/api/projects/${projectId}/feedbacks`);
   return res;
 };
+
+// 피드백 상세 조회
+export const getFeedbackDetail = async (projectId: number, feedbackId: number) => {
+  const res = await authApi().get(`/api/projects/${projectId}/feedbacks/${feedbackId}`);
+  return res;
+};
+

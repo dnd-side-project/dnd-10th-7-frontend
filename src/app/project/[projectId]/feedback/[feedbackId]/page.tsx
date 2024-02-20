@@ -38,7 +38,6 @@ export default function Feedback({ params }: { params: PageParams }) {
           process={projectData.process}
         />
         <span className="pt-[40px] text-head">
-          {/* TODO : API reponse 보고 데이터 받는 구조 다시 수정 */}
           기획 관련 설문조사를 진행해주세요!
         </span>
 
