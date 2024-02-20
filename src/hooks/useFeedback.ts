@@ -2,6 +2,7 @@ import {
   getProjectFeedback,
   getFeedbackDetail,
   postFeedbackDoneImg,
+  registerFeedback,
 } from "@component/api/feedbackAPI";
 import { useQuery, useMutation } from "@tanstack/react-query";
 
@@ -29,7 +30,11 @@ export const useGetFeedbackDetail = (projectId: number, feedbackId: number) => {
   return { data, error, isLoading };
 };
 
-export const useFeedbackSubmitImg = (projectId: any, feedbackId: any, img: File) => {
+export const useFeedbackSubmitImg = (
+  projectId: any,
+  feedbackId: any,
+  img: File
+) => {
   const { data, error, isPending, mutate } = useMutation({
     mutationFn: () => postFeedbackDoneImg(projectId, feedbackId, img),
     onSuccess: (res) => {
@@ -40,4 +45,35 @@ export const useFeedbackSubmitImg = (projectId: any, feedbackId: any, img: File)
     },
   });
   return { mutate, isPending, data, error };
+};
+
+export const useFeedbackSubmit = (
+  projectId: number,
+  titleValue: string,
+  linkValue: string,
+  contentValue: string,
+  awardValue: string,
+  startDate: string,
+  endDate: string
+) => {
+  const { data: registerData, error, isPending, mutate } = useMutation({
+    mutationFn: () =>
+      registerFeedback(
+        projectId,
+        titleValue,
+        linkValue,
+        contentValue,
+        awardValue,
+        startDate,
+        endDate
+      ),
+    onSuccess: (res) => {
+      console.log("Feedback submitted successfully", res);
+    },
+    onError: (err: any) => {
+      console.error("Error submitting feedback", err);
+    },
+  });
+
+  return { mutate, isPending, registerData, error };
 };

@@ -55,8 +55,8 @@ export const useScrapMutation = (projectId: number) => {
   const {
     data,
     error,
-    isPending: isScrapPending,
-    mutate: isScrapMutate,
+    isPending,
+    mutate
   } = useMutation({
     mutationFn: () => putProjectScrap(projectId),
     onSuccess: (res) => {
@@ -66,5 +66,5 @@ export const useScrapMutation = (projectId: number) => {
       console.log(err);
     },
   });
-  return { isScrapMutate, isScrapPending };
+  return { mutate };
 };

@@ -1,7 +1,6 @@
 "use client";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, use } from "react";
 import ProjectSendbackTitleData from "../../../../components/project/ProjectSendbackTitleData";
-import { ProjectData } from "@component/types/Sendback";
 import RegisterSendbackInputTitle from "./RegisterSendbackInputTitle";
 import ProjectSendbackUserInfo from "../../../../components/project/ProjectSendbackUserInfo";
 import RegisterSendbackTitle from "./RegisterSendbackTitle";
@@ -11,6 +10,8 @@ import Button from "@component/components/common-components/button/Button";
 import RegisterProjectInputPeriod from "@component/app/project/register/RegisterProjectInputPeriod";
 import { Modal } from "@component/components/common-components/modal";
 import { useGetProjectDetail } from "@component/hooks/useProject";
+import { useFeedbackSubmit } from "@component/hooks/useFeedback";
+import { useRouter } from "next/navigation";
 
 type PageParams = {
   projectId: number;
@@ -70,12 +71,28 @@ export default function RegisterSendback({ params }: { params: PageParams }) {
     setAwardValue(event.target.value);
   };
 
+  const { mutate, registerData } = useFeedbackSubmit(
+    params.projectId,
+    titleValue,
+    linkValue,
+    contentValue,
+    awardValue,
+    startDate,
+    endDate
+  );
+
   const onSubmit = () => {
-    if (linkValue.length === 0 || contentValue.length === 0) {
+    if (
+      titleValue.length === 0 ||
+      linkValue.length === 0 ||
+      contentValue.length === 0 ||
+      startDate === "" ||
+      endDate === ""
+    ) {
       setIsEssentailOpen(true);
     } else {
-      // TODO: api 로직 추가
-      setIsSubmitOpen(true);
+      // 제출
+      mutate();
     }
 
     // focus
@@ -88,6 +105,17 @@ export default function RegisterSendback({ params }: { params: PageParams }) {
     setSubmitClicked(true);
   };
 
+  // feedback ID
+  const [feedbackId, setFeedbackId] = useState<number>();
+
+  // submit success
+  useEffect(() => {
+    if (registerData) {
+      setIsSubmitOpen(true);
+      setFeedbackId(registerData?.data.data.feedbackId);
+    }
+  }, [registerData]);
+
   // Invalid
   const linkInvalid = submitClicked && linkValue.length === 0;
   const contentInvalid = submitClicked && contentValue.length === 0;
@@ -97,6 +125,8 @@ export default function RegisterSendback({ params }: { params: PageParams }) {
       focus();
     }
   }, [submitClicked]);
+
+  const router = useRouter();
 
   return (
     <div className="w-[1440px] flex flex-col items-center">
@@ -239,7 +269,15 @@ export default function RegisterSendback({ params }: { params: PageParams }) {
         <Modal.Footer>
           <div className="flex space-x-[8px]">
             {/* TODO: 등록된 글 확인하러 가기 router 추가 */}
-            <Button>등록된 글 확인하기</Button>
+            <Button
+              onClick={() => {
+                router.push(
+                  `/project/${params.projectId}/feedback/${feedbackId}`
+                );
+              }}
+            >
+              등록된 글 확인하기
+            </Button>
           </div>
         </Modal.Footer>
       </Modal>
