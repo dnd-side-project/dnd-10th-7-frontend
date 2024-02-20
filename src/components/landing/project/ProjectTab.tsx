@@ -94,7 +94,7 @@ export const ProjectTab = ({ data }: ProjectTabProps) => {
 
   const handleSorting = (sortingType: number) => {
     setSort(sortingType);
-    if (sort === 0) router.push(`?${createQueryString("sort", sort)}`);
+    if (sortingType === 0) router.push(`?${createQueryString("sort", 0)}`);
     if (sortingType === 1) router.push(`?${createQueryString("sort", 1)}`);
   };
 
@@ -105,14 +105,23 @@ export const ProjectTab = ({ data }: ProjectTabProps) => {
   //   }
   // };
   const [currentPage, setCurrentPage] = useState(1);
+  const [isFinished, setIsFinished] = useState<boolean>(false);
 
   const { data: projectListData, isLoading } = useProjectList({
     // field: pageField,
     page: currentPage,
     // size: 5,
     sort: sort,
-    // isFinished:
+    isFinished: isFinished,
   });
+
+  // console.log("what", isFinished);
+  // console.log("isFinished", projectListData);
+
+  useEffect(() => {
+    if (tab === 0) setIsFinished(false);
+    if (tab === 1) setIsFinished(true);
+  }, [tab, sort]);
 
   return (
     <Box sx={{ width: "100%" }}>
@@ -130,25 +139,18 @@ export const ProjectTab = ({ data }: ProjectTabProps) => {
             label="피드백 중인 프로젝트"
             {...a11yProps(0)}
             sx={{ fontSize: "18px" }}
-            // onClick={() => {
-            //   router.replace(
-            //     { query: { ...typedRouter.query, page: 0, isFinished: false } },
-            //     undefined,
-            //     { shallow: true }
-            //   );
-            // }}
+            onClick={() => {
+              setIsFinished(true);
+              router.push(`/?${createQueryString("isFinished", false)}`);
+            }}
           />
           <Tab
             label="완료된 프로젝트"
             {...a11yProps(1)}
             sx={{ fontSize: "18px" }}
-            // onClick={() => {
-            //   router.replace(
-            //     { query: { ...router.query, page: 0, isFinished: true } },
-            //     undefined,
-            //     { shallow: true }
-            //   );
-            // }}
+            onClick={() => {
+              router.push(`/?${createQueryString("isFinished", true)}`);
+            }}
           />
         </Tabs>
         <div className="flex gap-[20px] pr-2">
