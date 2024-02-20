@@ -80,11 +80,78 @@ export const ProjectList = () => {
     console.log("didi", projectListData);
   }, []);
 
+  // 선택된 카테고리 ID를 저장할 상태
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+
+  // 카테고리 선택 시 호출될 콜백 함수
+  const handleCategoryClick = (category: string) => {
+    setSelectedCategory(category); // 선택된 카테고리 ID 저장
+    // 페이지를 0으로 설정하고, 선택된 카테고리 ID를 쿼리 파라미터로 설정하여 API를 호출
+    router.replace(
+      { query: { ...router.query, page: 0, field: category.toString() } },
+      undefined,
+      { shallow: true }
+    );
+  };
+
+  // {
+  //   "code" : 200,
+  //   "data" : {
+  //     "page" : 1,
+  //     "size" : 5,
+  //     "totalElements" : 100,
+  //     "totalPages" : 10,
+  //     "content" : [ {
+  //       "nickname" : "닉네임",
+  //       "profileImageUrl" : "프로필 이미지",
+  //       "projectId" : 1,
+  //       "title" : "제목",
+  //       "summary" : "한 줄 요약",
+  //       "progress" : "리팩토링중",
+  //       "field" : "예술/대중문화",
+  //       "createdAt" : "2024.02.20",
+  //       "pullUpCount" : 1,
+  //       "likeCount" : 2,
+  //       "commentCount" : 3,
+  //       "isScrapped" : true
+  //     } ]
+  //   },
+  //   "message" : "성공"
+  //
+
+  // const projectList = useMemo(
+  //   () =>
+  //     projectListData?.data?.map((item) => ({
+  //       nickname: item.nickname,
+  //       projectImageUrl: item.projectImageUrl,
+  //       projectDivNm: item.projectDivNm,
+  //       projectId: item.projectId,
+  //       title: item.title,
+  //       summary: item.summary,
+  //       progress: item.progress,
+  //       field: item.field,
+  //       createdAt: item.createdAt,
+  //       pullUpCount: item.pullUpCount,
+  //       likeCount: item.likeCount,
+  //       commentCount: item.commentCount,
+  //       isScrapped: item.isScrapped,
+  //     })) ?? [],
+  //   [projectListData?.data]
+  // );
+
+  const updateQueryKeyword = (keyword: string) => {
+    return router.replace(
+      { query: { ...router.query, page: 0, keyword } },
+      undefined,
+      { shallow: true }
+    );
+  };
+
   return (
     <div className="flex flex-col">
       <Title>프로젝트 전체보기</Title>
       <PurpleInput
-        value={keyword}
+        defaultValue={pageKeyword}
         onChange={handleChange}
         placeholder="관심있는 키워드로 프로젝트를 찾아보세요!"
         shape="smallRounded"
@@ -93,9 +160,22 @@ export const ProjectList = () => {
         borderSize="md"
         backgroundColors="white"
         search={true}
+        onKeyDown={(e) => {
+          const { value } = e.currentTarget;
+          if (e.key === "Enter") {
+            updateQueryKeyword(value);
+          }
+        }}
       />
       <div className="pt-[32px] flex">
-        <Categories />
+        <Categories
+          currentMenu={selectedCategory} // 선택된 카테고리 name 전달
+          onMenuClick={handleCategoryClick} // 카테고리 클릭 시 호출될 콜백 함수 설정
+          isLoading={isLoading}
+          // onMenuClick={(menu) => {
+          //   router.replace({ query: { ...router.query, page: 0, field: menu.id } }, undefined, { shallow: true });
+          // }}
+        />
         <ProjectTab />
       </div>
     </div>
