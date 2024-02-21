@@ -55,12 +55,6 @@ const DropdownBox = ({
     }
   };
 
-  useEffect(() => {
-    if (pullUpOpen) {
-      document.body.style.cssText = "overflow:visible;";
-    }
-  }, [pullUpOpen]);
-
   return (
     <div
       className={clsx(style.base, className)}
