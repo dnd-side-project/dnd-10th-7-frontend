@@ -99,7 +99,7 @@ export const usePullUpMutation = (projectId: any) => {
     isPending,
     mutate: pullUpMutate,
   } = useMutation({
-    mutationFn: () => deleteProject(projectId),
+    mutationFn: () => pullProjectUp(projectId),
     onSuccess: (res) => {
       console.log("끌올 성공", res);
     },
