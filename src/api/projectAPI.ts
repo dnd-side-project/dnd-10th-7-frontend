@@ -58,6 +58,14 @@ export const getProject = async (projectId: number) => {
   return res;
 };
 
+// 추천 프로젝트 조회
+export const getProjectRecommend = async () => {
+  const res = await authApi().get(
+    `/api/projects/recommend`
+  );
+  return res;
+};
+
 // 좋아요
 export const putProjectLike = async (projectId: number) => {
   const res = await authApi({ "Content-Type": "application/x-www-form-urlencoded" }).put(
