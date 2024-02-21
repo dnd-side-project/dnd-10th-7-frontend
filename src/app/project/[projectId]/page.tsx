@@ -13,6 +13,7 @@ import TeamMemberInfo from "./ProjectDetailTeamMemberInfo";
 import { useGetProjectDetail } from "@component/hooks/useProject";
 import { useGetProjectFeedbackDetail } from "@component/hooks/useFeedback";
 import { useLikeMutation, useScrapMutation } from "@component/hooks/useProject";
+import CommentBox from "@component/components/comment/CommentBox";
 
 type PageParams = {
   projectId: number;
@@ -182,6 +183,11 @@ export default function ProjectDetailPage({ params }: { params: PageParams }) {
               <BookmarkIcon className="me-2" />
               <span className="text-body1 font-medium">{scrappedCount}</span>
             </Button>
+          </div>
+
+          {/* 댓글 */}
+          <div className="border border-red-500 mt-[72px]">
+            <CommentBox projectId={params.projectId} />
           </div>
         </div>
 

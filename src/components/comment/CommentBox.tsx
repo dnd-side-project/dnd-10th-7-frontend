@@ -4,16 +4,12 @@ import { CommentItem } from "./CommentItem";
 import { useMemo } from "react";
 import { ProjectCommentType } from "@component/types/Project";
 
-type PageParams = {
-  projectId: number;
-};
-
-export default function CommentBox({ params }: { params: PageParams }) {
+export default function CommentBox({ projectId }: { projectId: number }) {
   const {
     data: commentData,
     error,
     isLoading,
-  } = useGetProjectComment(params.projectId);
+  } = useGetProjectComment(projectId);
 
   const commentList = useMemo(
     () =>
@@ -40,8 +36,8 @@ export default function CommentBox({ params }: { params: PageParams }) {
         <p className="text-title">댓글</p>
         <p className="text-h2 text-gray-60">32</p>
       </div>
-      <CommentInput projectId={params.projectId} />
-      <CommentItem data={commentList} projectId={params.projectId} />
+      <CommentInput projectId={projectId} />
+      <CommentItem data={commentList} projectId={projectId} />
     </div>
   );
 }

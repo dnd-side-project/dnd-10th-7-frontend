@@ -69,15 +69,13 @@ export const CommentInput = ({ projectId }: Props) => {
   const profileImageUrl = localStorage.getItem("profileImageUrl");
 
   return (
-    <div className="w-full max-w-[800px] ">
-      <div className="flex gap-[23px] items-center">
-        <div className="h-[48px] w-[48px] rounded-full bg-gray-40" />
+    <div className="w-full ">
+      <div className="flex gap-[23px] items-start">
+        {/* <div className="h-[48px] w-[48px] rounded-full bg-gray-40" /> */}
         <Image
           src={profileImageUrl ?? ""}
           alt="프로필 이미지"
-          width={20}
-          height={20}
-          className="w-[20px] h-[20px] rounded-full me-[10px]"
+          className="w-[48px] h-[48px] rounded-full bg-gray-40"
         />
 
         <PurpleTextarea
