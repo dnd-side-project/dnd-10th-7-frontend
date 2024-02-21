@@ -60,16 +60,49 @@ export const getProject = async (projectId: number) => {
 
 // 좋아요
 export const putProjectLike = async (projectId: number) => {
-  const res = await authApi({ "Content-Type": "application/x-www-form-urlencoded" }).put(
-    `/api/projects/${projectId}/like`
-  );
+  const res = await authApi({
+    "Content-Type": "application/x-www-form-urlencoded",
+  }).put(`/api/projects/${projectId}/like`);
   return res;
 };
 
 // 스크랩
 export const putProjectScrap = async (projectId: number) => {
-  const res = await authApi({ "Content-Type": "application/x-www-form-urlencoded" }).put(
-    `/api/projects/${projectId}/scrap`
+  const res = await authApi({
+    "Content-Type": "application/x-www-form-urlencoded",
+  }).put(`/api/projects/${projectId}/scrap`);
+  return res;
+};
+
+// 댓글 조회
+export const getProjectComment = async (projectId: number) => {
+  const res = await authApi({ "Content-Type": "application/json" }).get(
+    `/api/projects/${projectId}/comments`
+  );
+  return res;
+};
+
+// 댓글 등록
+export const postProjectComment = async (
+  projectId: number,
+  content: string
+) => {
+  const res = await authApi({ "Content-Type": "application/json" }).post(
+    `/api/projects/${projectId}/comments`,
+    {
+      content: content,
+    }
+  );
+  return res;
+};
+
+// 댓글 삭제
+export const deleteProjectComment = async (
+  projectId: number,
+  commentId: number
+) => {
+  const res = await authApi({ "Content-Type": "application/json" }).delete(
+    `/api/projects/${projectId}/comments/${commentId}`
   );
   return res;
 };
