@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { DropdownBoxPlace, DropdownBoxProps } from "./DropdownBox.types";
 import clsx from "clsx";
 import { useRouter } from "next/navigation";
@@ -25,6 +25,7 @@ const DropdownBox = ({
   place,
   className,
   projectId,
+  setIsOpen,
 }: DropdownBoxProps) => {
   const [hoverMenu, setHoverMenu] = useState<string | null>(null);
   const router = useRouter();
@@ -35,7 +36,10 @@ const DropdownBox = ({
   const { pullUpMutate } = usePullUpMutation(projectId);
 
   const onClick = (item: string) => {
-    if (item === "마이페이지") router.push("/mypage");
+    if (item === "마이페이지") {
+      router.push("/mypage");
+      setIsOpen(false);
+    }
     if (item === "로그아웃") {
       sessionStorage.removeItem("accessToken");
       sessionStorage.removeItem("refreshToken");
@@ -44,12 +48,21 @@ const DropdownBox = ({
     }
     if (item === "수정하기") router.push(`/project/edit/${projectId}`);
     if (item === "삭제하기") {
-      setDeleteOpen(true);
+      setIsOpen(false);
+
+      setTimeout(() => {
+        setDeleteOpen(true);
+      }, 1000);
     }
     if (item === "끌올하기") {
-      setpullUpOpen(true)
+      setpullUpOpen(true);
     }
   };
+
+  useEffect(() => {
+    if (pullUpOpen) {
+      document.body.style.cssText='overflow:visible;';}
+  }, [pullUpOpen])
 
   return (
     <div
@@ -57,6 +70,7 @@ const DropdownBox = ({
       style={{
         boxShadow: "0 4px 20px rgba(0, 0, 0, 0.2)",
       }}
+      onBlur={() => setIsOpen(false)}
     >
       {items.map((item, idx) => (
         <div

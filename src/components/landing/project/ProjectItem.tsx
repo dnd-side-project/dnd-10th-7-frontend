@@ -44,7 +44,7 @@ export default function ProjectItem({
         <div className="flex items-center justify-between">
           <Tag type={type} status={status} />
           {moreBtn && (
-            <>
+            <div className="relative">
               <MoreVertIcon
                 onClick={() => setIsOpen((prev) => !prev)}
                 className="mr-[20px] fill-gray-80 cursor-pointer"
@@ -53,11 +53,12 @@ export default function ProjectItem({
                 <DropdownBox
                   items={["끌올하기", "수정하기", "삭제하기"]}
                   place="left"
-                  className=""
+                  className="absolute right-5"
                   projectId={projectId}
+                  setIsOpen={setIsOpen}
                 />
               )}
-            </>
+            </div>
           )}
         </div>
         <div className="flex justify-between items-center">

@@ -5,6 +5,7 @@ export type DropdownBoxProps = {
   place: DropdownBoxPlace;
   className?: string;
   projectId?: number;
+  setIsOpen: Dispatch<SetStateAction<boolean>>;
 };
 
 export const dropdownBoxPlaces = {

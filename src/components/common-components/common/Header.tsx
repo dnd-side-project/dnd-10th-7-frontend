@@ -66,7 +66,11 @@ export const Header = () => {
             </div>
 
             {isOpen && (
-              <DropdownBox items={["마이페이지", "로그아웃"]} place="right" />
+              <DropdownBox
+                items={["마이페이지", "로그아웃"]}
+                place="right"
+                setIsOpen={setIsOpen}
+              />
             )}
           </>
         )}
