@@ -8,6 +8,8 @@ export default function CheckModal({
   title,
   subTitle,
   mutate,
+  setDropDownOpen,
+  pullUp,
 }: ModalViewProps) {
   const handleClose = () => {
     setIsOpen(false);
@@ -16,6 +18,7 @@ export default function CheckModal({
   const handleMutate = () => {
     mutate();
     setIsOpen(false);
+    setDropDownOpen(false);
   };
 
   return (
@@ -23,7 +26,14 @@ export default function CheckModal({
       <Modal open={isOpen} onClose={handleClose} className="">
         <Modal.Close onClick={handleClose} />
         <Modal.Title>
-          <div>{title}</div>
+          <div className="flex flex-col items-center">
+            <div>{title}</div>
+            {pullUp && (
+              <Modal.SubTitle>
+                <div className="text-body1 font-medium text-gray-60">다음 끌어올리기는 3일 뒤에 할 수 있어요</div>
+              </Modal.SubTitle>
+            )}
+          </div>
         </Modal.Title>
 
         <Modal.Footer className="mt-[18px]">

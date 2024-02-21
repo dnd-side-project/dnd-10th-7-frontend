@@ -48,11 +48,7 @@ const DropdownBox = ({
     }
     if (item === "수정하기") router.push(`/project/edit/${projectId}`);
     if (item === "삭제하기") {
-      setIsOpen(false);
-
-      setTimeout(() => {
-        setDeleteOpen(true);
-      }, 1000);
+      setDeleteOpen(true);
     }
     if (item === "끌올하기") {
       setpullUpOpen(true);
@@ -61,8 +57,9 @@ const DropdownBox = ({
 
   useEffect(() => {
     if (pullUpOpen) {
-      document.body.style.cssText='overflow:visible;';}
-  }, [pullUpOpen])
+      document.body.style.cssText = "overflow:visible;";
+    }
+  }, [pullUpOpen]);
 
   return (
     <div
@@ -70,7 +67,6 @@ const DropdownBox = ({
       style={{
         boxShadow: "0 4px 20px rgba(0, 0, 0, 0.2)",
       }}
-      onBlur={() => setIsOpen(false)}
     >
       {items.map((item, idx) => (
         <div
@@ -93,6 +89,7 @@ const DropdownBox = ({
         title="프로젝트를 삭제하시겠습니까?"
         subTitle="삭제하기"
         mutate={deleteMutate}
+        setDropDownOpen={setIsOpen}
       />
       <CheckModal
         isOpen={pullUpOpen}
@@ -100,6 +97,8 @@ const DropdownBox = ({
         title="프로젝트를 끌올하시겠습니까?"
         subTitle="끌올하기"
         mutate={pullUpMutate}
+        setDropDownOpen={setIsOpen}
+        pullUp={true}
       />
     </div>
   );

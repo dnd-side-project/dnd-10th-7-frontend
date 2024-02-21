@@ -97,6 +97,8 @@ export const useDeleteMutation = (projectId: any) => {
       console.log("삭제 성공", res);
     },
     onError: (err: any) => {
+      // error 종류
+      // 1. 이미 삭제 한 경우 2. 내 프로젝트가 아닌 경우
       console.log(err);
     },
   });
@@ -115,6 +117,8 @@ export const usePullUpMutation = (projectId: any) => {
       console.log("끌올 성공", res);
     },
     onError: (err: any) => {
+      // error 종류
+      // 1. 3일이 지나지 않은 경우 2. 이미 삭제된 경우 3. 내 프로젝트가 아닌 경우
       console.log(err);
     },
   });
