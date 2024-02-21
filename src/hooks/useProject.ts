@@ -3,9 +3,14 @@ import {
   useMutation,
   UseMutationResult,
 } from "@tanstack/react-query";
-import { postProject, ProjectData } from "@component/api/projectAPI";
-import { getProject } from "@component/api/projectAPI";
-import { putProjectLike, putProjectScrap } from "@component/api/projectAPI";
+import {
+  getProject,
+  postProject,
+  ProjectData,
+  putProjectLike,
+  putProjectScrap,
+  getProjectRecommend,
+} from "@component/api/projectAPI";
 
 export const usePostProjectMutation = (): UseMutationResult<
   any,
@@ -33,6 +38,15 @@ export const useGetProjectDetail = (projectId: number) => {
     queryKey: ["getProjectData", { projectId }],
     queryFn: () => getProject(projectId),
     enabled: Boolean(projectId),
+  });
+
+  return { data, error, isLoading };
+};
+
+export const useGetProjectRecommend = () => {
+  const { data, error, isLoading } = useQuery({
+    queryKey: ["getProjectRecommend"],
+    queryFn: () => getProjectRecommend(),
   });
 
   return { data, error, isLoading };
