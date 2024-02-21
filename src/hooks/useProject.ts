@@ -6,6 +6,8 @@ import {
 import { postProject, ProjectData } from "@component/api/projectAPI";
 import { getProject } from "@component/api/projectAPI";
 import { putProjectLike, putProjectScrap } from "@component/api/projectAPI";
+import { projectAPI } from "@component/api/projectAPI";
+import { ProjectPageParams } from "@component/types/api";
 
 export const usePostProjectMutation = (): UseMutationResult<
   any,
@@ -68,9 +70,6 @@ export const useScrapMutation = (projectId: number) => {
   });
   return { isScrapMutate, isScrapPending };
 };
-import { projectAPI } from "@component/api/projectAPI";
-import { ProjectPageParams } from "@component/types/api";
-import { useQuery } from "@tanstack/react-query";
 
 export const useProjectList = (params: ProjectPageParams) => {
   const { data, error, isLoading } = useQuery({

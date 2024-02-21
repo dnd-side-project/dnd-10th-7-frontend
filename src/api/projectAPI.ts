@@ -1,5 +1,3 @@
-import { authApi } from "./api";
-
 export type ProjectData = {
   titleValue: string;
   selectedOption: string;
