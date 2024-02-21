@@ -57,4 +57,14 @@ export type InputImageProps = {
   setFilePreviews: any;
   fileList: any;
   setFileList: any;
-}
+};
+
+export type ProjectCommentType = {
+  userId: number;
+  nickname: string;
+  profileImageUrl: string;
+  commentId: number;
+  content: string;
+  createdAt: string;
+  isAuthor: boolean; // 본인 댓글인지의 여부 - true면 본인
+};
