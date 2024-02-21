@@ -94,8 +94,15 @@ export const ProjectTab = ({ data }: ProjectTabProps) => {
 
   const handleSorting = (sortingType: number) => {
     setSort(sortingType);
-    if (sortingType === 0) router.push(`?${createQueryString("sort", 0)}`);
-    if (sortingType === 1) router.push(`?${createQueryString("sort", 1)}`);
+    if (sortingType === 0) {
+      setSort(0);
+      // 근데 이거 아래 url 안바꿔줘도 잘 실행은 됨
+      router.push(`?${createQueryString("sort", 0)}`);
+    }
+    if (sortingType === 1) {
+      setSort(1);
+      router.push(`?${createQueryString("sort", 1)}`);
+    }
   };
 
   // const handleSorting = (sortingType: number) => {
@@ -110,13 +117,13 @@ export const ProjectTab = ({ data }: ProjectTabProps) => {
   const { data: projectListData, isLoading } = useProjectList({
     // field: pageField,
     page: currentPage,
-    // size: 5,
+    size: 5,
     sort: sort,
     isFinished: isFinished,
   });
 
   // console.log("what", isFinished);
-  // console.log("isFinished", projectListData);
+  console.log("sss", projectListData);
 
   useEffect(() => {
     if (tab === 0) setIsFinished(false);
@@ -193,7 +200,7 @@ export const ProjectTab = ({ data }: ProjectTabProps) => {
         </div>
       </Box>
       <CustomTabPanel value={tab} index={0}>
-        {data.map((item, idx) => {
+        {projectListData?.data?.content.map((item: any, idx: any) => {
           return (
             <div key={idx}>
               <ProjectItem
@@ -221,7 +228,7 @@ export const ProjectTab = ({ data }: ProjectTabProps) => {
         />
       </CustomTabPanel>
       <CustomTabPanel value={tab} index={1}>
-        {data.map((item, idx) => {
+        {projectListData?.data?.content.map((item: any, idx: any) => {
           return (
             <div key={idx}>
               <ProjectItem
