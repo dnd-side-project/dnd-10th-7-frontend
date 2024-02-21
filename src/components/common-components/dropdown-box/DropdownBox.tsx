@@ -2,6 +2,11 @@ import { useState } from "react";
 import { DropdownBoxPlace, DropdownBoxProps } from "./DropdownBox.types";
 import clsx from "clsx";
 import { useRouter } from "next/navigation";
+import CheckModal from "@component/components/alert-modal/CheckModal";
+import {
+  usePullUpMutation,
+  useDeleteMutation,
+} from "@component/hooks/useProject";
 
 const style: {
   base: string;
@@ -15,9 +20,19 @@ const style: {
   },
 };
 
-const DropdownBox = ({ items, place }: DropdownBoxProps) => {
+const DropdownBox = ({
+  items,
+  place,
+  className,
+  projectId,
+}: DropdownBoxProps) => {
   const [hoverMenu, setHoverMenu] = useState<string | null>(null);
   const router = useRouter();
+
+  const [deleteOpen, setDeleteOpen] = useState<boolean>(false);
+  const [pullUpOpen, setpullUpOpen] = useState<boolean>(false);
+  const { deleteMutate } = useDeleteMutation(projectId);
+  const { pullUpMutate } = usePullUpMutation(projectId);
 
   const onClick = (item: string) => {
     if (item === "마이페이지") router.push("/mypage");
@@ -27,11 +42,18 @@ const DropdownBox = ({ items, place }: DropdownBoxProps) => {
       router.push("/");
       window.location.reload();
     }
+    if (item === "수정하기") router.push(`/project/edit/${projectId}`);
+    if (item === "삭제하기") {
+      setDeleteOpen(true);
+    }
+    if (item === "끌올하기") {
+      setpullUpOpen(true)
+    }
   };
 
   return (
     <div
-      className={style.base}
+      className={clsx(style.base, className)}
       style={{
         boxShadow: "0 4px 20px rgba(0, 0, 0, 0.2)",
       }}
@@ -51,6 +73,21 @@ const DropdownBox = ({ items, place }: DropdownBoxProps) => {
           {item}
         </div>
       ))}
+      <CheckModal
+        isOpen={deleteOpen}
+        setIsOpen={setDeleteOpen}
+        title="프로젝트를 삭제하시겠습니까?"
+        subTitle="삭제하기"
+        mutate={deleteMutate}
+      />
+      <CheckModal
+        isOpen={pullUpOpen}
+        setIsOpen={setpullUpOpen}
+        title="프로젝트를 끌올하시겠습니까?"
+        subTitle="끌올하기"
+        mutate={pullUpMutate}
+      />
+      ;
     </div>
   );
 };

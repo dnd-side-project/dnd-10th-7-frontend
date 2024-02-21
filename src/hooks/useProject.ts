@@ -5,7 +5,12 @@ import {
 } from "@tanstack/react-query";
 import { postProject, ProjectData } from "@component/api/projectAPI";
 import { getProject } from "@component/api/projectAPI";
-import { putProjectLike, putProjectScrap } from "@component/api/projectAPI";
+import {
+  putProjectLike,
+  putProjectScrap,
+  deleteProject,
+  pullProjectUp,
+} from "@component/api/projectAPI";
 
 export const usePostProjectMutation = (): UseMutationResult<
   any,
@@ -56,7 +61,7 @@ export const useScrapMutation = (projectId: number) => {
     data,
     error,
     isPending,
-    mutate: isScrapMutate
+    mutate: isScrapMutate,
   } = useMutation({
     mutationFn: () => putProjectScrap(projectId),
     onSuccess: (res) => {
@@ -67,4 +72,40 @@ export const useScrapMutation = (projectId: number) => {
     },
   });
   return { isScrapMutate };
+};
+
+export const useDeleteMutation = (projectId: any) => {
+  const {
+    data,
+    error,
+    isPending,
+    mutate: deleteMutate,
+  } = useMutation({
+    mutationFn: () => deleteProject(projectId),
+    onSuccess: (res) => {
+      console.log("삭제 성공", res);
+    },
+    onError: (err: any) => {
+      console.log(err);
+    },
+  });
+  return { deleteMutate, isPending };
+};
+
+export const usePullUpMutation = (projectId: any) => {
+  const {
+    data,
+    error,
+    isPending,
+    mutate: pullUpMutate,
+  } = useMutation({
+    mutationFn: () => deleteProject(projectId),
+    onSuccess: (res) => {
+      console.log("끌올 성공", res);
+    },
+    onError: (err: any) => {
+      console.log(err);
+    },
+  });
+  return { pullUpMutate, isPending };
 };

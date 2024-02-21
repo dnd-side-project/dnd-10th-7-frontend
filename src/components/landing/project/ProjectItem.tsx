@@ -1,8 +1,12 @@
+"use client";
+
+import { useState } from "react";
 import Tag, { TagProps } from "@component/components/common-components/tag";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
 import ChatOutlinedIcon from "@mui/icons-material/ChatOutlined";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+import DropdownBox from "@component/components/common-components/dropdown-box/DropdownBox";
 
 export type ProjectItemProps = {
   projectId: number;
@@ -32,12 +36,29 @@ export default function ProjectItem({
   commentCount,
   moreBtn,
 }: ProjectItemProps) {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+
   return (
     <div className="w-full max-w-[890px] py-[32px] border-b-[1px] border-gray-40">
       <div className="flex flex-col gap-[16px]">
         <div className="flex items-center justify-between">
           <Tag type={type} status={status} />
-          {moreBtn && <MoreVertIcon className="mr-[20px] fill-gray-80" />}
+          {moreBtn && (
+            <>
+              <MoreVertIcon
+                onClick={() => setIsOpen((prev) => !prev)}
+                className="mr-[20px] fill-gray-80 cursor-pointer relative"
+              />
+              {isOpen && (
+                <DropdownBox
+                  items={["끌올하기", "수정하기", "삭제하기"]}
+                  place="left"
+                  className="absolute top-[100px]"
+                  projectId={projectId}
+                />
+              )}
+            </>
+          )}
         </div>
         <div className="flex justify-between items-center">
           <div className="text-title cursor-pointer">{title}</div>

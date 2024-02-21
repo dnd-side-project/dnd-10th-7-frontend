@@ -3,6 +3,8 @@ import { Dispatch, SetStateAction } from "react";
 export type DropdownBoxProps = {
   items: string[];
   place: DropdownBoxPlace;
+  className?: string;
+  projectId?: number;
 };
 
 export const dropdownBoxPlaces = {
