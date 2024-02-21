@@ -22,8 +22,8 @@ const DropdownBox = ({ items, place }: DropdownBoxProps) => {
   const onClick = (item: string) => {
     if (item === "마이페이지") router.push("/mypage");
     if (item === "로그아웃") {
-      localStorage.removeItem("accessToken");
-      localStorage.removeItem("refreshToken");
+      sessionStorage.removeItem("accessToken");
+      sessionStorage.removeItem("refreshToken");
       router.push("/");
       window.location.reload();
     }

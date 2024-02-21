@@ -3,6 +3,7 @@ import { ModalViewProps } from "../signup/LoginModal";
 import Button from "../common-components/button";
 import TabComponent from "../common-components/tab/TabComponent";
 import { Modal } from "../common-components/modal";
+import WarningRoundedIcon from "@mui/icons-material/WarningRounded";
 
 export default function ErrorModal({
   isOpen,
@@ -16,10 +17,11 @@ export default function ErrorModal({
   return (
     <>
       <Modal open={isOpen} onClose={handleClose} className="">
-        <Modal.Close onClick={handleClose} />
         <Modal.Title>
-          <div>경고표시 아이콘 같은 거 넣기..</div>
-          <div>{title}</div>
+          <div className="flex items-center">
+            <WarningRoundedIcon className="text-error-main me-2" fontSize="large" />
+            <div>{title}</div>
+          </div>
         </Modal.Title>
 
         <Modal.Footer className="mt-[18px]">
