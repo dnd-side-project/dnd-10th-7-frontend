@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { getGoogleLogin, getKakaoLogin } from "@component/api/socialAPI";
-import { userAPI, userInfoType } from "@component/api/userAPI";
+import { userAPI, userInfoType, getUserData } from "@component/api/userAPI";
 
 export const useKakaoLogin = (code: string) => {
   const { data, error, isLoading } = useQuery({
@@ -58,6 +58,15 @@ export const useNicknameValid = (nickname: string) => {
       return userAPI.getDuplicatedNickname(nickname);
     },
     enabled: Boolean(nickname),
+  });
+
+  return { data, error, isLoading };
+};
+
+export const useGetUserData = () => {
+  const { data, error, isLoading } = useQuery({
+    queryKey: ["getUserData"],
+    queryFn: () => getUserData(),
   });
 
   return { data, error, isLoading };
