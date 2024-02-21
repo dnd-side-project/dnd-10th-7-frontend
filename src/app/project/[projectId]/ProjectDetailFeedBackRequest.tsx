@@ -30,7 +30,7 @@ const ProjectDetailFeedBackRequest = ({
               <div className="flex justify-end">
                 <Button
                   onClick={() =>
-                    router.push(`/feedback/${feedback.feedbackId}`)
+                    router.push(`/project/${projectId}/feedback/${feedback.feedbackId}`)
                   }
                 >
                   피드백 작성하기
