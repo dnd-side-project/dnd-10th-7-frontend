@@ -4,8 +4,9 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { getGoogleLogin } from "@component/api/socialAPI";
 import { useGoogleLogin } from "@component/hooks/useAuth";
-import { SyncLoader } from "react-spinners";
 import Loading from "@component/components/loading/Loading";
+import { useSetRecoilState } from "recoil";
+import { completeModalState } from "@component/atoms/modalAtom";
 
 export default function GoogleCallBack() {
   const router = useRouter();
@@ -16,6 +17,7 @@ export default function GoogleCallBack() {
     "";
 
   const { data, error, isLoading } = useGoogleLogin(code);
+
   useEffect(() => {
     if (data) {
       const accessToken: string | undefined = data.data?.accessToken;
@@ -34,7 +36,9 @@ export default function GoogleCallBack() {
     }
     if (error) {
       console.log("err입니다", error);
-      router.push("/");
+      // router.push("/");
+
+      // TODO : 회원가입이 안된 경우의 에러와 아무 경우에도 속하지 않는 찐 에러 구분해서 로직 짜기!
     }
   }, [data, error]);
 

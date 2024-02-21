@@ -1,4 +1,4 @@
-import { useRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import { Modal } from "../common-components/modal";
 import { ModalViewProps } from "./LoginModal";
 import {
@@ -16,6 +16,7 @@ import InterestForm from "./InterestForm";
 import { userAPI } from "@component/api/userAPI";
 import { useSignUp } from "@component/hooks/useAuth";
 import { useRouter } from "next/navigation";
+import { errorModalState } from "@component/atoms/modalAtom";
 
 export default function SignUpModal({ isOpen, setIsOpen }: ModalViewProps) {
   const [nickname, setNickname] = useRecoilState(nicknameState);
@@ -23,6 +24,8 @@ export default function SignUpModal({ isOpen, setIsOpen }: ModalViewProps) {
   const [gender, setGender] = useRecoilState(genderState);
   const [career, setCareer] = useRecoilState(careerState);
   const [fields, setFields] = useRecoilState(interestState);
+
+  const setErrorModal = useSetRecoilState(errorModalState);
 
   const router = useRouter();
 
@@ -98,6 +101,12 @@ export default function SignUpModal({ isOpen, setIsOpen }: ModalViewProps) {
 
     // 성공 시 메인으로 이동
     // TODO : 실패시 알림 띄우고 처리 로직 필요
+    if (error) {
+      setErrorModal({
+        open: true,
+        text: "예기치 못한 오류가 발생했습니다.",
+      });
+    }
   };
 
   return (
