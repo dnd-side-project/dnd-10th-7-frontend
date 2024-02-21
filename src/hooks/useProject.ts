@@ -12,6 +12,8 @@ import {
 } from "@component/api/projectAPI";
 import { getProject } from "@component/api/projectAPI";
 import { putProjectLike, putProjectScrap } from "@component/api/projectAPI";
+import { useSetRecoilState } from "recoil";
+import { errorModalState } from "@component/atoms/modalAtom";
 
 export const usePostProjectMutation = (): UseMutationResult<
   any,
@@ -86,13 +88,19 @@ export const useGetProjectComment = (projectId: number) => {
 };
 
 export const usePostComment = (projectId: number, content: string) => {
-  const { data, error, isPending, mutate } = useMutation({
+  const setErrorModal = useSetRecoilState(errorModalState);
+
+  const { data, isPending, mutate } = useMutation({
     mutationFn: () => postProjectComment(projectId, content),
     onSuccess: (res) => {
       console.log("댓글 등록 성공", res);
     },
     onError: (err: any) => {
       console.log(err);
+      setErrorModal({
+        open: true,
+        text: "예기치 못한 오류가 발생했습니다.",
+      });
     },
   });
   return { mutate, isPending };

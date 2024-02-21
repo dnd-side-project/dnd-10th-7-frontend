@@ -76,7 +76,7 @@ export default function Laboratory() {
         </Button>
 
         {/* comment test */}
-        <CommentBox />
+        {/* <CommentBox /> */}
 
         {/* google-login test */}
         <GoogleButton />

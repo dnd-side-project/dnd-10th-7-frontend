@@ -15,7 +15,6 @@ type Props = {
 };
 export const CommentInput = ({ projectId }: Props) => {
   const [comment, setComment] = useState<string>("");
-  const setErrorModal = useSetRecoilState(errorModalState);
 
   const handleComment = (e: any) => {
     setComment(e.target.value);
@@ -45,17 +44,11 @@ export const CommentInput = ({ projectId }: Props) => {
 
   const isInvalid = submitClicked && comment.length === 0;
 
-  const { mutate, isPending, error } = usePostComment(projectId, comment);
+  const { mutate, isPending } = usePostComment(projectId, comment);
 
   const handleSubmit = () => {
     mutate();
     if (isPending) return <Loading />;
-    if (error) {
-      setErrorModal({
-        open: true,
-        text: "예기치 못한 오류가 발생했습니다.",
-      });
-    }
   };
 
   // TODO : 로그인할 때 프로필 이미지 저장해야 함
