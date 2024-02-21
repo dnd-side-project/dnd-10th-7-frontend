@@ -1,12 +1,11 @@
 "use client";
 
-import { Profile } from "@component/types/User";
 import MyPageUserInfo from "./MyPageUserInfo";
 import Button from "../common-components/button/Button";
 import MyPageFeedBackInfo from "./MyPageFeedBackInfo";
 import { useEffect, useState } from "react";
 import ProfileEditModal from "./ProfileEditModal";
-import { useGetUserData } from "@component/hooks/useAuth";
+import { useGetUserData } from "@component/hooks/useMyPage";
 
 const MyPageProfileTab = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
