@@ -4,14 +4,14 @@ import { Box, Tab, Tabs } from "@mui/material";
 import { useState } from "react";
 import {
   CustomTabPanel,
+  ProjectTabProps,
   a11yProps,
-  dummyData,
 } from "../landing/project/ProjectTab";
 import clsx from "clsx";
 import ProjectItem from "../landing/project/ProjectItem";
 import { TagProps } from "../common-components/tag";
 
-export const MyPageTab = () => {
+export const MyPageTab = ({ data }: ProjectTabProps) => {
   const [tab, setTab] = useState(0);
 
   // 정렬 - 0은 진행중, 1은 완료
@@ -93,19 +93,22 @@ export const MyPageTab = () => {
         </div>
       </Box>
       <CustomTabPanel value={tab} index={0}>
-        {dummyData.map((item, idx) => {
+        {data.map((item, idx) => {
           return (
             <div key={idx}>
               <ProjectItem
-                type={item.type as TagProps["type"]}
-                status={item.status as TagProps["status"]}
+                field={item.field}
+                progress={item.progress}
                 title={item.title}
-                subTitle={item.subTitle}
-                user={item.user}
-                createdDate={item.createdDate}
+                summary={item.summary}
+                nickname={item.nickname}
+                createdAt={item.createdAt}
                 pullUpCount={item.pullUpCount}
                 likeCount={item.likeCount}
                 commentCount={item.commentCount}
+                isScrapped={item.isScrapped}
+                projectId={item.projectId}
+                profileImageUrl={item.profileImageUrl}
                 moreBtn
               />
             </div>
@@ -113,38 +116,44 @@ export const MyPageTab = () => {
         })}
       </CustomTabPanel>
       <CustomTabPanel value={tab} index={1}>
-        {dummyData.map((item, idx) => {
+        {data.map((item, idx) => {
           return (
             <div key={idx}>
               <ProjectItem
-                type={item.type as TagProps["type"]}
-                status={item.status as TagProps["status"]}
+                field={item.field}
+                progress={item.progress}
                 title={item.title}
-                subTitle={item.subTitle}
-                user={item.user}
-                createdDate={item.createdDate}
+                summary={item.summary}
+                nickname={item.nickname}
+                createdAt={item.createdAt}
                 pullUpCount={item.pullUpCount}
                 likeCount={item.likeCount}
                 commentCount={item.commentCount}
+                isScrapped={item.isScrapped}
+                projectId={item.projectId}
+                profileImageUrl={item.profileImageUrl}
               />
             </div>
           );
         })}
       </CustomTabPanel>
       <CustomTabPanel value={tab} index={2}>
-        {dummyData.map((item, idx) => {
+        {data.map((item, idx) => {
           return (
             <div key={idx}>
               <ProjectItem
-                type={item.type as TagProps["type"]}
-                status={item.status as TagProps["status"]}
+                field={item.field}
+                progress={item.progress}
                 title={item.title}
-                subTitle={item.subTitle}
-                user={item.user}
-                createdDate={item.createdDate}
+                summary={item.summary}
+                nickname={item.nickname}
+                createdAt={item.createdAt}
                 pullUpCount={item.pullUpCount}
                 likeCount={item.likeCount}
                 commentCount={item.commentCount}
+                isScrapped={item.isScrapped}
+                projectId={item.projectId}
+                profileImageUrl={item.profileImageUrl}
               />
             </div>
           );
