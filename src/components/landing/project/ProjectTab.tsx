@@ -1,7 +1,15 @@
 "use client";
 
 import { Box, Tab, Tabs } from "@mui/material";
-import React, { use, useCallback, useEffect, useMemo, useState } from "react";
+import React, {
+  Dispatch,
+  SetStateAction,
+  use,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 import ProjectItem from "./ProjectItem";
 import { LinkedCamera } from "@mui/icons-material";
 import { TagProps } from "@component/components/common-components/tag";
@@ -48,9 +56,19 @@ export function CustomTabPanel(props: TabPanelProps) {
 
 export type ProjectTabProps = {
   data: ProjectItemProps[];
+  isFinished: boolean;
+  setIsFinished: Dispatch<SetStateAction<boolean>>;
+  sort: number;
+  setSort: Dispatch<SetStateAction<number>>;
 };
 
-export const ProjectTab = ({ data }: ProjectTabProps) => {
+export const ProjectTab = ({
+  data,
+  isFinished,
+  setIsFinished,
+  sort,
+  setSort,
+}: ProjectTabProps) => {
   const [tab, setTab] = useState(0);
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -77,7 +95,7 @@ export const ProjectTab = ({ data }: ProjectTabProps) => {
   // );
 
   // 정렬 - 0은 최신순, 1은 인기순
-  const [sort, setSort] = useState(0);
+  // const [sort, setSort] = useState(0);
 
   const handleChange = (e: React.SyntheticEvent, newValue: number) => {
     setTab(newValue);
@@ -112,7 +130,7 @@ export const ProjectTab = ({ data }: ProjectTabProps) => {
   //   }
   // };
   const [currentPage, setCurrentPage] = useState(1);
-  const [isFinished, setIsFinished] = useState<boolean>(false);
+  // const [isFinished, setIsFinished] = useState<boolean>(false);
 
   const { data: projectListData, isLoading } = useProjectList({
     // field: pageField,
@@ -123,7 +141,7 @@ export const ProjectTab = ({ data }: ProjectTabProps) => {
   });
 
   // console.log("what", isFinished);
-  console.log("sss", projectListData);
+  console.log("projectTab", projectListData);
 
   useEffect(() => {
     if (tab === 0) setIsFinished(false);
@@ -147,7 +165,7 @@ export const ProjectTab = ({ data }: ProjectTabProps) => {
             {...a11yProps(0)}
             sx={{ fontSize: "18px" }}
             onClick={() => {
-              setIsFinished(true);
+              setIsFinished(false);
               router.push(`/?${createQueryString("isFinished", false)}`);
             }}
           />
@@ -156,6 +174,7 @@ export const ProjectTab = ({ data }: ProjectTabProps) => {
             {...a11yProps(1)}
             sx={{ fontSize: "18px" }}
             onClick={() => {
+              setIsFinished(true);
               router.push(`/?${createQueryString("isFinished", true)}`);
             }}
           />
@@ -163,7 +182,7 @@ export const ProjectTab = ({ data }: ProjectTabProps) => {
         <div className="flex gap-[20px] pr-2">
           <div
             className="flex items-center gap-[10px] cursor-pointer"
-            onClick={() => handleSorting(0)}
+            onClick={() => setSort(0)}
           >
             <div
               className={clsx(
@@ -181,7 +200,7 @@ export const ProjectTab = ({ data }: ProjectTabProps) => {
           </div>
           <div
             className="flex items-center gap-[10px] cursor-pointer"
-            onClick={() => handleSorting(1)}
+            onClick={() => setSort(1)}
           >
             <div
               className={clsx(
@@ -200,7 +219,7 @@ export const ProjectTab = ({ data }: ProjectTabProps) => {
         </div>
       </Box>
       <CustomTabPanel value={tab} index={0}>
-        {projectListData?.data?.content.map((item: any, idx: any) => {
+        {data.map((item: any, idx: any) => {
           return (
             <div key={idx}>
               <ProjectItem
@@ -228,7 +247,7 @@ export const ProjectTab = ({ data }: ProjectTabProps) => {
         />
       </CustomTabPanel>
       <CustomTabPanel value={tab} index={1}>
-        {projectListData?.data?.content.map((item: any, idx: any) => {
+        {data.map((item: any, idx: any) => {
           return (
             <div key={idx}>
               <ProjectItem

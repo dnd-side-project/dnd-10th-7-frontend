@@ -31,28 +31,34 @@ export const ProjectList = () => {
     setKeyword(e.target.value);
   };
 
+  // 선택된 카테고리 ID를 저장할 상태
+  const [currentMenu, setCurrentMenu] = useState<string>("");
+  const [isFinished, setIsFinished] = useState<boolean>(false);
+  const [sort, setSort] = useState(0);
+
   const { data: projectListData, isLoading } = useProjectList({
     keyword: keyword,
-    // field: pageField,
+    field: currentMenu,
     // page:pageIndex,
-    // size: 5,
-    // sort:
-    // isFinished:
+    size: 5,
+    sort: sort,
+    isFinished: isFinished,
   });
 
-  // 선택된 카테고리 ID를 저장할 상태
   // const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
   // // 카테고리 선택 시 호출될 콜백 함수
-  // const handleCategoryClick = (category: string) => {
-  //   setSelectedCategory(category); // 선택된 카테고리 ID 저장
-  //   // 페이지를 0으로 설정하고, 선택된 카테고리 ID를 쿼리 파라미터로 설정하여 API를 호출
-  //   router.replace(
-  //     { query: { ...router.query, page: 0, field: category.toString() } },
-  //     undefined,
-  //     { shallow: true }
-  //   );
-  // };
+  const handleMenuClick = (category: string) => {
+    setCurrentMenu(category); // 선택된 카테고리 ID 저장
+    router.push(`/?${createQueryString("field", category)}`);
+
+    // 페이지를 0으로 설정하고, 선택된 카테고리 ID를 쿼리 파라미터로 설정하여 API를 호출
+    // router.replace(
+    //   { query: { ...router.query, page: 0, field: category.toString() } },
+    //   undefined,
+    //   { shallow: true }
+    // );
+  };
 
   const projectList = useMemo(
     () =>
@@ -76,9 +82,10 @@ export const ProjectList = () => {
     [projectListData?.data]
   );
 
-  console.log("project-list", projectList);
+  console.log("상단에서의 데이터", projectListData);
 
   const searchKeyword = (keyword: string) => {
+    setKeyword(keyword);
     router.push(`/?${createQueryString("keyword", keyword)}`);
   };
 
@@ -104,15 +111,18 @@ export const ProjectList = () => {
         }}
       />
       <div className="pt-[32px] flex">
-        {/* <Categories
-          currentMenu={selectedCategory} // 선택된 카테고리 name 전달
-          onMenuClick={handleCategoryClick} // 카테고리 클릭 시 호출될 콜백 함수 설정
+        <Categories
+          currentMenu={currentMenu} // 선택된 카테고리 name 전달
+          onMenuClick={handleMenuClick} // 카테고리 클릭 시 호출될 콜백 함수 설정
           isLoading={isLoading}
-          // onMenuClick={(menu) => {
-          //   router.replace({ query: { ...router.query, page: 0, field: menu.id } }, undefined, { shallow: true });
-          // }}
-        /> */}
-        <ProjectTab data={projectList} />
+        />
+        <ProjectTab
+          data={projectList}
+          isFinished={isFinished}
+          setIsFinished={setIsFinished}
+          sort={sort}
+          setSort={setSort}
+        />
       </div>
     </div>
   );
