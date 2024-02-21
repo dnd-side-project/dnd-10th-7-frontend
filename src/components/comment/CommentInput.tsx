@@ -24,6 +24,7 @@ export const CommentInput = ({ projectId }: Props) => {
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
   const [submitClicked, setSubmitClicked] = useState<boolean>(false);
+  const setErroModal = useSetRecoilState(errorModalState);
 
   const focus = () => {
     console.log("click");
@@ -47,7 +48,20 @@ export const CommentInput = ({ projectId }: Props) => {
   const { mutate, isPending } = usePostComment(projectId, comment);
 
   const handleSubmit = () => {
+    if (!sessionStorage.getItem("accessToken")) {
+      setErroModal({
+        open: true,
+        text: "로그인이 필요한 기능입니다.",
+      });
+      setTimeout(() => {
+        setErroModal({
+          open: false,
+          text: "로그인이 필요한 기능입니다.",
+        });
+      }, 1500);
+    }
     mutate();
+    setComment("");
     if (isPending) return <Loading />;
   };
 

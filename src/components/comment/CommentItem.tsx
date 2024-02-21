@@ -1,13 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ReplyComment } from "./ReplyComment";
 import { ProjectCommentType } from "@component/types/Project";
 import Image from "next/image";
+import { useDeleteComment } from "@component/hooks/useProject";
 
 export type Props = {
   data: ProjectCommentType[];
+  projectId: number;
 };
 
-export const CommentItem = ({ data }: Props) => {
+export const CommentItem = ({ data, projectId }: Props) => {
   const [openReplyComments, setOpenReplyComments] = useState<Array<boolean>>(
     new Array(data.length).fill(false)
   );
@@ -16,6 +18,11 @@ export const CommentItem = ({ data }: Props) => {
     const newOpenReplyComments = [...openReplyComments];
     newOpenReplyComments[index] = !newOpenReplyComments[index];
     setOpenReplyComments(newOpenReplyComments);
+  };
+
+  const useDelComment = (commentId: number) => {
+    const { mutate, isPending } = useDeleteComment(projectId, commentId);
+    mutate();
   };
 
   return (
@@ -49,6 +56,18 @@ export const CommentItem = ({ data }: Props) => {
                   >
                     답글달기
                   </p>
+                  {/* 본인이면 삭제하기 보이게 */}
+                  {item.isAuthor && (
+                    <>
+                      <p className="w-[5px] h-[5px] rounded-full bg-gray-60" />
+                      <p
+                        className="text-caption1 text-gray-60 cursor-pointer hover:text-purple-main1"
+                        onClick={() => useDelete(item.commentId)}
+                      >
+                        삭제하기
+                      </p>
+                    </>
+                  )}
                 </div>
                 <div className="text-body3">{item.content}</div>
               </div>

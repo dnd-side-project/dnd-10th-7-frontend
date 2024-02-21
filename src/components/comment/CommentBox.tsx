@@ -41,7 +41,7 @@ export default function CommentBox({ params }: { params: PageParams }) {
         <p className="text-h2 text-gray-60">32</p>
       </div>
       <CommentInput projectId={params.projectId} />
-      <CommentItem data={commentList} />
+      <CommentItem data={commentList} projectId={params.projectId} />
     </div>
   );
 }
