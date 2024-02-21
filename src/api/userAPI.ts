@@ -12,15 +12,22 @@ export type userInfoType = {
 
 export const userAPI = {
   // 닉네임 중복
-  getDuplicatedNickname: (nickname: string) => {
-    return api.get(`/api/users/check`, {
-      params: nickname,
-    });
+  getDuplicatedNickname: async (nickname: string) => {
+    try {
+      const res: AxiosResponse = await axios.get(
+        `${BASE_URL}/api/users/check`,
+        {
+          params: { nickname },
+        }
+      );
+      return res.data;
+    } catch (err) {
+      console.error(err);
+    }
   },
 
   // 유저 정보 추가 입력
   postUserInfo: async (data: userInfoType) => {
-    console.log("datadldldl", data);
     try {
       const res: AxiosResponse = await axios.post(
         `${BASE_URL}/api/users/signup`,

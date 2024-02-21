@@ -3,7 +3,7 @@ import axios, { AxiosInstance } from "axios";
 // env에 BASE_URL 설정 필요
 // 인증 값이 필요 없는 경우
 export const api = axios.create({
-  baseURL: process.env.BASE_URL,
+  baseURL: process.env.NEXT_PUBLIC_BASE_URL,
   headers: {
     "Content-Type": "application/json",
   },

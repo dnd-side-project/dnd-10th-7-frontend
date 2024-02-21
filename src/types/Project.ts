@@ -55,6 +55,8 @@ export type InputContentProps = {
 export type InputImageProps = {
   filePreviews: string[];
   setFilePreviews: any;
+  fileList: any;
+  setFileList: any;
 };
 
 // TODO : 공통으로 쓰이는 타입들 정리 및 확장 필요
