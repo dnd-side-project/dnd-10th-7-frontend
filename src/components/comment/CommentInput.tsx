@@ -5,9 +5,17 @@ import PurpleTextarea from "../common-components/textarea/Textarea";
 import Button from "../common-components/button";
 import Image from "next/image";
 import Img from "../../../public/assets/profile_img.png";
+import { usePostComment } from "@component/hooks/useProject";
+import Loading from "../loading/Loading";
+import { useSetRecoilState } from "recoil";
+import { errorModalState } from "@component/atoms/modalAtom";
 
-export const CommentInput = () => {
+type Props = {
+  projectId: number;
+};
+export const CommentInput = ({ projectId }: Props) => {
   const [comment, setComment] = useState<string>("");
+  const setErrorModal = useSetRecoilState(errorModalState);
 
   const handleComment = (e: any) => {
     setComment(e.target.value);
@@ -37,17 +45,33 @@ export const CommentInput = () => {
 
   const isInvalid = submitClicked && comment.length === 0;
 
+  const { mutate, isPending, error } = usePostComment(projectId, comment);
+
+  const handleSubmit = () => {
+    mutate();
+    if (isPending) return <Loading />;
+    if (error) {
+      setErrorModal({
+        open: true,
+        text: "예기치 못한 오류가 발생했습니다.",
+      });
+    }
+  };
+
+  // TODO : 로그인할 때 프로필 이미지 저장해야 함
+  const profileImageUrl = localStorage.getItem("profileImageUrl");
+
   return (
     <div className="w-full max-w-[800px] ">
       <div className="flex gap-[23px] items-center">
         <div className="h-[48px] w-[48px] rounded-full bg-gray-40" />
-        {/* <Image
-        src={Img}
-        alt="임시 프로필 이미지"
-        width={20}
-        height={20}
-        className="w-[20px] h-[20px] rounded-full me-[10px]"
-      /> */}
+        <Image
+          src={profileImageUrl ?? ""}
+          alt="프로필 이미지"
+          width={20}
+          height={20}
+          className="w-[20px] h-[20px] rounded-full me-[10px]"
+        />
 
         <PurpleTextarea
           value={comment}
@@ -58,11 +82,12 @@ export const CommentInput = () => {
           borderSize="xs"
           textSize="xs"
           entire={100}
+          // TODO : onKeyDown 필요
           className={isInvalid ? "border-error-main" : "border-purple-main1"}
         />
       </div>
       <div className="text-right pt-3">
-        <Button size="xs" color="default">
+        <Button size="xs" color="default" onClick={handleSubmit}>
           등록
         </Button>
       </div>
