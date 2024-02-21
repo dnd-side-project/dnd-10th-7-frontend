@@ -23,7 +23,7 @@ const MyPageUserInfo = ({
           alt={username}
           width={60}
           height={60}
-          className="w-[60px] h-[60px] rounded-full me-8"
+          className="w-[60px] h-[60px] rounded-full me-8 object-cover"
         ></Image>
         <div>
           <p className="text-h2">{username}</p>
