@@ -47,13 +47,13 @@ export default function ProjectItem({
             <>
               <MoreVertIcon
                 onClick={() => setIsOpen((prev) => !prev)}
-                className="mr-[20px] fill-gray-80 cursor-pointer relative"
+                className="mr-[20px] fill-gray-80 cursor-pointer"
               />
               {isOpen && (
                 <DropdownBox
                   items={["끌올하기", "수정하기", "삭제하기"]}
                   place="left"
-                  className="absolute top-[100px]"
+                  className=""
                   projectId={projectId}
                 />
               )}

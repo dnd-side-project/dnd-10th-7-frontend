@@ -87,7 +87,6 @@ const DropdownBox = ({
         subTitle="끌올하기"
         mutate={pullUpMutate}
       />
-      ;
     </div>
   );
 };
