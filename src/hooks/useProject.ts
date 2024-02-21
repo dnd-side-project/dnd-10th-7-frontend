@@ -10,6 +10,8 @@ import {
   putProjectLike,
   putProjectScrap,
   getProjectRecommend,
+  deleteProject,
+  pullProjectUp,
 } from "@component/api/projectAPI";
 
 export const usePostProjectMutation = (): UseMutationResult<
