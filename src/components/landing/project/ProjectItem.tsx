@@ -5,6 +5,7 @@ import ChatOutlinedIcon from "@mui/icons-material/ChatOutlined";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 
 export type ProjectItemProps = {
+  projectId: number;
   type: TagProps["type"];
   status: TagProps["status"];
   title: string;
@@ -19,6 +20,7 @@ export type ProjectItemProps = {
 };
 
 export default function ProjectItem({
+  projectId,
   type,
   status,
   title,

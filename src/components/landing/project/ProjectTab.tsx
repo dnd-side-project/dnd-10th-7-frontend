@@ -52,6 +52,7 @@ export const dummyData = [
     pullUpCount: 20,
     likeCount: 28,
     commentCount: 12,
+    projectId: 1,
   },
   {
     type: "환경",
@@ -64,6 +65,7 @@ export const dummyData = [
     pullUpCount: 20,
     likeCount: 28,
     commentCount: 12,
+    projectId: 2,
   },
   {
     type: "환경",
@@ -76,6 +78,7 @@ export const dummyData = [
     pullUpCount: 20,
     likeCount: 28,
     commentCount: 12,
+    projectId: 3,
   },
 ];
 
