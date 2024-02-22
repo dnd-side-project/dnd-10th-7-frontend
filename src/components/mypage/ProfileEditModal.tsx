@@ -168,11 +168,11 @@ export default function ProfileEditModal(props: ModalViewProps) {
         </Modal.Footer>
       </Modal>
 
-      <CompleteModal
+      {/* <CompleteModal
         title="프로필 수정이 완료되었습니다."
         isOpen={completeModalOpen}
         setIsOpen={setCompleteModalOpen}
-      />
+      /> */}
     </>
   );
 }

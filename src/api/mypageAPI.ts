@@ -58,13 +58,15 @@ export type userDataProps = {
 };
 
 // 프로필 편집
-export const purtUserData = async ({
+export const putUserData = async ({
   nickname,
   career,
   birthday,
   fields,
 }: userDataProps) => {
-  const res = await authApi().put(`/api/users/me`, {
+  const res = await authApi({
+    "Content-Type": "application/x-www-form-urlencoded",
+  }).put(`/api/users/me`, {
     nickname,
     career,
     birthday,

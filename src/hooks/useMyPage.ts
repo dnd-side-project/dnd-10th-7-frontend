@@ -5,9 +5,11 @@ import {
   getMyFeedbackData,
   getMyProjectData,
   getMySrapData,
-  purtUserData,
+  putUserData,
   userDataProps,
 } from "@component/api/mypageAPI";
+import { useSetRecoilState } from "recoil";
+import { completeModalState } from "@component/atoms/modalAtom";
 
 export const useGetUserData = () => {
   const { data, error, isLoading } = useQuery({
@@ -50,10 +52,15 @@ export const usePutUserDataMutation = ({
   birthday,
   fields,
 }: userDataProps) => {
+  const setCompleteModal = useSetRecoilState(completeModalState);
   const { data, error, isPending, mutate } = useMutation({
-    mutationFn: () => purtUserData({ nickname, career, birthday, fields }),
+    mutationFn: () => putUserData({ nickname, career, birthday, fields }),
     onSuccess: (res) => {
       alert("프로필 편집 완료");
+      setCompleteModal({
+        open: true,
+        text: "프로필 수정이 완료되었습니다.",
+      });
       console.log("프로필 편집 성공", res);
     },
     onError: (err: any) => {
