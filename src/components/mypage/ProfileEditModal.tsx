@@ -42,6 +42,7 @@ export default function ProfileEditModal(props: ModalViewProps) {
       localStorage.setItem("career", career);
       localStorage.setItem("nickname", nickname);
     }
+    mutate();
     setIsOpen(false);
     setCompleteModalOpen(true);
   };
