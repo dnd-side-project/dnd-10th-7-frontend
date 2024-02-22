@@ -81,3 +81,19 @@ export const putProjectScrap = async (projectId: number) => {
   );
   return res;
 };
+
+// 삭제
+export const deleteProject = async (projectId: number) => {
+  const res = await authApi({ "Content-Type": "application/json" }).delete(
+    `/api/projects/${projectId}`
+  );
+  return res;
+};
+
+// 끌올
+export const pullProjectUp = async (projectId: number) => {
+  const res = await authApi({ "Content-Type": "application/x-www-form-urlencoded" }).put(
+    `/api/projects/${projectId}/pull-up`
+  );
+  return res;
+};

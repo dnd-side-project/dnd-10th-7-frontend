@@ -52,6 +52,7 @@ export const dummyData = [
     pullUpCount: 20,
     likeCount: 28,
     commentCount: 12,
+    projectId: 34,
   },
   {
     type: "환경",
@@ -64,6 +65,7 @@ export const dummyData = [
     pullUpCount: 20,
     likeCount: 28,
     commentCount: 12,
+    projectId: 31,
   },
   {
     type: "환경",
@@ -76,6 +78,7 @@ export const dummyData = [
     pullUpCount: 20,
     likeCount: 28,
     commentCount: 12,
+    projectId: 30,
   },
 ];
 
@@ -160,6 +163,7 @@ export const ProjectTab = () => {
           return (
             <div key={idx}>
               <ProjectItem
+                projectId={item.projectId}
                 type={item.type as TagProps["type"]}
                 status={item.status as TagProps["status"]}
                 title={item.title}
@@ -179,6 +183,7 @@ export const ProjectTab = () => {
           return (
             <div key={idx}>
               <ProjectItem
+                projectId={item.projectId}
                 type={item.type as TagProps["type"]}
                 status={item.status as TagProps["status"]}
                 title={item.title}
