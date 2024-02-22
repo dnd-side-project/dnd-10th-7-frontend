@@ -1,7 +1,7 @@
 "use client";
 
 import { Box, Tab, Tabs } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   CustomTabPanel,
   ProjectTabProps,
@@ -15,6 +15,7 @@ import {
   useGetMyProjectData,
   useGetMyScrapData,
 } from "@component/hooks/useMyPage";
+import Pagination from "../common-components/pagination";
 
 export const MyPageTab = () => {
   const [tab, setTab] = useState(0);
@@ -50,6 +51,9 @@ export const MyPageTab = () => {
       size: 5,
       sort: sort,
     });
+
+  console.log("scrap", myScrapData);
+  console.log("pageIndex", pageIndex);
 
   return (
     <Box sx={{ width: "100%" }}>
@@ -140,6 +144,15 @@ export const MyPageTab = () => {
             </div>
           );
         })}
+        {myProjectData?.data?.data?.totalPages > 0 && (
+          <div className="flex justify-center items-center">
+            <Pagination
+              totalPages={myProjectData?.data?.data?.totalPages}
+              currentPage={pageIndex}
+              setCurrentPage={setPageIndex}
+            />
+          </div>
+        )}
       </CustomTabPanel>
       <CustomTabPanel value={tab} index={1}>
         {myFeedbackData?.data?.data?.content.map((item: any, idx: number) => {
@@ -162,6 +175,15 @@ export const MyPageTab = () => {
             </div>
           );
         })}
+        {myFeedbackData?.data?.data?.totalPages > 0 && (
+          <div className="flex justify-center items-center">
+            <Pagination
+              totalPages={myFeedbackData?.data?.data?.totalPages}
+              currentPage={pageIndex}
+              setCurrentPage={setPageIndex}
+            />
+          </div>
+        )}
       </CustomTabPanel>
       <CustomTabPanel value={tab} index={2}>
         {myScrapData?.data?.data?.content.map((item: any, idx: number) => {
@@ -184,6 +206,15 @@ export const MyPageTab = () => {
             </div>
           );
         })}
+        {myScrapData?.data?.data?.totalPages > 0 && (
+          <div className="flex justify-center items-center">
+            <Pagination
+              totalPages={myScrapData?.data?.data?.totalPages}
+              currentPage={pageIndex}
+              setCurrentPage={setPageIndex}
+            />
+          </div>
+        )}
       </CustomTabPanel>
     </Box>
   );

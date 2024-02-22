@@ -56,7 +56,7 @@ export const Pagination = ({
     if (page >= 1 && page <= totalPages) {
       console.log("handlePageChange");
       setCurrentPage(page);
-      router.push(`/?${createQueryString("page", page)}`);
+      // router.push(`/?${createQueryString("page", page)}`);
     }
   };
 
@@ -64,7 +64,7 @@ export const Pagination = ({
     const prev = currentPage - 1;
     if (prev >= 1) {
       setCurrentPage(prev);
-      router.push(`/?${createQueryString("page", prev)}`);
+      // router.push(`/?${createQueryString("page", prev)}`);
     } else {
       console.log("이전 페이지 없음");
     }
@@ -74,7 +74,7 @@ export const Pagination = ({
     const next = currentPage + 1;
     if (next <= totalPages) {
       setCurrentPage(next);
-      router.push(`/?${createQueryString("page", next)}`);
+      // router.push(`/?${createQueryString("page", next)}`);
     } else {
       console.log("다음 페이지 없음");
     }

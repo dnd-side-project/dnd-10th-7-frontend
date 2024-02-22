@@ -5,6 +5,7 @@ import GrayInput from "../common-components/input/GrayInput";
 import { ModalViewProps } from "../signup/LoginModal";
 import { Modal } from "../common-components/modal";
 import { usePutUserDataMutation } from "@component/hooks/useMyPage";
+import TabComponent from "../common-components/tab/TabComponent";
 
 export default function ProfileEditModal(props: ModalViewProps) {
   const { isOpen, setIsOpen, isPrevOpen, setIsPrevOpen } = props;
@@ -65,7 +66,7 @@ export default function ProfileEditModal(props: ModalViewProps) {
             <div>
               <p className="pb-[10px]">닉네임</p>
               <GrayInput
-                className="text-center"
+                className="text-center w-full"
                 value={nickname}
                 onChange={(e: React.ChangeEvent<any>) =>
                   setNickname(e.target.value)
@@ -77,7 +78,7 @@ export default function ProfileEditModal(props: ModalViewProps) {
             <div>
               <p className="pb-[10px]">생년월일</p>
               <GrayInput
-                className="text-center"
+                className="text-center w-full"
                 value={birth}
                 onChange={(e: React.ChangeEvent<any>) =>
                   setBirth(e.target.value)
@@ -102,6 +103,14 @@ export default function ProfileEditModal(props: ModalViewProps) {
                 textSize="lg"
                 place="center"
                 padding="md"
+              />
+            </div>
+
+            <div>
+              <p className="pb-[10px]">관심 분야</p>
+              <TabComponent
+                interestedList={fields}
+                setInterestedList={setFields}
               />
             </div>
           </div>

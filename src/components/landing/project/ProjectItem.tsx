@@ -8,6 +8,7 @@ import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
 import ChatOutlinedIcon from "@mui/icons-material/ChatOutlined";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { ProjectItemProps } from "@component/types/Project";
+import DropdownBox from "@component/components/common-components/dropdown-box";
 
 export default function ProjectItem({
   commentCount,
@@ -34,7 +35,24 @@ export default function ProjectItem({
             type={field as TagProps["type"]}
             status={progress as TagProps["status"]}
           />
-          {moreBtn && <MoreVertIcon className="mr-[20px] fill-gray-80" />}
+          {moreBtn && (
+            <div className="relative">
+              <MoreVertIcon
+                onClick={() => setIsOpen((prev) => !prev)}
+                className="mr-[20px] fill-gray-80 cursor-pointer"
+              />
+              {isOpen && (
+                <DropdownBox
+                  items={["끌올하기", "수정하기", "삭제하기"]}
+                  place="left"
+                  className="absolute right-5"
+                  projectId={projectId}
+                  setIsOpen={setIsOpen}
+                />
+              )}
+            </div>
+          )}
+          {/* {moreBtn && <MoreVertIcon className="mr-[20px] fill-gray-80" />} */}
         </div>
         <div className="flex justify-between items-center">
           <div className="text-title cursor-pointer">{title}</div>
