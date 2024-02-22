@@ -77,30 +77,6 @@ export const ProjectTab = ({
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  // // router 객체에 대한 타입 정의
-  // interface RouterWithQuery extends AppRouterInstance {
-  //   query: {
-  //     keyword?: string;
-  //     field?: string;
-  //     page?: string;
-  //     sort?: number;
-  //     isFinished?: boolean;
-  //     // 추가적으로 필요한 쿼리 파라미터가 있다면 여기에 정의
-  //   };
-  // }
-
-  // // // 타입 어서션을 사용하여 router의 타입을 지정
-  // const typedRouter = router as RouterWithQuery;
-
-  // // // 나머지 코드는 이전과 동일하게 유지
-  // const pageIsFinished = useMemo(
-  //   () => typedRouter.query.isFinished ?? "",
-  //   [typedRouter.query.isFinished]
-  // );
-
-  // 정렬 - 0은 최신순, 1은 인기순
-  // const [sort, setSort] = useState(0);
-
   const handleChange = (e: React.SyntheticEvent, newValue: number) => {
     setTab(newValue);
   };
@@ -113,28 +89,6 @@ export const ProjectTab = ({
     },
     [searchParams]
   );
-
-  const handleSorting = (sortingType: number) => {
-    setSort(sortingType);
-    if (sortingType === 0) {
-      setSort(0);
-      // 근데 이거 아래 url 안바꿔줘도 잘 실행은 됨
-      router.push(`?${createQueryString("sort", 0)}`);
-    }
-    if (sortingType === 1) {
-      setSort(1);
-      router.push(`?${createQueryString("sort", 1)}`);
-    }
-  };
-
-  // const handleSorting = (sortingType: number) => {
-  //   setSort(sortingType);
-  //   if(sortingType===0) {
-
-  //   }
-  // };
-  // const [pageIndex, setPageIndex] = useState(1);
-  // const [isFinished, setIsFinished] = useState<boolean>(false);
 
   const { data: projectListData, isLoading } = useProjectList({
     // field: pageField,
