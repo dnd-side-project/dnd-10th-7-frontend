@@ -76,7 +76,7 @@ export default function ProfileEditModal(props: ModalViewProps) {
         <Modal.Close onClick={handleClose} />
         <Modal.Title>프로필 편집</Modal.Title>
 
-        <Modal.Description className="py-0 px-4">
+        <Modal.Description className="py-0 px-4 pb-6">
           <div className="flex flex-col gap-[20px]">
             <div>
               <p className="pb-[10px]">닉네임</p>
@@ -158,7 +158,7 @@ export default function ProfileEditModal(props: ModalViewProps) {
           </div>
         </Modal.Description>
 
-        <Modal.Footer className="flex flex-row gap-[8px]">
+        <Modal.Footer className="flex flex-row gap-[8px] h-full">
           <Button size="md" color="gray" onClick={handleBack}>
             닫기
           </Button>
