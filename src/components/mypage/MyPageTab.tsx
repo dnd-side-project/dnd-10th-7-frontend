@@ -31,7 +31,7 @@ export const MyPageTab = () => {
 
   // 정렬 - 0은 완료, 1은 진행중
   const [sort, setSort] = useState(0);
-  const [pageIndex, setPageIndex] = useState(0);
+  const [pageIndex, setPageIndex] = useState(1); // pageIndex 는 1 이상
 
   const handleChange = (e: React.SyntheticEvent, newValue: number) => {
     setTab(newValue);
@@ -131,7 +131,7 @@ export const MyPageTab = () => {
         </div>
       </Box>
       <CustomTabPanel value={tab} index={0}>
-        {myProjectData?.data?.content.map((item: any, idx: number) => {
+        {myProjectData?.data?.content?.map((item: any, idx: number) => {
           return (
             <div key={idx}>
               <ProjectItem
@@ -148,7 +148,7 @@ export const MyPageTab = () => {
         })}
       </CustomTabPanel>
       <CustomTabPanel value={tab} index={1}>
-        {myFeedbackData?.data?.content.map((item: any, idx: number) => {
+        {myFeedbackData?.data?.content?.map((item: any, idx: number) => {
           return (
             <div key={idx}>
               <ProjectItem
@@ -165,7 +165,7 @@ export const MyPageTab = () => {
         })}
       </CustomTabPanel>
       <CustomTabPanel value={tab} index={2}>
-        {myScrapData?.data?.content.map((item: any, idx: number) => {
+        {myScrapData?.data?.content?.map((item: any, idx: number) => {
           return (
             <div key={idx}>
               <ProjectItem
