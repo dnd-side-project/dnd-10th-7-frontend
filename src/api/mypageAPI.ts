@@ -49,3 +49,26 @@ export const getMyFeedbackData = async ({
   });
   return res;
 };
+
+export type userDataProps = {
+  nickname: string;
+  career: string;
+  birthday: string;
+  fields: string[];
+};
+
+// 프로필 편집
+export const purtUserData = async ({
+  nickname,
+  career,
+  birthday,
+  fields,
+}: userDataProps) => {
+  const res = await authApi().put(`/api/users/me`, {
+    nickname,
+    career,
+    birthday,
+    fields,
+  });
+  return res;
+};
