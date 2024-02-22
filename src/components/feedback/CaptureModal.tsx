@@ -1,6 +1,6 @@
 "use client";
 
-import { ChangeEvent, useRef, useState } from "react";
+import { ChangeEvent, useEffect, useRef, useState } from "react";
 import Button from "../common-components/button";
 import AddCircleOutlinedIcon from "@mui/icons-material/AddCircleOutlined";
 import Image from "next/image";
@@ -9,9 +9,12 @@ import clsx from "clsx";
 import { RewardModal } from "./RewardModal";
 import { ModalViewProps } from "../signup/LoginModal";
 import { Modal } from "../common-components/modal";
+import { useFeedbackSubmitImg } from "@component/hooks/useFeedback";
+import ErrorModal from "../alert-modal/ErrorModal";
 
 export const CaptureModal = (props: ModalViewProps) => {
-  const { isOpen, setIsOpen } = props;
+  const { isOpen, setIsOpen, projectId, feedbackId } = props;
+  const [isErrorOpen, setIsErrorOpen] = useState<boolean>(false);
 
   const [uploadImg, setUploadImg] = useState<File[]>([]);
   const [previewImg, setPreviewImg] = useState<string>("");
@@ -86,12 +89,39 @@ export const CaptureModal = (props: ModalViewProps) => {
 
   // next modal
   const [rewardModalOpen, setRewardModalOpen] = useState<boolean>(false);
+  const [isLevelUp, setIsLevelUp] = useState<boolean>(false);
+  const [feedbackCount, setFeedbackCount] = useState<number>(0);
+  const [level, setLevel] = useState<string>("");
+
+  const { data, error, isPending, mutate } = useFeedbackSubmitImg(
+    projectId,
+    feedbackId,
+    uploadImg[0]
+  );
 
   const handleClick = () => {
     console.log("clicked next-step");
     setIsOpen(false);
-    setRewardModalOpen(true);
+
+    mutate();
   };
+
+  useEffect(() => {
+    if (data) {
+      console.log(data.data.data, "사진 등록 성공");
+      setRewardModalOpen(true);
+      setIsLevelUp(data.data.data.isLevelUp);
+      setFeedbackCount(data.data.data.remainFeedbackCount);
+      setLevel(data.data.data.level);
+    }
+  }, [data]);
+
+  useEffect(() => {
+    if (error) {
+      // 피드백을 이미 참여한 경우
+      setIsErrorOpen(true);
+    }
+  }, [error]);
 
   return (
     <>
@@ -190,7 +220,20 @@ export const CaptureModal = (props: ModalViewProps) => {
         </Modal.Footer>
       </Modal>
 
-      <RewardModal isOpen={rewardModalOpen} setIsOpen={setRewardModalOpen} />
+      <RewardModal
+        isOpen={rewardModalOpen}
+        setIsOpen={setRewardModalOpen}
+        level={level}
+        feedbackCount={feedbackCount}
+        isLevelUp={isLevelUp}
+        projectId={projectId}
+      />
+
+      <ErrorModal
+        isOpen={isErrorOpen}
+        setIsOpen={setIsErrorOpen}
+        title="이미 참여한 피드백입니다."
+      />
     </>
   );
 };

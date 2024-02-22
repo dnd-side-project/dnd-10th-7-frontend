@@ -23,7 +23,7 @@ const MyPageUserInfo = ({
           alt={username}
           width={60}
           height={60}
-          className="w-[60px] h-[60px] rounded-full me-8"
+          className="w-[60px] h-[60px] rounded-full me-8 object-cover"
         ></Image>
         <div>
           <p className="text-h2">{username}</p>
@@ -35,8 +35,8 @@ const MyPageUserInfo = ({
       <div>
         {userInfoList.map(({ label, value }) => (
           <span key={label} className="flex min-w-[285px] text-body3 mb-[18px]">
-            <p className="min-w-[92px] text-80 font-medium">{label}</p>
-            <p className="text-60">{value}</p>
+            <p className="min-w-[92px] text-gray-80 font-medium">{label}</p>
+            <p className="text-gray-60">{value}</p>
           </span>
         ))}
       </div>

@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import Tag, { TagProps } from "@component/components/common-components/tag";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
@@ -21,6 +24,8 @@ export default function ProjectItem({
   pullUpCount,
   moreBtn,
 }: ProjectItemProps) {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+
   return (
     <div className="w-full max-w-[890px] py-[32px] border-b-[1px] border-gray-40">
       <div className="flex flex-col gap-[16px]">
