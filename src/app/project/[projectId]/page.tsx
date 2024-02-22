@@ -26,6 +26,7 @@ export default function ProjectDetailPage({ params }: { params: PageParams }) {
 
   const [projectData, setProjectData] = useState<any>();
   const [projectFeedbackData, setProjectFeedbackData] = useState<any>();
+  const [isAuthor, setIsAuthor] = useState<boolean>(false);
 
   // if (isLoading) {
   //   // TODO: 스켈레톤 코드
@@ -39,6 +40,7 @@ export default function ProjectDetailPage({ params }: { params: PageParams }) {
 
     if (feedbackData) {
       setProjectFeedbackData(feedbackData?.data?.data?.feedbacks);
+      setIsAuthor(feedbackData?.data?.data.isAuthor);
     }
 
     // 좋아요, 스크랩 업데이트
@@ -63,7 +65,7 @@ export default function ProjectDetailPage({ params }: { params: PageParams }) {
   const [scrapState, setScrapState] = useState<boolean>(false);
 
   const { mutate, isPending } = useLikeMutation(params.projectId);
-  const { isScrapMutate, isScrapPending } = useScrapMutation(params.projectId);
+  const { isScrapMutate } = useScrapMutation(params.projectId);
 
   const handleLikeClick = () => {
     // 좋아요 버튼 클릭 시
@@ -196,6 +198,8 @@ export default function ProjectDetailPage({ params }: { params: PageParams }) {
           <div className="text-head mb-4">피드백 요청중</div>
           <ProjectDetailFeedBackRequest
             projectFeedbackData={projectFeedbackData}
+            projectId={params.projectId}
+            isAuthor={isAuthor}
           />
         </div>
       </section>

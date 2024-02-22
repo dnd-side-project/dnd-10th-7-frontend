@@ -4,7 +4,6 @@ import LadingTop from "@component/components/landing/carousel/LandingTop";
 import LandingMid from "@component/components/landing/carousel/LandingMid";
 import { ProjectList } from "@component/components/landing/project/ProjectList";
 import { useEffect, useState } from "react";
-import Footer from "@component/components/common-components/common/Footer";
 import SignUpModal from "@component/components/signup/SignUpModal";
 
 export default function Home() {
@@ -35,10 +34,6 @@ export default function Home() {
         {/* 프로젝트 */}
         <ProjectList />
       </section>
-
-      {/* <section className="w-full">
-        <Footer></Footer>
-      </section> */}
 
       {isOpen && <SignUpModal isOpen={isOpen} setIsOpen={setIsOpen} />}
     </main>

@@ -15,7 +15,7 @@ const variants = {
 export const Header = () => {
   const username =
     typeof window !== "undefined"
-      ? window.sessionStorage.getItem("username")
+      ? window.localStorage.getItem("nickname")
       : null;
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -66,7 +66,11 @@ export const Header = () => {
             </div>
 
             {isOpen && (
-              <DropdownBox items={["마이페이지", "로그아웃"]} place="right" />
+              <DropdownBox
+                items={["마이페이지", "로그아웃"]}
+                place="right"
+                setIsOpen={setIsOpen}
+              />
             )}
           </>
         )}

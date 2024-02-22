@@ -58,6 +58,12 @@ export const getProject = async (projectId: number) => {
   return res;
 };
 
+// 추천 프로젝트 조회
+export const getProjectRecommend = async () => {
+  const res = await authApi().get(`/api/projects/recommend`);
+  return res;
+};
+
 // 좋아요
 export const putProjectLike = async (projectId: number) => {
   const res = await authApi({
@@ -104,5 +110,21 @@ export const deleteProjectComment = async (
   const res = await authApi({ "Content-Type": "application/json" }).delete(
     `/api/projects/${projectId}/comments/${commentId}`
   );
+  return res;
+};
+
+// 삭제
+export const deleteProject = async (projectId: number) => {
+  const res = await authApi({ "Content-Type": "application/json" }).delete(
+    `/api/projects/${projectId}`
+  );
+  return res;
+};
+
+// 끌올
+export const pullProjectUp = async (projectId: number) => {
+  const res = await authApi({
+    "Content-Type": "application/x-www-form-urlencoded",
+  }).put(`/api/projects/${projectId}/pull-up`);
   return res;
 };

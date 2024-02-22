@@ -22,8 +22,10 @@ export default function RootLayout({
       <RecoilRootWrapper>
         <ThemeProvider theme={theme}>
           <body>
-            <Header />
-            <Providers>{children}</Providers>
+            <Providers>
+              <Header />
+              {children}
+            </Providers>
             <Footer />
           </body>
         </ThemeProvider>

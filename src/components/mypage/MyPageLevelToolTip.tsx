@@ -11,7 +11,7 @@ const MyPageLevelToolTip = () => {
   ];
 
   return (
-    <div className="absolute top-6 right-[14px] bg-white rounded-[10px] shadow-2xl w-[321px] h-[342px] p-5">
+    <div className="absolute top-6 right-[14px] bg-white rounded-[10px] shadow-2xl w-[321px] h-[362px] p-5">
       <div className="flex items-center  mb-[25px]">
         <HelpOutlineIcon className="text-purple-main1 me-1 w-[15px] h-[15px]" />
         <p className="text-body3">레벨 가이드</p>
@@ -44,9 +44,21 @@ const MyPageLevelToolTip = () => {
       </div>
 
       <div className="text-caption1 flex flex-col gap-y-[6px] ms-[10px] mt-4">
-        <span className="font-medium">* 레벨은 <span className="text-purple-main1">총 5단계</span> 입니다.</span>
-        <span className="font-medium">* 레벨은 <span className="text-purple-main1">피드백 횟수</span>에 따라 업데이트 됩니다.</span>
-        <span className="font-medium">* 레벨 등급에 따라 <span className="text-purple-main1">끌올</span> 횟수가 제한됩니다.</span>
+        <span className="font-medium">
+          * 레벨은 <span className="text-purple-main1">총 5단계</span> 입니다.
+        </span>
+        <span className="font-medium">
+          * 레벨은 <span className="text-purple-main1">피드백 횟수</span>에 따라
+          업데이트 됩니다.
+        </span>
+        <span className="font-medium">
+          * 레벨 등급에 따라 <span className="text-purple-main1">끌올</span>{" "}
+          횟수가 제한됩니다.
+        </span>
+        <span className="font-medium">
+          * 혜택은 <span className="text-purple-main1">매주 1회</span>{" "}
+          제공됩니다.
+        </span>
       </div>
     </div>
   );

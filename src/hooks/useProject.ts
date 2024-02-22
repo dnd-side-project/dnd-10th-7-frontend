@@ -3,17 +3,22 @@ import {
   useMutation,
   UseMutationResult,
 } from "@tanstack/react-query";
-import {
-  deleteProjectComment,
-  getProjectComment,
-  postProject,
-  postProjectComment,
-  ProjectData,
-} from "@component/api/projectAPI";
-import { getProject } from "@component/api/projectAPI";
-import { putProjectLike, putProjectScrap } from "@component/api/projectAPI";
+
 import { useSetRecoilState } from "recoil";
 import { errorModalState } from "@component/atoms/modalAtom";
+import {
+  ProjectData,
+  deleteProject,
+  deleteProjectComment,
+  getProject,
+  getProjectComment,
+  getProjectRecommend,
+  postProject,
+  postProjectComment,
+  pullProjectUp,
+  putProjectLike,
+  putProjectScrap,
+} from "@component/api/projectAPI";
 
 export const usePostProjectMutation = (): UseMutationResult<
   any,
@@ -46,6 +51,15 @@ export const useGetProjectDetail = (projectId: number) => {
   return { data, error, isLoading };
 };
 
+export const useGetProjectRecommend = () => {
+  const { data, error, isLoading } = useQuery({
+    queryKey: ["getProjectRecommend"],
+    queryFn: () => getProjectRecommend(),
+  });
+
+  return { data, error, isLoading };
+};
+
 export const useLikeMutation = (projectId: number) => {
   const { data, error, isPending, mutate } = useMutation({
     mutationFn: () => putProjectLike(projectId),
@@ -63,7 +77,7 @@ export const useScrapMutation = (projectId: number) => {
   const {
     data,
     error,
-    isPending: isScrapPending,
+    isPending,
     mutate: isScrapMutate,
   } = useMutation({
     mutationFn: () => putProjectScrap(projectId),
@@ -74,7 +88,47 @@ export const useScrapMutation = (projectId: number) => {
       console.log(err);
     },
   });
-  return { isScrapMutate, isScrapPending };
+  return { isScrapMutate };
+};
+
+export const useDeleteMutation = (projectId: any) => {
+  const {
+    data,
+    error,
+    isPending,
+    mutate: deleteMutate,
+  } = useMutation({
+    mutationFn: () => deleteProject(projectId),
+    onSuccess: (res) => {
+      console.log("삭제 성공", res);
+    },
+    onError: (err: any) => {
+      // error 종류
+      // 1. 이미 삭제 한 경우 2. 내 프로젝트가 아닌 경우
+      console.log(err);
+    },
+  });
+  return { deleteMutate, isPending };
+};
+
+export const usePullUpMutation = (projectId: any) => {
+  const {
+    data,
+    error,
+    isPending,
+    mutate: pullUpMutate,
+  } = useMutation({
+    mutationFn: () => pullProjectUp(projectId),
+    onSuccess: (res) => {
+      console.log("끌올 성공", res);
+    },
+    onError: (err: any) => {
+      // error 종류
+      // 1. 3일이 지나지 않은 경우 2. 이미 삭제된 경우 3. 내 프로젝트가 아닌 경우
+      console.log(err);
+    },
+  });
+  return { pullUpMutate, isPending };
 };
 
 export const useGetProjectComment = (projectId: number) => {

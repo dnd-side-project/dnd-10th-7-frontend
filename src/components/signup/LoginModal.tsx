@@ -6,10 +6,18 @@ import KaKaoButton from "../social/KaKaoButton";
 export type ModalViewProps = {
   isOpen: boolean;
   setIsOpen: Dispatch<SetStateAction<boolean>>;
-  //
   isPrevOpen?: boolean;
   setIsPrevOpen?: Dispatch<SetStateAction<boolean>>;
   title?: string;
+  projectId?: number;
+  feedbackId?: number;
+  level?: string;
+  feedbackCount?: number;
+  isLevelUp?: boolean;
+  mutate?: any;
+  subTitle?: string;
+  setDropDownOpen?: any;
+  pullUp?: boolean;
 };
 
 export default function LoginModal(props: ModalViewProps) {

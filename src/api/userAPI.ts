@@ -1,5 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 import { BASE_URL, api } from "./api";
+import { authApi } from "./api";
 
 export type userInfoType = {
   nickname: string;
@@ -45,4 +46,10 @@ export const userAPI = {
       console.log("err:", err);
     }
   },
+};
+
+// 유저 정보 조회하기
+export const getUserData = async () => {
+  const res = await authApi().get("/api/users/me");
+  return res;
 };
