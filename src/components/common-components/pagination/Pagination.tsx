@@ -17,27 +17,30 @@ interface PageProps {
   setCurrentPage: Dispatch<SetStateAction<number>>;
   totalPages: number;
 }
+export type PaginationProps = {
+  totalPages: number;
+  currentPage: number;
+  setCurrentPage: Dispatch<SetStateAction<number>>;
+};
 
 export const Pagination = ({
-  pageCount,
   currentPage,
   setCurrentPage,
   totalPages, // 전체 페이지 개수
-  limit,
-}: PageProps) => {
+}: PaginationProps) => {
   // 총 페이지 개수
   // const totalPage = Math.ceil(totalElement / limit);
   const router = useRouter();
 
   // 페이지 그룹
-  const pageGroup = Math.ceil(currentPage / pageCount);
+  const pageGroup = Math.ceil(currentPage / 5);
 
-  let lastIndex = pageGroup * pageCount;
+  let lastIndex = pageGroup * 5;
   if (lastIndex > totalPages) {
     lastIndex = totalPages;
   }
 
-  let firstIndex = lastIndex - (pageCount - 1);
+  let firstIndex = lastIndex - (5 - 1);
 
   const next = lastIndex + 1;
   const prev = firstIndex - 1;
@@ -56,8 +59,7 @@ export const Pagination = ({
   // 페이지 변경 함수
   const handlePageChange = (page: number) => {
     if (page >= 1 && page <= totalPages) {
-      // 페이지 이동
-      console.log("hissss");
+      console.log("handlePageChange");
       setCurrentPage(page);
       router.push(`/?${createQueryString("page", page)}`);
     }
@@ -65,22 +67,35 @@ export const Pagination = ({
 
   return (
     <div className="flex gap-4">
-      <button onClick={() => handlePageChange(prev)} className="border">
+      <button
+        onClick={() => {
+          if (prev <= 0) setCurrentPage(prev);
+          else console.log("이전 페이지 없음");
+        }}
+        className="border"
+      >
         이전
       </button>
-      {Array.from({ length: pageCount }, (_, index) => (
+      {Array.from({ length: 5 }, (_, index) => (
         <button
           key={firstIndex + index}
           onClick={() => {
-            console.log("ff", firstIndex + index);
-            handlePageChange(firstIndex + index);
+            console.log("클릭", firstIndex + index);
+            console.log("current", currentPage);
+            setCurrentPage(firstIndex + index);
           }}
           className={firstIndex + index === currentPage ? "active" : ""}
         >
           {firstIndex + index}
         </button>
       ))}
-      <button onClick={() => handlePageChange(next)} className="border">
+      <button
+        onClick={() => {
+          if (next <= totalPages) setCurrentPage(next);
+          else console.log("다음 페이지 없음");
+        }}
+        className="border"
+      >
         다음
       </button>
     </div>

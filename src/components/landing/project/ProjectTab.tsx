@@ -136,11 +136,7 @@ export const ProjectTab = ({
   // const [pageIndex, setPageIndex] = useState(1);
   // const [isFinished, setIsFinished] = useState<boolean>(false);
 
-  const {
-    data: projectListData,
-    isLoading,
-    refetch,
-  } = useProjectList({
+  const { data: projectListData, isLoading } = useProjectList({
     // field: pageField,
     page: currentPage,
     size: 5,
@@ -253,14 +249,12 @@ export const ProjectTab = ({
         <button onClick={() => setCurrentPage(3)}>2</button>
         <button onClick={() => setCurrentPage(4)}>3</button>
 
-        {/* <Pagination
+        <Pagination
           // totalElement={projectListData?.totalElement}
           totalPages={projectListData?.totalPages}
-          pageCount={5}
-          currentPage={}
-          setCurrentPage={setPageIndex}
-          limit={5}
-        /> */}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+        />
       </CustomTabPanel>
       <CustomTabPanel value={tab} index={1}>
         {data.map((item: any, idx: any) => {
