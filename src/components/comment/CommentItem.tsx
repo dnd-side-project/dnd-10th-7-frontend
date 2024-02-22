@@ -39,7 +39,7 @@ export const CommentItem = ({ data, projectId }: Props) => {
                 height={47}
                 className="w-[47px] h-[47px] rounded-full me-4 object-cover"
               ></Image>
-              <div className="h-[48px] w-[48px] rounded-full bg-gray-40" />
+              {/* <div className="h-[48px] w-[48px] rounded-full bg-gray-40" /> */}
 
               <div className="flex flex-col space-y-1">
                 <div className="flex gap-[8px] items-center">
@@ -47,7 +47,7 @@ export const CommentItem = ({ data, projectId }: Props) => {
                   <p className="text-caption1 text-gray-60">{item.createdAt}</p>
                   <p className="w-[5px] h-[5px] rounded-full bg-gray-60" />
                   {/* <p className="text-caption1 text-gray-60">{item.time}</p> */}
-                  <p className="w-[5px] h-[5px] rounded-full bg-gray-60" />
+                  {/* <p className="w-[5px] h-[5px] rounded-full bg-gray-60" /> */}
                   <p
                     className="text-caption1 text-gray-60 cursor-pointer"
                     onClick={() => {
@@ -62,7 +62,7 @@ export const CommentItem = ({ data, projectId }: Props) => {
                       <p className="w-[5px] h-[5px] rounded-full bg-gray-60" />
                       <p
                         className="text-caption1 text-gray-60 cursor-pointer hover:text-purple-main1"
-                        onClick={() => useDelete(item.commentId)}
+                        // onClick={() => useDelete(item.commentId)}
                       >
                         삭제하기
                       </p>

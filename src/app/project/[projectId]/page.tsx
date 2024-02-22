@@ -186,7 +186,7 @@ export default function ProjectDetailPage({ params }: { params: PageParams }) {
           </div>
 
           {/* 댓글 */}
-          <div className="border border-red-500 mt-[72px]">
+          <div className="mt-[72px]">
             <CommentBox projectId={params.projectId} />
           </div>
         </div>

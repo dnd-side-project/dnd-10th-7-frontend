@@ -1,8 +1,9 @@
 import { useGetProjectComment } from "@component/hooks/useProject";
 import { CommentInput } from "./CommentInput";
 import { CommentItem } from "./CommentItem";
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { ProjectCommentType } from "@component/types/Project";
+import axios from "axios";
 
 export default function CommentBox({ projectId }: { projectId: number }) {
   const {
@@ -13,7 +14,7 @@ export default function CommentBox({ projectId }: { projectId: number }) {
 
   const commentList = useMemo(
     () =>
-      commentData?.data?.map(
+      commentData?.data?.data.map(
         (item: ProjectCommentType) =>
           ({
             userId: item.userId,
