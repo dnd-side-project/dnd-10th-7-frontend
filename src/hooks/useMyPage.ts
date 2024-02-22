@@ -62,6 +62,7 @@ export const usePutUserDataMutation = ({
         text: "프로필 수정이 완료되었습니다.",
       });
       console.log("프로필 편집 성공", res);
+      window.location.reload();
     },
     onError: (err: any) => {
       alert("프로필 편집 실패: 중복된 닉네임 입니다");
