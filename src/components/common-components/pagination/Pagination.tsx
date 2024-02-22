@@ -9,14 +9,6 @@ import {
   useState,
 } from "react";
 
-interface PageProps {
-  totalElement?: number; // 총 데이터 개수
-  pageCount: number; // 화면에 나타날 페이지 개수 : 5
-  currentPage: number; // 현재 페이지
-  limit: number; // 한 페이지당 나타낼 데이터 개수 : 5
-  setCurrentPage: Dispatch<SetStateAction<number>>;
-  totalPages: number;
-}
 export type PaginationProps = {
   totalPages: number;
   currentPage: number;
@@ -74,6 +66,7 @@ export const Pagination = ({
         }}
         className="border"
       >
+        {/* TODO : icon 넣기 */}
         이전
       </button>
       {Array.from({ length: 5 }, (_, index) => (
@@ -84,7 +77,11 @@ export const Pagination = ({
             console.log("current", currentPage);
             setCurrentPage(firstIndex + index);
           }}
-          className={firstIndex + index === currentPage ? "active" : ""}
+          className={
+            firstIndex + index === currentPage
+              ? "flex justify-center items-center w-[30px] h-[30px] text-purple-active bg-purple-main3 rounded-full p-2"
+              : ""
+          }
         >
           {firstIndex + index}
         </button>
@@ -96,6 +93,7 @@ export const Pagination = ({
         }}
         className="border"
       >
+        {/* TODO : icon 넣기 */}
         다음
       </button>
     </div>
