@@ -9,18 +9,18 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import DropdownBox from "@component/components/common-components/dropdown-box/DropdownBox";
 
 export type ProjectItemProps = {
-  projectId: number;
   type: TagProps["type"];
   status: TagProps["status"];
   title: string;
   subTitle: string;
-  user: string;
+  user?: string;
   //   profileImg:string;
   createdDate: string;
   pullUpCount: number;
-  likeCount: number;
-  commentCount: number;
+  likeCount?: number;
+  commentCount?: number;
   moreBtn?: boolean;
+  projectId?: number;
 };
 
 export default function ProjectItem({
