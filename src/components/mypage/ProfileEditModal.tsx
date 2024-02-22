@@ -22,16 +22,29 @@ import Loading from "../loading/Loading";
 export default function ProfileEditModal(props: ModalViewProps) {
   const { isOpen, setIsOpen, isPrevOpen, setIsPrevOpen } = props;
 
-  const [birth, setBirth] = useRecoilState(birthState);
-  const [career, setCareer] = useRecoilState(careerState);
-  const [gender, setGender] = useRecoilState(genderState);
-  const [nickname, setNickname] = useRecoilState(nicknameState);
-
   const [careerChecked, setCareerChecked] = useState<boolean>();
   const [selectStatus, setSelectStatus] = useState<boolean>(false);
-  const [fields, setFields] = useState<string[]>([]);
   const [completeModalOpen, setCompleteModalOpen] = useState<boolean>(false);
-
+  const [fields, setFields] = useState<string[]>([]);
+  
+  
+  // original info
+  let originBirth: any = "";
+  let originNickname: any = "";
+  let originGender: any = "";
+  let originCareer: any = "";
+  if (typeof window !== "undefined") {
+    originBirth = localStorage.getItem("birthDay");
+    originNickname = localStorage.getItem("nickname");
+    originGender = localStorage.getItem("gender");
+    originCareer = localStorage.getItem("career");
+  }
+  
+  const [birth, setBirth] = useState(originBirth);
+  const [nickname, setNickname] = useState(originNickname);
+  const [gender, setGender] = useState(originGender);
+  const [career, setCareer] = useState(originCareer);
+  
   const { mutate, isPending } = usePutUserDataMutation({
     nickname,
     career,
@@ -48,6 +61,7 @@ export default function ProfileEditModal(props: ModalViewProps) {
       localStorage.setItem("birthDay", birth);
       localStorage.setItem("gender", gender as string);
       localStorage.setItem("career", career);
+      localStorage.setItem("nickname", nickname);
     }
     setIsOpen(false);
     setCompleteModalOpen(true);
@@ -86,7 +100,7 @@ export default function ProfileEditModal(props: ModalViewProps) {
                 onChange={(e: React.ChangeEvent<any>) =>
                   setNickname(e.target.value)
                 }
-                placeholder="이채민"
+                placeholder={originBirth}
                 size="xs"
               />
             </div>
@@ -98,7 +112,7 @@ export default function ProfileEditModal(props: ModalViewProps) {
                 onChange={(e: React.ChangeEvent<any>) =>
                   setBirth(e.target.value)
                 }
-                placeholder="0000.00.00"
+                placeholder={originBirth}
                 size="xs"
               />
             </div>
