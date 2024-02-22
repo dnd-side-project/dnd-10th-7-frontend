@@ -136,14 +136,12 @@ export const MyPageTab = () => {
             <div key={idx}>
               <ProjectItem
                 projectId={item.projectId}
-                type={item.type as TagProps["type"]}
+                type={item.field as TagProps["type"]}
                 status={item.status as TagProps["status"]}
                 title={item.title}
-                status={item.progress}
                 subTitle={item.summary}
                 createdDate={item.createdAt}
                 pullUpCount={item.pullUpCount}
-                type={item.field as TagProps["type"]}
               />
             </div>
           );
@@ -155,14 +153,12 @@ export const MyPageTab = () => {
             <div key={idx}>
               <ProjectItem
                 projectId={item.projectId}
-                type={item.type as TagProps["type"]}
+                type={item.field as TagProps["type"]}
                 status={item.status as TagProps["status"]}
                 title={item.title}
-                status={item.progress}
                 subTitle={item.summary}
                 createdDate={item.createdAt}
                 pullUpCount={item.pullUpCount}
-                type={item.field as TagProps["type"]}
               />
             </div>
           );
@@ -174,14 +170,12 @@ export const MyPageTab = () => {
             <div key={idx}>
               <ProjectItem
                 projectId={item.projectId}
-                type={item.type as TagProps["type"]}
+                type={item.field as TagProps["type"]}
                 status={item.status as TagProps["status"]}
                 title={item.title}
-                status={item.progress}
                 subTitle={item.summary}
                 createdDate={item.createdAt}
                 pullUpCount={item.pullUpCount}
-                type={item.field as TagProps["type"]}
               />
             </div>
           );

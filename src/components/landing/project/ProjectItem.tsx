@@ -9,7 +9,6 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import DropdownBox from "@component/components/common-components/dropdown-box/DropdownBox";
 
 export type ProjectItemProps = {
-  projectId: number;
   type: TagProps["type"];
   status: TagProps["status"];
   title: string;
