@@ -65,7 +65,7 @@ export const putUserData = async ({
   fields,
 }: userDataProps) => {
   const res = await authApi({
-    "Content-Type": "application/x-www-form-urlencoded",
+    "Content-Type": "application/json",
   }).put(`/api/users/me`, {
     nickname,
     career,
