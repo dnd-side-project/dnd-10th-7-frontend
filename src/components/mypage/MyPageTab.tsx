@@ -119,7 +119,7 @@ export const MyPageTab = ({ data }: ProjectTabProps) => {
         </div>
       </Box>
       <CustomTabPanel value={tab} index={0}>
-        {myProjectData?.data?.content.map((item: any, idx: number) => {
+        {myProjectData?.data?.data?.content.map((item: any, idx: number) => {
           return (
             <div key={idx}>
               <ProjectItem
@@ -142,7 +142,7 @@ export const MyPageTab = ({ data }: ProjectTabProps) => {
         })}
       </CustomTabPanel>
       <CustomTabPanel value={tab} index={1}>
-        {myFeedbackData?.data?.content.map((item: any, idx: number) => {
+        {myFeedbackData?.data?.data?.content.map((item: any, idx: number) => {
           return (
             <div key={idx}>
               <ProjectItem
@@ -164,7 +164,7 @@ export const MyPageTab = ({ data }: ProjectTabProps) => {
         })}
       </CustomTabPanel>
       <CustomTabPanel value={tab} index={2}>
-        {myScrapData?.data?.content.map((item: any, idx: number) => {
+        {myScrapData?.data?.data?.content.map((item: any, idx: number) => {
           return (
             <div key={idx}>
               <ProjectItem

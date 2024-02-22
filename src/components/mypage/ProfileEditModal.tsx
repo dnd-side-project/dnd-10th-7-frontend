@@ -4,6 +4,7 @@ import Dropdown from "../common-components/dropdown";
 import GrayInput from "../common-components/input/GrayInput";
 import { ModalViewProps } from "../signup/LoginModal";
 import { Modal } from "../common-components/modal";
+import { usePutUserDataMutation } from "@component/hooks/useMyPage";
 
 export default function ProfileEditModal(props: ModalViewProps) {
   const { isOpen, setIsOpen, isPrevOpen, setIsPrevOpen } = props;
