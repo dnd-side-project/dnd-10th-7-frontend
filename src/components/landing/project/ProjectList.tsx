@@ -47,19 +47,10 @@ export const ProjectList = () => {
     isFinished: isFinished,
   });
 
-  // const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-
   // // 카테고리 선택 시 호출될 콜백 함수
   const handleMenuClick = (category: string) => {
     setCurrentMenu(category); // 선택된 카테고리 ID 저장
     router.push(`/?${createQueryString("field", category)}`);
-
-    // 페이지를 0으로 설정하고, 선택된 카테고리 ID를 쿼리 파라미터로 설정하여 API를 호출
-    // router.replace(
-    //   { query: { ...router.query, page: 0, field: category.toString() } },
-    //   undefined,
-    //   { shallow: true }
-    // );
   };
 
   const projectList = useMemo(
