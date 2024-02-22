@@ -10,6 +10,8 @@ import {
   putProjectLike,
   putProjectScrap,
   getProjectRecommend,
+  deleteProject,
+  pullProjectUp,
 } from "@component/api/projectAPI";
 
 export const usePostProjectMutation = (): UseMutationResult<
@@ -70,7 +72,7 @@ export const useScrapMutation = (projectId: number) => {
     data,
     error,
     isPending,
-    mutate: isScrapMutate
+    mutate: isScrapMutate,
   } = useMutation({
     mutationFn: () => putProjectScrap(projectId),
     onSuccess: (res) => {
@@ -81,4 +83,44 @@ export const useScrapMutation = (projectId: number) => {
     },
   });
   return { isScrapMutate };
+};
+
+export const useDeleteMutation = (projectId: any) => {
+  const {
+    data,
+    error,
+    isPending,
+    mutate: deleteMutate,
+  } = useMutation({
+    mutationFn: () => deleteProject(projectId),
+    onSuccess: (res) => {
+      console.log("삭제 성공", res);
+    },
+    onError: (err: any) => {
+      // error 종류
+      // 1. 이미 삭제 한 경우 2. 내 프로젝트가 아닌 경우
+      console.log(err);
+    },
+  });
+  return { deleteMutate, isPending };
+};
+
+export const usePullUpMutation = (projectId: any) => {
+  const {
+    data,
+    error,
+    isPending,
+    mutate: pullUpMutate,
+  } = useMutation({
+    mutationFn: () => pullProjectUp(projectId),
+    onSuccess: (res) => {
+      console.log("끌올 성공", res);
+    },
+    onError: (err: any) => {
+      // error 종류
+      // 1. 3일이 지나지 않은 경우 2. 이미 삭제된 경우 3. 내 프로젝트가 아닌 경우
+      console.log(err);
+    },
+  });
+  return { pullUpMutate, isPending };
 };

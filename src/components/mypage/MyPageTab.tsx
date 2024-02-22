@@ -136,6 +136,8 @@ export const MyPageTab = () => {
             <div key={idx}>
               <ProjectItem
                 projectId={item.projectId}
+                type={item.type as TagProps["type"]}
+                status={item.status as TagProps["status"]}
                 title={item.title}
                 status={item.progress}
                 subTitle={item.summary}
@@ -153,6 +155,8 @@ export const MyPageTab = () => {
             <div key={idx}>
               <ProjectItem
                 projectId={item.projectId}
+                type={item.type as TagProps["type"]}
+                status={item.status as TagProps["status"]}
                 title={item.title}
                 status={item.progress}
                 subTitle={item.summary}
@@ -170,6 +174,8 @@ export const MyPageTab = () => {
             <div key={idx}>
               <ProjectItem
                 projectId={item.projectId}
+                type={item.type as TagProps["type"]}
+                status={item.status as TagProps["status"]}
                 title={item.title}
                 status={item.progress}
                 subTitle={item.summary}
