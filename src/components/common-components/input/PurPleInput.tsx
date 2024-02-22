@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import { InputProps, InputSize, InputShape, InputColor } from ".";
 import SearchIcon from "@mui/icons-material/Search";
-import { forwardRef, PropsWithChildren } from "react";
+import { forwardRef, PropsWithChildren, useState } from "react";
 
 const style: {
   base: string;
@@ -44,11 +44,10 @@ const style: {
 const PurpleInput = forwardRef<HTMLInputElement, PropsWithChildren<InputProps>>(
   (props, ref) => {
     const {
-      value,
       onChange,
       placeholder,
       onKeyDown,
-
+      defaultValue = "",
       // style
       size,
       textSize,
@@ -61,6 +60,8 @@ const PurpleInput = forwardRef<HTMLInputElement, PropsWithChildren<InputProps>>(
       search,
     } = props;
 
+    const [value, setValue] = useState(defaultValue);
+
     return (
       <div className="relative">
         {search && (
@@ -72,7 +73,10 @@ const PurpleInput = forwardRef<HTMLInputElement, PropsWithChildren<InputProps>>(
         <input
           type="text"
           value={value}
-          onChange={onChange}
+          onChange={(e) => {
+            onChange?.(e);
+            setValue(e.target.value);
+          }}
           onKeyDown={onKeyDown}
           placeholder={placeholder}
           ref={ref}

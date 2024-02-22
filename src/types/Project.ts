@@ -57,4 +57,21 @@ export type InputImageProps = {
   setFilePreviews: any;
   fileList: any;
   setFileList: any;
-}
+};
+
+// TODO : 공통으로 쓰이는 타입들 정리 및 확장 필요
+export type ProjectItemProps = {
+  commentCount: number;
+  createdAt: string;
+  field: string;
+  isScrapped: false;
+  likeCount: number;
+  nickname: string;
+  profileImageUrl: string;
+  progress: string;
+  projectId: number;
+  pullUpCount: number;
+  summary: string;
+  title: string;
+  moreBtn?: boolean;
+};

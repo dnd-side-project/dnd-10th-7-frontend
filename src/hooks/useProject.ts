@@ -1,18 +1,20 @@
 import {
+  ProjectData,
+  deleteProject,
+  getProject,
+  getProjectRecommend,
+  postProject,
+  projectAPI,
+  pullProjectUp,
+  putProjectLike,
+  putProjectScrap,
+} from "@component/api/projectAPI";
+import { ProjectPageParams } from "@component/types/api";
+import {
   useQuery,
   useMutation,
   UseMutationResult,
 } from "@tanstack/react-query";
-import {
-  getProject,
-  postProject,
-  ProjectData,
-  putProjectLike,
-  putProjectScrap,
-  getProjectRecommend,
-  deleteProject,
-  pullProjectUp,
-} from "@component/api/projectAPI";
 
 export const usePostProjectMutation = (): UseMutationResult<
   any,
@@ -123,4 +125,15 @@ export const usePullUpMutation = (projectId: any) => {
     },
   });
   return { pullUpMutate, isPending };
+};
+
+export const useProjectList = (params: ProjectPageParams) => {
+  const { data, error, isLoading } = useQuery({
+    queryKey: ["getProjectList", { params }],
+    queryFn: () => projectAPI.getProjectList(params),
+    placeholderData: (prevData, _) => prevData,
+    enabled: Boolean(params),
+  });
+
+  return { data, error, isLoading };
 };

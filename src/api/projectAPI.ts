@@ -1,4 +1,6 @@
-import { authApi } from "./api";
+import axios, { AxiosResponse } from "axios";
+import { BASE_URL, api, authApi } from "./api";
+import { ProjectPageParams } from "@component/types/api";
 
 export type ProjectData = {
   titleValue: string;
@@ -60,26 +62,40 @@ export const getProject = async (projectId: number) => {
 
 // 추천 프로젝트 조회
 export const getProjectRecommend = async () => {
-  const res = await authApi().get(
-    `/api/projects/recommend`
-  );
+  const res = await authApi().get(`/api/projects/recommend`);
   return res;
 };
 
 // 좋아요
 export const putProjectLike = async (projectId: number) => {
-  const res = await authApi({ "Content-Type": "application/x-www-form-urlencoded" }).put(
-    `/api/projects/${projectId}/like`
-  );
+  const res = await authApi({
+    "Content-Type": "application/x-www-form-urlencoded",
+  }).put(`/api/projects/${projectId}/like`);
   return res;
 };
 
 // 스크랩
 export const putProjectScrap = async (projectId: number) => {
-  const res = await authApi({ "Content-Type": "application/x-www-form-urlencoded" }).put(
-    `/api/projects/${projectId}/scrap`
-  );
+  const res = await authApi({
+    "Content-Type": "application/x-www-form-urlencoded",
+  }).put(`/api/projects/${projectId}/scrap`);
   return res;
+};
+
+export const projectAPI = {
+  getProjectList: async (params?: ProjectPageParams, accessToken?: string) => {
+    try {
+      const res: AxiosResponse = await axios.get(`${BASE_URL}/api/projects`, {
+        // headers: {
+        //   Authorization: `Bearer ${accessToken}`,
+        // },
+        params,
+      });
+      return res.data;
+    } catch (err) {
+      console.error(err);
+    }
+  },
 };
 
 // 삭제
@@ -92,8 +108,8 @@ export const deleteProject = async (projectId: number) => {
 
 // 끌올
 export const pullProjectUp = async (projectId: number) => {
-  const res = await authApi({ "Content-Type": "application/x-www-form-urlencoded" }).put(
-    `/api/projects/${projectId}/pull-up`
-  );
+  const res = await authApi({
+    "Content-Type": "application/x-www-form-urlencoded",
+  }).put(`/api/projects/${projectId}/pull-up`);
   return res;
 };
