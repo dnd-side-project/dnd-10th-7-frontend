@@ -8,6 +8,8 @@ import {
   useEffect,
   useState,
 } from "react";
+import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
+import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 
 export type PaginationProps = {
   totalPages: number;
@@ -21,21 +23,22 @@ export const Pagination = ({
   totalPages, // 전체 페이지 개수
 }: PaginationProps) => {
   // 총 페이지 개수
-  // const totalPage = Math.ceil(totalElement / limit);
   const router = useRouter();
 
   // 페이지 그룹
   const pageGroup = Math.ceil(currentPage / 5);
 
+  // 수정된 부분: 각 페이지 그룹의 첫 번째 페이지와 마지막 페이지를 계산합니다.
+  let firstIndex = (pageGroup - 1) * 5 + 1;
   let lastIndex = pageGroup * 5;
   if (lastIndex > totalPages) {
     lastIndex = totalPages;
   }
 
-  let firstIndex = lastIndex - (5 - 1);
-
-  const next = lastIndex + 1;
-  const prev = firstIndex - 1;
+  // const next = lastIndex + 1;
+  // const prev = firstIndex - 1;
+  const prev = currentPage - 1;
+  const next = totalPages + 1;
 
   const searchParams = useSearchParams();
 
@@ -57,44 +60,65 @@ export const Pagination = ({
     }
   };
 
+  const handlePrevClick = () => {
+    const prev = currentPage - 1;
+    if (prev >= 1) {
+      setCurrentPage(prev);
+      router.push(`/?${createQueryString("page", prev)}`);
+    } else {
+      console.log("이전 페이지 없음");
+    }
+  };
+
+  const handleNextClick = () => {
+    const next = currentPage + 1;
+    if (next <= totalPages) {
+      setCurrentPage(next);
+      router.push(`/?${createQueryString("page", next)}`);
+    } else {
+      console.log("다음 페이지 없음");
+    }
+  };
+
+  // console.log(totalPages, "ss");
+  // console.log(prev, "prev");
+  // console.log(next, "next");
+  // console.log("current", currentPage);
+
   return (
     <div className="flex gap-4">
-      <button
-        onClick={() => {
-          if (prev <= 0) setCurrentPage(prev);
-          else console.log("이전 페이지 없음");
-        }}
-        className="border"
-      >
-        {/* TODO : icon 넣기 */}
-        이전
+      <button onClick={handlePrevClick} disabled={prev < 1}>
+        <KeyboardArrowLeftIcon className={prev >= 1 ? "" : "text-gray-60"} />
       </button>
-      {Array.from({ length: 5 }, (_, index) => (
-        <button
-          key={firstIndex + index}
-          onClick={() => {
-            console.log("클릭", firstIndex + index);
-            console.log("current", currentPage);
-            setCurrentPage(firstIndex + index);
-          }}
-          className={
-            firstIndex + index === currentPage
-              ? "flex justify-center items-center w-[30px] h-[30px] text-purple-active bg-purple-main3 rounded-full p-2"
-              : ""
-          }
-        >
-          {firstIndex + index}
-        </button>
-      ))}
+      {Array.from(
+        { length: totalPages === 1 ? 1 : lastIndex - firstIndex + 1 },
+        (_, index) => {
+          const pageNumber = firstIndex + index;
+          return pageNumber === currentPage ? (
+            <button
+              key={pageNumber}
+              onClick={() => handlePageChange(pageNumber)}
+              className="flex justify-center items-center w-[32px] h-[32px] text-purple-active bg-purple-main4 rounded-full p-2"
+            >
+              {pageNumber}
+            </button>
+          ) : (
+            <button
+              key={pageNumber}
+              onClick={() => handlePageChange(pageNumber)}
+              className="w-[32px] h-[32px] bg-white flex justify-center items-center rounded-full p-2"
+            >
+              {pageNumber}
+            </button>
+          );
+        }
+      )}
       <button
-        onClick={() => {
-          if (next <= totalPages) setCurrentPage(next);
-          else console.log("다음 페이지 없음");
-        }}
-        className="border"
+        onClick={handleNextClick}
+        className={currentPage === totalPages ? "text-gray-60" : ""}
+        disabled={currentPage === totalPages}
       >
-        {/* TODO : icon 넣기 */}
-        다음
+        <KeyboardArrowRightIcon />
       </button>
     </div>
   );
