@@ -170,6 +170,7 @@ export const ProjectTab = ({
             sx={{ fontSize: "18px" }}
             onClick={() => {
               setIsFinished(false);
+              setCurrentPage(1);
               router.push(`/?${createQueryString("isFinished", false)}`);
             }}
           />
@@ -179,6 +180,7 @@ export const ProjectTab = ({
             sx={{ fontSize: "18px" }}
             onClick={() => {
               setIsFinished(true);
+              setCurrentPage(1);
               router.push(`/?${createQueryString("isFinished", true)}`);
             }}
           />
@@ -223,60 +225,68 @@ export const ProjectTab = ({
         </div>
       </Box>
       <CustomTabPanel value={tab} index={0}>
-        {data.map((item: any, idx: any) => {
-          return (
-            <div key={idx}>
-              <ProjectItem
-                field={item.field}
-                progress={item.progress}
-                title={item.title}
-                summary={item.summary}
-                nickname={item.nickname}
-                createdAt={item.createdAt}
-                pullUpCount={item.pullUpCount}
-                likeCount={item.likeCount}
-                commentCount={item.commentCount}
-                isScrapped={item.isScrapped}
-                projectId={item.projectId}
-                profileImageUrl={item.profileImageUrl}
-              />
-            </div>
-          );
-        })}
-        {/* TODO : 이런식으로 구현..! */}
+        <div className="min-h-[1360px]">
+          {data.map((item: any, idx: any) => {
+            return (
+              <div key={idx}>
+                <ProjectItem
+                  field={item.field}
+                  progress={item.progress}
+                  title={item.title}
+                  summary={item.summary}
+                  nickname={item.nickname}
+                  createdAt={item.createdAt}
+                  pullUpCount={item.pullUpCount}
+                  likeCount={item.likeCount}
+                  commentCount={item.commentCount}
+                  isScrapped={item.isScrapped}
+                  projectId={item.projectId}
+                  profileImageUrl={item.profileImageUrl}
+                />
+              </div>
+            );
+          })}
+        </div>
+        {/*  test */}
         <button onClick={() => setCurrentPage(1)}>0</button>
         <button onClick={() => setCurrentPage(2)}>1</button>
         <button onClick={() => setCurrentPage(3)}>2</button>
         <button onClick={() => setCurrentPage(4)}>3</button>
 
         <Pagination
-          // totalElement={projectListData?.totalElement}
           totalPages={projectListData?.totalPages}
           currentPage={currentPage}
           setCurrentPage={setCurrentPage}
         />
       </CustomTabPanel>
       <CustomTabPanel value={tab} index={1}>
-        {data.map((item: any, idx: any) => {
-          return (
-            <div key={idx}>
-              <ProjectItem
-                field={item.field}
-                progress={item.progress}
-                title={item.title}
-                summary={item.summary}
-                nickname={item.nickname}
-                createdAt={item.createdAt}
-                pullUpCount={item.pullUpCount}
-                likeCount={item.likeCount}
-                commentCount={item.commentCount}
-                isScrapped={item.isScrapped}
-                projectId={item.projectId}
-                profileImageUrl={item.profileImageUrl}
-              />
-            </div>
-          );
-        })}
+        <div className="min-h-[1360px]">
+          {data.map((item: any, idx: any) => {
+            return (
+              <div key={idx}>
+                <ProjectItem
+                  field={item.field}
+                  progress={item.progress}
+                  title={item.title}
+                  summary={item.summary}
+                  nickname={item.nickname}
+                  createdAt={item.createdAt}
+                  pullUpCount={item.pullUpCount}
+                  likeCount={item.likeCount}
+                  commentCount={item.commentCount}
+                  isScrapped={item.isScrapped}
+                  projectId={item.projectId}
+                  profileImageUrl={item.profileImageUrl}
+                />
+              </div>
+            );
+          })}
+        </div>
+        <Pagination
+          totalPages={projectListData?.totalPages}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+        />
       </CustomTabPanel>
     </Box>
   );
