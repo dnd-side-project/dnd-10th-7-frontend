@@ -126,6 +126,7 @@ export const ProjectList = () => {
           setSort={setSort}
           currentPage={pageIndex}
           setCurrentPage={setPageIndex}
+          currentMenu={currentMenu ?? undefined}
         />
       </div>
     </div>

@@ -11,6 +11,7 @@ import { FIELD_TYPE } from "@component/types/api";
 import { useProjectList } from "@component/hooks/useProject";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { ProjectItemProps } from "@component/types/Project";
+import { useRouter } from "next/navigation";
 
 type Props = {
   currentMenu: string | null; // 현재 선택된 카테고리 ID
@@ -38,18 +39,7 @@ export const Categories = ({ currentMenu, onMenuClick, isLoading }: Props) => {
     { id: 8, icon: <Brush />, name: "기타" },
   ];
 
-  const [currentField, setCurrentField] = useState<string>("");
-
-  // const onMenuClick = (menu: string) => {
-  //   console.log(menu, "current");
-  //   setCurrentField(menu);
-  // };
-
-  // const { data: projectListData, isLoading } = useProjectList({
-  //   field: currentField,
-  // });
-
-  // console.log("category", projectListData?.data?.content);
+  const [currentField, setCurrentField] = useState<string>();
 
   return (
     <div className="flex flex-col gap-5 w-full max-w-[190px] pr-6">
@@ -57,7 +47,7 @@ export const Categories = ({ currentMenu, onMenuClick, isLoading }: Props) => {
       <div className="flex flex-col gap-[24px]">
         <div
           className="hover:text-purple-main1 cursor-pointer"
-          onClick={() => onMenuClick("")}
+          onClick={() => (window.location.href = "/")}
         >
           전체보기
         </div>
@@ -65,7 +55,7 @@ export const Categories = ({ currentMenu, onMenuClick, isLoading }: Props) => {
           <div key={idx} onClick={() => onMenuClick(item.name)}>
             {/* 선택된 카테고리일 경우 아이콘 색상 변경 */}
             <p
-              className={`text-gray-80 text-body2 cursor-pointer hover:text-purple-main1 ${currentField === item.name ? "text-purple-main1" : ""}`}
+              className={`text-gray-80 text-body2 cursor-pointer hover:text-purple-main1 ${currentMenu === item.name ? "text-purple-main1" : ""}`}
             >
               {item.icon}&nbsp;&nbsp;{item.name}
             </p>

@@ -4,20 +4,14 @@ import { Box, Tab, Tabs } from "@mui/material";
 import React, {
   Dispatch,
   SetStateAction,
-  use,
   useCallback,
   useEffect,
-  useMemo,
   useState,
 } from "react";
 import ProjectItem from "./ProjectItem";
-import { LinkedCamera } from "@mui/icons-material";
-import { TagProps } from "@component/components/common-components/tag";
 import clsx from "clsx";
 import { ProjectItemProps } from "@component/types/Project";
 import { useRouter, useSearchParams } from "next/navigation";
-import { NextRouter } from "next/router";
-import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 import Pagination from "@component/components/common-components/pagination";
 import { useProjectList } from "@component/hooks/useProject";
 
@@ -62,6 +56,7 @@ export type ProjectTabProps = {
   setSort: Dispatch<SetStateAction<number>>;
   currentPage: number;
   setCurrentPage: Dispatch<SetStateAction<number>>;
+  currentMenu: string | undefined;
 };
 
 export const ProjectTab = ({
@@ -72,6 +67,7 @@ export const ProjectTab = ({
   setSort,
   currentPage,
   setCurrentPage,
+  currentMenu,
 }: ProjectTabProps) => {
   const [tab, setTab] = useState(0);
   const router = useRouter();
@@ -91,15 +87,12 @@ export const ProjectTab = ({
   );
 
   const { data: projectListData, isLoading } = useProjectList({
-    // field: pageField,
+    field: currentMenu,
     page: currentPage,
     size: 5,
     sort: sort,
     isFinished: isFinished,
   });
-
-  // console.log("what", isFinished);
-  console.log("projectTab", projectListData);
 
   useEffect(() => {
     if (tab === 0) setIsFinished(false);
@@ -179,7 +172,7 @@ export const ProjectTab = ({
         </div>
       </Box>
       <CustomTabPanel value={tab} index={0}>
-        <div className="min-h-[1360px]">
+        <div className="max-h-[1360px] mb-[77px]">
           {data.map((item: any, idx: any) => {
             return (
               <div key={idx}>
@@ -201,20 +194,18 @@ export const ProjectTab = ({
             );
           })}
         </div>
-        {/*  test */}
-        <button onClick={() => setCurrentPage(1)}>0</button>
-        <button onClick={() => setCurrentPage(2)}>1</button>
-        <button onClick={() => setCurrentPage(3)}>2</button>
-        <button onClick={() => setCurrentPage(4)}>3</button>
-
-        <Pagination
-          totalPages={projectListData?.totalPages}
-          currentPage={currentPage}
-          setCurrentPage={setCurrentPage}
-        />
+        {projectListData?.data?.totalPages > 0 && (
+          <div className="flex justify-center items-center">
+            <Pagination
+              totalPages={projectListData?.data?.totalPages}
+              currentPage={currentPage}
+              setCurrentPage={setCurrentPage}
+            />
+          </div>
+        )}
       </CustomTabPanel>
       <CustomTabPanel value={tab} index={1}>
-        <div className="min-h-[1360px]">
+        <div className="max-h-[1360px] mb-[77px]">
           {data.map((item: any, idx: any) => {
             return (
               <div key={idx}>
@@ -236,11 +227,13 @@ export const ProjectTab = ({
             );
           })}
         </div>
-        <Pagination
-          totalPages={projectListData?.totalPages}
-          currentPage={currentPage}
-          setCurrentPage={setCurrentPage}
-        />
+        <div className="flex justify-center items-center">
+          <Pagination
+            totalPages={projectListData?.data?.totalPages}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+          />
+        </div>
       </CustomTabPanel>
     </Box>
   );
