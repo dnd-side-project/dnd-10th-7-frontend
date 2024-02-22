@@ -1,6 +1,7 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { getGoogleLogin, getKakaoLogin } from "@component/api/socialAPI";
 import { userAPI, userInfoType } from "@component/api/userAPI";
+import { useRouter } from "next/navigation";
 
 export const useKakaoLogin = (code: string) => {
   const { data, error, isLoading } = useQuery({
@@ -30,6 +31,8 @@ export const useSignUp = ({
   fields,
   signToken,
 }: userInfoType) => {
+  const router = useRouter();
+
   const { data, error, isPending, mutate } = useMutation({
     mutationFn: () =>
       userAPI.postUserInfo({
@@ -42,6 +45,10 @@ export const useSignUp = ({
       }),
     onSuccess: (res) => {
       console.log(res);
+      window.sessionStorage.removeItem("signToken");
+      window.sessionStorage.setItem("accessToken", res?.data?.accessToken);
+      alert("회원가입이 완료되었습니다.");
+      window.location.reload();
     },
     onError: (err: any) => {
       console.log(err);

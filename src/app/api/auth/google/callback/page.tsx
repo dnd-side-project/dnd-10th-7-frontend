@@ -36,7 +36,7 @@ export default function GoogleCallBack() {
     }
     if (error) {
       console.log("err입니다", error);
-      // router.push("/");
+      router.push("/");
 
       // TODO : 회원가입이 안된 경우의 에러와 아무 경우에도 속하지 않는 찐 에러 구분해서 로직 짜기!
     }
