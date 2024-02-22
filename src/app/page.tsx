@@ -5,6 +5,7 @@ import LandingMid from "@component/components/landing/carousel/LandingMid";
 import { ProjectList } from "@component/components/landing/project/ProjectList";
 import { useEffect, useState } from "react";
 import SignUpModal from "@component/components/signup/SignUpModal";
+import Image from "next/image";
 
 export default function Home() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -20,8 +21,14 @@ export default function Home() {
     // 전체 1440px
     <main className="mx-auto w-full flex flex-col items-center">
       {/* 랜딩 문구 */}
-      <section className="w-full h-[640px] bg-purple-main4 flex justify-center">
-        <section className="w-[1080px]">
+      <section
+        className="w-full h-[619px] bg-purple-main4 flex justify-center"
+        style={{
+          backgroundImage: "url('/assets/main_background.png')",
+          backgroundSize: "cover",
+        }}
+      >
+        <section className="w-[1080px] flex justify-center">
           <LadingTop />
         </section>
       </section>

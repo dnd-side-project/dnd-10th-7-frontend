@@ -31,16 +31,16 @@ const LadingTop = () => {
 
   return (
     <div className="w-[1080px] flex flex-col items-center">
-      <div className="text-title mt-[177px]">
+      <div className="text-title mt-[177px] text-white">
         사이드 프로젝트 기획부터 론칭까지, 프로젝트를 등록하고
       </div>
-      <div className="text-huge mt-[32px]">
+      <div className="text-huge mt-[32px] text-white">
         다양한 사람들과 피드백을 주고 받으세요!
       </div>
-      <div className="text-title mt-[32px]">
+      <div className="text-title mt-[32px] text-white">
         여러 분야의 서비스 유저로부터 유의미한 피드백을 받을 수 있어요.
       </div>
-      <Button size="lg" className="mt-[64px]" onClick={onClickProject}>
+      <Button size="lg" className="mt-[64px] min-w-[246px]" onClick={onClickProject}>
         프로젝트 등록하기
       </Button>
       <Toaster />
