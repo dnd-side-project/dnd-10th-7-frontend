@@ -31,8 +31,7 @@ export const ProjectList = () => {
     setKeyword(e.target.value);
   };
 
-  // 선택된 카테고리 ID를 저장할 상태
-  const [currentMenu, setCurrentMenu] = useState<string>("");
+  const [currentMenu, setCurrentMenu] = useState<string>();
   const [isFinished, setIsFinished] = useState<boolean>(false);
   const [sort, setSort] = useState(0);
 
@@ -82,7 +81,7 @@ export const ProjectList = () => {
     [projectListData?.data]
   );
 
-  console.log("상단에서의 데이터", projectListData);
+  console.log("상단에서의 데이터", projectList);
 
   const searchKeyword = (keyword: string) => {
     setKeyword(keyword);
@@ -112,7 +111,7 @@ export const ProjectList = () => {
       />
       <div className="pt-[32px] flex">
         <Categories
-          currentMenu={currentMenu} // 선택된 카테고리 name 전달
+          currentMenu={currentMenu ?? null} // 선택된 카테고리 name 전달
           onMenuClick={handleMenuClick} // 카테고리 클릭 시 호출될 콜백 함수 설정
           isLoading={isLoading}
         />
