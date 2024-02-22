@@ -60,6 +60,8 @@ export type ProjectTabProps = {
   setIsFinished: Dispatch<SetStateAction<boolean>>;
   sort: number;
   setSort: Dispatch<SetStateAction<number>>;
+  currentPage: number;
+  setCurrentPage: Dispatch<SetStateAction<number>>;
 };
 
 export const ProjectTab = ({
@@ -68,6 +70,8 @@ export const ProjectTab = ({
   setIsFinished,
   sort,
   setSort,
+  currentPage,
+  setCurrentPage,
 }: ProjectTabProps) => {
   const [tab, setTab] = useState(0);
   const router = useRouter();
@@ -129,10 +133,14 @@ export const ProjectTab = ({
 
   //   }
   // };
-  const [currentPage, setCurrentPage] = useState(1);
+  // const [pageIndex, setPageIndex] = useState(1);
   // const [isFinished, setIsFinished] = useState<boolean>(false);
 
-  const { data: projectListData, isLoading } = useProjectList({
+  const {
+    data: projectListData,
+    isLoading,
+    refetch,
+  } = useProjectList({
     // field: pageField,
     page: currentPage,
     size: 5,
@@ -239,12 +247,20 @@ export const ProjectTab = ({
             </div>
           );
         })}
-        <Pagination
-          totalElement={projectListData?.totalElement}
+        {/* TODO : 이런식으로 구현..! */}
+        <button onClick={() => setCurrentPage(1)}>0</button>
+        <button onClick={() => setCurrentPage(2)}>1</button>
+        <button onClick={() => setCurrentPage(3)}>2</button>
+        <button onClick={() => setCurrentPage(4)}>3</button>
+
+        {/* <Pagination
+          // totalElement={projectListData?.totalElement}
+          totalPages={projectListData?.totalPages}
           pageCount={5}
-          currentPage={currentPage}
+          currentPage={}
+          setCurrentPage={setPageIndex}
           limit={5}
-        />
+        /> */}
       </CustomTabPanel>
       <CustomTabPanel value={tab} index={1}>
         {data.map((item: any, idx: any) => {

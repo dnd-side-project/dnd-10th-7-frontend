@@ -1,31 +1,40 @@
 "use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
-import { useCallback, useEffect, useState } from "react";
+import {
+  Dispatch,
+  SetStateAction,
+  useCallback,
+  useEffect,
+  useState,
+} from "react";
 
 interface PageProps {
-  totalElement: number; // 총 데이터 개수
+  totalElement?: number; // 총 데이터 개수
   pageCount: number; // 화면에 나타날 페이지 개수 : 5
   currentPage: number; // 현재 페이지
   limit: number; // 한 페이지당 나타낼 데이터 개수 : 5
+  setCurrentPage: Dispatch<SetStateAction<number>>;
+  totalPages: number;
 }
 
 export const Pagination = ({
-  totalElement,
   pageCount,
   currentPage,
+  setCurrentPage,
+  totalPages, // 전체 페이지 개수
   limit,
 }: PageProps) => {
   // 총 페이지 개수
-  const totalPage = Math.ceil(totalElement / limit);
+  // const totalPage = Math.ceil(totalElement / limit);
   const router = useRouter();
 
   // 페이지 그룹
   const pageGroup = Math.ceil(currentPage / pageCount);
 
   let lastIndex = pageGroup * pageCount;
-  if (lastIndex > totalPage) {
-    lastIndex = totalPage;
+  if (lastIndex > totalPages) {
+    lastIndex = totalPages;
   }
 
   let firstIndex = lastIndex - (pageCount - 1);
@@ -46,16 +55,19 @@ export const Pagination = ({
 
   // 페이지 변경 함수
   const handlePageChange = (page: number) => {
-    if (page >= 1 && page <= totalPage) {
+    if (page >= 1 && page <= totalPages) {
       // 페이지 이동
       console.log("hissss");
+      setCurrentPage(page);
       router.push(`/?${createQueryString("page", page)}`);
     }
   };
 
   return (
     <div className="flex gap-4">
-      <button onClick={() => handlePageChange(prev)}>이전</button>
+      <button onClick={() => handlePageChange(prev)} className="border">
+        이전
+      </button>
       {Array.from({ length: pageCount }, (_, index) => (
         <button
           key={firstIndex + index}
@@ -68,7 +80,9 @@ export const Pagination = ({
           {firstIndex + index}
         </button>
       ))}
-      <button onClick={() => handlePageChange(next)}>다음</button>
+      <button onClick={() => handlePageChange(next)} className="border">
+        다음
+      </button>
     </div>
   );
 };

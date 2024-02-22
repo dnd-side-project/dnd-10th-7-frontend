@@ -35,10 +35,13 @@ export const ProjectList = () => {
   const [isFinished, setIsFinished] = useState<boolean>(false);
   const [sort, setSort] = useState(0);
 
+  //페이지 인덱스
+  const [pageIndex, setPageIndex] = useState(1);
+
   const { data: projectListData, isLoading } = useProjectList({
     keyword: keyword,
     field: currentMenu,
-    // page:pageIndex,
+    page: pageIndex,
     size: 5,
     sort: sort,
     isFinished: isFinished,
@@ -81,7 +84,7 @@ export const ProjectList = () => {
     [projectListData?.data]
   );
 
-  console.log("상단에서의 데이터", projectList);
+  console.log("상단에서의 데이터", projectListData);
 
   const searchKeyword = (keyword: string) => {
     setKeyword(keyword);
@@ -121,6 +124,8 @@ export const ProjectList = () => {
           setIsFinished={setIsFinished}
           sort={sort}
           setSort={setSort}
+          currentPage={pageIndex}
+          setCurrentPage={setPageIndex}
         />
       </div>
     </div>
