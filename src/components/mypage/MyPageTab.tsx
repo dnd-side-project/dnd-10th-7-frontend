@@ -10,12 +10,18 @@ import {
 import clsx from "clsx";
 import ProjectItem from "../landing/project/ProjectItem";
 import { TagProps } from "../common-components/tag";
+import {
+  useGetMyFeedbackData,
+  useGetMyProjectData,
+  useGetMyScrapData,
+} from "@component/hooks/useMyPage";
 
 export const MyPageTab = ({ data }: ProjectTabProps) => {
   const [tab, setTab] = useState(0);
 
   // 정렬 - 0은 진행중, 1은 완료
   const [sort, setSort] = useState(0);
+  const [pageIndex, setPageIndex] = useState(1); // pageIndex 는 1 이상
 
   const handleChange = (e: React.SyntheticEvent, newValue: number) => {
     setTab(newValue);
@@ -24,6 +30,26 @@ export const MyPageTab = ({ data }: ProjectTabProps) => {
   const handleSorting = (sortingType: number) => {
     setSort(sortingType);
   };
+
+  const { data: myProjectData, isLoading: isProjectLoading } =
+    useGetMyProjectData({
+      page: pageIndex,
+      size: 5,
+      sort: sort,
+    });
+
+  const { data: myScrapData, isLoading: isScrapLoading } = useGetMyScrapData({
+    page: pageIndex,
+    size: 5,
+    sort: sort,
+  });
+
+  const { data: myFeedbackData, isLoading: isFeedbackLoading } =
+    useGetMyFeedbackData({
+      page: pageIndex,
+      size: 5,
+      sort: sort,
+    });
 
   return (
     <Box sx={{ width: "100%" }}>
@@ -93,7 +119,7 @@ export const MyPageTab = ({ data }: ProjectTabProps) => {
         </div>
       </Box>
       <CustomTabPanel value={tab} index={0}>
-        {data.map((item, idx) => {
+        {myProjectData?.data?.content.map((item: any, idx: number) => {
           return (
             <div key={idx}>
               <ProjectItem
@@ -116,7 +142,7 @@ export const MyPageTab = ({ data }: ProjectTabProps) => {
         })}
       </CustomTabPanel>
       <CustomTabPanel value={tab} index={1}>
-        {data.map((item, idx) => {
+        {myFeedbackData?.data?.content.map((item: any, idx: number) => {
           return (
             <div key={idx}>
               <ProjectItem
@@ -138,7 +164,7 @@ export const MyPageTab = ({ data }: ProjectTabProps) => {
         })}
       </CustomTabPanel>
       <CustomTabPanel value={tab} index={2}>
-        {data.map((item, idx) => {
+        {myScrapData?.data?.content.map((item: any, idx: number) => {
           return (
             <div key={idx}>
               <ProjectItem
