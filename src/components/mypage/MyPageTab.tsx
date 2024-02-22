@@ -16,7 +16,7 @@ import {
   useGetMyScrapData,
 } from "@component/hooks/useMyPage";
 
-export const MyPageTab = ({ data }: ProjectTabProps) => {
+export const MyPageTab = () => {
   const [tab, setTab] = useState(0);
 
   // 정렬 - 0은 진행중, 1은 완료

@@ -48,7 +48,6 @@ const PurpleInput = forwardRef<HTMLInputElement, PropsWithChildren<InputProps>>(
       placeholder,
       onKeyDown,
       defaultValue = "",
-
       // style
       size,
       textSize,

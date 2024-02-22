@@ -56,7 +56,7 @@ export const ReplyComment = () => {
         <div className="h-[48px] w-[48px] rounded-full bg-gray-40" />
 
         <PurpleInput
-          value={comment}
+          defaultValue={comment}
           onChange={handleComment}
           placeholder="답글을 입력해주세요"
           shape="rounded"
