@@ -3,8 +3,12 @@ import Carousel from "./Carousel";
 
 const LandingMid = () => {
   let nickname: string | null = "주먹밥";
+  let accessToken: string | null = "";
   if (typeof window !== "undefined") {
-    nickname = localStorage.getItem("nickname");
+    accessToken = sessionStorage.getItem("accessToken");
+    if (accessToken) {
+      nickname = localStorage.getItem("nickname");
+    }
   }
 
   return (
