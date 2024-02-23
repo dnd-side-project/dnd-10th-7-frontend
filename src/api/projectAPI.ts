@@ -82,6 +82,40 @@ export const putProjectScrap = async (projectId: number) => {
   return res;
 };
 
+// 댓글 조회
+export const getProjectComment = async (projectId: number) => {
+  const res = await authApi({ "Content-Type": "application/json" }).get(
+    `/api/projects/${projectId}/comments`
+  );
+  return res;
+};
+
+// 댓글 등록
+export const postProjectComment = async (
+  projectId: number,
+  content: string
+) => {
+  const res = await authApi({ "Content-Type": "application/json" }).post(
+    `/api/projects/${projectId}/comments`,
+    {
+      content: content,
+    }
+  );
+  return res;
+};
+
+// 댓글 삭제
+export const deleteProjectComment = async (
+  projectId: number,
+  commentId: number
+) => {
+  const res = await authApi({ "Content-Type": "application/json" }).delete(
+    `/api/projects/${projectId}/comments/${commentId}`
+  );
+
+  return res;
+};
+
 export const projectAPI = {
   getProjectList: async (params?: ProjectPageParams, accessToken?: string) => {
     try {
