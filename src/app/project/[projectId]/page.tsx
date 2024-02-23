@@ -20,7 +20,7 @@ type PageParams = {
   projectId: number;
 };
 
-export const notify = () =>
+const notify = () =>
   toast.success("로그인이 필요한 서비스에요", {
     style: {
       backgroundColor: "#F9F7FF",
