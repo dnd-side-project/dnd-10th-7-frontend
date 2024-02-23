@@ -23,7 +23,7 @@ export const RewardModal = (props: ModalViewProps) => {
 
         <Modal.Description className="px-[20px] flex flex-col items-center justify-center">
           <Image
-            src={"/assets/modal_reward.png"}
+            src={"/assets/modal/reward.png"}
             alt="reward"
             width={416}
             height={325}
