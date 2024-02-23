@@ -25,12 +25,6 @@ export const CommentItem = ({ data, projectId }: Props) => {
 
   const { mutate, isPending } = useDeleteComment(projectId, commentId);
 
-  const useDelComment = (id: number) => {
-    setCommentId(id);
-    console.log(commentId, "commentId");
-    mutate();
-  };
-
   return (
     <div className="flex flex-col space-y-8">
       {data.map((item, idx) => {
@@ -52,8 +46,6 @@ export const CommentItem = ({ data, projectId }: Props) => {
                   <p className="text-body2">{item.nickname}</p>
                   <p className="text-caption1 text-gray-60">{item.createdAt}</p>
                   <p className="w-[5px] h-[5px] rounded-full bg-gray-60" />
-                  {/* <p className="text-caption1 text-gray-60">{item.time}</p> */}
-                  {/* <p className="w-[5px] h-[5px] rounded-full bg-gray-60" /> */}
                   <p
                     className="text-caption1 text-gray-60 cursor-pointer"
                     onClick={() => {
@@ -68,7 +60,10 @@ export const CommentItem = ({ data, projectId }: Props) => {
                       <p className="w-[5px] h-[5px] rounded-full bg-gray-60" />
                       <p
                         className="text-caption1 text-gray-60 cursor-pointer hover:text-purple-main1"
-                        onClick={() => useDelComment(item.commentId)}
+                        onClick={() => {
+                          setCommentId(item.commentId);
+                          mutate();
+                        }}
                       >
                         삭제하기
                       </p>
