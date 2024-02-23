@@ -7,6 +7,18 @@ import {
   usePullUpMutation,
   useDeleteMutation,
 } from "@component/hooks/useProject";
+import toast, { Toaster } from "react-hot-toast";
+
+const notify = () =>
+  toast.success("곧 만나요!", {
+    style: {
+      backgroundColor: "#F9F7FF",
+      border: "1px solid #8C82FF",
+      padding: "16px",
+      color: "#8C82FF",
+    },
+    icon: "👋",
+  });
 
 const style: {
   base: string;
@@ -47,7 +59,7 @@ const DropdownBox = ({
       router.push("/");
       window.location.reload();
     }
-    if (item === "수정하기") router.push(`/project/edit/${projectId}`);
+    if (item === "수정하기") notify();
     if (item === "삭제하기") {
       setDeleteOpen(true);
     }
@@ -95,6 +107,7 @@ const DropdownBox = ({
         setDropDownOpen={setIsOpen}
         pullUp={true}
       />
+      <Toaster/>
     </div>
   );
 };
