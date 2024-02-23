@@ -1,3 +1,4 @@
+import { ProjectPageParams } from "@component/types/api";
 import {
   useQuery,
   useMutation,
@@ -15,6 +16,7 @@ import {
   getProjectRecommend,
   postProject,
   postProjectComment,
+  projectAPI,
   pullProjectUp,
   putProjectLike,
   putProjectScrap,
@@ -131,13 +133,25 @@ export const usePullUpMutation = (projectId: any) => {
   return { pullUpMutate, isPending };
 };
 
+export const useProjectList = (params: ProjectPageParams) => {
+  const { data, error, isLoading } = useQuery({
+    queryKey: ["getProjectList", { params }],
+    queryFn: () => projectAPI.getProjectList(params),
+    placeholderData: (prevData, _) => prevData,
+    enabled: Boolean(params),
+  });
+
+  return { data, error, isLoading };
+};
+
+// 댓글
+
 export const useGetProjectComment = (projectId: number) => {
   const { data, error, isLoading } = useQuery({
     queryKey: ["getProjectComment", { projectId }],
     queryFn: () => getProjectComment(projectId),
     enabled: Boolean(projectId),
   });
-
   return { data, error, isLoading };
 };
 

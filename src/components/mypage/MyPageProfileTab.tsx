@@ -14,13 +14,13 @@ const MyPageProfileTab = () => {
 
   useEffect(() => {
     if (data) {
-      console.log(data.data.data);
+      console.log(data.data.data, "hi");
       setProfileData(data.data.data);
     }
   }, [data]);
 
   if (error) {
-    console.log(error)
+    console.log(error);
   }
 
   return (

@@ -1,7 +1,7 @@
 export type GrayInputProps = {
   value: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  placeholder: string;
+  placeholder?: string;
   size: GrayInputSize;
   className?: string;
 };

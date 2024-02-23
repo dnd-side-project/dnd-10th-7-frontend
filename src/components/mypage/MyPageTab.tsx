@@ -1,21 +1,28 @@
 "use client";
 
 import { Box, Tab, Tabs } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   CustomTabPanel,
+  ProjectTabProps,
   a11yProps,
-  dummyData,
 } from "../landing/project/ProjectTab";
 import clsx from "clsx";
 import ProjectItem from "../landing/project/ProjectItem";
 import { TagProps } from "../common-components/tag";
+import {
+  useGetMyFeedbackData,
+  useGetMyProjectData,
+  useGetMyScrapData,
+} from "@component/hooks/useMyPage";
+import Pagination from "../common-components/pagination";
 
 export const MyPageTab = () => {
   const [tab, setTab] = useState(0);
 
   // 정렬 - 0은 진행중, 1은 완료
   const [sort, setSort] = useState(0);
+  const [pageIndex, setPageIndex] = useState(1); // pageIndex 는 1 이상
 
   const handleChange = (e: React.SyntheticEvent, newValue: number) => {
     setTab(newValue);
@@ -24,6 +31,29 @@ export const MyPageTab = () => {
   const handleSorting = (sortingType: number) => {
     setSort(sortingType);
   };
+
+  const { data: myProjectData, isLoading: isProjectLoading } =
+    useGetMyProjectData({
+      page: pageIndex,
+      size: 5,
+      sort: sort,
+    });
+
+  const { data: myScrapData, isLoading: isScrapLoading } = useGetMyScrapData({
+    page: pageIndex,
+    size: 5,
+    sort: sort,
+  });
+
+  const { data: myFeedbackData, isLoading: isFeedbackLoading } =
+    useGetMyFeedbackData({
+      page: pageIndex,
+      size: 5,
+      sort: sort,
+    });
+
+  console.log("scrap", myScrapData);
+  console.log("pageIndex", pageIndex);
 
   return (
     <Box sx={{ width: "100%" }}>
@@ -93,65 +123,98 @@ export const MyPageTab = () => {
         </div>
       </Box>
       <CustomTabPanel value={tab} index={0}>
-        {dummyData.map((item, idx) => {
+        {myProjectData?.data?.data?.content.map((item: any, idx: number) => {
           return (
             <div key={idx}>
               <ProjectItem
-                projectId={item.projectId}
-                type={item.type as TagProps["type"]}
-                status={item.status as TagProps["status"]}
+                field={item.field}
+                progress={item.progress}
                 title={item.title}
-                subTitle={item.subTitle}
-                user={item.user}
-                createdDate={item.createdDate}
+                summary={item.summary}
+                nickname={item.nickname}
+                createdAt={item.createdAt}
                 pullUpCount={item.pullUpCount}
                 likeCount={item.likeCount}
                 commentCount={item.commentCount}
+                isScrapped={item.isScrapped}
+                projectId={item.projectId}
+                profileImageUrl={item.profileImageUrl}
                 moreBtn
               />
             </div>
           );
         })}
+        {myProjectData?.data?.data?.totalPages > 0 && (
+          <div className="flex justify-center items-center">
+            <Pagination
+              totalPages={myProjectData?.data?.data?.totalPages}
+              currentPage={pageIndex}
+              setCurrentPage={setPageIndex}
+            />
+          </div>
+        )}
       </CustomTabPanel>
       <CustomTabPanel value={tab} index={1}>
-        {dummyData.map((item, idx) => {
+        {myFeedbackData?.data?.data?.content.map((item: any, idx: number) => {
           return (
             <div key={idx}>
               <ProjectItem
-                projectId={item.projectId}
-                type={item.type as TagProps["type"]}
-                status={item.status as TagProps["status"]}
+                field={item.field}
+                progress={item.progress}
                 title={item.title}
-                subTitle={item.subTitle}
-                user={item.user}
-                createdDate={item.createdDate}
+                summary={item.summary}
+                nickname={item.nickname}
+                createdAt={item.createdAt}
                 pullUpCount={item.pullUpCount}
                 likeCount={item.likeCount}
                 commentCount={item.commentCount}
+                isScrapped={item.isScrapped}
+                projectId={item.projectId}
+                profileImageUrl={item.profileImageUrl}
               />
             </div>
           );
         })}
+        {myFeedbackData?.data?.data?.totalPages > 0 && (
+          <div className="flex justify-center items-center">
+            <Pagination
+              totalPages={myFeedbackData?.data?.data?.totalPages}
+              currentPage={pageIndex}
+              setCurrentPage={setPageIndex}
+            />
+          </div>
+        )}
       </CustomTabPanel>
       <CustomTabPanel value={tab} index={2}>
-        {dummyData.map((item, idx) => {
+        {myScrapData?.data?.data?.content.map((item: any, idx: number) => {
           return (
             <div key={idx}>
               <ProjectItem
-                projectId={item.projectId}
-                type={item.type as TagProps["type"]}
-                status={item.status as TagProps["status"]}
+                field={item.field}
+                progress={item.progress}
                 title={item.title}
-                subTitle={item.subTitle}
-                user={item.user}
-                createdDate={item.createdDate}
+                summary={item.summary}
+                nickname={item.nickname}
+                createdAt={item.createdAt}
                 pullUpCount={item.pullUpCount}
                 likeCount={item.likeCount}
                 commentCount={item.commentCount}
+                isScrapped={item.isScrapped}
+                projectId={item.projectId}
+                profileImageUrl={item.profileImageUrl}
               />
             </div>
           );
         })}
+        {myScrapData?.data?.data?.totalPages > 0 && (
+          <div className="flex justify-center items-center">
+            <Pagination
+              totalPages={myScrapData?.data?.data?.totalPages}
+              currentPage={pageIndex}
+              setCurrentPage={setPageIndex}
+            />
+          </div>
+        )}
       </CustomTabPanel>
     </Box>
   );
