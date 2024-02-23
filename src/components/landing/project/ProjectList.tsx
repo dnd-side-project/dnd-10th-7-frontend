@@ -50,7 +50,7 @@ export const ProjectList = () => {
   // // 카테고리 선택 시 호출될 콜백 함수
   const handleMenuClick = (category: string) => {
     setCurrentMenu(category); // 선택된 카테고리 ID 저장
-    router.push(`/?${createQueryString("field", category)}`);
+    // router.push(`/?${createQueryString("field", category)}`);
   };
 
   const projectList = useMemo(
