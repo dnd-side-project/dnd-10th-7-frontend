@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Button from "../common-components/button";
 
 type EmptyViewProps = {
@@ -49,7 +50,7 @@ export const MyPageEmptyView = ({ tab }: EmptyViewProps) => {
 
   return (
     <div className="flex flex-col justify-center items-center font-medium max-w-[660px] text-center">
-      <div>image</div>
+      <Image src={"/assets/modal/mypage.png"} alt="" width={190} height={190} />
       <div className="pt-2">
         {viewData.map((item) => (
           <>
