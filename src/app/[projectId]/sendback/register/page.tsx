@@ -156,7 +156,7 @@ export default function RegisterSendback({ params }: { params: PageParams }) {
         {/* link */}
         <RegisterSendbackTitle title="피드백 요청 링크" />
         <PurpleInput
-          value={linkValue}
+          defaultValue={linkValue}
           onChange={handleLinkChange}
           placeholder="링크를 입력하세요"
           shape="rounded"

@@ -3,7 +3,7 @@
 import LadingTop from "@component/components/landing/carousel/LandingTop";
 import LandingMid from "@component/components/landing/carousel/LandingMid";
 import { ProjectList } from "@component/components/landing/project/ProjectList";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import SignUpModal from "@component/components/signup/SignUpModal";
 import Image from "next/image";
 
@@ -37,9 +37,10 @@ export default function Home() {
       <section className="max-w-[1080px] w-full mt-[100px] flex flex-col gap-[100px] mb-[100px]">
         {/* 캐러셀 */}
         <LandingMid />
-
-        {/* 프로젝트 */}
-        <ProjectList />
+        <Suspense>
+          {/* 프로젝트 */}
+          <ProjectList />
+        </Suspense>
       </section>
 
       {isOpen && <SignUpModal isOpen={isOpen} setIsOpen={setIsOpen} />}
