@@ -3,6 +3,7 @@ import { ReplyComment } from "./ReplyComment";
 import { ProjectCommentType } from "@component/types/Project";
 import Image from "next/image";
 import { useDeleteComment } from "@component/hooks/useProject";
+import { deleteProjectComment } from "@component/api/projectAPI";
 
 export type Props = {
   data: ProjectCommentType[];
@@ -20,8 +21,13 @@ export const CommentItem = ({ data, projectId }: Props) => {
     setOpenReplyComments(newOpenReplyComments);
   };
 
-  const useDelComment = (commentId: number) => {
-    const { mutate, isPending } = useDeleteComment(projectId, commentId);
+  const [commentId, setCommentId] = useState<number>(0);
+
+  const { mutate, isPending } = useDeleteComment(projectId, commentId);
+
+  const useDelComment = (id: number) => {
+    setCommentId(id);
+    console.log(commentId, "commentId");
     mutate();
   };
 
@@ -35,9 +41,9 @@ export const CommentItem = ({ data, projectId }: Props) => {
                 src={item.profileImageUrl}
                 alt="profile"
                 // TODO : size 다시 수정 필요
-                width={47}
-                height={47}
-                className="w-[47px] h-[47px] rounded-full me-4 object-cover"
+                width={48}
+                height={48}
+                className="w-[48px] h-[48px] rounded-full me-4 object-cover"
               ></Image>
               {/* <div className="h-[48px] w-[48px] rounded-full bg-gray-40" /> */}
 
@@ -62,7 +68,7 @@ export const CommentItem = ({ data, projectId }: Props) => {
                       <p className="w-[5px] h-[5px] rounded-full bg-gray-60" />
                       <p
                         className="text-caption1 text-gray-60 cursor-pointer hover:text-purple-main1"
-                        // onClick={() => useDelete(item.commentId)}
+                        onClick={() => useDelComment(item.commentId)}
                       >
                         삭제하기
                       </p>
