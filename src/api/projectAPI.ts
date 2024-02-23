@@ -116,17 +116,28 @@ export const deleteProjectComment = async (
   return res;
 };
 
-export const projectAPI = {
-  getProjectList: async (params?: ProjectPageParams, accessToken?: string) => {
-    try {
-      const res = await authApi({ "Content-Type": "application/json" }).get(
-        `/api/projects`
-      );
-      return res.data;
-    } catch (err) {
-      console.error(err);
-    }
-  },
+// export const projectAPI = {
+//   getProjectList: async (params?: ProjectPageParams, accessToken?: string) => {
+//     try {
+//       const res = await authApi({ "Content-Type": "application/json" }).get(
+//         `/api/projects`
+//       );
+//       return res.data;
+//     } catch (err) {
+//       console.error(err);
+//     }
+//   },
+// };
+
+export const getProjectList = async (
+  params?: ProjectPageParams,
+  accessToken?: string
+) => {
+  const res = await authApi({ "Content-Type": "application/json" }).get(
+    `/api/projects/`,
+    { params }
+  );
+  return res;
 };
 
 // 삭제
