@@ -4,25 +4,26 @@ import { userAPI } from "@component/api/userAPI";
 import clsx from "clsx";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import { useRecoilState } from "recoil";
-import { nicknameState } from "@component/atoms/modal";
+import { nicknameState } from "@component/atoms/userInfoAtom";
 import GrayInput from "../common-components/input/GrayInput";
 import { Modal } from "../common-components/modal";
 import Button from "../common-components/button";
+import { useNicknameValid } from "@component/hooks/useAuth";
 
 export default function NicknameForm() {
   const [nickname, setNickname] = useRecoilState(nicknameState);
   const [nickInvalid, setNickInvalid] = useState<boolean>(true);
 
-  // 중복확인
-  const checkNickname = async () => {
-    await userAPI
-      .getDuplicatedNickname(nickname)
-      .then((res) => {
-        console.log("res:", res);
-      })
-      .catch((err) => {
-        console.error("err:", err);
-      });
+  const { data, error, isLoading } = useNicknameValid(nickname);
+
+  const checkNickname = () => {
+    console.log("data:", data);
+    if (data.data.check === false) {
+      alert("사용 가능한 닉네임입니다.");
+      setNickInvalid(true);
+    } else {
+      setNickInvalid(false);
+    }
   };
 
   const checkInvalid = () => {

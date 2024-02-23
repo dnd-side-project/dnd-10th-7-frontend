@@ -85,7 +85,7 @@ const Test = () => {
       {/* 인풋 컴포넌트 입니다 */}
       <div className="text-head text-purple-main1">INPUT</div>
       <PurpleInput
-        value={inputValue1}
+        defaultValue={inputValue1}
         onChange={handleChange}
         placeholder="답글을 입력해주세요"
         shape="rounded"
@@ -96,7 +96,7 @@ const Test = () => {
       />
       <br />
       <PurpleInput
-        value={inputValue1}
+        defaultValue={inputValue1}
         onChange={handleChange}
         onKeyDown={handleEnterKey}
         placeholder="서비스 링크 입력하기"
@@ -108,7 +108,7 @@ const Test = () => {
       />
       <br />
       <PurpleInput
-        value={inputValue2}
+        defaultValue={inputValue2}
         onChange={handleChange2}
         onKeyDown={handleEnterKey}
         placeholder="서비스 링크 입력하기"
@@ -120,7 +120,7 @@ const Test = () => {
       />
       <br />
       <PurpleInput
-        value={inputValue1}
+        defaultValue={inputValue1}
         onChange={handleChange}
         onKeyDown={handleEnterKey}
         placeholder="링크를 입력하세요"
@@ -132,7 +132,7 @@ const Test = () => {
       />
       <br />
       <PurpleInput
-        value={inputValue1}
+        defaultValue={inputValue1}
         onChange={handleChange}
         placeholder="관심있는 키워드로 프로젝트를 찾아보세요!"
         shape="smallRounded"

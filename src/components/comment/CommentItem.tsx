@@ -1,62 +1,18 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ReplyComment } from "./ReplyComment";
+import { ProjectCommentType } from "@component/types/Project";
+import Image from "next/image";
+import { useDeleteComment } from "@component/hooks/useProject";
+import { deleteProjectComment } from "@component/api/projectAPI";
 
-export const CommentItem = () => {
-  const dummyComment = [
-    {
-      commentId: 1,
-      user: "chaeminenie",
-      nickname: "cjcjcjcj",
-      profileImageUrl: "aiaiaiaiaiaiaai",
-      createdDate: "2024.24.24",
-      time: "2시간전",
-      content:
-        "굉장히 흥미로운 서비스 어쩌구 졸리다 지금 새벽 4시다지금 새벽 4시다지금 새벽 4시다지금 새벽 4시다",
-    },
-    {
-      commentId: 2,
-      user: "chaeminenie",
-      nickname: "cjcjcjcj",
-      profileImageUrl: "aiaiaiaiaiaiaai",
-      createdDate: "2024.24.24",
-      time: "2시간전",
-      content:
-        "굉장히 흥미로운 서비스 어쩌구 졸리다 지금 새벽 4시다지금 새벽 4시다지금 새벽 4시다지금 새벽 4시다",
-    },
-    {
-      commentId: 3,
-      user: "chaeminenie",
-      nickname: "cjcjcjcj",
-      profileImageUrl: "aiaiaiaiaiaiaai",
-      createdDate: "2024.24.24",
-      time: "2시간전",
-      content:
-        "굉장히 흥미로운 서비스 어쩌구 졸리다 지금 새벽 4시다지금 새벽 4시다지금 새벽 4시다지금 새벽 4시다",
-    },
-    {
-      commentId: 4,
-      user: "chaeminenie",
-      nickname: "cjcjcjcj",
-      profileImageUrl: "aiaiaiaiaiaiaai",
-      createdDate: "2024.24.24",
-      time: "2시간전",
-      content:
-        "굉장히 흥미로운 서비스 어쩌구 졸리다 지금 새벽 4시다지금 새벽 4시다지금 새벽 4시다지금 새벽 4시다",
-    },
-    {
-      commentId: 5,
-      user: "chaeminenie",
-      nickname: "cjcjcjcj",
-      profileImageUrl: "aiaiaiaiaiaiaai",
-      createdDate: "2024.24.24",
-      time: "2시간전",
-      content:
-        "굉장히 흥미로운 서비스 어쩌구 졸리다 지금 새벽 4시다지금 새벽 4시다지금 새벽 4시다지금 새벽 4시다",
-    },
-  ];
+export type Props = {
+  data: ProjectCommentType[];
+  projectId: number;
+};
 
+export const CommentItem = ({ data, projectId }: Props) => {
   const [openReplyComments, setOpenReplyComments] = useState<Array<boolean>>(
-    new Array(dummyComment.length).fill(false)
+    new Array(data.length).fill(false)
   );
 
   const toggleReplyComment = (index: number) => {
@@ -65,23 +21,30 @@ export const CommentItem = () => {
     setOpenReplyComments(newOpenReplyComments);
   };
 
+  const [commentId, setCommentId] = useState<number>(0);
+
+  const { mutate, isPending } = useDeleteComment(projectId, commentId);
+
   return (
     <div className="flex flex-col space-y-8">
-      {dummyComment.map((item, idx) => {
+      {data.map((item, idx) => {
         return (
           <div key={idx}>
             <div className="flex gap-[25px] items-center">
-              {/* profile-img */}
-              <div className="h-[48px] w-[48px] rounded-full bg-gray-40" />
+              <Image
+                src={item.profileImageUrl}
+                alt="profile"
+                // TODO : size 다시 수정 필요
+                width={48}
+                height={48}
+                className="w-[48px] h-[48px] rounded-full me-4 object-cover"
+              ></Image>
+              {/* <div className="h-[48px] w-[48px] rounded-full bg-gray-40" /> */}
 
               <div className="flex flex-col space-y-1">
                 <div className="flex gap-[8px] items-center">
-                  <p className="text-body2">{item.user}</p>
-                  <p className="text-caption1 text-gray-60">
-                    {item.createdDate}
-                  </p>
-                  <p className="w-[5px] h-[5px] rounded-full bg-gray-60" />
-                  <p className="text-caption1 text-gray-60">{item.time}</p>
+                  <p className="text-body2">{item.nickname}</p>
+                  <p className="text-caption1 text-gray-60">{item.createdAt}</p>
                   <p className="w-[5px] h-[5px] rounded-full bg-gray-60" />
                   <p
                     className="text-caption1 text-gray-60 cursor-pointer"
@@ -91,6 +54,21 @@ export const CommentItem = () => {
                   >
                     답글달기
                   </p>
+                  {/* 본인이면 삭제하기 보이게 */}
+                  {item.isAuthor && (
+                    <>
+                      <p className="w-[5px] h-[5px] rounded-full bg-gray-60" />
+                      <p
+                        className="text-caption1 text-gray-60 cursor-pointer hover:text-purple-main1"
+                        onClick={() => {
+                          setCommentId(item.commentId);
+                          mutate();
+                        }}
+                      >
+                        삭제하기
+                      </p>
+                    </>
+                  )}
                 </div>
                 <div className="text-body3">{item.content}</div>
               </div>

@@ -7,21 +7,14 @@ import {
   genderState,
   interestState,
   nicknameState,
-} from "@component/atoms/modal";
+} from "@component/atoms/userInfoAtom";
 import { useRecoilState } from "recoil";
 import { userAPI } from "@component/api/userAPI";
 import { Modal } from "../common-components/modal";
 import { useState } from "react";
 
 export default function InterestForm() {
-  const [nickname, setNickname] = useRecoilState(nicknameState);
-  const [birthDay, setBirthday] = useRecoilState(birthState);
-  const [gender, setGender] = useRecoilState(genderState);
-  const [career, setCareer] = useRecoilState(careerState);
-
   const [interestedList, setInterestedList] = useRecoilState(interestState);
-
-  //   const [interestedList, setInterestedList] = useState<string[]>([]);
 
   const localNickname =
     typeof window !== "undefined" ? localStorage.getItem("nickname") : "error";

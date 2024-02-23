@@ -1,28 +1,36 @@
 import { useState } from "react";
-import { Modal } from "../common-components/modal";
-import { ModalViewProps } from "../sign-up/LoginModal";
+import { ModalViewProps } from "../signup/LoginModal";
 import Button from "../common-components/button";
 import TabComponent from "../common-components/tab/TabComponent";
+import { Modal } from "../common-components/modal";
+import WarningRoundedIcon from "@mui/icons-material/WarningRounded";
 
-export default function ErrorModal(props: ModalViewProps) {
-  const { isOpen, setIsOpen } = props;
-
-  // 나중에 props으로 받을 error-text
-  const title = "예기치 못한 오류가 발생했습니다.";
+export default function ErrorModal({
+  isOpen,
+  setIsOpen,
+  title,
+}: ModalViewProps) {
+  const handleClose = () => {
+    setIsOpen(false);
+  };
 
   return (
     <>
-      <Modal open={isOpen} onClose={() => setIsOpen(false)} className="">
-        <Modal.Close onClick={() => setIsOpen(false)} />
+      <Modal open={isOpen} onClose={handleClose} className="">
         <Modal.Title>
-          <div>{title}</div>
+          <div className="flex items-center">
+            <WarningRoundedIcon className="text-error-main me-2" fontSize="large" />
+            <div>{title}</div>
+          </div>
         </Modal.Title>
-        <Modal.Description>
-          <></>
-        </Modal.Description>
 
-        <Modal.Footer>
-          <Button size="md" color="default">
+        <Modal.Footer className="mt-[18px]">
+          <Button
+            size="md"
+            color="default"
+            className="w-[120px] cursor-pointer"
+            onClick={handleClose}
+          >
             확인
           </Button>
         </Modal.Footer>

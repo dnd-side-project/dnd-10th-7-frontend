@@ -1,4 +1,4 @@
-import { useRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import { Modal } from "../common-components/modal";
 import { ModalViewProps } from "./LoginModal";
 import {
@@ -7,20 +7,32 @@ import {
   genderState,
   interestState,
   nicknameState,
-} from "@component/atoms/modal";
+} from "@component/atoms/userInfoAtom";
 import Button from "../common-components/button";
 import { useState } from "react";
 import NicknameForm from "./NicknameForm";
 import UserInfoForm from "./UserInfoForm";
 import InterestForm from "./InterestForm";
 import { userAPI } from "@component/api/userAPI";
+import { useSignUp } from "@component/hooks/useAuth";
+import { useRouter } from "next/navigation";
+import { errorModalState } from "@component/atoms/modalAtom";
 
 export default function SignUpModal({ isOpen, setIsOpen }: ModalViewProps) {
   const [nickname, setNickname] = useRecoilState(nicknameState);
-  const [birthDay, setBirthday] = useRecoilState(birthState);
+  const [birthday, setBirthday] = useRecoilState(birthState);
   const [gender, setGender] = useRecoilState(genderState);
   const [career, setCareer] = useRecoilState(careerState);
-  const [interestedList, setInterestedList] = useRecoilState(interestState);
+  const [fields, setFields] = useRecoilState(interestState);
+
+  const setErrorModal = useSetRecoilState(errorModalState);
+
+  const router = useRouter();
+
+  const signToken: string | null =
+    (typeof window !== "undefined" &&
+      window.sessionStorage.getItem("signToken")) ||
+    null;
 
   // step state
   const [step, setStep] = useState<number>(1);
@@ -30,7 +42,7 @@ export default function SignUpModal({ isOpen, setIsOpen }: ModalViewProps) {
     setBirthday("");
     setGender("");
     setCareer("");
-    setInterestedList([]);
+    setFields([]);
     setIsOpen(false);
     setStep(1);
   };
@@ -51,16 +63,14 @@ export default function SignUpModal({ isOpen, setIsOpen }: ModalViewProps) {
     }
 
     if (step === 2 && typeof window !== "undefined") {
-      localStorage.setItem("birthDay", birthDay);
+      localStorage.setItem("birthDay", birthday);
       localStorage.setItem("gender", gender as string);
       localStorage.setItem("career", career);
+      console.log(localStorage.getItem("gender"), "hihi");
     }
 
-    if (step === 3 && typeof window !== "undefined") {
-      localStorage.setItem("birthDay", birthDay);
-      localStorage.setItem("gender", gender as string);
-      localStorage.setItem("career", career);
-    }
+    // if (step === 3 && typeof window !== "undefined") {
+    // }
 
     handleNextStep();
   };
@@ -68,22 +78,35 @@ export default function SignUpModal({ isOpen, setIsOpen }: ModalViewProps) {
   const disabledBtn = () => {
     if (step === 1 && (nickname.length > 8 || nickname.length === 0))
       return true;
-    if (step === 2 && (birthDay === "" || gender === "" || career === ""))
+    if (step === 2 && (birthday === "" || gender === "" || career === ""))
       return true;
-    if (step === 3 && interestedList.length === 0) return true;
+    if (step === 3 && fields.length === 0) return true;
     return false;
   };
 
-  const handleRegister = async () => {
-    // todo - 추후 리액트 쿼리 훅 사용해서 fetch할 예정
-    console.log("sign-up start");
-    await userAPI
-      .postUserInfo({ nickname, birthDay, gender, career, interestedList })
-      .then((res) => {
-        console.log("res.data:", res.data);
-        alert("sign-up");
-      })
-      .catch((err) => console.error(err));
+  const { mutate, data, error, isPending } = useSignUp({
+    nickname,
+    birthday,
+    gender,
+    career,
+    fields,
+    signToken,
+  });
+
+  const handleRegister = () => {
+    mutate();
+    console.log("data:", data);
+    console.log("err:", error);
+    router.push("/");
+
+    // 성공 시 메인으로 이동
+    // TODO : 실패시 알림 띄우고 처리 로직 필요
+    if (error) {
+      setErrorModal({
+        open: true,
+        text: "예기치 못한 오류가 발생했습니다.",
+      });
+    }
   };
 
   return (

@@ -1,7 +1,6 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
 
-// import RegisterProjectTop from "./RegisterProjectTop"
 import Button from "@component/components/common-components/button/Button";
 import RegisterProjectInputTitle from "./RegisterProjectInputTitle";
 import RegisterProjectInputCheck from "./ReigsterProjectInputCheck";
@@ -9,10 +8,15 @@ import RegisterProjectInputPeriod from "./RegisterProjectInputPeriod";
 import RegisterProjectInputContent from "./RegisterProjectInputContent";
 import PurpleInput from "@component/components/common-components/input/PurPleInput";
 import RegisterProjectInputImage from "./RegisterProjectInputImage";
-import RegisterProjectTitle from "./RegisterProjectTitle";
 import { Modal } from "@component/components/common-components/modal";
+import Image from "next/image";
+
+import { usePostProjectMutation } from "@component/hooks/useProject";
+import { useRouter } from "next/navigation";
 
 export default function RegisterProject() {
+  const router = useRouter();
+
   // title
   const [titleValue, setTitleValue] = useState<string>("");
   const onTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -67,6 +71,8 @@ export default function RegisterProject() {
 
   // preview Img
   const [filePreviews, setFilePreviews] = useState<string[]>([]);
+  // img file
+  const [fileList, setFileList] = useState<File[]>([]);
 
   // submit fail
   const subTitleRef = useRef<HTMLTextAreaElement>(null);
@@ -77,9 +83,14 @@ export default function RegisterProject() {
   const [isEssentialOpen, setIsEssentailOpen] = useState<boolean>(false);
   const [isSubmitOpen, setIsSubmitOpen] = useState<boolean>(false);
 
+  // mutation
+  const mutation = usePostProjectMutation();
+  const [projectId, setProjectId] = useState<number>();
+
   // submit
-  const onSubmit = () => {
+  const onSubmit = async () => {
     if (
+      titleValue.length === 0 ||
       subTitleValue.length === 0 ||
       content.length === 0 ||
       selectedOption === "" ||
@@ -87,12 +98,40 @@ export default function RegisterProject() {
       (frontMember === "0명" &&
         backMember === "0명" &&
         designMember === "0명" &&
-        pmMember === "0명")
+        pmMember === "0명") ||
+      startDate === "" ||
+      endDate === ""
     ) {
       setIsEssentailOpen(true);
     } else {
-      // TODO: api 로직 추가
-      setIsSubmitOpen(true);
+      // form data 담아서
+      const formData = {
+        titleValue,
+        subTitleValue,
+        selectedOption,
+        selectedProgress,
+        frontMember: parseInt(frontMember, 10),
+        backMember: parseInt(backMember, 10),
+        designMember: parseInt(designMember, 10),
+        pmMember: parseInt(pmMember, 10),
+        content,
+        startDate,
+        endDate,
+        serviceLink,
+        fileList,
+      };
+
+      try {
+        const data = await mutation.mutateAsync(formData);
+        // 완료 모달 창 열기
+        setIsSubmitOpen(true);
+        // 프로젝트 ID 저장하기
+        setProjectId(data.data.data.projectId);
+      } catch (error) {
+        // TODO: 등록 실패 모달 만들기
+        // 필수 입력 모달 창 열기
+        setIsEssentailOpen(true);
+      }
     }
 
     // focus
@@ -168,7 +207,7 @@ export default function RegisterProject() {
 
         {/* link */}
         <PurpleInput
-          value={serviceLink}
+          defaultValue={serviceLink}
           onChange={handleServiceLinkChange}
           placeholder="서비스 링크 입력하기"
           shape="rounded"
@@ -183,6 +222,8 @@ export default function RegisterProject() {
         <RegisterProjectInputImage
           filePreviews={filePreviews}
           setFilePreviews={setFilePreviews}
+          fileList={fileList}
+          setFileList={setFileList}
         />
 
         {/* submit */}
@@ -236,12 +277,17 @@ export default function RegisterProject() {
           <div>프로젝트 등록이 완료되었습니다</div>
         </Modal.Title>
         <Modal.Description>
-          <>{/* TODO: 캐릭터 추가 */}</>
+          <Image src={'/assets/modal/project.png'} alt='project' width={232} height={192} className="mx-auto mt-[-45px]"></Image>
         </Modal.Description>
         <Modal.Footer>
           <div className="flex space-x-[8px]">
-            {/* TODO: 등록된 글 확인하러 가기 router 추가 */}
-            <Button>등록된 글 확인하기</Button>
+            <Button
+              onClick={() => {
+                router.push(`/project/${projectId}`);
+              }}
+            >
+              등록된 글 확인하기
+            </Button>
           </div>
         </Modal.Footer>
       </Modal>

@@ -32,15 +32,15 @@ export type UserFeed = {
 };
 
 export type UserFeedBackInfoProps = {
-  level: number
+  level: number;
   restFeedbackCount: number;
-  feedbackCount: number
-  projectCount: number
-  likeCount: number
-}
+  feedbackCount: number;
+  projectCount: number;
+  likeCount: number;
+};
 
 export type Item = {
   level: string;
   pullUpCount: number;
   type: string;
-}
+};

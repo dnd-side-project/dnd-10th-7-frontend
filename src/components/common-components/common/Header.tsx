@@ -6,23 +6,35 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import DropdownBox from "../dropdown-box";
 import Link from "next/link";
+import LoginModal from "@component/components/signup/LoginModal";
+
+const variants = {
+  menu: "hover:text-purple-main1 cursor-pointer",
+};
 
 export const Header = () => {
-  const variants = {
-    menu: "hover:text-purple-main1 cursor-pointer",
-  };
+  const username =
+    typeof window !== "undefined"
+      ? window.localStorage.getItem("nickname")
+      : null;
 
-  const username = "chamny";
-  const router = useRouter();
+  // 로그인 한 유저인지 확인
+  const accessToken =
+    typeof window !== "undefined" && sessionStorage.getItem("accessToken");
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const goToLogin = () => {
+    if (!accessToken) {
+      setIsOpen(true);
+    }
+  };
 
   return (
-    <div className="sticky z-50 top-0 m-auto py-[17px] w-full h-[70px] flex flex-row items-center justify-center bg-white text-h2">
+    <div className="fixed z-50 top-0 m-auto py-[17px] w-full h-[70px] flex flex-row items-center justify-center border-b-2 bg-white text-h2">
       <div className="w-9/12 flex justify-between max-w-[1080px]">
         {/* left side */}
         <div className="flex flex-row gap-[50px]">
-          <div className={clsx(variants.menu, "flex flex-row gap-2")}>
+          <div className={`${variants.menu} flex flex-row gap-2`}>
             <Link href="/">
               <span>logo</span>
               <span>sendback</span>
@@ -31,22 +43,34 @@ export const Header = () => {
           <Link href="/project">
             <div className={clsx(variants.menu)}>프로젝트</div>
           </Link>
-          <Link href="/project/register">
-            <div className={clsx(variants.menu)}>프로젝트 등록하기</div>
+          <Link href={accessToken ? "/project/register" : "#"}>
+            <div
+              onClick={() => {
+                if (!accessToken) {
+                  setIsOpen(true);
+                } 
+              }}
+              className={clsx(variants.menu)}
+            >
+              프로젝트 등록하기
+            </div>
           </Link>
         </div>
         {typeof window !== "undefined" &&
-        !localStorage.getItem("accessToken") ? (
-          <Link href="/login">
-            <div className={clsx(variants.menu)}>로그인</div>
-          </Link>
-        ) : (
-          <div className="relative">
+        !sessionStorage.getItem("accessToken") ? (
+          <>
             <div
-              className={clsx(
-                variants.menu,
-                "flex flex-row items-center gap-2"
-              )}
+              className={clsx(variants.menu)}
+              onClick={() => setIsOpen(true)}
+            >
+              로그인
+            </div>
+            <LoginModal isOpen={isOpen} setIsOpen={setIsOpen} />
+          </>
+        ) : (
+          <>
+            <div
+              className={`${variants.menu} relative flex flex-row items-center gap-2`}
               onClick={() => setIsOpen((prev) => !prev)}
             >
               {/* <Image
@@ -60,9 +84,13 @@ export const Header = () => {
             </div>
 
             {isOpen && (
-              <DropdownBox items={["마이페이지", "로그아웃"]} place="right" />
+              <DropdownBox
+                items={["마이페이지", "로그아웃"]}
+                place="right"
+                setIsOpen={setIsOpen}
+              />
             )}
-          </div>
+          </>
         )}
       </div>
     </div>

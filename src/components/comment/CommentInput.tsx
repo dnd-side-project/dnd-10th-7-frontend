@@ -5,8 +5,16 @@ import PurpleTextarea from "../common-components/textarea/Textarea";
 import Button from "../common-components/button";
 import Image from "next/image";
 import Img from "../../../public/assets/profile_img.png";
+import { usePostComment } from "@component/hooks/useProject";
+import Loading from "../loading/Loading";
+import { useSetRecoilState } from "recoil";
+import { errorModalState } from "@component/atoms/modalAtom";
+import { useGetUserData } from "@component/hooks/useMyPage";
 
-export const CommentInput = () => {
+type Props = {
+  projectId: number;
+};
+export const CommentInput = ({ projectId }: Props) => {
   const [comment, setComment] = useState<string>("");
 
   const handleComment = (e: any) => {
@@ -17,6 +25,7 @@ export const CommentInput = () => {
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
   const [submitClicked, setSubmitClicked] = useState<boolean>(false);
+  const setErroModal = useSetRecoilState(errorModalState);
 
   const focus = () => {
     console.log("click");
@@ -37,17 +46,43 @@ export const CommentInput = () => {
 
   const isInvalid = submitClicked && comment.length === 0;
 
+  const { mutate, isPending } = usePostComment(projectId, comment);
+
+  const handleSubmit = () => {
+    if (!sessionStorage.getItem("accessToken")) {
+      setErroModal({
+        open: true,
+        text: "로그인이 필요한 기능입니다.",
+      });
+      setTimeout(() => {
+        setErroModal({
+          open: false,
+          text: "로그인이 필요한 기능입니다.",
+        });
+      }, 1500);
+    }
+    mutate();
+
+    if (isPending) return <Loading />;
+  };
+
+  const { data, isLoading } = useGetUserData();
+  const profileImageUrl = data?.data.data.profileImageUrl;
+
   return (
-    <div className="w-full max-w-[800px] ">
-      <div className="flex gap-[23px] items-center">
-        <div className="h-[48px] w-[48px] rounded-full bg-gray-40" />
-        {/* <Image
-        src={Img}
-        alt="임시 프로필 이미지"
-        width={20}
-        height={20}
-        className="w-[20px] h-[20px] rounded-full me-[10px]"
-      /> */}
+    <div className="w-full ">
+      <div className="flex gap-[23px] items-start">
+        {isLoading ? (
+          <div className="h-[48px] w-[48px] rounded-full bg-gray-40" />
+        ) : (
+          <Image
+            src={profileImageUrl}
+            alt=""
+            width={40}
+            height={40}
+            className="w-[48px] h-[48px] rounded-full bg-gray-40"
+          />
+        )}
 
         <PurpleTextarea
           value={comment}
@@ -58,11 +93,14 @@ export const CommentInput = () => {
           borderSize="xs"
           textSize="xs"
           entire={100}
+          onKeyDown={(e: any) => {
+            if (e.key === "Enter") handleSubmit();
+          }}
           className={isInvalid ? "border-error-main" : "border-purple-main1"}
         />
       </div>
       <div className="text-right pt-3">
-        <Button size="xs" color="default">
+        <Button size="xs" color="default" onClick={handleSubmit}>
           등록
         </Button>
       </div>

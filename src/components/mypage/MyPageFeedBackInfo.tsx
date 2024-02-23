@@ -3,6 +3,7 @@ import { UserFeedBackInfoProps, UserFeed } from "@component/types/User";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import MyPageLevelToolTip from "./MyPageLevelToolTip";
 import { useState } from "react";
+import Image from "next/image";
 
 const MyPageFeedBackInfo = ({
   level,
@@ -35,10 +36,16 @@ const MyPageFeedBackInfo = ({
 
       {/* level info */}
       <div className="mt-7 flex flex-col items-center">
-        <div className="bg-gray-20 rounded-full w-[155px] h-[155px]"></div>
+        <Image src={`/assets/level/Lv${level}.png`} alt={`${level} img`} width={157} height={122} ></Image>
         <div className="mt-[26px] flex flex-col items-center">
-          {/* TODO: level 정보 반영! */}
-          <div className="text-h2">Lv.{level} 이 구역 피드백왕</div>
+          <div className="text-h2">
+            Lv.{level}{" "}
+            {(level === 1 && "주먹밥") ||
+              (level === 2 && "솜주먹") ||
+              (level === 3 && "물주먹") ||
+              (level === 4 && "돌주먹") ||
+              (level === 5 && "불주먹")}
+          </div>
           <div className="text-caption1 text-gray-60 mt-[6px] font-medium">
             다음레벨까지 {restFeedbackCount}번의 피드백이 남았어요
           </div>
