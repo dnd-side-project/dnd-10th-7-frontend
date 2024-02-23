@@ -103,6 +103,8 @@ export const useDeleteMutation = (projectId: any) => {
     mutationFn: () => deleteProject(projectId),
     onSuccess: (res) => {
       console.log("삭제 성공", res);
+      alert("삭제 되었습니다.");
+      window.location.reload();
     },
     onError: (err: any) => {
       // error 종류
@@ -181,6 +183,7 @@ export const useDeleteComment = (projectId: number, commentId: number) => {
     onSuccess: (res) => {
       console.log("댓글 삭제 성공", res);
       alert("댓글을 삭제했습니다.");
+      window.location.reload();
     },
     onError: (err: any) => {
       console.log(err);
