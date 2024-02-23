@@ -35,7 +35,7 @@ export default function CommentBox({ projectId }: { projectId: number }) {
     <div className="w-full max-w-[800px]">
       <div className="pb-[37px] flex items-center gap-3">
         <p className="text-title">댓글</p>
-        <p className="text-h2 text-gray-60">32</p>
+        <p className="text-h2 text-gray-60">{commentList.length}</p>
       </div>
       <CommentInput projectId={projectId} />
       <CommentItem data={commentList} projectId={projectId} />
