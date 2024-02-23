@@ -16,12 +16,11 @@ import { useLikeMutation, useScrapMutation } from "@component/hooks/useProject";
 import toast, { Toaster } from "react-hot-toast";
 import CommentBox from "@component/components/comment/CommentBox";
 
-
 type PageParams = {
   projectId: number;
 };
 
-const notify = () =>
+export const notify = () =>
   toast.success("로그인이 필요한 서비스에요", {
     style: {
       backgroundColor: "#F9F7FF",

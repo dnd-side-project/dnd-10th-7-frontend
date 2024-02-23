@@ -1,13 +1,16 @@
 "use client";
+import { useGetUserData } from "@component/hooks/useMyPage";
 import Carousel from "./Carousel";
 
 const LandingMid = () => {
-  let nickname: string | null = "주먹밥";
+  const { data: userData } = useGetUserData();
+  const nickname = userData?.data?.data?.nickname;
+
   let accessToken: string | null = "";
   if (typeof window !== "undefined") {
     accessToken = sessionStorage.getItem("accessToken");
     if (accessToken) {
-      nickname = localStorage.getItem("nickname");
+      // nickname = localStorage.getItem("nickname");
     }
   }
 
