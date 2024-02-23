@@ -16,7 +16,6 @@ import { useLikeMutation, useScrapMutation } from "@component/hooks/useProject";
 import toast, { Toaster } from "react-hot-toast";
 import CommentBox from "@component/components/comment/CommentBox";
 
-
 type PageParams = {
   projectId: number;
 };
