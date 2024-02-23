@@ -12,6 +12,7 @@ import { Modal } from "@component/components/common-components/modal";
 import { useGetProjectDetail } from "@component/hooks/useProject";
 import { useFeedbackSubmit } from "@component/hooks/useFeedback";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 type PageParams = {
   projectId: number;
@@ -264,7 +265,13 @@ export default function RegisterSendback({ params }: { params: PageParams }) {
           <div>피드백 요청이 완료되었습니다.</div>
         </Modal.Title>
         <Modal.Description>
-          <>{/* TODO: 캐릭터 추가 */}</>
+          <Image
+            src={"/assets/modal/feedback.png"}
+            alt="project"
+            width={232}
+            height={192}
+            className="mx-auto mt-[-45px]"
+          ></Image>
         </Modal.Description>
         <Modal.Footer>
           <div className="flex space-x-[8px]">
