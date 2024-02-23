@@ -61,7 +61,7 @@ export const CommentInput = ({ projectId }: Props) => {
       }, 1500);
     }
     mutate();
-    setComment("");
+
     if (isPending) return <Loading />;
   };
 

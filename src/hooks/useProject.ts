@@ -162,6 +162,7 @@ export const usePostComment = (projectId: number, content: string) => {
     mutationFn: () => postProjectComment(projectId, content),
     onSuccess: (res) => {
       console.log("댓글 등록 성공", res);
+      window.location.reload();
     },
     onError: (err: any) => {
       console.log(err);
@@ -179,9 +180,11 @@ export const useDeleteComment = (projectId: number, commentId: number) => {
     mutationFn: () => deleteProjectComment(projectId, commentId),
     onSuccess: (res) => {
       console.log("댓글 삭제 성공", res);
+      alert("댓글을 삭제했습니다.");
     },
     onError: (err: any) => {
       console.log(err);
+      alert("댓글 삭제 실패!");
     },
   });
   return { mutate, isPending };
