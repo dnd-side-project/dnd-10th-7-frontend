@@ -1,4 +1,4 @@
 export type TestType = {
-  id: string;
-  pwd: string;
+  // id: string;
+  // pwd: string;
 };
