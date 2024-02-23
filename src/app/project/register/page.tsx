@@ -207,7 +207,7 @@ export default function RegisterProject() {
 
         {/* link */}
         <PurpleInput
-          value={serviceLink}
+          defaultValue={serviceLink}
           onChange={handleServiceLinkChange}
           placeholder="서비스 링크 입력하기"
           shape="rounded"

@@ -1,17 +1,25 @@
+import { ProjectPageParams } from "@component/types/api";
 import {
   useQuery,
   useMutation,
   UseMutationResult,
 } from "@tanstack/react-query";
+
+import { useSetRecoilState } from "recoil";
+import { errorModalState } from "@component/atoms/modalAtom";
 import {
-  getProject,
-  postProject,
   ProjectData,
+  deleteProject,
+  deleteProjectComment,
+  getProject,
+  getProjectComment,
+  getProjectRecommend,
+  postProject,
+  postProjectComment,
+  projectAPI,
+  pullProjectUp,
   putProjectLike,
   putProjectScrap,
-  getProjectRecommend,
-  deleteProject,
-  pullProjectUp,
 } from "@component/api/projectAPI";
 
 export const usePostProjectMutation = (): UseMutationResult<
@@ -95,6 +103,8 @@ export const useDeleteMutation = (projectId: any) => {
     mutationFn: () => deleteProject(projectId),
     onSuccess: (res) => {
       console.log("삭제 성공", res);
+      alert("삭제 되었습니다.");
+      window.location.reload();
     },
     onError: (err: any) => {
       // error 종류
@@ -123,4 +133,62 @@ export const usePullUpMutation = (projectId: any) => {
     },
   });
   return { pullUpMutate, isPending };
+};
+
+export const useProjectList = (params: ProjectPageParams) => {
+  const { data, error, isLoading } = useQuery({
+    queryKey: ["getProjectList", { params }],
+    queryFn: () => projectAPI.getProjectList(params),
+    placeholderData: (prevData, _) => prevData,
+    enabled: Boolean(params),
+  });
+
+  return { data, error, isLoading };
+};
+
+// 댓글
+
+export const useGetProjectComment = (projectId: number) => {
+  const { data, error, isLoading } = useQuery({
+    queryKey: ["getProjectComment", { projectId }],
+    queryFn: () => getProjectComment(projectId),
+    enabled: Boolean(projectId),
+  });
+  return { data, error, isLoading };
+};
+
+export const usePostComment = (projectId: number, content: string) => {
+  const setErrorModal = useSetRecoilState(errorModalState);
+
+  const { data, isPending, mutate } = useMutation({
+    mutationFn: () => postProjectComment(projectId, content),
+    onSuccess: (res) => {
+      console.log("댓글 등록 성공", res);
+      window.location.reload();
+    },
+    onError: (err: any) => {
+      console.log(err);
+      setErrorModal({
+        open: true,
+        text: "예기치 못한 오류가 발생했습니다.",
+      });
+    },
+  });
+  return { mutate, isPending };
+};
+
+export const useDeleteComment = (projectId: number, commentId: number) => {
+  const { data, error, isPending, mutate } = useMutation({
+    mutationFn: () => deleteProjectComment(projectId, commentId),
+    onSuccess: (res) => {
+      console.log("댓글 삭제 성공", res);
+      alert("댓글을 삭제했습니다.");
+      window.location.reload();
+    },
+    onError: (err: any) => {
+      console.log(err);
+      alert("댓글 삭제 실패!");
+    },
+  });
+  return { mutate, isPending };
 };

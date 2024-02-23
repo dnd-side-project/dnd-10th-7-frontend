@@ -6,7 +6,6 @@ import { ModalViewProps } from "../signup/LoginModal";
 import { Modal } from "../common-components/modal";
 import { usePutUserDataMutation } from "@component/hooks/useMyPage";
 import TabComponent from "../common-components/tab/TabComponent";
-import Loading from "../loading/Loading";
 
 export default function ProfileEditModal(props: ModalViewProps) {
   const { isOpen, setIsOpen, isPrevOpen, setIsPrevOpen } = props;
@@ -38,15 +37,12 @@ export default function ProfileEditModal(props: ModalViewProps) {
   });
 
   const handleClick = () => {
-    mutate();
-
-    if (isPending) return <Loading />;
-
     if (typeof window !== "undefined") {
       localStorage.setItem("birthDay", birth);
       localStorage.setItem("career", career);
       localStorage.setItem("nickname", nickname);
     }
+    mutate();
     setIsOpen(false);
     setCompleteModalOpen(true);
   };
@@ -66,7 +62,7 @@ export default function ProfileEditModal(props: ModalViewProps) {
         <Modal.Close onClick={handleClose} />
         <Modal.Title>프로필 편집</Modal.Title>
 
-        <Modal.Description className="py-0 px-4 pb-6">
+        <Modal.Description className="flex flex-col gap-[11px]">
           <div className="flex flex-col gap-[20px]">
             <div>
               <p className="pb-[10px]">닉네임</p>
@@ -83,7 +79,7 @@ export default function ProfileEditModal(props: ModalViewProps) {
             <div>
               <p className="pb-[10px]">생년월일</p>
               <GrayInput
-                className="w-full text-center"
+                className="text-center w-full"
                 value={birth}
                 onChange={(e: React.ChangeEvent<any>) =>
                   setBirth(e.target.value)
@@ -121,7 +117,7 @@ export default function ProfileEditModal(props: ModalViewProps) {
           </div>
         </Modal.Description>
 
-        <Modal.Footer className="flex flex-row gap-[8px] h-full">
+        <Modal.Footer className="flex flex-row gap-[8px]">
           <Button size="md" color="gray" onClick={handleBack}>
             닫기
           </Button>
