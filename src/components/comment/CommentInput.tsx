@@ -9,6 +9,7 @@ import { usePostComment } from "@component/hooks/useProject";
 import Loading from "../loading/Loading";
 import { useSetRecoilState } from "recoil";
 import { errorModalState } from "@component/atoms/modalAtom";
+import { useGetUserData } from "@component/hooks/useMyPage";
 
 type Props = {
   projectId: number;
@@ -65,8 +66,11 @@ export const CommentInput = ({ projectId }: Props) => {
     if (isPending) return <Loading />;
   };
 
-  // TODO : 로그인할 때 프로필 이미지 저장해야 함
-  const profileImageUrl = localStorage.getItem("profileImageUrl");
+  // // TODO : 로그인할 때 프로필 이미지 저장해야 함
+  // const profileImageUrl = localStorage.getItem("profileImageUrl");
+
+  const { data, error, isLoading } = useGetUserData();
+  const profileImageUrl = data?.data.data.profileImageUrl;
 
   return (
     <div className="w-full ">
@@ -75,6 +79,8 @@ export const CommentInput = ({ projectId }: Props) => {
         <Image
           src={profileImageUrl ?? ""}
           alt="프로필 이미지"
+          width={40}
+          height={40}
           className="w-[48px] h-[48px] rounded-full bg-gray-40"
         />
 
