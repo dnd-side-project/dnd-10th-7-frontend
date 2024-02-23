@@ -20,7 +20,7 @@ import Pagination from "../common-components/pagination";
 export const MyPageTab = () => {
   const [tab, setTab] = useState(0);
 
-  // 정렬 - 0은 진행중, 1은 완료
+  // 정렬 - 0은 d완료, 1은 진행중
   const [sort, setSort] = useState(0);
   const [pageIndex, setPageIndex] = useState(1); // pageIndex 는 1 이상
 
@@ -86,7 +86,7 @@ export const MyPageTab = () => {
         <div className="flex gap-[20px] pr-2">
           <div
             className="flex items-center gap-[10px] cursor-pointer"
-            onClick={() => handleSorting(0)}
+            onClick={() => handleSorting(1)}
           >
             <div
               className={clsx(
@@ -104,7 +104,7 @@ export const MyPageTab = () => {
           </div>
           <div
             className="flex items-center gap-[10px] cursor-pointer"
-            onClick={() => handleSorting(1)}
+            onClick={() => handleSorting(0)}
           >
             <div
               className={clsx(
