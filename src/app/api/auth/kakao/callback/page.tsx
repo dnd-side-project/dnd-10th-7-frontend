@@ -34,7 +34,7 @@ export default function KakaoCallBack() {
       }
     }
     if (error) {
-      console.log("err입니다", error);
+      console.log("kakao error", error);
       router.push("/");
     }
   }, [data, error]);

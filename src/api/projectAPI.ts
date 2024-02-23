@@ -116,7 +116,6 @@ export const deleteProjectComment = async (
   return res;
 };
 
-
 // export const projectAPI = {
 //   getProjectList: async (params?: ProjectPageParams, accessToken?: string) => {
 //     try {
@@ -139,7 +138,6 @@ export const getProjectList = async (
     { params }
   );
   return res;
-
 };
 
 // 삭제

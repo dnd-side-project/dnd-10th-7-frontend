@@ -55,7 +55,6 @@ export const ProjectList = () => {
 
   const projectList = useMemo(
     () =>
-
       projectListData?.data?.data?.content.map(
         (item: ProjectItemProps) =>
           ({
