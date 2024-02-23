@@ -1,6 +1,6 @@
 "use client";
 
-import LadingTop from "@component/components/landing/carousel/LandingTop";
+import LandingTop from "@component/components/landing/carousel/LandingTop";
 import LandingMid from "@component/components/landing/carousel/LandingMid";
 import { ProjectList } from "@component/components/landing/project/ProjectList";
 import { useEffect, useState } from "react";
@@ -29,7 +29,7 @@ export default function Home() {
         }}
       >
         <section className="w-[1080px] scale-75 mx-auto">
-          <LadingTop />
+          <LandingTop />
         </section>
       </section>
 

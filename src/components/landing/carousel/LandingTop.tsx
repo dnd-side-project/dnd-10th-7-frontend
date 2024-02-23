@@ -15,7 +15,7 @@ const notify = () =>
     icon: "👋",
   });
 
-const LadingTop = () => {
+const LandingTop = () => {
   const router = useRouter();
 
   const onClickProject = () => {
@@ -48,4 +48,4 @@ const LadingTop = () => {
   );
 };
 
-export default LadingTop;
+export default LandingTop;
