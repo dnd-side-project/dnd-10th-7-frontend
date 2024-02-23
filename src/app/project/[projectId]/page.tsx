@@ -118,7 +118,7 @@ export default function ProjectDetailPage({ params }: { params: PageParams }) {
   };
 
   return (
-    <div className="w-[1440px] flex flex-col items-center">
+    <div className="w-[1440px] flex flex-col items-center mx-auto">
       <section className="max-w-[1080px] w-full mt-[56.5px] flex mb-[72px]">
         {/* project detail */}
         <div className="min-w-[787px]">
