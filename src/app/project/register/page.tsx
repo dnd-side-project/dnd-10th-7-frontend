@@ -9,6 +9,7 @@ import RegisterProjectInputContent from "./RegisterProjectInputContent";
 import PurpleInput from "@component/components/common-components/input/PurPleInput";
 import RegisterProjectInputImage from "./RegisterProjectInputImage";
 import { Modal } from "@component/components/common-components/modal";
+import Image from "next/image";
 
 import { usePostProjectMutation } from "@component/hooks/useProject";
 import { useRouter } from "next/navigation";
@@ -276,7 +277,7 @@ export default function RegisterProject() {
           <div>프로젝트 등록이 완료되었습니다</div>
         </Modal.Title>
         <Modal.Description>
-          <>{/* TODO: 캐릭터 추가 */}</>
+          <Image src={'/assets/modal/project.png'} alt='project' width={232} height={192} className="mx-auto mt-[-45px]"></Image>
         </Modal.Description>
         <Modal.Footer>
           <div className="flex space-x-[8px]">

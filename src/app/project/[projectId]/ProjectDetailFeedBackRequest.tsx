@@ -1,5 +1,17 @@
 import Button from "@component/components/common-components/button/Button";
 import { useRouter } from "next/navigation";
+import toast, { Toaster } from "react-hot-toast";
+
+const notify = () =>
+  toast.success("로그인이 필요한 서비스에요", {
+    style: {
+      backgroundColor: "#F9F7FF",
+      border: "1px solid #8C82FF",
+      padding: "16px",
+      color: "#8C82FF",
+    },
+    icon: "👋",
+  });
 
 const ProjectDetailFeedBackRequest = ({
   projectFeedbackData,
@@ -7,6 +19,11 @@ const ProjectDetailFeedBackRequest = ({
   isAuthor,
 }: any) => {
   const router = useRouter();
+
+  // 로그인 한 유저인지 확인
+  const accessToken =
+    typeof window !== "undefined" && sessionStorage.getItem("accessToken");
+
   return (
     <>
       {projectFeedbackData &&
@@ -29,9 +46,15 @@ const ProjectDetailFeedBackRequest = ({
             {!feedback.isSubmiited ? (
               <div className="flex justify-end">
                 <Button
-                  onClick={() =>
-                    router.push(`/project/${projectId}/feedback/${feedback.feedbackId}`)
-                  }
+                  onClick={() => {
+                    if (accessToken) {
+                      router.push(
+                        `/project/${projectId}/feedback/${feedback.feedbackId}`
+                      );
+                    } else {
+                      notify();
+                    }
+                  }}
                 >
                   피드백 작성하기
                 </Button>

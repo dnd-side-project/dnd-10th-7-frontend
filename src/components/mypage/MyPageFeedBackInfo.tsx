@@ -3,6 +3,7 @@ import { UserFeedBackInfoProps, UserFeed } from "@component/types/User";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import MyPageLevelToolTip from "./MyPageLevelToolTip";
 import { useState } from "react";
+import Image from "next/image";
 
 const MyPageFeedBackInfo = ({
   level,
@@ -35,7 +36,7 @@ const MyPageFeedBackInfo = ({
 
       {/* level info */}
       <div className="mt-7 flex flex-col items-center">
-        <div className="bg-gray-20 rounded-full w-[155px] h-[155px]"></div>
+        <Image src={`/assets/level/Lv${level}.png`} alt={`${level} img`} width={157} height={122} ></Image>
         <div className="mt-[26px] flex flex-col items-center">
           <div className="text-h2">
             Lv.{level}{" "}

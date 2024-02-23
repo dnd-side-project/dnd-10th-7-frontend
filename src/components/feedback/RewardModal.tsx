@@ -4,6 +4,7 @@ import Button from "../common-components/button";
 import { Modal } from "../common-components/modal";
 import { ModalViewProps } from "../signup/LoginModal";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 export const RewardModal = (props: ModalViewProps) => {
   const { isOpen, setIsOpen, level, feedbackCount, isLevelUp, projectId } =
@@ -21,7 +22,12 @@ export const RewardModal = (props: ModalViewProps) => {
         <Modal.Close onClick={handleClose} />
 
         <Modal.Description className="px-[20px] flex flex-col items-center justify-center">
-          <div className="h-[400px]">이미지area</div>
+          <Image
+            src={"/assets/modal/reward.png"}
+            alt="reward"
+            width={416}
+            height={325}
+          ></Image>
           <p className="text-h1 text-center">
             리워드 지급이 완료됐습니다. <br />
             {isLevelUp ? (

@@ -18,7 +18,16 @@ export const Header = () => {
       ? window.localStorage.getItem("nickname")
       : null;
 
+  // 로그인 한 유저인지 확인
+  const accessToken =
+    typeof window !== "undefined" && sessionStorage.getItem("accessToken");
+
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const goToLogin = () => {
+    if (!accessToken) {
+      setIsOpen(true);
+    }
+  };
 
   return (
     <div className="fixed z-50 top-0 m-auto py-[17px] w-full h-[70px] flex flex-row items-center justify-center border-b-2 bg-white text-h2">
@@ -34,8 +43,17 @@ export const Header = () => {
           <Link href="/project">
             <div className={clsx(variants.menu)}>프로젝트</div>
           </Link>
-          <Link href="/project/register">
-            <div className={clsx(variants.menu)}>프로젝트 등록하기</div>
+          <Link href={accessToken ? "/project/register" : "#"}>
+            <div
+              onClick={() => {
+                if (!accessToken) {
+                  setIsOpen(true);
+                } 
+              }}
+              className={clsx(variants.menu)}
+            >
+              프로젝트 등록하기
+            </div>
           </Link>
         </div>
         {typeof window !== "undefined" &&

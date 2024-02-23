@@ -13,13 +13,30 @@ import TeamMemberInfo from "./ProjectDetailTeamMemberInfo";
 import { useGetProjectDetail } from "@component/hooks/useProject";
 import { useGetProjectFeedbackDetail } from "@component/hooks/useFeedback";
 import { useLikeMutation, useScrapMutation } from "@component/hooks/useProject";
+import toast, { Toaster } from "react-hot-toast";
 import CommentBox from "@component/components/comment/CommentBox";
+
 
 type PageParams = {
   projectId: number;
 };
 
+const notify = () =>
+  toast.success("로그인이 필요한 서비스에요", {
+    style: {
+      backgroundColor: "#F9F7FF",
+      border: "1px solid #8C82FF",
+      padding: "16px",
+      color: "#8C82FF",
+    },
+    icon: "👋",
+  });
+
 export default function ProjectDetailPage({ params }: { params: PageParams }) {
+  // 로그인 한 유저인지 확인
+  const accessToken =
+    typeof window !== "undefined" && sessionStorage.getItem("accessToken");
+
   const { data, error, isLoading } = useGetProjectDetail(params.projectId);
   const { feedbackData, feedbackError, feedbackIsLoading } =
     useGetProjectFeedbackDetail(params.projectId);
@@ -68,26 +85,37 @@ export default function ProjectDetailPage({ params }: { params: PageParams }) {
   const { isScrapMutate } = useScrapMutation(params.projectId);
 
   const handleLikeClick = () => {
-    // 좋아요 버튼 클릭 시
-    if (!likeState) {
-      setLikeCount((prevCount) => prevCount + 1);
-      setLikeState(true);
+    // 로그인을 안한 경우
+    if (!accessToken) {
+      notify();
     } else {
-      setLikeCount((prevCount) => prevCount - 1);
-      setLikeState(false);
+      // 좋아요 버튼 클릭 시
+      if (!likeState) {
+        setLikeCount((prevCount) => prevCount + 1);
+        setLikeState(true);
+      } else {
+        setLikeCount((prevCount) => prevCount - 1);
+        setLikeState(false);
+      }
+      mutate();
     }
-    mutate();
   };
 
   const handleScrappedClick = () => {
-    if (!scrapState) {
-      setScrappedCount((prevCount) => prevCount + 1);
-      setScrapState(true);
+    // 로그인을 안한 경우
+    if (!accessToken) {
+      notify();
     } else {
-      setScrappedCount((prevCount) => prevCount - 1);
-      setScrapState(false);
+      // 스크랩 버튼 클릭 시
+      if (!scrapState) {
+        setScrappedCount((prevCount) => prevCount + 1);
+        setScrapState(true);
+      } else {
+        setScrappedCount((prevCount) => prevCount - 1);
+        setScrapState(false);
+      }
+      isScrapMutate();
     }
-    isScrapMutate();
   };
 
   return (
@@ -203,6 +231,7 @@ export default function ProjectDetailPage({ params }: { params: PageParams }) {
           />
         </div>
       </section>
+      <Toaster />
     </div>
   );
 }
