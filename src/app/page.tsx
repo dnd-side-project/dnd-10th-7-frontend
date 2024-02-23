@@ -22,13 +22,13 @@ export default function Home() {
     <main className="mx-auto w-full flex flex-col items-center">
       {/* 랜딩 문구 */}
       <section
-        className="w-full h-[619px] bg-purple-main4 flex justify-center"
+        className="w-full h-[640px] bg-purple-main4 flex justify-center"
         style={{
           backgroundImage: "url('/assets/main_background.png')",
           backgroundSize: "cover",
         }}
       >
-        <section className="w-[1080px] flex justify-center">
+        <section className="w-[1080px] scale-75 mx-auto">
           <LadingTop />
         </section>
       </section>
