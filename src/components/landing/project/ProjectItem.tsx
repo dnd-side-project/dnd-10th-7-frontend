@@ -11,7 +11,6 @@ import { ProjectItemProps } from "@component/types/Project";
 import DropdownBox from "@component/components/common-components/dropdown-box";
 import { useRouter } from "next/navigation";
 import { useScrapMutation } from "@component/hooks/useProject";
-import { notify } from "@component/app/project/[projectId]/page";
 
 export default function ProjectItem({
   commentCount,
@@ -38,20 +37,20 @@ export default function ProjectItem({
 
   const [scrapState, setScrapState] = useState<boolean>(false);
 
-  const handleScrappedClick = () => {
-    // 로그인을 안한 경우
-    if (!accessToken) {
-      notify();
-    } else {
-      // 스크랩 버튼 클릭 시
-      if (!scrapState) {
-        setScrapState(true);
-      } else {
-        setScrapState(false);
-      }
-      isScrapMutate();
-    }
-  };
+  // const handleScrappedClick = () => {
+  //   // 로그인을 안한 경우
+  //   if (!accessToken) {
+  //     notify();
+  //   } else {
+  //     // 스크랩 버튼 클릭 시
+  //     if (!scrapState) {
+  //       setScrapState(true);
+  //     } else {
+  //       setScrapState(false);
+  //     }
+  //     isScrapMutate();
+  //   }
+  // };
 
   return (
     <div className="w-full max-w-[890px] py-[32px] border-b-[1px] border-gray-40">
