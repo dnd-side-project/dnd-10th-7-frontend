@@ -124,35 +124,38 @@ export const MyPageTab = () => {
         </div>
       </Box>
       <CustomTabPanel value={tab} index={0}>
-        {myProjectData?.data?.data?.totalElements === 0 ? (
-          <MyPageEmptyView tab={1} />
-        ) : (
-          <>
-            {myProjectData?.data?.data?.content.map(
-              (item: any, idx: number) => {
-                return (
-                  <div key={idx}>
-                    <ProjectItem
-                      field={item.field}
-                      progress={item.progress}
-                      title={item.title}
-                      summary={item.summary}
-                      nickname={item.nickname}
-                      createdAt={item.createdAt}
-                      pullUpCount={item.pullUpCount}
-                      likeCount={item.likeCount}
-                      commentCount={item.commentCount}
-                      isScrapped={item.isScrapped}
-                      projectId={item.projectId}
-                      profileImageUrl={item.profileImageUrl}
-                      moreBtn
-                    />
-                  </div>
-                );
-              }
-            )}
-          </>
-        )}
+        <div className="max-h-[1360px] mb-[77px]">
+          {myProjectData?.data?.data?.totalElements === 0 ? (
+            <MyPageEmptyView tab={1} />
+          ) : (
+            <>
+              {myProjectData?.data?.data?.content.map(
+                (item: any, idx: number) => {
+                  return (
+                    <div key={idx}>
+                      <ProjectItem
+                        field={item.field}
+                        progress={item.progress}
+                        title={item.title}
+                        summary={item.summary}
+                        nickname={item.nickname}
+                        createdAt={item.createdAt}
+                        pullUpCount={item.pullUpCount}
+                        likeCount={item.likeCount}
+                        commentCount={item.commentCount}
+                        isScrapped={item.isScrapped}
+                        projectId={item.projectId}
+                        profileImageUrl={item.profileImageUrl}
+                        moreBtn
+                      />
+                    </div>
+                  );
+                }
+              )}
+            </>
+          )}
+        </div>
+
         {myProjectData?.data?.data?.totalPages > 0 && (
           <div className="flex justify-center items-center">
             <Pagination
