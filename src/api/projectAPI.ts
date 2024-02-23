@@ -138,7 +138,6 @@ export const getProjectList = async (
     { params }
   );
   return res;
-
 };
 
 // 삭제
