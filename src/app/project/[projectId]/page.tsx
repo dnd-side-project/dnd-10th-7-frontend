@@ -224,7 +224,7 @@ export default function ProjectDetailPage({ params }: { params: PageParams }) {
           />
         </div>
       </section>
-      <Toaster/>
+      <Toaster />
     </div>
   );
 }
