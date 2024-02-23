@@ -119,12 +119,9 @@ export const deleteProjectComment = async (
 export const projectAPI = {
   getProjectList: async (params?: ProjectPageParams, accessToken?: string) => {
     try {
-      const res: AxiosResponse = await axios.get(`${BASE_URL}/api/projects`, {
-        // headers: {
-        //   Authorization: `Bearer ${accessToken}`,
-        // },
-        params,
-      });
+      const res = await authApi({ "Content-Type": "application/json" }).get(
+        `/api/projects`
+      );
       return res.data;
     } catch (err) {
       console.error(err);
