@@ -93,7 +93,9 @@ export const CommentInput = ({ projectId }: Props) => {
           borderSize="xs"
           textSize="xs"
           entire={100}
-          // TODO : onKeyDown 필요
+          onKeyDown={(e: any) => {
+            if (e.key === "Enter") handleSubmit();
+          }}
           className={isInvalid ? "border-error-main" : "border-purple-main1"}
         />
       </div>
