@@ -134,7 +134,7 @@ export const getProjectList = async (
   accessToken?: string
 ) => {
   const res = await authApi({ "Content-Type": "application/json" }).get(
-    `/api/projects/`,
+    `/api/projects`,
     { params }
   );
   return res;
