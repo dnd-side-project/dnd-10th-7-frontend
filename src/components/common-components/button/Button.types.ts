@@ -22,7 +22,8 @@ export const buttonColors = {
   gray: "gray",
   black: "black",
   disabled: "disabled",
-  grayBorder: "grayBorder"
+  grayBorder: "grayBorder",
+  thinPurple: "thinPurple",
 } as const;
 export type ButtonColor = (typeof buttonColors)[keyof typeof buttonColors];
 
