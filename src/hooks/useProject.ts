@@ -13,10 +13,10 @@ import {
   deleteProjectComment,
   getProject,
   getProjectComment,
+  getProjectList,
   getProjectRecommend,
   postProject,
   postProjectComment,
-  projectAPI,
   pullProjectUp,
   putProjectLike,
   putProjectScrap,
@@ -138,7 +138,7 @@ export const usePullUpMutation = (projectId: any) => {
 export const useProjectList = (params: ProjectPageParams) => {
   const { data, error, isLoading } = useQuery({
     queryKey: ["getProjectList", { params }],
-    queryFn: () => projectAPI.getProjectList(params),
+    queryFn: () => getProjectList(params),
     placeholderData: (prevData, _) => prevData,
     enabled: Boolean(params),
   });

@@ -55,7 +55,8 @@ export const ProjectList = () => {
 
   const projectList = useMemo(
     () =>
-      projectListData?.data?.content.map(
+
+      projectListData?.data?.data?.content.map(
         (item: ProjectItemProps) =>
           ({
             commentCount: item.commentCount,
