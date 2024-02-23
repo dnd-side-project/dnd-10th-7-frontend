@@ -72,7 +72,7 @@ export default function ProfileEditModal(props: ModalViewProps) {
                 onChange={(e: React.ChangeEvent<any>) =>
                   setNickname(e.target.value)
                 }
-                placeholder={originBirth}
+                placeholder={originNickname}
                 size="xs"
               />
             </div>

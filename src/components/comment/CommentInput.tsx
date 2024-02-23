@@ -76,8 +76,8 @@ export const CommentInput = ({ projectId }: Props) => {
           <div className="h-[48px] w-[48px] rounded-full bg-gray-40" />
         ) : (
           <Image
-            src={profileImageUrl ?? ""}
-            alt="프로필 이미지"
+            src={profileImageUrl}
+            alt=""
             width={40}
             height={40}
             className="w-[48px] h-[48px] rounded-full bg-gray-40"
@@ -93,7 +93,9 @@ export const CommentInput = ({ projectId }: Props) => {
           borderSize="xs"
           textSize="xs"
           entire={100}
-          // TODO : onKeyDown 필요
+          onKeyDown={(e: any) => {
+            if (e.key === "Enter") handleSubmit();
+          }}
           className={isInvalid ? "border-error-main" : "border-purple-main1"}
         />
       </div>

@@ -118,7 +118,7 @@ export const ProjectTab = ({
             onClick={() => {
               setIsFinished(false);
               setCurrentPage(1);
-              router.push(`/?${createQueryString("isFinished", false)}`);
+              // router.push(`/?${createQueryString("isFinished", false)}`);
             }}
           />
           <Tab
@@ -128,7 +128,7 @@ export const ProjectTab = ({
             onClick={() => {
               setIsFinished(true);
               setCurrentPage(1);
-              router.push(`/?${createQueryString("isFinished", true)}`);
+              // router.push(`/?${createQueryString("isFinished", true)}`);
             }}
           />
         </Tabs>

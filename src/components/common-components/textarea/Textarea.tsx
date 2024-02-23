@@ -48,7 +48,7 @@ const PurpleTextarea = forwardRef<
     onChange,
     placeholder,
     entire,
-
+    onKeyDown,
     // style
     size,
     borderSize,
@@ -65,6 +65,7 @@ const PurpleTextarea = forwardRef<
         name={value}
         onChange={onChange}
         placeholder={placeholder}
+        onKeyDown={onKeyDown}
         id=""
         className={clsx(
           style.base,

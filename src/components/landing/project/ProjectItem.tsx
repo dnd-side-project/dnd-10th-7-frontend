@@ -9,6 +9,7 @@ import ChatOutlinedIcon from "@mui/icons-material/ChatOutlined";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { ProjectItemProps } from "@component/types/Project";
 import DropdownBox from "@component/components/common-components/dropdown-box";
+import { useRouter } from "next/navigation";
 
 export default function ProjectItem({
   commentCount,
@@ -26,6 +27,7 @@ export default function ProjectItem({
   moreBtn,
 }: ProjectItemProps) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const router = useRouter();
 
   return (
     <div className="w-full max-w-[890px] py-[32px] border-b-[1px] border-gray-40">
@@ -55,7 +57,12 @@ export default function ProjectItem({
           {/* {moreBtn && <MoreVertIcon className="mr-[20px] fill-gray-80" />} */}
         </div>
         <div className="flex justify-between items-center">
-          <div className="text-title cursor-pointer">{title}</div>
+          <div
+            className="text-title cursor-pointer"
+            onClick={() => router.push(`/project/${projectId}`)}
+          >
+            {title}
+          </div>
           <div
             onClick={() => {
               console.log("clicked");
@@ -73,16 +80,16 @@ export default function ProjectItem({
         <div className="flex flex-row gap-[12px] text-gray-60">
           <p>{nickname}</p>
           <p>{createdAt}</p>
-          <p>끌올 {pullUpCount}회</p>
+          <p>끌올 {pullUpCount ?? 0}회</p>
         </div>
         <div className="text-gray-60 flex gap-[30px] items-center">
           <div className="flex gap-[5px]">
             <ThumbUpOutlinedIcon />
-            <p>{likeCount}</p>
+            <p>{likeCount ?? 0}</p>
           </div>
           <div className="flex gap-[5px]">
             <ChatOutlinedIcon />
-            <p>{commentCount}</p>
+            <p>{commentCount ?? 0}</p>
           </div>
         </div>
       </div>

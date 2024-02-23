@@ -16,12 +16,13 @@ import {
   useGetMyScrapData,
 } from "@component/hooks/useMyPage";
 import Pagination from "../common-components/pagination";
+import { MyPageEmptyView } from "./MyPageEmptyView";
 
 export const MyPageTab = () => {
   const [tab, setTab] = useState(0);
 
-  // 정렬 - 0은 d완료, 1은 진행중
-  const [sort, setSort] = useState(0);
+  // 정렬 - 0은 완료, 1은 진행중
+  const [sort, setSort] = useState(1);
   const [pageIndex, setPageIndex] = useState(1); // pageIndex 는 1 이상
 
   const handleChange = (e: React.SyntheticEvent, newValue: number) => {
@@ -91,12 +92,12 @@ export const MyPageTab = () => {
             <div
               className={clsx(
                 "w-[7px] h-[7px] rounded-full ",
-                sort === 0 ? "bg-purple-main1" : "bg-gray-60"
+                sort === 1 ? "bg-purple-main1" : "bg-gray-60"
               )}
             />
             <div
               className={clsx(
-                sort === 0 ? "text-purple-main1" : "text-gray-60"
+                sort === 1 ? "text-purple-main1" : "text-gray-60"
               )}
             >
               진행중
@@ -109,12 +110,12 @@ export const MyPageTab = () => {
             <div
               className={clsx(
                 "w-[7px] h-[7px] rounded-full",
-                sort === 1 ? "bg-purple-main1" : "bg-gray-60"
+                sort === 0 ? "bg-purple-main1" : "bg-gray-60"
               )}
             />
             <div
               className={clsx(
-                sort === 1 ? "text-purple-main1" : "text-gray-60"
+                sort === 0 ? "text-purple-main1" : "text-gray-60"
               )}
             >
               완료
@@ -123,27 +124,40 @@ export const MyPageTab = () => {
         </div>
       </Box>
       <CustomTabPanel value={tab} index={0}>
-        {myProjectData?.data?.data?.content.map((item: any, idx: number) => {
-          return (
-            <div key={idx}>
-              <ProjectItem
-                field={item.field}
-                progress={item.progress}
-                title={item.title}
-                summary={item.summary}
-                nickname={item.nickname}
-                createdAt={item.createdAt}
-                pullUpCount={item.pullUpCount}
-                likeCount={item.likeCount}
-                commentCount={item.commentCount}
-                isScrapped={item.isScrapped}
-                projectId={item.projectId}
-                profileImageUrl={item.profileImageUrl}
-                moreBtn
-              />
+        <div className="max-h-[1360px] mb-[77px] m-auto ">
+          {myProjectData?.data?.data?.totalElements === 0 ? (
+            <div className="h-[700px] flex items-center justify-center">
+              <MyPageEmptyView tab={1} />
             </div>
-          );
-        })}
+          ) : (
+            <>
+              {myProjectData?.data?.data?.content.map(
+                (item: any, idx: number) => {
+                  return (
+                    <div key={idx}>
+                      <ProjectItem
+                        field={item.field}
+                        progress={item.progress}
+                        title={item.title}
+                        summary={item.summary}
+                        nickname={item.nickname}
+                        createdAt={item.createdAt}
+                        pullUpCount={item.pullUpCount}
+                        likeCount={item.likeCount}
+                        commentCount={item.commentCount}
+                        isScrapped={item.isScrapped}
+                        projectId={item.projectId}
+                        profileImageUrl={item.profileImageUrl}
+                        moreBtn
+                      />
+                    </div>
+                  );
+                }
+              )}
+            </>
+          )}
+        </div>
+
         {myProjectData?.data?.data?.totalPages > 0 && (
           <div className="flex justify-center items-center">
             <Pagination
@@ -155,26 +169,38 @@ export const MyPageTab = () => {
         )}
       </CustomTabPanel>
       <CustomTabPanel value={tab} index={1}>
-        {myFeedbackData?.data?.data?.content.map((item: any, idx: number) => {
-          return (
-            <div key={idx}>
-              <ProjectItem
-                field={item.field}
-                progress={item.progress}
-                title={item.title}
-                summary={item.summary}
-                nickname={item.nickname}
-                createdAt={item.createdAt}
-                pullUpCount={item.pullUpCount}
-                likeCount={item.likeCount}
-                commentCount={item.commentCount}
-                isScrapped={item.isScrapped}
-                projectId={item.projectId}
-                profileImageUrl={item.profileImageUrl}
-              />
+        <div className="max-h-[1360px] mb-[77px] m-auto ">
+          {myFeedbackData?.data?.data?.totalElements === 0 ? (
+            <div className="h-[600px] flex items-center justify-center">
+              <MyPageEmptyView tab={2} />
             </div>
-          );
-        })}
+          ) : (
+            <>
+              {myFeedbackData?.data?.data?.content.map(
+                (item: any, idx: number) => {
+                  return (
+                    <div key={idx}>
+                      <ProjectItem
+                        field={item.field}
+                        progress={item.progress}
+                        title={item.title}
+                        summary={item.summary}
+                        nickname={item.nickname}
+                        createdAt={item.createdAt}
+                        pullUpCount={item.pullUpCount}
+                        likeCount={item.likeCount}
+                        commentCount={item.commentCount}
+                        isScrapped={item.isScrapped}
+                        projectId={item.projectId}
+                        profileImageUrl={item.profileImageUrl}
+                      />
+                    </div>
+                  );
+                }
+              )}
+            </>
+          )}
+        </div>
         {myFeedbackData?.data?.data?.totalPages > 0 && (
           <div className="flex justify-center items-center">
             <Pagination
@@ -186,26 +212,39 @@ export const MyPageTab = () => {
         )}
       </CustomTabPanel>
       <CustomTabPanel value={tab} index={2}>
-        {myScrapData?.data?.data?.content.map((item: any, idx: number) => {
-          return (
-            <div key={idx}>
-              <ProjectItem
-                field={item.field}
-                progress={item.progress}
-                title={item.title}
-                summary={item.summary}
-                nickname={item.nickname}
-                createdAt={item.createdAt}
-                pullUpCount={item.pullUpCount}
-                likeCount={item.likeCount}
-                commentCount={item.commentCount}
-                isScrapped={item.isScrapped}
-                projectId={item.projectId}
-                profileImageUrl={item.profileImageUrl}
-              />
+        <div className="max-h-[1360px] mb-[77px] m-auto ">
+          {myScrapData?.data?.data?.totalElements === 0 ? (
+            <div className="h-[600px] flex items-center justify-center">
+              <MyPageEmptyView tab={3} />
             </div>
-          );
-        })}
+          ) : (
+            <>
+              {myScrapData?.data?.data?.content.map(
+                (item: any, idx: number) => {
+                  return (
+                    <div key={idx}>
+                      <ProjectItem
+                        field={item.field}
+                        progress={item.progress}
+                        title={item.title}
+                        summary={item.summary}
+                        nickname={item.nickname}
+                        createdAt={item.createdAt}
+                        pullUpCount={item.pullUpCount}
+                        likeCount={item.likeCount}
+                        commentCount={item.commentCount}
+                        isScrapped={item.isScrapped}
+                        projectId={item.projectId}
+                        profileImageUrl={item.profileImageUrl}
+                      />
+                    </div>
+                  );
+                }
+              )}
+            </>
+          )}
+        </div>
+
         {myScrapData?.data?.data?.totalPages > 0 && (
           <div className="flex justify-center items-center">
             <Pagination
