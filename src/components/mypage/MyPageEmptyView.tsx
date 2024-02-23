@@ -24,7 +24,7 @@ export const MyPageEmptyView = ({ tab }: EmptyViewProps) => {
   const viewData = emptyViewData.filter((item) => item.id === tab);
 
   return (
-    <>
+    <div className="flex flex-col justify-center items-center">
       <div>image</div>
       <div>
         {viewData.map((item) => (
@@ -56,6 +56,6 @@ export const MyPageEmptyView = ({ tab }: EmptyViewProps) => {
         ))}
         <div></div>
       </div>
-    </>
+    </div>
   );
 };
