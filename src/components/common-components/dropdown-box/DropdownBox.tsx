@@ -43,7 +43,7 @@ const DropdownBox = ({
     if (item === "로그아웃") {
       sessionStorage.removeItem("accessToken");
       sessionStorage.removeItem("refreshToken");
-      localStorage.removeItem("nickname");
+      // localStorage.removeItem("nickname");
       router.push("/");
       window.location.reload();
     }
