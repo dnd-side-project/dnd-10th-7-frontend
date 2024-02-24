@@ -59,6 +59,11 @@ export default function ProfileEditModal(props: ModalViewProps) {
     setIsOpen(false);
   };
 
+  const { data } = useGetUserData();
+  const originNick = data?.data?.data?.nickname;
+  const originBir = data?.data?.data?.birthday;
+  const originCar = data?.data?.data?.career;
+
   return (
     <>
       <Modal open={isOpen} onClose={handleClose}>
@@ -75,7 +80,7 @@ export default function ProfileEditModal(props: ModalViewProps) {
                 onChange={(e: React.ChangeEvent<any>) =>
                   setNickname(e.target.value)
                 }
-                placeholder={nick}
+                placeholder={originNick}
                 size="xs"
               />
             </div>
@@ -87,7 +92,7 @@ export default function ProfileEditModal(props: ModalViewProps) {
                 onChange={(e: React.ChangeEvent<any>) =>
                   setBirth(e.target.value)
                 }
-                placeholder={originBirth}
+                placeholder={originBir}
                 size="xs"
               />
             </div>
