@@ -156,7 +156,7 @@ export default function RegisterProject() {
 
   return (
     <div className="w-[1440px] flex flex-col items-center justify-center">
-      <section className="max-w-[1080px] w-full mt-[135px]">
+      <section className="max-w-[1080px] w-full mt-[135px] mx-auto">
         {/* Title */}
         <RegisterProjectInputTitle
           titleValue={titleValue}
