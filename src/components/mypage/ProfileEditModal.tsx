@@ -11,7 +11,7 @@ import {
 import TabComponent from "../common-components/tab/TabComponent";
 
 export default function ProfileEditModal(props: ModalViewProps) {
-  const { isOpen, setIsOpen, isPrevOpen, setIsPrevOpen, nick } = props;
+  const { isOpen, setIsOpen, isPrevOpen, setIsPrevOpen } = props;
 
   const [careerChecked, setCareerChecked] = useState<boolean>();
   const [selectStatus, setSelectStatus] = useState<boolean>(false);
@@ -28,10 +28,10 @@ export default function ProfileEditModal(props: ModalViewProps) {
     originCareer = localStorage.getItem("career");
   }
 
-  const { data } = useGetUserData();
-  const originNick = data?.data?.data?.nickname;
-  const originBir = data?.data?.data?.birthday;
-  const originCar = data?.data?.data?.career;
+  const { data: userData } = useGetUserData();
+  const originNick = userData?.data?.data?.nickname;
+  const originBir = userData?.data?.data?.birthday;
+  // const originCar = data?.data?.data?.career;
 
   const [birth, setBirth] = useState(originBirth);
   const [nickname, setNickname] = useState(originNick);
