@@ -30,7 +30,7 @@ export default function KakaoCallBack() {
         window.sessionStorage.removeItem("signToken");
         window.sessionStorage.setItem("accessToken", accessToken);
         window.sessionStorage.setItem("refreshToken", refreshToken);
-        window.localStorage.setItem("nickname", nickname);
+        localStorage.setItem("nickname", nickname);
         console.log("accessToken", accessToken);
         console.log("refreshToken", refreshToken);
 
