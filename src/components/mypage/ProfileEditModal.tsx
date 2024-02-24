@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "../common-components/button";
 import Dropdown from "../common-components/dropdown";
 import GrayInput from "../common-components/input/GrayInput";
@@ -11,7 +11,7 @@ import {
 import TabComponent from "../common-components/tab/TabComponent";
 
 export default function ProfileEditModal(props: ModalViewProps) {
-  const { isOpen, setIsOpen, isPrevOpen, setIsPrevOpen } = props;
+  const { isOpen, setIsOpen, isPrevOpen, setIsPrevOpen, nick } = props;
 
   const [careerChecked, setCareerChecked] = useState<boolean>();
   const [selectStatus, setSelectStatus] = useState<boolean>(false);
@@ -59,9 +59,6 @@ export default function ProfileEditModal(props: ModalViewProps) {
     setIsOpen(false);
   };
 
-  const { data: userData } = useGetUserData();
-  const _originNickname = userData?.data?.data?.nickname;
-
   return (
     <>
       <Modal open={isOpen} onClose={handleClose}>
@@ -78,7 +75,7 @@ export default function ProfileEditModal(props: ModalViewProps) {
                 onChange={(e: React.ChangeEvent<any>) =>
                   setNickname(e.target.value)
                 }
-                placeholder={_originNickname}
+                placeholder={nick}
                 size="xs"
               />
             </div>
