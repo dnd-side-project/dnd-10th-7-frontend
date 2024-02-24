@@ -28,8 +28,13 @@ export default function ProfileEditModal(props: ModalViewProps) {
     originCareer = localStorage.getItem("career");
   }
 
+  const { data } = useGetUserData();
+  const originNick = data?.data?.data?.nickname;
+  const originBir = data?.data?.data?.birthday;
+  const originCar = data?.data?.data?.career;
+
   const [birth, setBirth] = useState(originBirth);
-  const [nickname, setNickname] = useState(originNickname);
+  const [nickname, setNickname] = useState(originNick);
   const [career, setCareer] = useState(originCareer);
 
   const { mutate, isPending } = usePutUserDataMutation({
