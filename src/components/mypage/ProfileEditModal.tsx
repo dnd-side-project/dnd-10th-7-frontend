@@ -64,11 +64,6 @@ export default function ProfileEditModal(props: ModalViewProps) {
     setIsOpen(false);
   };
 
-  const { data } = useGetUserData();
-  const originNick = data?.data?.data?.nickname;
-  const originBir = data?.data?.data?.birthday;
-  const originCar = data?.data?.data?.career;
-
   return (
     <>
       <Modal open={isOpen} onClose={handleClose}>
