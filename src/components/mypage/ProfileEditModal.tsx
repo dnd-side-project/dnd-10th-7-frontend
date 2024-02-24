@@ -34,7 +34,7 @@ export default function ProfileEditModal(props: ModalViewProps) {
   // const originCar = data?.data?.data?.career;
 
   const [birth, setBirth] = useState(originBirth);
-  const [nickname, setNickname] = useState(originNick);
+  const [nickname, setNickname] = useState<string>("");
   const [career, setCareer] = useState(originCareer);
 
   const { mutate, isPending } = usePutUserDataMutation({
@@ -76,7 +76,7 @@ export default function ProfileEditModal(props: ModalViewProps) {
               <p className="pb-[10px]">닉네임</p>
               <GrayInput
                 className="text-center w-full"
-                value={nickname}
+                value={nickname === "" ? originNick : nickname}
                 onChange={(e: React.ChangeEvent<any>) =>
                   setNickname(e.target.value)
                 }
