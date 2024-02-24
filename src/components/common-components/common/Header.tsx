@@ -80,7 +80,7 @@ export const Header = () => {
                 alt=""
                 width={60}
                 height={60}
-                className="w-[34px] h-[34px] rounded-full me-8"
+                className="w-[34px] h-[34px] rounded-full me-4"
               />
               <div>{nickname}</div>
             </div>

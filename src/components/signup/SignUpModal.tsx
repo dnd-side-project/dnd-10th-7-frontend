@@ -66,7 +66,7 @@ export default function SignUpModal({ isOpen, setIsOpen }: ModalViewProps) {
       localStorage.setItem("birthDay", birthday);
       localStorage.setItem("gender", gender as string);
       localStorage.setItem("career", career);
-      console.log(localStorage.getItem("gender"), "hihi");
+      // console.log(localStorage.getItem("gender"), "hihi");
     }
 
     // if (step === 3 && typeof window !== "undefined") {

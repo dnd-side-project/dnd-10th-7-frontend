@@ -56,8 +56,8 @@ const DropdownBox = ({
       sessionStorage.removeItem("accessToken");
       sessionStorage.removeItem("refreshToken");
       localStorage.removeItem("nickname");
-      router.push("/");
-      window.location.reload();
+      // router.push("/");
+      window.location.href = "/";
     }
     if (item === "수정하기") notify();
     if (item === "삭제하기") {
