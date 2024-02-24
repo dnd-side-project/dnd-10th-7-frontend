@@ -11,7 +11,7 @@ import {
 import TabComponent from "../common-components/tab/TabComponent";
 
 export default function ProfileEditModal(props: ModalViewProps) {
-  const { isOpen, setIsOpen, isPrevOpen, setIsPrevOpen, nick } = props;
+  const { isOpen, setIsOpen, isPrevOpen, setIsPrevOpen } = props;
 
   const [careerChecked, setCareerChecked] = useState<boolean>();
   const [selectStatus, setSelectStatus] = useState<boolean>(false);
@@ -28,13 +28,13 @@ export default function ProfileEditModal(props: ModalViewProps) {
     originCareer = localStorage.getItem("career");
   }
 
-  const { data } = useGetUserData();
-  const originNick = data?.data?.data?.nickname;
-  const originBir = data?.data?.data?.birthday;
-  const originCar = data?.data?.data?.career;
+  const { data: userData } = useGetUserData();
+  const originNick = userData?.data?.data?.nickname;
+  const originBir = userData?.data?.data?.birthday;
+  // const originCar = data?.data?.data?.career;
 
   const [birth, setBirth] = useState(originBirth);
-  const [nickname, setNickname] = useState(originNick);
+  const [nickname, setNickname] = useState<string>("");
   const [career, setCareer] = useState(originCareer);
 
   const { mutate, isPending } = usePutUserDataMutation({
@@ -64,11 +64,6 @@ export default function ProfileEditModal(props: ModalViewProps) {
     setIsOpen(false);
   };
 
-  const { data } = useGetUserData();
-  const originNick = data?.data?.data?.nickname;
-  const originBir = data?.data?.data?.birthday;
-  const originCar = data?.data?.data?.career;
-
   return (
     <>
       <Modal open={isOpen} onClose={handleClose}>
@@ -81,7 +76,7 @@ export default function ProfileEditModal(props: ModalViewProps) {
               <p className="pb-[10px]">닉네임</p>
               <GrayInput
                 className="text-center w-full"
-                value={nickname}
+                value={nickname === "" ? originNick : nickname}
                 onChange={(e: React.ChangeEvent<any>) =>
                   setNickname(e.target.value)
                 }

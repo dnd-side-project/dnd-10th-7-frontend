@@ -18,7 +18,6 @@ export type ModalViewProps = {
   subTitle?: string;
   setDropDownOpen?: any;
   pullUp?: boolean;
-  nick?: string;
 };
 
 export default function LoginModal(props: ModalViewProps) {

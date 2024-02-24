@@ -54,11 +54,7 @@ const MyPageProfileTab = () => {
         likeCount={profileData?.likeCount}
       />
 
-      <ProfileEditModal
-        isOpen={isOpen}
-        setIsOpen={setIsOpen}
-        nick={profileData?.nickname}
-      />
+      <ProfileEditModal isOpen={isOpen} setIsOpen={setIsOpen} />
     </div>
   );
 };
