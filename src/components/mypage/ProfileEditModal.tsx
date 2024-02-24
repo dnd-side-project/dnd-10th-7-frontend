@@ -4,7 +4,10 @@ import Dropdown from "../common-components/dropdown";
 import GrayInput from "../common-components/input/GrayInput";
 import { ModalViewProps } from "../signup/LoginModal";
 import { Modal } from "../common-components/modal";
-import { usePutUserDataMutation } from "@component/hooks/useMyPage";
+import {
+  useGetUserData,
+  usePutUserDataMutation,
+} from "@component/hooks/useMyPage";
 import TabComponent from "../common-components/tab/TabComponent";
 
 export default function ProfileEditModal(props: ModalViewProps) {
@@ -56,6 +59,9 @@ export default function ProfileEditModal(props: ModalViewProps) {
     setIsOpen(false);
   };
 
+  const { data: userData } = useGetUserData();
+  const _originNickname = userData?.data?.data?.nickname;
+
   return (
     <>
       <Modal open={isOpen} onClose={handleClose}>
@@ -72,7 +78,7 @@ export default function ProfileEditModal(props: ModalViewProps) {
                 onChange={(e: React.ChangeEvent<any>) =>
                   setNickname(e.target.value)
                 }
-                placeholder={originNickname}
+                placeholder={_originNickname}
                 size="xs"
               />
             </div>

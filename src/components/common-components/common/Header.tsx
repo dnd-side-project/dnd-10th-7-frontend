@@ -37,7 +37,7 @@ export const Header = () => {
         <div className="flex flex-row gap-[50px] items-center text-center">
           <div className={`${variants.menu} flex flex-row gap-2`}>
             <Link href="/">
-              <div className="flex gap-2">
+              <div className="flex gap-2 items-center">
                 <Image
                   src={"/assets/logo.png"}
                   alt="logo"
