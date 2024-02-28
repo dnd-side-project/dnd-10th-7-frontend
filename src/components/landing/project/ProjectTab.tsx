@@ -194,10 +194,10 @@ export const ProjectTab = ({
             );
           })}
         </div>
-        {projectListData?.data?.totalPages > 0 && (
+        {projectListData?.data?.data?.totalPages > 0 && (
           <div className="flex justify-center items-center">
             <Pagination
-              totalPages={projectListData?.data?.totalPages}
+              totalPages={projectListData?.data?.data?.totalPages}
               currentPage={currentPage}
               setCurrentPage={setCurrentPage}
             />
@@ -229,7 +229,7 @@ export const ProjectTab = ({
         </div>
         <div className="flex justify-center items-center">
           <Pagination
-            totalPages={projectListData?.data?.totalPages}
+            totalPages={projectListData?.data?.data?.totalPages}
             currentPage={currentPage}
             setCurrentPage={setCurrentPage}
           />
