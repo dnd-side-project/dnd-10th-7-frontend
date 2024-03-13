@@ -1,6 +1,6 @@
 import { AxiosResponse, AxiosError } from "axios";
 import axios from "axios";
-import { BASE_URL, api } from "./api";
+import { BASE_URL, api, authApi } from "./api";
 
 interface IAuthResponse {
   // response type
@@ -40,12 +40,16 @@ export const getKakaoLogin = async (code: any) => {
 
 export const getGoogleLogin = async (code: any) => {
   try {
-    const response: AxiosResponse<IAuthResponse> = await axios.get(
-      `${BASE_URL}/api/auth/google/callback`,
-      {
-        params: { code },
-      }
-    );
+    // const response: AxiosResponse<IAuthResponse> = await axios.get(
+    //   `${BASE_URL}/api/auth/google/callback`,
+    //   {
+    //     params: { code },
+    //   }
+    // );
+
+    const response = await authApi().get(`/api/auth/google/callback`, {
+      params: { code },
+    });
 
     return response.data;
   } catch (error: any) {

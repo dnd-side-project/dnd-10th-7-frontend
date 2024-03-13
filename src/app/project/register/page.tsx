@@ -155,8 +155,8 @@ export default function RegisterProject() {
   }, [submitClicked]);
 
   return (
-    <div className="w-[1440px] flex flex-col items-center">
-      <section className="max-w-[1080px] w-full mt-[135px]">
+    <div className="w-[1440px] flex flex-col items-center justify-center">
+      <section className="max-w-[1080px] w-full mt-[135px] mx-auto">
         {/* Title */}
         <RegisterProjectInputTitle
           titleValue={titleValue}
@@ -277,7 +277,13 @@ export default function RegisterProject() {
           <div>프로젝트 등록이 완료되었습니다</div>
         </Modal.Title>
         <Modal.Description>
-          <Image src={'/assets/modal/project.png'} alt='project' width={232} height={192} className="mx-auto mt-[-45px]"></Image>
+          <Image
+            src={"/assets/modal/project.png"}
+            alt="project"
+            width={232}
+            height={192}
+            className="mx-auto mt-[-45px]"
+          ></Image>
         </Modal.Description>
         <Modal.Footer>
           <div className="flex space-x-[8px]">

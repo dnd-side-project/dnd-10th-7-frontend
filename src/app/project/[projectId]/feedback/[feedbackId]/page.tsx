@@ -36,7 +36,7 @@ export default function Feedback({ params }: { params: PageParams }) {
   }
 
   return (
-    <div className="mx-auto w-[1080px] mt-[63px] mb-[650px] flex justify-center">
+    <div className="mx-auto w-[1080px] mt-[63px] mb-[650px] flex justify-start">
       <div className="flex flex-col gap-3">
         <ProjectSendbackTitleData
           title={feedbackData?.projectTitle}

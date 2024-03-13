@@ -55,9 +55,9 @@ const DropdownBox = ({
     if (item === "로그아웃") {
       sessionStorage.removeItem("accessToken");
       sessionStorage.removeItem("refreshToken");
-      // localStorage.removeItem("nickname");
-      router.push("/");
-      window.location.reload();
+      localStorage.removeItem("nickname");
+      // router.push("/");
+      window.location.href = "/";
     }
     if (item === "수정하기") notify();
     if (item === "삭제하기") {
@@ -107,7 +107,7 @@ const DropdownBox = ({
         setDropDownOpen={setIsOpen}
         pullUp={true}
       />
-      <Toaster/>
+      <Toaster />
     </div>
   );
 };

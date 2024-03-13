@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import Image from "next/image";
 
 const Footer = () => {
@@ -15,14 +15,13 @@ const Footer = () => {
         {/* left */}
         <div>
           <div className="text-h2 flex items-center mb-8 me-[247px]">
-            {/* TODO: 원본파일 받기 */}
             <Image
-              src="/assets/Sendback_logo.png"
+              src={"/assets/logo.png"}
               alt="logo"
               width={30}
               height={35}
               className="me-2"
-            ></Image>
+            />
             Sendback
           </div>
           <div className="text-body1 text-gray-60">

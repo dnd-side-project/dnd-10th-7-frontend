@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "../common-components/button";
 import Dropdown from "../common-components/dropdown";
 import GrayInput from "../common-components/input/GrayInput";
 import { ModalViewProps } from "../signup/LoginModal";
 import { Modal } from "../common-components/modal";
-import { usePutUserDataMutation } from "@component/hooks/useMyPage";
+import {
+  useGetUserData,
+  usePutUserDataMutation,
+} from "@component/hooks/useMyPage";
 import TabComponent from "../common-components/tab/TabComponent";
 
 export default function ProfileEditModal(props: ModalViewProps) {
@@ -25,8 +28,13 @@ export default function ProfileEditModal(props: ModalViewProps) {
     originCareer = localStorage.getItem("career");
   }
 
+  const { data: userData } = useGetUserData();
+  const originNick = userData?.data?.data?.nickname;
+  const originBir = userData?.data?.data?.birthday;
+  // const originCar = data?.data?.data?.career;
+
   const [birth, setBirth] = useState(originBirth);
-  const [nickname, setNickname] = useState(originNickname);
+  const [nickname, setNickname] = useState<string>("");
   const [career, setCareer] = useState(originCareer);
 
   const { mutate, isPending } = usePutUserDataMutation({
@@ -68,11 +76,11 @@ export default function ProfileEditModal(props: ModalViewProps) {
               <p className="pb-[10px]">닉네임</p>
               <GrayInput
                 className="text-center w-full"
-                value={nickname}
+                value={nickname === "" ? originNick : nickname}
                 onChange={(e: React.ChangeEvent<any>) =>
                   setNickname(e.target.value)
                 }
-                placeholder={originNickname}
+                placeholder={originNick}
                 size="xs"
               />
             </div>
@@ -84,7 +92,7 @@ export default function ProfileEditModal(props: ModalViewProps) {
                 onChange={(e: React.ChangeEvent<any>) =>
                   setBirth(e.target.value)
                 }
-                placeholder={originBirth}
+                placeholder={originBir}
                 size="xs"
               />
             </div>
