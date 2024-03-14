@@ -1,23 +1,23 @@
 import localFont from "next/font/local";
 
-const pretendard = localFont({
+export const MediumPretendard = localFont({
   src: [
     {
       path: "../../public/fonts/Pretendard-Medium.woff",
       weight: "400",
     },
   ],
-  variable: "--font-pretendard",
+  variable: "--font-medium-pretendard",
 });
 
-export const SemiBoldPretandard = localFont({
+const pretendard = localFont({
   src: [
     {
       path: "../../public/fonts/Pretendard-SemiBold.woff",
       weight: "700",
     },
   ],
-  variable: "--font-bold-pretandard",
+  variable: "--font-pretendard",
 });
 
 export default pretendard;

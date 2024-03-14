@@ -52,7 +52,7 @@ const config: Config = {
       },
       fontFamily: {
         pretendard: ["var(--font-pretendard)"],
-        medium: ["var(--font-SemiBoldPretandard)"],
+        medium: ["var(--font-medium-pretendard)"],
       },
     },
   },
