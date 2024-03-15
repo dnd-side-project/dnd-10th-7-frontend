@@ -52,7 +52,6 @@ const config: Config = {
       },
       fontFamily: {
         pretendard: ["var(--font-pretendard)"],
-        medium: ["var(--font-medium-pretendard)"],
       },
       fontWeight: {
         // 필요한 폰트 weight 파일 추가 후 적용 가능 (현재는 medium, bold만 가능 - 24.03.15)

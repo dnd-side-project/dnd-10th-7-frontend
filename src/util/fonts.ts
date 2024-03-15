@@ -1,15 +1,5 @@
 import localFont from "next/font/local";
 
-// export const MediumPretendard = localFont({
-//   src: [
-//     {
-//       path: "../../public/fonts/Pretendard-Medium.woff",
-//       weight: "400",
-//     },
-//   ],
-//   variable: "--font-medium-pretendard",
-// });
-
 const pretendard = localFont({
   src: [
     {
