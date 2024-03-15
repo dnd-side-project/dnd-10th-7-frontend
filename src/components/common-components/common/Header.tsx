@@ -45,7 +45,9 @@ export const Header = () => {
                   height={35}
                   className="me-2"
                 />
-                <span>Sendback</span>
+                {/* font test */}
+                <span className="font-medium">Sendback</span>
+                <span className="font-bold">Sendback</span>
               </div>
             </Link>
           </div>
