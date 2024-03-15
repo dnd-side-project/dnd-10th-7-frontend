@@ -47,7 +47,7 @@ export const Header = () => {
                 />
                 {/* font test */}
                 <span className="font-medium">Sendback</span>
-                <span className="font-bold">Sendback</span>
+                <span>Sendback</span>
               </div>
             </Link>
           </div>
