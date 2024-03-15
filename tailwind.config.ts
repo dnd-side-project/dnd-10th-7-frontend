@@ -54,13 +54,8 @@ const config: Config = {
         pretendard: ["var(--font-pretendard)"],
       },
       fontWeight: {
-        // 필요한 폰트 weight 파일 추가 후 적용 가능 (현재는 medium, bold만 가능 - 24.03.15)
-        // thin: "100",
-        // normal: "400",
         medium: "500",
         bold: "700",
-        // extrabold: "800",
-        // black: "900",
       },
     },
   },

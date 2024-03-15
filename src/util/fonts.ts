@@ -10,7 +10,6 @@ const pretendard = localFont({
       path: "../../public/fonts/Pretendard-Medium.woff",
       weight: "500",
     },
-    // TODO : 추가 가능
   ],
   variable: "--font-pretendard",
 });
