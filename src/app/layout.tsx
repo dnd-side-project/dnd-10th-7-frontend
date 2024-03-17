@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import RecoilRootWrapper from "./RecoilRootWrapper";
+import pretendard from "@component/util/fonts";
 import { ThemeProvider } from "@mui/material";
 import { theme } from "@component/components/common-components/mui/theme";
 import Providers from "@component/context/provider";
 import { Header } from "@component/components/common-components/common/Header";
 import Footer from "@component/components/common-components/common/Footer";
+import RecoilRootWrapper from "./RecoilRootWrapper";
 
 export const metadata: Metadata = {
   title: "sendback",
@@ -19,7 +20,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${pretendard.variable} font-pretendard font-bold`}>
       <RecoilRootWrapper>
         <ThemeProvider theme={theme}>
           <body>

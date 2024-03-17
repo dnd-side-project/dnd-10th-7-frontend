@@ -50,6 +50,13 @@ const config: Config = {
         caption2: "11px",
         caption3: "10px",
       },
+      fontFamily: {
+        pretendard: ["var(--font-pretendard)"],
+      },
+      fontWeight: {
+        medium: "500",
+        bold: "700",
+      },
     },
   },
   plugins: [],
