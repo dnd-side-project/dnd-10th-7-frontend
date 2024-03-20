@@ -9,7 +9,7 @@ import { ProjectItemProps } from "@component/types/Project";
 import { ProjectTab } from "./ProjectTab";
 import { Categories } from "./Categories";
 
-export function ProjectList() {
+export default function ProjectList() {
   const [keyword, setKeyword] = useState<string>("");
   const router = useRouter();
 
