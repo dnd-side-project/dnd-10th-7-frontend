@@ -1,5 +1,5 @@
-import { ProjectList } from "@component/components/landing/project/ProjectList";
 import { Suspense } from "react";
+import ProjectList from "@component/components/landing/project/ProjectList";
 
 export default function ProjectPage() {
   return (
