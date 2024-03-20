@@ -20,17 +20,17 @@ export default function Laboratory() {
   };
 
   return (
-    <div>
+    <div style={{ paddingTop: "70px" }}>
       <div className="flex flex-row items-center gap-3">
         <PurpleInput
           defaultValue={inputValue1}
           onChange={handleChange}
-          placeholder="답글을 입력해주세요"
-          shape="rounded"
-          size="xs"
-          textSize="xs"
-          borderSize="xs" // 테두리 두께
-          backgroundColors="purple"
+          placeholder="키워드를 입력해주세요"
+          shape="smallRounded"
+          size="xl"
+          textSize="md"
+          borderSize="md" // 테두리 두께
+          backgroundColors="white"
         />
         <Button size="xs" className="font-medium">
           xs button
