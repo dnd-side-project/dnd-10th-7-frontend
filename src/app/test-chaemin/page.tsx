@@ -27,10 +27,11 @@ export default function Laboratory() {
           onChange={handleChange}
           placeholder="키워드를 입력해주세요"
           shape="smallRounded"
-          size="xl"
+          size="md"
           textSize="md"
           borderSize="md" // 테두리 두께
           backgroundColors="white"
+          search
         />
         <Button size="xs" className="font-medium">
           xs button
