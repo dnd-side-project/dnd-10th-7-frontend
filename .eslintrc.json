@@ -28,8 +28,7 @@
     "react/jsx-filename-extension": ["warn", { "extensions": [".ts", ".tsx"] }],
     "no-useless-catch": "off",
     "no-unused-vars": "off",
-      "@typescript-eslint/no-unused-vars": [
-        "warn"
-      ]
+    "@typescript-eslint/no-unused-vars": ["warn"],
+    "prettier/prettier": ["error", { "endOfLine": "auto" }]
   }
 }
