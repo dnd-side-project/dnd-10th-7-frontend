@@ -1,6 +1,7 @@
 "use client";
 
 import Button from "@component/components/common-components/button";
+import GrayInput from "@component/components/common-components/input/GrayInput";
 import PurpleInput from "@component/components/common-components/input/PurPleInput";
 import Tag from "@component/components/common-components/tag";
 import SignUpModal from "@component/components/signup/SignUpModal";
@@ -12,11 +13,13 @@ export default function Laboratory() {
   const [isOpen3, setIsOpen3] = useState<boolean>(false);
 
   const [inputValue1, setInputValue1] = useState<string>("");
-  const [inputValue2, setInputValue2] = useState<string>(
-    "www.sendback.co.kr(이미 input이 입력되어 있는 경우)",
-  );
+  const [inputValue2, setInputValue2] = useState<string>("");
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setInputValue1(event.target.value.replace(/\D/g, ""));
+  };
+
+  const handleChange2 = (event: ChangeEvent<HTMLInputElement>) => {
+    setInputValue2(event.target.value);
   };
 
   return (
@@ -33,6 +36,14 @@ export default function Laboratory() {
           backgroundColors="white"
           search
         />
+
+        <GrayInput
+          value={inputValue2}
+          onChange={handleChange2}
+          placeholder="2000.06.24"
+          size="xs"
+        />
+
         <Button size="xs" className="font-medium">
           xs button
         </Button>
