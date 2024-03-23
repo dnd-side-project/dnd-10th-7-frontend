@@ -1,6 +1,4 @@
 import { useRecoilState, useSetRecoilState } from "recoil";
-import { Modal } from "../common-components/modal";
-import { ModalViewProps } from "./LoginModal";
 import {
   birthState,
   careerState,
@@ -8,15 +6,16 @@ import {
   interestState,
   nicknameState,
 } from "@component/atoms/userInfoAtom";
-import Button from "../common-components/button";
 import { useState } from "react";
-import NicknameForm from "./NicknameForm";
-import UserInfoForm from "./UserInfoForm";
-import InterestForm from "./InterestForm";
-import { userAPI } from "@component/api/userAPI";
 import { useSignUp } from "@component/hooks/useAuth";
 import { useRouter } from "next/navigation";
 import { errorModalState } from "@component/atoms/modalAtom";
+import { Modal } from "../common-components/modal";
+import { ModalViewProps } from "./LoginModal";
+import Button from "../common-components/button";
+import NicknameForm from "./NicknameForm";
+import UserInfoForm from "./UserInfoForm";
+import InterestForm from "./InterestForm";
 
 export default function SignUpModal({ isOpen, setIsOpen }: ModalViewProps) {
   const [nickname, setNickname] = useRecoilState(nicknameState);
@@ -110,46 +109,44 @@ export default function SignUpModal({ isOpen, setIsOpen }: ModalViewProps) {
   };
 
   return (
-    <>
-      <Modal
-        open={isOpen}
-        onClose={handleClose}
-        // className="w-[480px]"
-      >
-        <Modal.Close onClick={handleClose} />
+    <Modal
+      open={isOpen}
+      onClose={handleClose}
+      // className="w-[480px]"
+    >
+      <Modal.Close onClick={handleClose} />
 
-        {step === 1 && <NicknameForm />}
-        {step === 2 && <UserInfoForm />}
-        {step === 3 && <InterestForm />}
+      {step === 1 && <NicknameForm />}
+      {step === 2 && <UserInfoForm />}
+      {step === 3 && <InterestForm />}
 
-        <Modal.Footer className="flex flex-row gap-[8px]">
-          {step !== 1 && (
-            <Button size="md" color="gray" onClick={handlePrevStep}>
-              이전으로
-            </Button>
-          )}
+      <Modal.Footer className="flex flex-row gap-[8px]">
+        {step !== 1 && (
+          <Button size="sm" color="gray" onClick={handlePrevStep}>
+            이전으로
+          </Button>
+        )}
 
-          {step === 3 ? (
-            <Button
-              size="md"
-              color={disabledBtn() ? "disabled" : "active"}
-              onClick={handleRegister}
-              disabled={disabledBtn()}
-            >
-              가입하기
-            </Button>
-          ) : (
-            <Button
-              size="md"
-              color={disabledBtn() ? "disabled" : "active"}
-              onClick={handleClick}
-              disabled={disabledBtn()}
-            >
-              선택완료
-            </Button>
-          )}
-        </Modal.Footer>
-      </Modal>
-    </>
+        {step === 3 ? (
+          <Button
+            size="sm"
+            color={disabledBtn() ? "disabled" : "active"}
+            onClick={handleRegister}
+            disabled={disabledBtn()}
+          >
+            가입하기
+          </Button>
+        ) : (
+          <Button
+            size="sm"
+            color={disabledBtn() ? "disabled" : "active"}
+            onClick={handleClick}
+            disabled={disabledBtn()}
+          >
+            선택완료
+          </Button>
+        )}
+      </Modal.Footer>
+    </Modal>
   );
 }
