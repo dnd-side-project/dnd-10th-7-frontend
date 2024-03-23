@@ -14,7 +14,6 @@ export default function Laboratory() {
 
   return (
     <div>
-      <Header />
       {/* font test */}
       {/* <div className="text-huge">huge입니다</div>
       <div className="text-head">head입니다</div>
