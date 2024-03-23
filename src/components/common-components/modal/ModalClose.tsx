@@ -2,7 +2,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import { twMerge } from "tailwind-merge";
 import { variants } from "./Modal";
 
-export function ModalClose({
+export default function ModalClose({
   className,
   onClick,
 }: {
@@ -22,3 +22,7 @@ export function ModalClose({
     </div>
   );
 }
+
+ModalClose.defaultProps = {
+  className: "",
+};
