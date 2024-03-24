@@ -1,5 +1,5 @@
-import { GrayInputProps, GrayInputSize } from ".";
 import clsx from "clsx";
+import { GrayInputProps, GrayInputSize } from ".";
 
 const style: {
   base: string;
@@ -12,26 +12,24 @@ const style: {
   },
 };
 
-export const GrayInput = ({
+function GrayInput({
   value,
   onChange,
   placeholder,
   className,
-  //style
+  // style
   size,
-}: GrayInputProps) => {
+}: GrayInputProps) {
   return (
-    <>
-      <input
-        type="text"
-        value={value}
-        onChange={onChange}
-        placeholder={placeholder}
-        className={clsx(style.base, style.sizes[size], className)}
-      />
-    </>
+    <input
+      type="text"
+      value={value}
+      onChange={onChange}
+      placeholder={placeholder}
+      className={clsx(style.base, style.sizes[size], className)}
+    />
   );
-};
+}
 
 GrayInput.displayName = "GrayInput";
 

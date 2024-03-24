@@ -14,3 +14,8 @@ body,
 .MuiBox-root {
   padding: 0;
 }
+
+.MuiTab-root {
+  font-family: "Pretendard";
+  /* font-weight: 700; */
+}
