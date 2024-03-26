@@ -1,8 +1,8 @@
 import { Dialog, Transition } from "@headlessui/react";
-import { ModalProps } from "./Modal.types";
-import { ModalProvider } from "./ModalContext";
 import { Fragment } from "react";
 import clsx from "clsx";
+import { ModalProps } from "./Modal.types";
+import { ModalProvider } from "./ModalContext";
 
 export const variants = {
   container:
@@ -25,6 +25,10 @@ function ModalContainer({
 }) {
   return <div className={clsx(variants.container, className)}>{children}</div>;
 }
+
+ModalContainer.defaultProps = {
+  className: "",
+};
 
 // 모달 오픈 시 배경 흐려지게 하는 컴포넌트
 function BackDrop() {

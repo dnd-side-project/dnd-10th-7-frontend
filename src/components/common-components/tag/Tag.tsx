@@ -1,5 +1,4 @@
 import clsx from "clsx";
-import { TagProps } from ".";
 import { PropsWithChildren, forwardRef } from "react";
 import { Brush } from "@mui/icons-material";
 import LocalAtmOutlinedIcon from "@mui/icons-material/LocalAtmOutlined";
@@ -10,11 +9,12 @@ import SportsEsportsOutlinedIcon from "@mui/icons-material/SportsEsportsOutlined
 import ViewModuleOutlinedIcon from "@mui/icons-material/ViewModuleOutlined";
 import MonitorHeartOutlinedIcon from "@mui/icons-material/MonitorHeartOutlined";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+import { TagProps } from "./Tag.types";
 
 const style: {
   base: string;
 } = {
-  base: "h-[32px] inline-flex justify-center items-center rounded-full px-[10px] py-[5px]",
+  base: "h-[32px] inline-flex justify-center items-center rounded-full px-[16px] py-[10px] text-body1 border",
 };
 
 const Tag = forwardRef<HTMLDivElement, PropsWithChildren<TagProps>>(
@@ -22,12 +22,12 @@ const Tag = forwardRef<HTMLDivElement, PropsWithChildren<TagProps>>(
     const { type, status, startIcon } = props;
 
     return (
-      <div className={clsx("flex flex-row gap-[10px]")}>
+      <div className="flex flex-row gap-[10px]">
         {status && (
           <div
             className={clsx(
               style.base,
-              "text-purple-active border border-purple-main1"
+              "text-purple-active border-purple-main1 bg-purple-main5"
             )}
           >
             {status}
@@ -37,7 +37,7 @@ const Tag = forwardRef<HTMLDivElement, PropsWithChildren<TagProps>>(
           <div
             className={clsx(
               style.base,
-              "flex flex-row gap-1 text-blue-active border border-blue-main1"
+              "flex flex-row gap-1 text-blue-active border-blue-main1 bg-blue-main5"
             )}
           >
             {type === "예술/대중문화" && <Brush />}
