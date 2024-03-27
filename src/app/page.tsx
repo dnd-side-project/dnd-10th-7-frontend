@@ -2,7 +2,7 @@
 
 import LandingTop from "@component/components/landing/carousel/LandingTop";
 import LandingMid from "@component/components/landing/carousel/LandingMid";
-import { ProjectList } from "@component/components/landing/project/ProjectList";
+import ProjectList from "@component/components/landing/project/ProjectList";
 import { Suspense, useEffect, useState } from "react";
 import SignUpModal from "@component/components/signup/SignUpModal";
 import Image from "next/image";

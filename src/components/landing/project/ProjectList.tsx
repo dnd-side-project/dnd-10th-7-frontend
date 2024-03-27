@@ -1,18 +1,15 @@
 "use client";
 
 import Title from "@component/components/common-components/title";
-import { Categories } from "./Categories";
 import PurpleInput from "@component/components/common-components/input/PurPleInput";
-import { useCallback, useEffect, useMemo, useState } from "react";
-import { ProjectTab } from "./ProjectTab";
+import { useCallback, useMemo, useState } from "react";
 import { useProjectList } from "@component/hooks/useProject";
 import { useRouter, useSearchParams } from "next/navigation";
 import { ProjectItemProps } from "@component/types/Project";
-import { NextRouter } from "next/router";
-import Link from "next/link";
-// import { NextRouter, useRouter } from "next/router";
+import { ProjectTab } from "./ProjectTab";
+import { Categories } from "./Categories";
 
-export const ProjectList = () => {
+export default function ProjectList() {
   const [keyword, setKeyword] = useState<string>("");
   const router = useRouter();
 
@@ -35,16 +32,16 @@ export const ProjectList = () => {
   const [isFinished, setIsFinished] = useState<boolean>(false);
   const [sort, setSort] = useState(0);
 
-  //페이지 인덱스
+  // 페이지 인덱스
   const [pageIndex, setPageIndex] = useState(1);
 
   const { data: projectListData, isLoading } = useProjectList({
-    keyword: keyword,
+    keyword,
     field: currentMenu,
     page: pageIndex,
     size: 5,
-    sort: sort,
-    isFinished: isFinished,
+    sort,
+    isFinished,
   });
 
   // // 카테고리 선택 시 호출될 콜백 함수
@@ -75,8 +72,6 @@ export const ProjectList = () => {
     [projectListData?.data]
   );
 
-  console.log("상단에서의 데이터", projectListData);
-
   const searchKeyword = (keyword: string) => {
     setKeyword(keyword);
     router.push(`/?${createQueryString("keyword", keyword)}`);
@@ -94,7 +89,7 @@ export const ProjectList = () => {
         textSize="md"
         borderSize="md"
         backgroundColors="white"
-        search={true}
+        search
         onKeyDown={(e) => {
           const { value } = e.currentTarget;
 
@@ -122,4 +117,4 @@ export const ProjectList = () => {
       </div>
     </div>
   );
-};
+}
