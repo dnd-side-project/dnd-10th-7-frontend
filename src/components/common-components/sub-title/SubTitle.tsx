@@ -1,4 +1,3 @@
-import clsx from "clsx";
 import { PropsWithChildren, forwardRef } from "react";
 
 export type SubTitleProps = {
@@ -10,9 +9,7 @@ const SubTitle = forwardRef<HTMLDivElement, PropsWithChildren<SubTitleProps>>(
   ({ children, title, className }, ref) => {
     return (
       <div
-        className={clsx(
-          "w-3/5 max-w-[600px] flex flex-col gap-4 py-[8px] text-title text-gray-80"
-        )}
+        className={`w-3/5 max-w-[600px] flex flex-col gap-4 py-[8px] text-title text-gray-80 ${className}`}
         ref={ref}
       >
         {title}
@@ -25,5 +22,9 @@ const SubTitle = forwardRef<HTMLDivElement, PropsWithChildren<SubTitleProps>>(
 );
 
 SubTitle.displayName = "SubTitle";
+
+SubTitle.defaultProps = {
+  className: "",
+};
 
 export default SubTitle;

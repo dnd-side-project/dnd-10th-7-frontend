@@ -1,20 +1,24 @@
 "use client";
+
 import ProjectSendbackTitleData from "@component/components/project/ProjectSendbackTitleData";
 import ProjectSendbackUserInfo from "@component/components/project/ProjectSendbackUserInfo";
 import Button from "@component/components/common-components/button/Button";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
-import ProjectDetailImage from "./ProjectDetailImage";
 import { useState, useEffect } from "react";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
-import ProjectDetailFeedBackRequest from "./ProjectDetailFeedBackRequest";
 import SubTitle from "@component/components/common-components/sub-title/SubTitle";
-import TeamMemberInfo from "./ProjectDetailTeamMemberInfo";
-import { useGetProjectDetail } from "@component/hooks/useProject";
+import {
+  useGetProjectDetail,
+  useLikeMutation,
+  useScrapMutation,
+} from "@component/hooks/useProject";
 import { useGetProjectFeedbackDetail } from "@component/hooks/useFeedback";
-import { useLikeMutation, useScrapMutation } from "@component/hooks/useProject";
 import toast, { Toaster } from "react-hot-toast";
 import CommentBox from "@component/components/comment/CommentBox";
+import TeamMemberInfo from "./ProjectDetailTeamMemberInfo";
+import ProjectDetailFeedBackRequest from "./ProjectDetailFeedBackRequest";
+import ProjectDetailImage from "./ProjectDetailImage";
 
 type PageParams = {
   projectId: number;

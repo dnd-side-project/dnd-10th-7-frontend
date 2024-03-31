@@ -79,7 +79,7 @@ export default function ProjectList() {
 
   return (
     <div className="flex flex-col">
-      <Title>프로젝트 전체보기</Title>
+      <Title className="py-8">프로젝트 전체보기</Title>
       <PurpleInput
         defaultValue={keyword}
         onChange={handleChange}
