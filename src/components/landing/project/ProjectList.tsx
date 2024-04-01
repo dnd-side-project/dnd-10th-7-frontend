@@ -72,8 +72,6 @@ export default function ProjectList() {
     [projectListData?.data]
   );
 
-  console.log("상단에서의 데이터", projectListData);
-
   const searchKeyword = (keyword: string) => {
     setKeyword(keyword);
     router.push(`/?${createQueryString("keyword", keyword)}`);

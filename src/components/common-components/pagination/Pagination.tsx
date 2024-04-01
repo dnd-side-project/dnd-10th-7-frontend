@@ -1,13 +1,7 @@
 "use client";
 
-import { useRouter, useSearchParams } from "next/navigation";
-import {
-  Dispatch,
-  SetStateAction,
-  useCallback,
-  useEffect,
-  useState,
-} from "react";
+import { useSearchParams } from "next/navigation";
+import { Dispatch, SetStateAction } from "react";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 
@@ -23,38 +17,23 @@ export const Pagination = ({
   totalPages, // 전체 페이지 개수
 }: PaginationProps) => {
   // 총 페이지 개수
-  const router = useRouter();
 
   // 페이지 그룹
   const pageGroup = Math.ceil(currentPage / 5);
 
-  // 수정된 부분: 각 페이지 그룹의 첫 번째 페이지와 마지막 페이지를 계산합니다.
+  // 각 페이지 그룹의 첫 번째 페이지와 마지막 페이지를 계산
   let firstIndex = (pageGroup - 1) * 5 + 1;
   let lastIndex = pageGroup * 5;
   if (lastIndex > totalPages) {
     lastIndex = totalPages;
   }
 
-  // const next = lastIndex + 1;
-  // const prev = firstIndex - 1;
   const prev = currentPage - 1;
   const next = totalPages + 1;
-
-  const searchParams = useSearchParams();
-
-  const createQueryString = useCallback(
-    (name: any, value: any) => {
-      const params = new URLSearchParams(searchParams);
-      params.set(name, value);
-      return params.toString();
-    },
-    [searchParams]
-  );
 
   // 페이지 변경 함수
   const handlePageChange = (page: number) => {
     if (page >= 1 && page <= totalPages) {
-      console.log("handlePageChange");
       setCurrentPage(page);
       // router.push(`/?${createQueryString("page", page)}`);
     }
@@ -79,11 +58,6 @@ export const Pagination = ({
       console.log("다음 페이지 없음");
     }
   };
-
-  // console.log(totalPages, "ss");
-  // console.log(prev, "prev");
-  // console.log(next, "next");
-  // console.log("current", currentPage);
 
   return (
     <div className="flex gap-4">

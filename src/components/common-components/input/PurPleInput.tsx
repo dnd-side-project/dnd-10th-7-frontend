@@ -1,7 +1,7 @@
 import clsx from "clsx";
-import { InputProps, InputSize, InputShape, InputColor } from ".";
 import SearchIcon from "@mui/icons-material/Search";
 import { forwardRef, PropsWithChildren, useState } from "react";
+import { InputProps, InputSize, InputShape, InputColor } from ".";
 
 const style: {
   base: string;
@@ -17,7 +17,7 @@ const style: {
     xs: "min-h-[51px] py-[11px] px-[25px] min-w-[655px] max-w-[655px] border-purple-main1", // 답글
     md: "min-h-[40px] py-[6px] px-[21px] min-w-[707px] border-purple-main1 placeholder:-translate-y-[-1px]", // 서비스 링크
     lg: "min-h-[48px] py-[12px] px-[22px] min-w-[708px] placeholder:-translate-y-[-1px]", // 링크
-    xl: "min-h-[40px] max-h-[40px] py-[10px] ps-[45px] min-w-[1072px] border-purple-main1", // 검색
+    xl: "min-h-[40px] max-h-[50px] py-[10px] ps-[45px] pe-[30px] min-w-[1072px] border-purple-main1", // 검색
   },
   textSizes: {
     xs: "text-body2",
@@ -48,15 +48,12 @@ const PurpleInput = forwardRef<HTMLInputElement, PropsWithChildren<InputProps>>(
       placeholder,
       onKeyDown,
       defaultValue = "",
-      // style
       size,
       textSize,
       shape,
       borderSize,
       backgroundColors,
       className,
-
-      // icon
       search,
     } = props;
 
@@ -66,7 +63,7 @@ const PurpleInput = forwardRef<HTMLInputElement, PropsWithChildren<InputProps>>(
       <div className="relative">
         {search && (
           <SearchIcon
-            className="absolute top-[7px] left-[18px] text-gray-60"
+            className="absolute top-[12px] left-[18px] text-gray-60"
             sx={{ fontSize: 26.1 }}
           />
         )}
@@ -81,15 +78,15 @@ const PurpleInput = forwardRef<HTMLInputElement, PropsWithChildren<InputProps>>(
           placeholder={placeholder}
           ref={ref}
           className={clsx(
+            className,
             style.textSizes[textSize],
             style.base,
             style.shapes[shape],
             style.sizes[size],
             style.borderSizes[borderSize],
-            style.backgroundColors[backgroundColors],
-            className
+            style.backgroundColors[backgroundColors]
           )}
-        ></input>
+        />
       </div>
     );
   }
