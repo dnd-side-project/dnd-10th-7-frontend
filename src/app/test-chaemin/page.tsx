@@ -3,6 +3,7 @@
 import Button from "@component/components/common-components/button";
 import GrayInput from "@component/components/common-components/input/GrayInput";
 import PurpleInput from "@component/components/common-components/input/PurPleInput";
+import CustomSkeleton from "@component/components/common-components/skeleton/Skeleton";
 import Tag from "@component/components/common-components/tag";
 import SignUpModal from "@component/components/signup/SignUpModal";
 import { ChangeEvent, useState } from "react";
@@ -43,6 +44,8 @@ export default function Laboratory() {
           placeholder="2000.06.24"
           size="xs"
         />
+
+        <CustomSkeleton />
 
         <Button size="xs" className="font-medium">
           xs button

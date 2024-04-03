@@ -1,2 +1,2 @@
-// index.ts
-
+export { default } from "./Skeleton";
+export * from "./Skeleton.types";
