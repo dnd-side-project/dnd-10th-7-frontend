@@ -7,6 +7,7 @@ import CustomSkeleton from "@component/components/common-components/skeleton/Ske
 import Tag from "@component/components/common-components/tag";
 import SignUpModal from "@component/components/signup/SignUpModal";
 import { ChangeEvent, useState } from "react";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 
 export default function Laboratory() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -44,8 +45,7 @@ export default function Laboratory() {
           placeholder="2000.06.24"
           size="xs"
         />
-
-        <CustomSkeleton />
+        <br />
 
         <Button size="xs" className="font-medium">
           xs button
@@ -54,6 +54,9 @@ export default function Laboratory() {
         <Button size="md">md button</Button>
         <Button size="lg">lg button</Button>
       </div>
+
+      <CustomSkeleton count={3} width={500} height={30} />
+      <CustomSkeleton width={100} />
 
       {/* tag test */}
       <div className="pt-3 flex flex-wrap gap-4">
