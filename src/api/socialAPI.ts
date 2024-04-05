@@ -48,7 +48,6 @@ export const getGoogleLogin = async (code: any) => {
     const response = await authApi().get(`/api/auth/google/callback`, {
       params: { code },
     });
-    setCookie('id', response.data.data.accessToken);
     return response.data;
   } catch (error: any) {
     const axiosError = error as AxiosError;
