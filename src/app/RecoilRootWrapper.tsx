@@ -2,6 +2,7 @@
 
 import { RecoilRoot } from "recoil";
 import React from "react";
+import { CookiesProvider } from "react-cookie";
 
 interface RecoilRootWrapperProps {
   children: React.ReactNode;
@@ -10,5 +11,9 @@ interface RecoilRootWrapperProps {
 export default function RecoilRootWrapper({
   children,
 }: RecoilRootWrapperProps) {
-  return <RecoilRoot>{children}</RecoilRoot>;
+  return (
+    <RecoilRoot>
+      <CookiesProvider>{children}</CookiesProvider>
+    </RecoilRoot>
+  );
 }
