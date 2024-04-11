@@ -1,4 +1,4 @@
-// "use client";
+"use client";
 
 import clsx from "clsx";
 import Image from "next/image";
@@ -8,7 +8,7 @@ import LoginModal from "@component/components/signup/LoginModal";
 import { useGetUserData } from "@component/hooks/useMyPage";
 import DropdownBox from "../dropdown-box";
 import { useCookies } from "react-cookie";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 const variants = {
   menu: "hover:text-purple-main1 cursor-pointer",
