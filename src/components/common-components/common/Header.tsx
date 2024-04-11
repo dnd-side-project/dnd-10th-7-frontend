@@ -8,7 +8,7 @@ import LoginModal from "@component/components/signup/LoginModal";
 import { useGetUserData } from "@component/hooks/useMyPage";
 import DropdownBox from "../dropdown-box";
 import { useCookies } from "react-cookie";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/router";
 
 const variants = {
   menu: "hover:text-purple-main1 cursor-pointer",
@@ -46,11 +46,11 @@ export default function Header() {
     // 	});
   };
 
-  const navigate = useNavigate();
+  const router = useRouter();
 
   const logout = () => {
     removeCookie("refreshToken");
-    navigate("/");
+    router.push("/");
   };
 
   return (
