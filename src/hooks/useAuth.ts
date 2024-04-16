@@ -2,6 +2,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { getGoogleLogin, getKakaoLogin } from "@component/api/socialAPI";
 import { userAPI, userInfoType } from "@component/api/userAPI";
 import { useRouter } from "next/navigation";
+import { getCookie, setCookie } from "@component/utils";
 
 export const useKakaoLogin = (code: string) => {
   const { data, error, isLoading } = useQuery({
@@ -47,6 +48,9 @@ export const useSignUp = ({
       console.log(res);
       window.sessionStorage.removeItem("signToken");
       window.sessionStorage.setItem("accessToken", res?.data?.accessToken);
+      getCookie("refreshToken");
+      console.log("hi-cookie");
+      // setCookie('refreshToken', )
       alert("회원가입이 완료되었습니다.");
       window.location.reload();
     },
