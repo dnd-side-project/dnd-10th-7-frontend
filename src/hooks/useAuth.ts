@@ -48,7 +48,8 @@ export const useSignUp = ({
       console.log(res);
       window.sessionStorage.removeItem("signToken");
       window.sessionStorage.setItem("accessToken", res?.data?.accessToken);
-      getCookie("refreshToken");
+      const temp = getCookie("refreshToken");
+      console.log("temp");
       console.log("hi-cookie");
       // setCookie('refreshToken', )
       alert("회원가입이 완료되었습니다.");
