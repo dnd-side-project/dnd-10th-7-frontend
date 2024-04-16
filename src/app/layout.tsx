@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import pretendard from "@component/util/fonts";
+import pretendard from "@component/utils/fonts";
 import { ThemeProvider } from "@mui/material";
 import { theme } from "@component/components/common-components/mui/theme";
 import Providers from "@component/context/provider";
