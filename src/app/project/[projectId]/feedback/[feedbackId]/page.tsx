@@ -60,8 +60,9 @@ export default function Feedback({ params }: { params: PageParams }) {
             <div className="flex justify-between bg-purple-main5 items-center px-5 py-2 border border-purple-main1 rounded-full text-body1">
               <span className="text-gray-80">{feedbackData?.linkUrl}</span>
               <span
-                className="text-purple-active"
+                className="text-purple-active cursor-pointer"
                 onClick={() => window.open(`${feedbackData?.linkUrl}`)}
+                role="none"
               >
                 링크이동
               </span>

@@ -6,10 +6,6 @@
 html,
 body,
 .MuiTypography-root,
-.MuiTab-root {
-  font-family: "Pretendard";
-  font-weight: 700;
-}
 
 .MuiTab-indicator {
   background-color: purple-main1;
@@ -17,4 +13,9 @@ body,
 
 .MuiBox-root {
   padding: 0;
+}
+
+.MuiTab-root {
+  font-family: "Pretendard";
+  /* font-weight: 700; */
 }

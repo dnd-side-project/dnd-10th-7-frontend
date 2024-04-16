@@ -2,18 +2,19 @@
 
 import clsx from "clsx";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
-import DropdownBox from "../dropdown-box";
 import Link from "next/link";
 import LoginModal from "@component/components/signup/LoginModal";
 import { useGetUserData } from "@component/hooks/useMyPage";
+import DropdownBox from "../dropdown-box";
+import { useCookies } from "react-cookie";
+import { useRouter } from "next/navigation";
 
 const variants = {
   menu: "hover:text-purple-main1 cursor-pointer",
 };
 
-export const Header = () => {
+export default function Header() {
   // 로그인 한 유저인지 확인
   const accessToken =
     typeof window !== "undefined" && sessionStorage.getItem("accessToken");
@@ -30,6 +31,28 @@ export const Header = () => {
   const profileImageUrl = userData?.data?.data?.profileImageUrl;
   const nickname = userData?.data?.data?.nickname;
 
+  // test cookie
+  const [cookies, setCookie, removeCookie] = useCookies(["refreshToken"]);
+
+  const authCheck = () => {
+    const token = cookies.refreshToken;
+    // axios
+    // 	.post('/users/loginCheck', { token: token })
+    // 	.then((res) => {
+    // 		// setUserId(res.data.id); /
+    // 	})
+    // 	.catch(() => {
+    // 		logOut(); // 에러 발생시 실행
+    // 	});
+  };
+
+  const router = useRouter();
+
+  const logout = () => {
+    removeCookie("refreshToken");
+    router.push("/");
+  };
+
   return (
     <div className="fixed z-50 top-0 m-auto py-[17px] w-full h-[70px] flex flex-row items-center justify-center border-b-2 bg-white text-h2">
       <div className="w-9/12 flex justify-between max-w-[1080px]">
@@ -39,7 +62,7 @@ export const Header = () => {
             <Link href="/">
               <div className="flex gap-2 items-center">
                 <Image
-                  src={"/assets/logo.png"}
+                  src="/assets/logo.png"
                   alt="logo"
                   width={30}
                   height={35}
@@ -53,7 +76,12 @@ export const Header = () => {
             <div className={clsx(variants.menu)}>프로젝트</div>
           </Link>
           <Link href={accessToken ? "/project/register" : "#"}>
-            <div onClick={goToLogin} className={clsx(variants.menu)}>
+            <div
+              onClick={goToLogin}
+              className={clsx(variants.menu)}
+              onKeyDown={() => {}}
+              role="presentation"
+            >
               프로젝트 등록하기
             </div>
           </Link>
@@ -64,6 +92,8 @@ export const Header = () => {
             <div
               className={clsx(variants.menu)}
               onClick={() => setIsOpen(true)}
+              onKeyDown={() => {}}
+              role="presentation"
             >
               로그인
             </div>
@@ -74,6 +104,8 @@ export const Header = () => {
             <div
               className={`${variants.menu} relative flex flex-row items-center gap-2`}
               onClick={() => setIsOpen((prev) => !prev)}
+              onKeyDown={() => {}}
+              role="presentation"
             >
               <Image
                 src={profileImageUrl}
@@ -98,4 +130,4 @@ export const Header = () => {
       </div>
     </div>
   );
-};
+}

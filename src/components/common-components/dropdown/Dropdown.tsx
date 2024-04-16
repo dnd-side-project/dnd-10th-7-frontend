@@ -1,8 +1,8 @@
 import clsx from "clsx";
-import { DropdownSize, DropdownPlace, DropdownProps } from ".";
 import { useState } from "react";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
+import { DropdownSize, DropdownPlace, DropdownProps } from "./Dropdown.types";
 
 const style: {
   base: string;
@@ -13,10 +13,9 @@ const style: {
 } = {
   base: "w-full mt-2 rounded-[10px] border border-1 border-gray-40 text-gray-80 bg-white",
   sizes: {
-    xs: "min-w-[87px] max-w-[87px]", // 반응형 X
+    xs: "min-w-[87px] max-w-[87px]",
     md: "min-w-[210px] max-w-[210px]",
     lg: "w-full",
-    // lg: "min-w-[409px] max-w-[409px]",
   },
   textSizes: {
     xs: "text-body2",
@@ -34,7 +33,7 @@ const style: {
   },
 };
 
-const Dropdown = ({
+export default function Dropdown({
   items,
   selectedItem,
   setSelectedItem,
@@ -44,25 +43,26 @@ const Dropdown = ({
   textSize,
   place,
   padding,
-}: DropdownProps) => {
+}: DropdownProps) {
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
   const [isOpenMenu, setIsOpenMenu] = useState<boolean>();
 
   return (
     <div
       className={clsx(
-        "bg-gray-10 w-full rounded-md text-h2 caret-purple-main1 min-w-[87px] border border-1 border-gray-10",
+        "w-full rounded-md text-h2 caret-purple-main1 min-w-[87px] border border-1 border-gray-10",
         size === "xs" && "relative"
       )}
       onClick={() => setIsOpenMenu(!isOpenMenu)}
+      role="none"
     >
       <div
         className={clsx(
           isOpenMenu && "border rounded-md border-purple-main1",
-          "flex items-center justify-center gap-4 h-[50px] w-full cursor-pointer text-gray-60"
+          "bg-gray-10 flex items-center justify-center gap-4 h-[50px] w-full cursor-pointer text-gray-60"
         )}
       >
-        <p className="">{selectedItem ? selectedItem : items[0]}</p>
+        <p>{selectedItem || items[0]}</p>
         <p className="flex justify-center items-center">
           {isOpenMenu ? <ExpandLessIcon /> : <ExpandMoreIcon />}
         </p>
@@ -79,10 +79,11 @@ const Dropdown = ({
           >
             {items.map((item, index) => (
               <div
-                key={index}
+                key={item}
                 onClick={() => setSelectedItem(item)}
                 onMouseEnter={() => setHoveredItem(item)}
                 onMouseLeave={() => setHoveredItem(null)}
+                role="none"
                 className={clsx(
                   selectedItem === item && "bg-purple-main5 text-purple-main1",
                   hoveredItem === item && "bg-purple-main5",
@@ -102,6 +103,4 @@ const Dropdown = ({
       </div>
     </div>
   );
-};
-
-export default Dropdown;
+}

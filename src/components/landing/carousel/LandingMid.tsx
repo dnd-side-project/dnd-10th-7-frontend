@@ -1,8 +1,10 @@
 "use client";
+
 import { useGetUserData } from "@component/hooks/useMyPage";
+import Title from "@component/components/common-components/title/Title";
 import Carousel from "./Carousel";
 
-const LandingMid = () => {
+function LandingMid() {
   const { data: userData } = useGetUserData();
   const nickname = userData?.data?.data?.nickname;
 
@@ -18,15 +20,15 @@ const LandingMid = () => {
     <div className="w-[1080px]">
       {nickname ? (
         // 로그인 한 유저
-        <div className="text-head">{nickname}님이 관심있을 만한 프로젝트</div>
+        <Title>{nickname}님이 관심있을 만한 프로젝트</Title>
       ) : (
         // 로그인 하지 않은 유저
-        <div className="text-head">지금 인기있는 프로젝트</div>
+        <Title>지금 인기있는 프로젝트</Title>
       )}
 
       <Carousel />
     </div>
   );
-};
+}
 
 export default LandingMid;
