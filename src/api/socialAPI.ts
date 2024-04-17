@@ -46,10 +46,19 @@ export const getGoogleLogin = async (code: any) => {
     // const response = await authApi().get(`/api/auth/google/callback`, {
     //   params: { code },
     // });
+
+    const accessToken: string | null =
+      typeof window !== "undefined"
+        ? sessionStorage.getItem("accessToken")
+        : "error";
+
     const response: AxiosResponse<IAuthResponse> = await axios.get(
       `${BASE_URL}/api/auth/google/callback`,
       {
         params: { code },
+        headers: {
+          Authorization: accessToken && `Bearer ${accessToken}`,
+        },
       }
     );
 
