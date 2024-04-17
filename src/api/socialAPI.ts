@@ -1,8 +1,7 @@
 import { AxiosResponse, AxiosError } from "axios";
 import axios from "axios";
 import { BASE_URL, api, authApi } from "./api";
-import { useCookies} from 'react-cookie';
-
+import { useCookies } from "react-cookie";
 
 interface IAuthResponse {
   // response type
@@ -41,13 +40,19 @@ export const getKakaoLogin = async (code: any) => {
 };
 
 export const getGoogleLogin = async (code: any) => {
-  const [cookie, setCookie] = useCookies(['id']);
-
+  // const [cookie, setCookie] = useCookies(["id"]);
 
   try {
-    const response = await authApi().get(`/api/auth/google/callback`, {
-      params: { code },
-    });
+    // const response = await authApi().get(`/api/auth/google/callback`, {
+    //   params: { code },
+    // });
+    const response: AxiosResponse<IAuthResponse> = await axios.get(
+      `${BASE_URL}/api/auth/google/callback`,
+      {
+        params: { code },
+      }
+    );
+
     return response.data;
   } catch (error: any) {
     const axiosError = error as AxiosError;
@@ -61,4 +66,3 @@ export const getGoogleLogin = async (code: any) => {
     throw error;
   }
 };
-
