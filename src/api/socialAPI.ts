@@ -57,11 +57,11 @@ export const getGoogleLogin = async (code: any) => {
       {
         params: { code },
         headers: {
-          Authorization: accessToken && `Bearer ${accessToken}`,
+          Authorization: accessToken ? `Bearer ${accessToken}` : "",
         },
       }
     );
-
+    console.log("response", response);
     return response.data;
   } catch (error: any) {
     const axiosError = error as AxiosError;
