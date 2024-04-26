@@ -20,6 +20,7 @@ export default function KakaoCallBack() {
 
   const { data: userData } = useGetUserData();
   const nickname = userData?.data?.data?.nickname;
+  console.log("data", data);
 
   useEffect(() => {
     if (data) {
