@@ -13,18 +13,10 @@ interface IAuthResponse {
 
 export const getKakaoLogin = async (code: any) => {
   try {
-    const accessToken: string | null =
-      typeof window !== "undefined"
-        ? sessionStorage.getItem("accessToken")
-        : "error";
-
     const response: AxiosResponse<IAuthResponse> = await axios.get(
       `${BASE_URL}/api/auth/kakao/callback`,
       {
         params: { code },
-        headers: {
-          Authorization: accessToken ? `Bearer ${accessToken}` : "",
-        },
       }
     );
 
