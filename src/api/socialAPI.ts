@@ -57,9 +57,6 @@ export const getGoogleLogin = async (code: any) => {
       `${BASE_URL}/api/auth/google/callback`,
       {
         params: { code },
-        headers: {
-          Authorization: accessToken ? `Bearer ${accessToken}` : "",
-        },
       }
     );
     console.log("response", response);
