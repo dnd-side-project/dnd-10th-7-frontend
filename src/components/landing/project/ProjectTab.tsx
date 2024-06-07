@@ -173,23 +173,10 @@ export const ProjectTab = ({
       </Box>
       <CustomTabPanel value={tab} index={0}>
         <div className="max-h-[1360px] mb-[77px]">
-          {data.map((item: any, idx: any) => {
+          {data.map((item: ProjectItemProps, idx: any) => {
             return (
               <div key={idx}>
-                <ProjectItem
-                  field={item.field}
-                  progress={item.progress}
-                  title={item.title}
-                  summary={item.summary}
-                  nickname={item.nickname}
-                  createdAt={item.createdAt}
-                  pullUpCount={item.pullUpCount}
-                  likeCount={item.likeCount}
-                  commentCount={item.commentCount}
-                  isScrapped={item.isScrapped}
-                  projectId={item.projectId}
-                  profileImageUrl={item.profileImageUrl}
-                />
+                <ProjectItem data={item} />
               </div>
             );
           })}
@@ -206,23 +193,10 @@ export const ProjectTab = ({
       </CustomTabPanel>
       <CustomTabPanel value={tab} index={1}>
         <div className="max-h-[1360px] mb-[77px]">
-          {data.map((item: any, idx: any) => {
+          {data.map((item: ProjectItemProps, idx: any) => {
             return (
               <div key={idx}>
-                <ProjectItem
-                  field={item.field}
-                  progress={item.progress}
-                  title={item.title}
-                  summary={item.summary}
-                  nickname={item.nickname}
-                  createdAt={item.createdAt}
-                  pullUpCount={item.pullUpCount}
-                  likeCount={item.likeCount}
-                  commentCount={item.commentCount}
-                  isScrapped={item.isScrapped}
-                  projectId={item.projectId}
-                  profileImageUrl={item.profileImageUrl}
-                />
+                <ProjectItem data={item} />
               </div>
             );
           })}
