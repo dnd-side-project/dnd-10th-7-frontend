@@ -88,7 +88,7 @@ export default function ProjectItem({
           </div>
           <div
             onClick={() => {
-              console.log("clicked");
+              // console.log("clicked");
             }}
             className="cursor-pointer"
           >

@@ -26,7 +26,7 @@ export default function Feedback({ params }: { params: PageParams }) {
 
   useEffect(() => {
     if (data) {
-      console.log(data.data.data);
+      // console.log(data.data.data);
       setFeedbackData(data.data.data);
     }
   }, [data]);

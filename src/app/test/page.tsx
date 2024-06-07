@@ -45,10 +45,10 @@ const Test = () => {
   const [submitClicked, setSubmitClicked] = useState<boolean>(false);
 
   const focus = () => {
-    console.log("click");
-    console.log("inputRef.current before", inputRef.current);
+    // console.log("click");
+    // console.log("inputRef.current before", inputRef.current);
     if (inputRef.current) {
-      console.log("inputRef.current after", inputRef.current);
+      // console.log("inputRef.current after", inputRef.current);
       inputRef.current.focus();
     }
     setSubmitClicked(true);

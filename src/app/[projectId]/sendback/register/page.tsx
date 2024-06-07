@@ -25,7 +25,7 @@ export default function RegisterSendback({ params }: { params: PageParams }) {
   useEffect(() => {
     if (data) {
       setProjectData(data.data.data);
-      console.log(data.data.data);
+      // console.log(data.data.data);
     }
   }, [data]);
 

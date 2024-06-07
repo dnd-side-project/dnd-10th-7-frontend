@@ -33,7 +33,7 @@ export const usePostProjectMutation = (): UseMutationResult<
   return useMutation({
     mutationFn: mutationFn,
     onSuccess: (res) => {
-      console.log("Post project successful:", res.data.data);
+      // console.log("Post project successful:", res.data.data);
       return res.data.data;
     },
     onError: (error) => {
@@ -66,7 +66,7 @@ export const useLikeMutation = (projectId: number) => {
   const { data, error, isPending, mutate } = useMutation({
     mutationFn: () => putProjectLike(projectId),
     onSuccess: (res) => {
-      console.log("좋아요 성공", res);
+      // console.log("좋아요 성공", res);
     },
     onError: (err: any) => {
       console.log(err);
@@ -84,7 +84,7 @@ export const useScrapMutation = (projectId: number) => {
   } = useMutation({
     mutationFn: () => putProjectScrap(projectId),
     onSuccess: (res) => {
-      console.log("스크랩 성공", res);
+      // console.log("스크랩 성공", res);
     },
     onError: (err: any) => {
       console.log(err);
@@ -102,7 +102,7 @@ export const useDeleteMutation = (projectId: any) => {
   } = useMutation({
     mutationFn: () => deleteProject(projectId),
     onSuccess: (res) => {
-      console.log("삭제 성공", res);
+      // console.log("삭제 성공", res);
       alert("삭제 되었습니다.");
       window.location.reload();
     },
@@ -124,7 +124,7 @@ export const usePullUpMutation = (projectId: any) => {
   } = useMutation({
     mutationFn: () => pullProjectUp(projectId),
     onSuccess: (res) => {
-      console.log("끌올 성공", res);
+      // console.log("끌올 성공", res);
     },
     onError: (err: any) => {
       // error 종류
@@ -163,7 +163,7 @@ export const usePostComment = (projectId: number, content: string) => {
   const { data, isPending, mutate } = useMutation({
     mutationFn: () => postProjectComment(projectId, content),
     onSuccess: (res) => {
-      console.log("댓글 등록 성공", res);
+      // console.log("댓글 등록 성공", res);
       window.location.reload();
     },
     onError: (err: any) => {
@@ -181,7 +181,7 @@ export const useDeleteComment = (projectId: number, commentId: number) => {
   const { data, error, isPending, mutate } = useMutation({
     mutationFn: () => deleteProjectComment(projectId, commentId),
     onSuccess: (res) => {
-      console.log("댓글 삭제 성공", res);
+      // console.log("댓글 삭제 성공", res);
       alert("댓글을 삭제했습니다.");
       window.location.reload();
     },

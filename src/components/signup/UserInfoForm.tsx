@@ -32,7 +32,7 @@ export default function UserInfoForm() {
     }
   };
 
-  console.log("form에서의 gender", gender);
+  // console.log("form에서의 gender", gender);
 
   return (
     <>

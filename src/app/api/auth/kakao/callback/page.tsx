@@ -20,7 +20,7 @@ export default function KakaoCallBack() {
 
   const { data: userData } = useGetUserData();
   const nickname = userData?.data?.data?.nickname;
-  console.log("data", data);
+  // console.log("data", data);
 
   useEffect(() => {
     if (data) {
@@ -32,8 +32,8 @@ export default function KakaoCallBack() {
         window.sessionStorage.setItem("accessToken", accessToken);
         window.sessionStorage.setItem("refreshToken", refreshToken);
         localStorage.setItem("nickname", nickname);
-        console.log("accessToken", accessToken);
-        console.log("refreshToken", refreshToken);
+        // console.log("accessToken", accessToken);
+        // console.log("refreshToken", refreshToken);
 
         // main으로
         router.push("/");

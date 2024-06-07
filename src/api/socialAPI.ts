@@ -31,7 +31,7 @@ export const getKakaoLogin = async (code: any) => {
       // 1. signToken 저장하기
       const signToken: string = error.response?.data.data.signToken;
       window.sessionStorage.setItem("signToken", signToken);
-      console.log("signToken", signToken);
+      // console.log("signToken", signToken);
       // 2. main 페이지로 이동한 뒤
       // 3. 메인 페이지에서 세션스토리지에 만약에 사인 토큰이 존재하면 추가 정보 입력 모달 띄우기 로직 추가
     }
@@ -61,7 +61,7 @@ export const getGoogleLogin = async (code: any) => {
         },
       }
     );
-    console.log("response", response);
+    // console.log("response", response);
     return response.data;
   } catch (error: any) {
     const axiosError = error as AxiosError;

@@ -77,7 +77,7 @@ export const CaptureModal = (props: ModalViewProps) => {
       return item;
     });
     setCheckedData(updatedCheckData);
-    console.log("hi", checkedData);
+    // console.log("hi", checkedData);
   };
 
   const disabledBtn = () => {
@@ -100,7 +100,7 @@ export const CaptureModal = (props: ModalViewProps) => {
   );
 
   const handleClick = () => {
-    console.log("clicked next-step");
+    // console.log("clicked next-step");
     setIsOpen(false);
 
     mutate();
@@ -108,7 +108,7 @@ export const CaptureModal = (props: ModalViewProps) => {
 
   useEffect(() => {
     if (data) {
-      console.log(data.data.data, "사진 등록 성공");
+      // console.log(data.data.data, "사진 등록 성공");
       setRewardModalOpen(true);
       setIsLevelUp(data.data.data.isLevelUp);
       setFeedbackCount(data.data.data.remainFeedbackCount);

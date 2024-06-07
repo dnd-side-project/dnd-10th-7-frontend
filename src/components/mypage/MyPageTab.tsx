@@ -53,8 +53,8 @@ export const MyPageTab = () => {
       sort: sort,
     });
 
-  console.log("scrap", myScrapData);
-  console.log("pageIndex", pageIndex);
+  // console.log("scrap", myScrapData);
+  // console.log("pageIndex", pageIndex);
 
   return (
     <Box sx={{ width: "100%" }}>

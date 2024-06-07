@@ -61,7 +61,7 @@ export const usePutUserDataMutation = ({
         open: true,
         text: "프로필 수정이 완료되었습니다.",
       });
-      console.log("프로필 편집 성공", res);
+      // console.log("프로필 편집 성공", res);
       window.location.reload();
     },
     onError: (err: any) => {

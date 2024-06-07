@@ -29,7 +29,7 @@ export default function CommentBox({ projectId }: { projectId: number }) {
     [commentData?.data]
   );
 
-  console.log("댓글 리스트들", commentList);
+  // console.log("댓글 리스트들", commentList);
 
   return (
     <div className="w-full max-w-[800px]">

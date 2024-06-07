@@ -94,7 +94,7 @@ export default function SignUpModal({ isOpen, setIsOpen }: ModalViewProps) {
 
   const handleRegister = () => {
     mutate();
-    console.log("data:", data);
+    // console.log("data:", data);
     console.log("err:", error);
     router.push("/");
 
