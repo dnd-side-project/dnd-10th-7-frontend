@@ -40,7 +40,7 @@ const LandingTop = () => {
       <div className="text-title mt-[32px] text-white">
         여러 분야의 서비스 유저로부터 유의미한 피드백을 받을 수 있어요.
       </div>
-      <Button size="lg" className="mt-[100px] min-w-[246px]" onClick={onClickProject}>
+      <Button size="lg" className="mt-[100px] min-w-[246px] text-h1" onClick={onClickProject}>
         프로젝트 등록하기
       </Button>
       <Toaster />

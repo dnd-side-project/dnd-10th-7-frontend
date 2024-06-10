@@ -5,7 +5,6 @@ import LandingMid from "@component/components/landing/carousel/LandingMid";
 import ProjectList from "@component/components/landing/project/ProjectList";
 import { Suspense, useEffect, useState } from "react";
 import SignUpModal from "@component/components/signup/SignUpModal";
-import Image from "next/image";
 
 export default function Home() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -17,33 +16,54 @@ export default function Home() {
     }
   }, []);
 
+  const [windowWidth, setWindowWidth] = useState(
+    typeof window !== "undefined" ? window.innerWidth : 0
+  );
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    if (typeof window !== "undefined") {
+      window.addEventListener("resize", handleResize);
+
+      return () => {
+        window.removeEventListener("resize", handleResize);
+      };
+    }
+  }, []);
+
   return (
     // 전체 1440px
-    <main className="mx-auto w-full flex flex-col items-center">
-      {/* 랜딩 문구 */}
+    <>
       <section
-        className="w-full h-[620px] bg-purple-main4 flex justify-center"
-        style={{
-          backgroundImage: "url('/assets/main_background.png')",
-          backgroundSize: "cover",
-        }}
+        className={`absolute scale-75 ${windowWidth >= 1460 ? "fixed left-[20%] transform-1/2-1/2" : "flex justify-center items-center min-w-[1460px] max-[1920px]"}`}
       >
-        <section className="w-[1080px] scale-75 mx-auto">
-          <LandingTop />
+        <LandingTop />
+      </section>
+      <main className="mx-auto w-full flex flex-col items-center mt-[70px]">
+        {/* 랜딩 문구 */}
+        <section
+          className="w-full max-w-[1470px] h-[620px] flex justify-center items-center"
+          style={{
+            backgroundImage: "url('/assets/main_background.png')",
+            backgroundSize: "cover",
+          }}
+        ></section>
+
+        {/* 컨테이너 너비 */}
+        <section className="max-w-[1080px] w-full mt-[100px] flex flex-col gap-[100px] mb-[100px]">
+          {/* 캐러셀 */}
+          <LandingMid />
+          <Suspense>
+            {/* 프로젝트 */}
+            <ProjectList />
+          </Suspense>
         </section>
-      </section>
 
-      {/* 컨테이너 너비 */}
-      <section className="max-w-[1080px] w-full mt-[100px] flex flex-col gap-[100px] mb-[100px]">
-        {/* 캐러셀 */}
-        <LandingMid />
-        <Suspense>
-          {/* 프로젝트 */}
-          <ProjectList />
-        </Suspense>
-      </section>
-
-      {isOpen && <SignUpModal isOpen={isOpen} setIsOpen={setIsOpen} />}
-    </main>
+        {isOpen && <SignUpModal isOpen={isOpen} setIsOpen={setIsOpen} />}
+      </main>
+    </>
   );
 }
