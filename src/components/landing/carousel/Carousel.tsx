@@ -1,6 +1,6 @@
 "use client";
 import RecommendItem from "./RecommendItem";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -65,16 +65,18 @@ const Carousel = () => {
   }, [data]);
 
   if (error) {
-    console.log(error);
+    return <div>오류가 났어요.</div>
   }
+
+  const memoizedRecommendData = useMemo(() => recommendData, [recommendData]);
+
   if (isLoading) {
-    console.log('로딩 중~~')
     return <div>로딩중 입니다.</div>
   }
   return (
     <>
       <Slider {...settings} className="mt-[32.5px]">
-        {recommendData?.map((item: any) => (
+        {memoizedRecommendData?.map((item: any) => (
           <RecommendItem
             key={item.projectId}
             projectId={item.projectId}
