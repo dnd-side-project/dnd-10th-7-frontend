@@ -15,7 +15,7 @@ import { useRouter } from "next/navigation";
 
 type Props = {
   currentMenu: string | null; // 현재 선택된 카테고리 ID
-  onMenuClick: (menuId: string) => void; // 카테고리 클릭 시 호출될 콜백 함수
+  onMenuClick: (menuId: string | undefined) => void; // 카테고리 클릭 시 호출될 콜백 함수
   isLoading?: boolean;
 };
 
@@ -47,7 +47,7 @@ export const Categories = ({ currentMenu, onMenuClick, isLoading }: Props) => {
       <div className="flex flex-col gap-[24px]">
         <div
           className="hover:text-purple-main1 cursor-pointer"
-          onClick={() => (window.location.href = "/")}
+          onClick={() => onMenuClick(undefined)}
         >
           전체보기
         </div>
