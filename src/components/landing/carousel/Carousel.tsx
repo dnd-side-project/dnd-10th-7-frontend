@@ -1,10 +1,11 @@
 "use client";
 import RecommendItem from "./RecommendItem";
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useGetProjectRecommend } from "@component/hooks/useProject";
+import { TagProps } from "@component/components/common-components/tag";
 
 // 캐러셀 화살표
 import ArrowBackIosNewRoundedIcon from "@mui/icons-material/ArrowBackIosNewRounded";
@@ -13,9 +14,9 @@ import ArrowForwardIosRoundedIcon from "@mui/icons-material/ArrowForwardIosRound
 export interface RecommendData {
   createdAt: string;
   createdBy: string;
-  field: string;
+  field: TagProps['type'];
   profileImageUrl: string;
-  progress: string;
+  progress: TagProps['status'];
   projectId: number;
   summary: string;
   title: string;
@@ -64,19 +65,21 @@ const Carousel = () => {
     }
   }, [data]);
 
-  if (error) {
-    return <div>오류가 났어요.</div>
-  }
-
-  const memoizedRecommendData = useMemo(() => recommendData, [recommendData]);
-
-  if (isLoading) {
-    return <div>로딩중 입니다.</div>
+  if (isLoading || error) {
+    return (
+      <Slider {...settings} className="mt-[32.5px]">
+        {[...Array(3)].map((_, index) => (
+          <div>
+            <div className="w-[344px] h-[340px] rounded-[10px] border border-[1.5px] border-purple-main1 bg-purple-main5 flex justify-center items-center"></div>
+          </div>
+        ))}
+      </Slider>
+    );
   }
   return (
     <>
       <Slider {...settings} className="mt-[32.5px]">
-        {memoizedRecommendData?.map((item: any) => (
+        {recommendData?.map((item: RecommendData) => (
           <RecommendItem
             key={item.projectId}
             projectId={item.projectId}
