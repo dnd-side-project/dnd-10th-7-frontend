@@ -1,7 +1,6 @@
 "use client";
 import RecommendItem from "./RecommendItem";
 import { useEffect, useState } from "react";
-import { TagProps } from "@component/components/common-components/tag";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -10,6 +9,17 @@ import { useGetProjectRecommend } from "@component/hooks/useProject";
 // 캐러셀 화살표
 import ArrowBackIosNewRoundedIcon from "@mui/icons-material/ArrowBackIosNewRounded";
 import ArrowForwardIosRoundedIcon from "@mui/icons-material/ArrowForwardIosRounded";
+
+export interface RecommendData {
+  createdAt: string;
+  createdBy: string;
+  field: string;
+  profileImageUrl: string;
+  progress: string;
+  projectId: number;
+  summary: string;
+  title: string;
+}
 
 const PrevArrow = ({ onClick }: any) => {
   return (
@@ -38,7 +48,7 @@ const settings = {
   slidesToShow: 3, // 화면에 한 번에 표시할 슬라이드 개수 설정
   slidesToScroll: 3, // 다음 보여 줄 슬라이드의 개수 설정
   speed: 2000, // 화면을 넘길 때 속도
-  autoplay: false, // TODO: 자동 넘김 논의
+  autoplay: false,
   autoplaySpeed: 5000, // 간격
   nextArrow: <NextArrow />,
   prevArrow: <PrevArrow />,
@@ -46,16 +56,20 @@ const settings = {
 
 const Carousel = () => {
   const { data, error, isLoading } = useGetProjectRecommend();
-  const [recommendData, setRecommendData] = useState<any>();
+  const [recommendData, setRecommendData] = useState<RecommendData[]>();
 
   useEffect(() => {
     if (data) {
-        setRecommendData(data.data.data)
+      setRecommendData(data.data.data);
     }
   }, [data]);
 
   if (error) {
     console.log(error);
+  }
+  if (isLoading) {
+    console.log('로딩 중~~')
+    return <div>로딩중 입니다.</div>
   }
   return (
     <>
@@ -71,7 +85,6 @@ const Carousel = () => {
             profileImg={item.profileImageUrl}
             nickname={item.createdBy}
             createdAt={item.createdAt}
-            isLoading={isLoading}
           />
         ))}
       </Slider>
