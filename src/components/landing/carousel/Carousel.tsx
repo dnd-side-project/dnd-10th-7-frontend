@@ -1,6 +1,6 @@
 "use client";
 import RecommendItem from "./RecommendItem";
-import { useEffect, useState } from "react";
+import { useMemo } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -14,9 +14,9 @@ import ArrowForwardIosRoundedIcon from "@mui/icons-material/ArrowForwardIosRound
 export interface RecommendData {
   createdAt: string;
   createdBy: string;
-  field: TagProps['type'];
+  field: TagProps["type"];
   profileImageUrl: string;
-  progress: TagProps['status'];
+  progress: TagProps["status"];
   projectId: number;
   summary: string;
   title: string;
@@ -57,12 +57,9 @@ const settings = {
 
 const Carousel = () => {
   const { data, error, isLoading } = useGetProjectRecommend();
-  const [recommendData, setRecommendData] = useState<RecommendData[]>();
 
-  useEffect(() => {
-    if (data) {
-      setRecommendData(data.data.data);
-    }
+  const recommendData: RecommendData[] = useMemo(() => {
+    return data?.data.data ?? [];
   }, [data]);
 
   if (isLoading || error) {
