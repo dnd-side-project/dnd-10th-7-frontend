@@ -5,6 +5,7 @@ import LandingMid from "@component/components/landing/carousel/LandingMid";
 import ProjectList from "@component/components/landing/project/ProjectList";
 import { Suspense, useEffect, useState } from "react";
 import SignUpModal from "@component/components/signup/SignUpModal";
+import useWindowSize from "@component/hooks/useWindowSize";
 
 export default function Home() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -16,29 +17,13 @@ export default function Home() {
     }
   }, []);
 
-  const [windowWidth, setWindowWidth] = useState(
-    typeof window !== "undefined" ? window.innerWidth : 0
-  );
-
-  useEffect(() => {
-    const handleResize = () => {
-      setWindowWidth(window.innerWidth);
-    };
-
-    if (typeof window !== "undefined") {
-      window.addEventListener("resize", handleResize);
-
-      return () => {
-        window.removeEventListener("resize", handleResize);
-      };
-    }
-  }, []);
+  const { width } = useWindowSize();
 
   return (
     // 전체 1440px
     <>
       <section
-        className={`absolute scale-75 ${windowWidth >= 1460 ? "fixed left-[20%] transform-1/2-1/2" : "flex justify-center items-center min-w-[1460px] max-[1920px]"}`}
+        className={`absolute scale-75 ${width ?? 0 >= 1460 ? "fixed left-[20%] transform-1/2-1/2" : "flex justify-center items-center min-w-[1460px] max-[1920px]"}`}
       >
         <LandingTop />
       </section>
