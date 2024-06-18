@@ -5,22 +5,11 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useGetProjectRecommend } from "@component/hooks/useProject";
-import { TagProps } from "@component/components/common-components/tag";
+import { RecommendDataType } from "./Carousel.types";
 
 // 캐러셀 화살표
 import ArrowBackIosNewRoundedIcon from "@mui/icons-material/ArrowBackIosNewRounded";
 import ArrowForwardIosRoundedIcon from "@mui/icons-material/ArrowForwardIosRounded";
-
-export interface RecommendData {
-  createdAt: string;
-  createdBy: string;
-  field: TagProps["type"];
-  profileImageUrl: string;
-  progress: TagProps["status"];
-  projectId: number;
-  summary: string;
-  title: string;
-}
 
 const PrevArrow = ({ onClick }: any) => {
   return (
@@ -58,7 +47,7 @@ const settings = {
 const Carousel = () => {
   const { data, error, isLoading } = useGetProjectRecommend();
 
-  const recommendData: RecommendData[] = useMemo(() => {
+  const recommendData: RecommendDataType[] = useMemo(() => {
     return data?.data.data ?? [];
   }, [data]);
 
@@ -76,16 +65,16 @@ const Carousel = () => {
   return (
     <>
       <Slider {...settings} className="mt-[32.5px]">
-        {recommendData?.map((item: RecommendData) => (
+        {recommendData?.map((item: RecommendDataType) => (
           <RecommendItem
             key={item.projectId}
             projectId={item.projectId}
-            fields={item.field}
+            field={item.field}
             progress={item.progress}
             title={item.title}
-            content={item.summary}
-            profileImg={item.profileImageUrl}
-            nickname={item.createdBy}
+            summary={item.summary}
+            profileImageUrl={item.profileImageUrl}
+            createdBy={item.createdBy}
             createdAt={item.createdAt}
           />
         ))}
