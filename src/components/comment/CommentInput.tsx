@@ -28,10 +28,7 @@ export const CommentInput = ({ projectId }: Props) => {
   const setErroModal = useSetRecoilState(errorModalState);
 
   const focus = () => {
-    console.log("click");
-    console.log("inputRef.current before", inputRef.current);
     if (inputRef.current) {
-      console.log("inputRef.current after", inputRef.current);
       inputRef.current.focus();
     }
     setSubmitClicked(true);

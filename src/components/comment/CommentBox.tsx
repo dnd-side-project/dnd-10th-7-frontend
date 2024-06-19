@@ -29,8 +29,6 @@ export default function CommentBox({ projectId }: { projectId: number }) {
     [commentData?.data]
   );
 
-  // console.log("댓글 리스트들", commentList);
-
   return (
     <div className="w-full max-w-[800px]">
       <div className="pb-[37px] flex items-center gap-3">

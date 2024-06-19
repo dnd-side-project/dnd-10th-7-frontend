@@ -14,7 +14,6 @@ const MyPageProfileTab = () => {
 
   useEffect(() => {
     if (data) {
-      // console.log(data.data.data, "hi");
       setProfileData(data.data.data);
     }
   }, [data]);

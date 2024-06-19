@@ -37,9 +37,7 @@ export const useFeedbackSubmitImg = (
 ) => {
   const { data, error, isPending, mutate } = useMutation({
     mutationFn: () => postFeedbackDoneImg(projectId, feedbackId, img),
-    onSuccess: (res) => {
-      // console.log("사진 등록 성공", res);
-    },
+    onSuccess: (res) => {},
     onError: (err: any) => {
       console.log(err);
     },
@@ -72,9 +70,7 @@ export const useFeedbackSubmit = (
         startDate,
         endDate
       ),
-    onSuccess: (res) => {
-      // console.log("Feedback submitted successfully", res);
-    },
+    onSuccess: (res) => {},
     onError: (err: any) => {
       console.error("Error submitting feedback", err);
     },

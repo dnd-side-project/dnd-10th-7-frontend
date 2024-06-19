@@ -27,8 +27,6 @@ export default function GoogleCallBack() {
         window.sessionStorage.removeItem("signToken");
         window.sessionStorage.setItem("accessToken", accessToken);
         window.sessionStorage.setItem("refreshToken", refreshToken);
-        // console.log("accessToken", accessToken);
-        // console.log("refreshToken", refreshToken);
 
         // main으로
         router.push("/");

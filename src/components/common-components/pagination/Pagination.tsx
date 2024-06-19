@@ -45,7 +45,6 @@ export const Pagination = ({
       setCurrentPage(prev);
       // router.push(`/?${createQueryString("page", prev)}`);
     } else {
-      // console.log("이전 페이지 없음");
     }
   };
 
@@ -55,7 +54,6 @@ export const Pagination = ({
       setCurrentPage(next);
       // router.push(`/?${createQueryString("page", next)}`);
     } else {
-      // console.log("다음 페이지 없음");
     }
   };
 

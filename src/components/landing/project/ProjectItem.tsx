@@ -72,12 +72,7 @@ export default function ProjectItem({ data }: { data: ProjectItemProps }) {
           >
             {data.title}
           </div>
-          <div
-            onClick={() => {
-              // console.log("clicked");
-            }}
-            className="cursor-pointer"
-          >
+          <div className="cursor-pointer">
             {data.isScrapped ? (
               <BookmarkIcon />
             ) : (

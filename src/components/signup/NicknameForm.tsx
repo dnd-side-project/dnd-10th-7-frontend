@@ -17,7 +17,6 @@ export default function NicknameForm() {
   const { data, error, isLoading } = useNicknameValid(nickname);
 
   const checkNickname = () => {
-    // console.log("data:", data);
     if (data.data.check === false) {
       alert("사용 가능한 닉네임입니다.");
       setNickInvalid(true);

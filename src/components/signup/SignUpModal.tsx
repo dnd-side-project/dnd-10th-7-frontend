@@ -55,8 +55,6 @@ export default function SignUpModal({ isOpen, setIsOpen }: ModalViewProps) {
   };
 
   const handleClick = () => {
-    console.log("handle click");
-
     if (step === 1 && typeof window !== "undefined") {
       localStorage.setItem("nickname", nickname);
     }
@@ -65,7 +63,6 @@ export default function SignUpModal({ isOpen, setIsOpen }: ModalViewProps) {
       localStorage.setItem("birthDay", birthday);
       localStorage.setItem("gender", gender as string);
       localStorage.setItem("career", career);
-      // console.log(localStorage.getItem("gender"), "hihi");
     }
 
     // if (step === 3 && typeof window !== "undefined") {
@@ -94,7 +91,6 @@ export default function SignUpModal({ isOpen, setIsOpen }: ModalViewProps) {
 
   const handleRegister = () => {
     mutate();
-    // console.log("data:", data);
     console.log("err:", error);
     router.push("/");
 
