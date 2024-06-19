@@ -17,6 +17,7 @@ import {
 } from "@component/hooks/useMyPage";
 import Pagination from "../common-components/pagination";
 import { MyPageEmptyView } from "./MyPageEmptyView";
+import { ProjectItemProps } from "@component/types/Project";
 
 export const MyPageTab = () => {
   const [tab, setTab] = useState(0);
@@ -52,9 +53,6 @@ export const MyPageTab = () => {
       size: 5,
       sort: sort,
     });
-
-  console.log("scrap", myScrapData);
-  console.log("pageIndex", pageIndex);
 
   return (
     <Box sx={{ width: "100%" }}>
@@ -132,24 +130,10 @@ export const MyPageTab = () => {
           ) : (
             <>
               {myProjectData?.data?.data?.content.map(
-                (item: any, idx: number) => {
+                (item: ProjectItemProps, idx: number) => {
                   return (
                     <div key={idx}>
-                      <ProjectItem
-                        field={item.field}
-                        progress={item.progress}
-                        title={item.title}
-                        summary={item.summary}
-                        nickname={item.nickname}
-                        createdAt={item.createdAt}
-                        pullUpCount={item.pullUpCount}
-                        likeCount={item.likeCount}
-                        commentCount={item.commentCount}
-                        isScrapped={item.isScrapped}
-                        projectId={item.projectId}
-                        profileImageUrl={item.profileImageUrl}
-                        moreBtn
-                      />
+                      <ProjectItem data={item} />
                     </div>
                   );
                 }
@@ -177,23 +161,10 @@ export const MyPageTab = () => {
           ) : (
             <>
               {myFeedbackData?.data?.data?.content.map(
-                (item: any, idx: number) => {
+                (item: ProjectItemProps, idx: number) => {
                   return (
                     <div key={idx}>
-                      <ProjectItem
-                        field={item.field}
-                        progress={item.progress}
-                        title={item.title}
-                        summary={item.summary}
-                        nickname={item.nickname}
-                        createdAt={item.createdAt}
-                        pullUpCount={item.pullUpCount}
-                        likeCount={item.likeCount}
-                        commentCount={item.commentCount}
-                        isScrapped={item.isScrapped}
-                        projectId={item.projectId}
-                        profileImageUrl={item.profileImageUrl}
-                      />
+                      <ProjectItem data={item} />
                     </div>
                   );
                 }
@@ -220,23 +191,10 @@ export const MyPageTab = () => {
           ) : (
             <>
               {myScrapData?.data?.data?.content.map(
-                (item: any, idx: number) => {
+                (item: ProjectItemProps, idx: number) => {
                   return (
                     <div key={idx}>
-                      <ProjectItem
-                        field={item.field}
-                        progress={item.progress}
-                        title={item.title}
-                        summary={item.summary}
-                        nickname={item.nickname}
-                        createdAt={item.createdAt}
-                        pullUpCount={item.pullUpCount}
-                        likeCount={item.likeCount}
-                        commentCount={item.commentCount}
-                        isScrapped={item.isScrapped}
-                        projectId={item.projectId}
-                        profileImageUrl={item.profileImageUrl}
-                      />
+                      <ProjectItem data={item} />
                     </div>
                   );
                 }

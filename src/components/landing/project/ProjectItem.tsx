@@ -12,25 +12,11 @@ import DropdownBox from "@component/components/common-components/dropdown-box";
 import { useRouter } from "next/navigation";
 import { useScrapMutation } from "@component/hooks/useProject";
 
-export default function ProjectItem({
-  commentCount,
-  createdAt,
-  field,
-  isScrapped,
-  likeCount,
-  nickname,
-  profileImageUrl,
-  progress,
-  projectId,
-  title,
-  summary,
-  pullUpCount,
-  moreBtn,
-}: ProjectItemProps) {
+export default function ProjectItem({ data }: { data: ProjectItemProps }) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const router = useRouter();
 
-  const { isScrapMutate } = useScrapMutation(projectId);
+  const { isScrapMutate } = useScrapMutation(data.projectId);
 
   const accessToken =
     typeof window !== "undefined" && sessionStorage.getItem("accessToken");
@@ -57,10 +43,10 @@ export default function ProjectItem({
       <div className="flex flex-col gap-[16px]">
         <div className="flex items-center justify-between">
           <Tag
-            type={field as TagProps["type"]}
-            status={progress as TagProps["status"]}
+            type={data.field as TagProps["type"]}
+            status={data.progress as TagProps["status"]}
           />
-          {moreBtn && (
+          {data.moreBtn && (
             <div className="relative">
               <MoreVertIcon
                 onClick={() => setIsOpen((prev) => !prev)}
@@ -71,7 +57,7 @@ export default function ProjectItem({
                   items={["끌올하기", "수정하기", "삭제하기"]}
                   place="left"
                   className="absolute right-5"
-                  projectId={projectId}
+                  projectId={data.projectId}
                   setIsOpen={setIsOpen}
                 />
               )}
@@ -82,17 +68,12 @@ export default function ProjectItem({
         <div className="flex justify-between items-center">
           <div
             className="text-title cursor-pointer"
-            onClick={() => router.push(`/project/${projectId}`)}
+            onClick={() => router.push(`/project/${data.projectId}`)}
           >
-            {title}
+            {data.title}
           </div>
-          <div
-            onClick={() => {
-              console.log("clicked");
-            }}
-            className="cursor-pointer"
-          >
-            {isScrapped ? (
+          <div className="cursor-pointer">
+            {data.isScrapped ? (
               <BookmarkIcon />
             ) : (
               <BookmarkBorderIcon
@@ -102,20 +83,20 @@ export default function ProjectItem({
             )}
           </div>
         </div>
-        <div className="text-body1 text-gray-60">{summary}</div>
+        <div className="text-body1 text-gray-60">{data.summary}</div>
         <div className="flex flex-row gap-[12px] text-gray-60">
-          <p>{nickname}</p>
-          <p>{createdAt}</p>
-          <p>끌올 {pullUpCount ?? 0}회</p>
+          <p>{data.nickname}</p>
+          <p>{data.createdAt}</p>
+          <p>끌올 {data.pullUpCount ?? 0}회</p>
         </div>
         <div className="text-gray-60 flex gap-[30px] items-center">
           <div className="flex gap-[5px]">
             <ThumbUpOutlinedIcon />
-            <p>{likeCount ?? 0}</p>
+            <p>{data.likeCount ?? 0}</p>
           </div>
           <div className="flex gap-[5px]">
             <ChatOutlinedIcon />
-            <p>{commentCount ?? 0}</p>
+            <p>{data.commentCount ?? 0}</p>
           </div>
         </div>
       </div>

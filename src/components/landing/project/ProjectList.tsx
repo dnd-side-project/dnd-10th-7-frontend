@@ -28,7 +28,7 @@ export default function ProjectList() {
     setKeyword(e.target.value);
   };
 
-  const [currentMenu, setCurrentMenu] = useState<string>();
+  const [currentMenu, setCurrentMenu] = useState<string | undefined>();
   const [isFinished, setIsFinished] = useState<boolean>(false);
   const [sort, setSort] = useState(0);
 
@@ -45,7 +45,7 @@ export default function ProjectList() {
   });
 
   // // 카테고리 선택 시 호출될 콜백 함수
-  const handleMenuClick = (category: string) => {
+  const handleMenuClick = (category: string | undefined) => {
     setCurrentMenu(category); // 선택된 카테고리 ID 저장
     // router.push(`/?${createQueryString("field", category)}`);
   };

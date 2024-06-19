@@ -32,8 +32,6 @@ export default function UserInfoForm() {
     }
   };
 
-  console.log("form에서의 gender", gender);
-
   return (
     <>
       <Modal.Title>회원정보를 입력해주세요</Modal.Title>
